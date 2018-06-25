@@ -1,0 +1,102 @@
+<html><head><title>Integer Types</title>
+<link href="http://randym.name/blog/rss" rel="alternate" title="Randy Maas RSS Feed" type="application/rss+xml" />
+<link rel="stylesheet" href="jqmath-0.2.0.css" />
+<style type="text/css">
+body { color: #111111; background: #FFFFFF; }
+a, h2 a:hover { color: #2361A1; }
+h1, h2, h2 a { color: #111111; }
+h1, h2, h3, h6 { font-weight: normal; }
+h4, h5 { font-weight: bold; }
+h5, h6 { text-transform: uppercase; letter-spacing: 1px; }
+
+a, a:hover { text-decoration: none; }
+a img { border: none; }
+blockquote { border-left: 1px solid #ddd; color: #666; }
+pre { background: #eee; border: 1px solid #ddd; overflow: auto; clear: both; }
+code,pre { font-size: 0.9em; font-family:  Monaco, Consolas, "Andale Mono", Courier, "Courier New", Verdana, sans-serif; }
+pre { margin-bottom: 1.667em; padding: 0.583em 0.833em; background: #eee; }
+cite {padding: 0.3em 0.3em; line-height:180%; background: #ffffe0; border: 1px solid #ddd; overflow: auto; clear: both; font-style: normal; font-size: 85%;}
+.caption {font-size: small; text-align: center; color: #660000; margin: -20px 0 0 0; }
+p.note {padding: 0.571em 0.786em;  background: #f5f5f5; border: 1px solid #ddd; }
+iframe {align: center;}
+table
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-collapse: collapse;
+}
+
+td, th
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    margin: 0;
+    padding: 4px;
+    vertical-align: top;
+    text-align: left;
+}
+
+table.t1,td.t1,th.t1 {    border-style:none; border-width: 0px 0px 0px 0px;}
+#Main {
+	padding: 0px;
+	border: 0px dotted gray;
+	margin-left: 120px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+#Sidebar {
+	position: absolute;
+	margin: 0 0 0 -75px;
+	width: 90px;
+	height: auto;
+	border: 0px dotted gray;
+	background-color: transparent;
+	text-align: right;
+	line-height: 1em;
+}
+#Sidebar ul {
+	margin: 3.5em 0 5em 9em;
+}
+
+#Sidebar li {
+	list-style: none;
+	letter-spacing: 1px;
+	margin: 0 0 1em -7em;
+	padding: 0;
+}
+</style><script type="text/javascript">
+  var _gaq = _gaq || [];
+  var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-31474143-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head><body><div id="Sidebar">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/about.html">About Randy Maas</a></li>
+<li><a href="rss">rss</a></li>
+<li><a href="38.html">Older</a></li><li><a href="40.html">Newer</a></li>
+</ul>
+</div><div id="Main">
+<h1>Integer Types</h1><p class="byline"><a href="mailto:randym@randym.name">Randall Maas</a> 7/9/2011 3:58:06 PM</p>
+<p>This is mostly an update to the <a href="38.html">previous post</a> wherein I described integer types, especially those with specific sizes.</p><p>Since then I found an excellent article titled "Everything you ever wanted to know about C types" by Peter Seebach:</p><ul><li> <a href="http://www.ibm.com/developerworks/power/library/pa-ctypes1/index.html">Part 1</a>
+</li><li><a href="http://www.ibm.com/developerworks/power/library/pa-ctypes2/index.html">Part 2</a>
+</li><li><a href="http://www.ibm.com/developerworks/power/library/pa-ctypes3/index.html"> Part 3</a>
+</li><li> <a href="http://www.ibm.com/developerworks/power/library/pa-ctypes4/index.html">Part 4</a></li></ul><p>Short version:</p><ol><li> Not all integer types are available.  This is not surprising.  Mr Seebach helps outline which macros to check for to see if they are.
+</li><li>Types for the machines preferred integer types.  (This is usually called word size, but I'm cautious with that.  First, different units in the processor often have different word sizes.  Second, many people used to Intel processors think of "WORD" as 16 bits, "DWORD" as 32 bits... and the modern Intel processor has a word size of 32 or 64 bits...)
+</li><li> A mechanism to find the largest available integer size</li></ol><p>And a whole slew of other info (worth a topic for another time) including pointers:</p><ol><li> Did you know that many different pointers "values" can be equal to a null pointer &#45; not just <code>(void*) 0</code>? These are null pointers..
+</li><li>Did you know that its possible for a pointer, after a free()?
+</li><li>Base-2 isn't really required for integers &#45; you could use gray code, for instance &#45; but everyone assumes base-2 for integers...
+</li><li> That many types define "trap" values, that when used have undefined behaviour (and may cause some sort of fault)?  (Null pointers and divide by zero aren't part a structure definition now, I supposed)</li></ol><p></p></div></body>
+</html>

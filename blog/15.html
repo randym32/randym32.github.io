@@ -1,0 +1,95 @@
+<html><head><title>Estimating the maximum time spent in an interrupt service routine.</title>
+<link href="http://randym.name/blog/rss" rel="alternate" title="Randy Maas RSS Feed" type="application/rss+xml" />
+<link rel="stylesheet" href="jqmath-0.2.0.css">
+<style type="text/css">
+body { color: #111111; background: #FFFFFF; }
+a, h2 a:hover { color: #2361A1; }
+h1, h2, h2 a { color: #111111; }
+h1, h2, h3, h6 { font-weight: normal; }
+h4, h5 { font-weight: bold; }
+h5, h6 { text-transform: uppercase; letter-spacing: 1px; }
+
+a, a:hover { text-decoration: none; }
+a img { border: none; }
+blockquote { border-left: 1px solid #ddd; color: #666; }
+pre { background: #eee; border: 1px solid #ddd; overflow: auto; clear: both; }
+code,pre { font-size: 0.9em; font-family:  Monaco, Consolas, "Andale Mono", Courier, "Courier New", Verdana, sans-serif; }
+pre { margin-bottom: 1.667em; padding: 0.583em 0.833em; background: #eee; }
+cite {background: #ffffe0; border: 1px solid #ddd; overflow: auto; clear: both; font-style: normal;}
+table
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-collapse: collapse;
+}
+
+td, th
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    margin: 0;
+    padding: 4px;
+    vertical-align: top;
+    text-align: left;
+}
+
+table.t1,td.t1,th.t1 {    border-style:none; border-width: 0px 0px 0px 0px;}
+#Main {
+	padding: 0px;
+	border: 0px dotted gray;
+	margin-left: 120px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+#Sidebar {
+	position: absolute;
+	margin: 0 0 0 -75px;
+	width: 90px;
+	height: auto;
+	border: 0px dotted gray;
+	background-color: transparent;
+	text-align: right;
+	line-height: 1em;
+}
+#Sidebar ul {
+	margin: 3.5em 0 5em 9em;
+}
+
+#Sidebar li {
+	list-style: none;
+	letter-spacing: 1px;
+	margin: 0 0 1em -7em;
+	padding: 0;
+}
+</style>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-31474143-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head><body><div id="Sidebar">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/about.html">About Randy Maas</a></li>
+<li><a href="rss">rss</a></li><li><a href="14.html">Older</a></li><li><a href="16.html">Newer</a></li></ul>
+</div><div id="Main">
+<h1>
+Estimating the maximum time spent in an interrupt service routine.</h1><p class="byline"><a href="mailto:randym@randym.name">Randall Maas</a> 5/26/2010 4:08:12 PM</p><p>In design and development of software, I want to know what the worst-case, longest execution time for the interrupt service routine.  Not what we specified or intended in design; rather what the compiler created.  This is important because we want to be sure that we have plenty of time to spare: we don't want to miss other interrupts, or important hardware events that are signalled, and so forth.  And we don't want the ISR to be an infinite loop.</p><p>I've written several analysis tools over the years that can do this operation on processors as complicated as the Intel x86 to as simple as the PIC10.  The basic idea is count instruction cycles down the longest execution path.  (Okay, I cheated on the x86 since I didn't estimate cycle time for all possible instructions, or even accurately for the ones, just the worst case for the ones that there.)  Depending on the environment, I chose to feed it the assembly from the compiler, or the object binary.</p><p>The routine works as follows:</p><p><ol><li> If we have already seen this instruction address, return a Cycle Count of unbounded. (we may have an infinite loop).
+</li><li> If is a conditional branch, repeat the process for each of the branches.  Keep the maximum returned count, and return this value plus the CurrentCycleCount to this point.
+</li><li> If it is an unconditional branch, add the cycle time for this branch to the CurrentCycleCount, and update the instruction address to the target of the unconditional branch.
+</li><li> If this is a call instruction, check our "call stack" to see that it is not recursive.  If it is recursive, return a Cycle Count of unbound.  Otherwise add, the current routine to the call stack, and repeat this process for the target address (with an empty set of seen instruction addresses).  Add the results to the CurrentCycleCount and continue with the next instruction.
+</li><li>If see a return, increment CurrentCycleCount appropriately and return
+</li><li>Otherwise, add the cycle time for this instruction to the CurrentCycleCount, and update the instruction address to the next instruction.
+</li></ol></p><p>This is almost trivial on the PIC10 platform, since it has constant time instructions, and it's conditional branch instructions always has a fixed offset.  This is incrementally more complex with the PIC16, PIC18, ARM, etc.</p><p>The algorithm I outlined about has one flaw.  The first step can't tell if you aren't using a bounded for loop or recursion.  Recursion is typically considered a bad idea in microcontrollers, embedded, and interrupt service routines, so that is not much of a problem.  But short for loops are common.  To fix this, you could look at the comparison and do some analysis and see if that is a problem.</p><p>In practice, I found the simplest place to start is not with analysis of looping constructs.  I found it better to grab the address of the branch, map it to the source code line, and report each one separately.  That is good enough to check manually to see if there is a problem.</p><p>Then, as a second pass, I added to ability to flag a region of addresses &#45; map the source code lines to addresses, usually with another subroutine &#45; as okay for looping, and to assume a max iteration.  So step 1 would be modified to check for this, and provide the branch instruction as place to stop examining instructions (so this analysis finishes).  The scan also multiply the cycle counts by the said maximum cycle.</p><p>So there you have it, how to automatically estimate the worst case duration of the interrupt service routine (or any other).
+</p></div></body>
+</html>

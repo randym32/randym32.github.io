@@ -1,0 +1,131 @@
+<html><head><title>Writing an emulator</title>
+<link href="http://randym.name/blog/rss" rel="alternate" title="Randy Maas RSS Feed" type="application/rss+xml" />
+<link rel="stylesheet" href="jqmath-0.2.0.css">
+<style type="text/css">
+body { color: #111111; background: #FFFFFF; }
+a, h2 a:hover { color: #2361A1; }
+h1, h2, h2 a { color: #111111; }
+h1, h2, h3, h6 { font-weight: normal; }
+h4, h5 { font-weight: bold; }
+h5, h6 { text-transform: uppercase; letter-spacing: 1px; }
+
+a, a:hover { text-decoration: none; }
+a img { border: none; }
+blockquote { border-left: 1px solid #ddd; color: #666; }
+pre { background: #eee; border: 1px solid #ddd; overflow: auto; clear: both; }
+code,pre { font-size: 0.9em; font-family:  Monaco, Consolas, "Andale Mono", Courier, "Courier New", Verdana, sans-serif; }
+pre { margin-bottom: 1.667em; padding: 0.583em 0.833em; background: #eee; }
+cite {background: #ffffe0; border: 1px solid #ddd; overflow: auto; clear: both; font-style: normal;}
+table
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-collapse: collapse;
+}
+
+td, th
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    margin: 0;
+    padding: 4px;
+    vertical-align: top;
+    text-align: left;
+}
+
+table.t1,td.t1,th.t1 {    border-style:none; border-width: 0px 0px 0px 0px;}
+#Main {
+	padding: 0px;
+	border: 0px dotted gray;
+	margin-left: 120px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+#Sidebar {
+	position: absolute;
+	margin: 0 0 0 -75px;
+	width: 90px;
+	height: auto;
+	border: 0px dotted gray;
+	background-color: transparent;
+	text-align: right;
+	line-height: 1em;
+}
+#Sidebar ul {
+	margin: 3.5em 0 5em 9em;
+}
+
+#Sidebar li {
+	list-style: none;
+	letter-spacing: 1px;
+	margin: 0 0 1em -7em;
+	padding: 0;
+}
+</style>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-31474143-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head><body><div id="Sidebar">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/about.html">About Randy Maas</a></li>
+<li><a href="rss">rss</a></li><li><a href="16.html">Older</a></li><li><a href="18.html">Newer</a></li></ul>
+</div><div id="Main">
+<h1>
+Writing an emulator</h1><p class="byline"><a href="mailto:randym@randym.name">Randall Maas</a> 6/1/2010 12:35:27 PM</p><p>I mentioned in the <a href="16.html">previous entry</a> that I would describe how I wrote an emulation of an embedded system (and in the future, I intend to explain how I wrote simulations).  I wanted to write the simulation for a number of reasons.  To explore language semantics, to explore parsing, to explore ideas in testing, and debugging.  And, to allow development of embedded systems when I didn't have all of the hardware ready.</p><p>The basic idea of this emulator is to take the source code intended for an embedded system, and run it using an conventional desktop environment like Visual C/C++ (in Visual Studio).  To get it to run there a tool will be needed to make some practical modifications.  Typically this emulation will not substitute the embedded system, and, running on a PC, it will not be able to simulator all of the microcontroller's, compiler, or peripheral quirks.  But it does allow building and testing unitary pieces.</p><p>This break the overall approach down into the following parts:</p><p><ol>
+<li>Transform code</li>
+<li>Patch tables to analysis shims</li>
+<li>Provide support code to emulate the microcontroller semantics</li>
+<li>Provide support code to emulate devices</li>
+</ol></p><p><h2>What the transformed the code would look like</h2></p><p>For a few reasons I decided to tweak the transformed code a bit.  The basic idea is that my tool would rename procedures:</p><p><table>
+<tr><th>from</th><th>to</th></tr>
+<tr><td><code><pre>extern int16_t foo(...);
+int16_t foo(...)
+{
+}</pre></code></td><td><code><pre>extern int16_t (*foo)(...);
+int16_t Z_foo(...)
+{
+}</pre></code></td></tr>
+</table></p><p>Notice that a prefix was added to the procedure name.  (The <code>Z_</code> was easy to use, short, and I did not have a better naming idea).  Whenever a procedure calls <code>foo</code> it is actually calling something else.  That something else is a shim procedure that does something useful.</p><p>This is done, in an extra module, that links the <code>foo</code> variable to the shim procedure:</p><code><pre>int16_t (*foo)(...) = Y_foo;
+...
+
+int16_t Y_foo(...)
+{
+   int16_t Ret;
+   TraceCall("foo", NULL);
+   Ret = Z_foo(...);
+   TraceReturn("foo");
+   return Ret;
+}</pre></code><p>The shim code traces the call, calls the "real" routine, and traces the end of the routine.  The call tracing could be a simple <code>printf</code> log, or something more complex.  I was interested in printing out a sequence diagram, perhaps like in UML, to see what led up to a bug.</p><p>Actually, <a href="19.html">the shim code</a> does not look like this.  The shim code actually has checks for errors, which I will describe in <a href="19.html">the future</a>.  There are a few more reasons for doing translation with this kind of shims.  I will explore those in the future...</p><p><h2>Transforming the code</h2></p><p>Let's look a bit more of the process of transforming the code.  I kept restricted the simulation to an easy type of translation.  If it was not easy, I might as well do something else.  For a lot of reasons, C is a family of dialects, each having its <a href="http://cacm.acm.org/magazines/2010/2/69354-a-few-billion-lines-of-code-later/fulltext">own variation of grammar and semantic differences.</a>  Fortunately this is most often limited to keywords, with only slight semantic differences.  Most often.</p><p>I relied on a few simplifying assumptions:</p><p><ol>
+<li>I assumed that I would be working with C code that compiles in a normal usage.  Basically, code that compiles with the compiler for the embedded processor.</li>
+<li>And I assume that there is a reasonable way to translate the code.</li>
+</ol></p><p>In my case, these are not high bars.  First, I wrote the tool to work on source code I knew ' it has many regularities.  (Code written to good coding standards should have a lot of regularity too.)  Second, I often use <a href="http://www.gimpel.com/">lint</a> to help catch syntactic and semantic errors with C.  (I recommend <a href="http://www.gimpel.com/">PC-Lint</a>.  Strongly.)</p><p>The simplest translation approach is to use regex string substitution.  Look for some sort of pattern, and then change just that, leaving the rest in tack.  My translation tool primarily uses this approach.</p><p>A harder approach is parsing the code.  This is not necessary to create an abstract syntax tree of the code.  It is only needed to find out information, or act as a string matching and substitution, albeit more complex than regex.  I needed to use parsing to find the names and types of variables, procedures (and their parameter lists).  These are used to generate the shims.</p><p>Then the resulting code has to be generated.  This includes renaming of the procedure names, and as well as those variable or register names.  In many cases, it had to remove non-portable compiler and platform specific constructs.  In a few cases, it had to introduce constructs to preserve the semantics of the target compiler or platform.</p><p><h2>A look at some of the specific constructs that had to be papered over</h2></p><p>Let's look at some of the specific constructs that had to tweaked, changed, or papered over.  In the case of the compiler, I had to remove language structures that are useful on the target system:</p><ul><li> With some compilers you can use the form <code>0b00..00</code> to write out base-2 numbers.  I have this translated into hex format that other compilers support.
+</li><li>Microsoft compilers don't support designated initializers.
+</li><li>Some compilers let you specify their width as 1 bit, this has to get bumped to a byte.
+</li><li>Some compilers let you specify attributes about a procedure or variable, such as its address, storage class, or alignment.  This has to be stripped off.
+</li><li>Some embedded compilers have anonymous unions, and this has to be cleaned up.
+</li><li> pragma's</li></ul><p>What about the platform specifics?</p><p><ul>
+<li>Compilers may have integral types that cannot be properly simulated, like 24-bit integers.  These integers will have overflow behaviour different that what is on the target platform.  This can be emulated by either replacing the type directly or defining it in the emulation framework.  (For instance if I'm using <code>int24_t</code>, which Visual C does not have, I typedef <code>int24_t</code> as <code>in32_t</code>).</li>
+<li>Emulates the registers as an interface (many of these on a microcontroller).  On microcontrollers, it is common for a register to be used to configure or communicate with a peripheral.  I change left hand side expressions of <code>Reg1 =</code>  into <code>Reg1_set(...)</code>, and right hand side expressions of <code>= Reg1 + ...</code> into <code>Reg1_get()</code></li>
+<li>Clean up the C run time, platform and other header files.</li>
+<li>With some platform behaviour, it is easier to replace one of the higher-level API procedures instead of emulating the registers.  More on this in a minute.</li>
+<li>Waiting for interrupts.  I usually skipped this, but in some cases, I emulated this thru the register to procedure mapping above.  (I know of other people who use threads, but this is pretty dodgy)</li>
+</ul></p><p>I use configuration files to tell the translation tool how to change certain types, what procedures to use for certain registers, and what procedure it should use instead of procedure <code>XYZ</code>.  (The latter are for procedures that cannot be translated automatically, or at least well enough to make it worth it).</p><p><h2>The caveats</h2></p><p>As serviceable as this approach is, it is a good idea to take not of limitations.  The emulation is far from complete:</p><p><ul>
+<li>Performance figures.  Microcontrollers run slower, and seldom pipeline code like a desktop pc.</li>
+<li>The program and the variables will not have same memory layout.</li>
+<li>There is not concept of program memory that can reprogrammed or patched.</li>
+<li>The stack memory limits are very different.</li>
+</ul></p><p>To be honest, the translation process is rickety.  In some cases, it was motivation to improve the translator.  In other cases, I considered it a good sign that the original source code should be written differently, perhaps mandating a style guide change as well.</p><p><h2>Next time</h2></p><p><a href="18.html">Next time</a> I will explain the portions of the emulation framework.  And much later I'll explain how this can be used for testing.</p><p></p></div></body>
+</html>

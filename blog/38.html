@@ -1,0 +1,98 @@
+<html><head><title>Preferred types</title>
+<link href="http://randym.name/blog/rss" rel="alternate" title="Randy Maas RSS Feed" type="application/rss+xml" />
+<link rel="stylesheet" href="jqmath-0.2.0.css">
+<style type="text/css">
+body { color: #111111; background: #FFFFFF; }
+a, h2 a:hover { color: #2361A1; }
+h1, h2, h2 a { color: #111111; }
+h1, h2, h3, h6 { font-weight: normal; }
+h4, h5 { font-weight: bold; }
+h5, h6 { text-transform: uppercase; letter-spacing: 1px; }
+
+a, a:hover { text-decoration: none; }
+a img { border: none; }
+blockquote { border-left: 1px solid #ddd; color: #666; }
+pre { background: #eee; border: 1px solid #ddd; overflow: auto; clear: both; }
+code,pre { font-size: 0.9em; font-family:  Monaco, Consolas, "Andale Mono", Courier, "Courier New", Verdana, sans-serif; }
+pre { margin-bottom: 1.667em; padding: 0.583em 0.833em; background: #eee; }
+cite {background: #ffffe0; border: 1px solid #ddd; overflow: auto; clear: both; font-style: normal;}
+table
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-collapse: collapse;
+}
+
+td, th
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    margin: 0;
+    padding: 4px;
+    vertical-align: top;
+    text-align: left;
+}
+
+table.t1,td.t1,th.t1 {    border-style:none; border-width: 0px 0px 0px 0px;}
+#Main {
+	padding: 0px;
+	border: 0px dotted gray;
+	margin-left: 120px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+#Sidebar {
+	position: absolute;
+	margin: 0 0 0 -75px;
+	width: 90px;
+	height: auto;
+	border: 0px dotted gray;
+	background-color: transparent;
+	text-align: right;
+	line-height: 1em;
+}
+#Sidebar ul {
+	margin: 3.5em 0 5em 9em;
+}
+
+#Sidebar li {
+	list-style: none;
+	letter-spacing: 1px;
+	margin: 0 0 1em -7em;
+	padding: 0;
+}
+</style>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-31474143-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head><body><div id="Sidebar">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/about.html">About Randy Maas</a></li>
+<li><a href="rss">rss</a></li><li><a href="37.html">Older</a></li><li><a href="39.html">Newer</a></li></ul>
+</div><div id="Main">
+<h1>
+Preferred types</h1><p class="byline"><a href="mailto:randym@randym.name">Randall Maas</a> 1/16/2011 5:04:21 PM</p><p>Continuing on with some thoughts in the coding style, I ramble a bit about the kinds of types to be preferred.</p><p><h2>Integer types</h2>
+<table>
+<tr><th></th><th>signed</th><th>unsigned</th></tr>
+<tr><td>specific width (_XX_ bits)</td><td><code>int<i>XX</i>_t</code></td><td><code>uint<i>XX</i>_t</code></td></tr>
+<tr><td>generic</td><td><code>int</code>, except when reasonable to assume overflow handling, then use <code>long</code>	</td><td><code>unsigned</code>, except when reasonable to assume overflow handling, then use <code>unsigned long</code>.</td></tr>
+</table></p><p><h3>Commentary</h3></p><p>The names are the C99 standard.  But I've seen projects consistently use intXX and T_INTXX, or event INTXXS and INTXXU (!).  I'd suggest that new projects be consistent with the C99 Types</p><p>I've seen this table produced in many places, so I'm not being original.  But I've seen many shops that have created their own types for different signed and unsigned integers.  It seems silly when there are perfectly good types, and type names in the standard.</p><p><h2>Floating point types</h2></p><p>Floating point types should be <code>double</code>.</p><p><h2>Characters and strings</h2></p><code>char</code><p> should only be used to represent characters, and nothing should be assumed about it's sign.</p><p>Characters might use <code>char</code> type, or a "wider" type, as appropriate.
+Similarly, strings might use <code>const char*</code>, but strings might use a more specific type.</p><p>(Personally, I'm of the opinion that text strings should be zero-terminated UTF-8 strings without embedded nulls.
+But there is plenty of software out there that uses UNICODE, with its encumbent flaws.)</p><h2>Pointers</h2><p>Pointer should be to the specific type, if known.
+A generic type should be <code>void*</code>.
+<code>const</const> should be employed whereever possible, and dropped only when required.</p><p>Note: the <code>*</code> is part of the type.</p><h3>Note on type qualifiers</h3><p>Qualifiers like "const," "static," "extern," and so forth, should always go before the thing they modify, not after.</p><h2>Update</h2><p>Updated in the <a href="39.html">next entry</a>
+</p></div></body>
+</html>

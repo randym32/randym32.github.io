@@ -1,0 +1,134 @@
+<html><head><title>Monitoring the code execution</title>
+<link href="http://randym.name/blog/rss" rel="alternate" title="Randy Maas RSS Feed" type="application/rss+xml" />
+<link rel="stylesheet" href="jqmath-0.2.0.css" />
+<style type="text/css">
+body { color: #111111; background: #FFFFFF; }
+a, h2 a:hover { color: #2361A1; }
+h1, h2, h2 a { color: #111111; }
+h1, h2, h3, h6 { font-weight: normal; }
+h4, h5 { font-weight: bold; }
+h5, h6 { text-transform: uppercase; letter-spacing: 1px; }
+
+a, a:hover { text-decoration: none; }
+a img { border: none; }
+blockquote { border-left: 1px solid #ddd; color: #666; }
+pre { background: #eee; border: 1px solid #ddd; overflow: auto; clear: both; }
+code,pre { font-size: 0.9em; font-family:  Monaco, Consolas, "Andale Mono", Courier, "Courier New", Verdana, sans-serif; }
+pre { margin-bottom: 1.667em; padding: 0.583em 0.833em; background: #eee; }
+cite {padding: 0.3em 0.3em; line-height:180%; background: #ffffe0; border: 1px solid #ddd; overflow: auto; clear: both; font-style: normal; font-size: 85%;}
+.caption {font-size: small; text-align: center; color: #660000; margin: -20px 0 0 0; }
+p.note {padding: 0.571em 0.786em;  background: #f5f5f5; border: 1px solid #ddd; }
+iframe {align: center;}
+table
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-collapse: collapse;
+}
+
+td, th
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    margin: 0;
+    padding: 4px;
+    vertical-align: top;
+    text-align: left;
+}
+
+table.t1,td.t1,th.t1 {    border-style:none; border-width: 0px 0px 0px 0px;}
+#Main {
+	padding: 0px;
+	border: 0px dotted gray;
+	margin-left: 120px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+#Sidebar {
+	position: absolute;
+	margin: 0 0 0 -75px;
+	width: 90px;
+	height: auto;
+	border: 0px dotted gray;
+	background-color: transparent;
+	text-align: right;
+	line-height: 1em;
+}
+#Sidebar ul {
+	margin: 3.5em 0 5em 9em;
+}
+
+#Sidebar li {
+	list-style: none;
+	letter-spacing: 1px;
+	margin: 0 0 1em -7em;
+	padding: 0;
+}
+</style><script type="text/javascript">
+  var _gaq = _gaq || [];
+  var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-31474143-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head><body><div id="Sidebar">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/about.html">About Randy Maas</a></li>
+<li><a href="rss">rss</a></li>
+<li><a href="18.html">Older</a></li><li><a href="20.html">Newer</a></li>
+</ul>
+</div><div id="Main">
+<h1>Monitoring the code execution</h1><p class="byline"><a href="mailto:randym@randym.name">Randall Maas</a> 6/4/2010 12:59:15 PM</p>
+<p>Now that I have <a href="18.html">outlined how the emulation works</a>, I can outline how I structured the emulation to monitor for proper execution, to catch bugs and other software errors.</p><p><ul>
+<li>Host compile time checks: lint warnings, compiler warnings</li>
+<li>Host run time checks: compiler run-time debug</li>
+<li><a href="20.html">Parameter checks</a></li>
+<li><a href="21.html">Checking call sequences</a>, procedure call sequence, IO communication protocol checks.</li>
+</ul></p><p>Notice that I listed as the first pass of checking the code to be the warnings from lint and the compiler.  A properly configured <a href="http://www.gimpel.com/html/pcl.htm">Lint</a> is an excellent tool for catching a whole slew of bugs, especially improper use of other modules.  This can be important when the modules are written by different fellows, some possibly quite unfamiliar with the rest of the system.  Similarly, the compiler warnings should not be dismissed either.  Often the compiler will produce different warnings (or suggestions) than what the embedded system does.  And the Visual C compilers are including more and more features for detecting buffer overflows, range misused, unused variables, and other risks of execution.  All of these are an immediate chance to squash latent bugs.</p><p>I also prefer to use the host's ability to detect bugs.  For instance, the Visual C suite has usage checks on memory, and as a subset variables.  It will trigger the debugger if a memory location (incl. variable) is being used as a read access but has not been initialized.  It can detect buffer overruns, writes to NULL pointers, double-<code>free()</code> and use after <code>free()</code> (but you shouldn't be using dynamic memory allocation in embedded systems), and a variety of numerical overflows (although these checks often have to be enabled).</p><p>I also suggesting using the hosts profiling features.</p><p><h2>The Shim</h2></p><p>Before we look at the rest of the checks, we need to take a moment to look at the shim.   The shim is an important point for checking the behaviour and performance of each procedure.  It is the key part of where the action occurs.  I outlined the use of these procedures, which wrap and call the real procedure, in an earlier entry.    But I only mentioned that I had more reasons for using it than were provided for there.</p><p>In short, it lets me track the entry and exit to each procedure, without having to modify that procedure.  Modifying those procedures is tricky, partly due to the variability of the language and issues with deep parsing of it.   This approach is so simple.  But modifying those procedures is something I didn't want to for a third reason.  It would turn them into gobblity gook, and I wanted the procedures to remain faithful to their source when I have to debug the code, and port the changes back to the real source.  (For instance, would have to handle how a procedure can have multiple points of return, which would plop all sorts of crud in at every potential return point.)</p><p>Let's look at the full template (more or less) of the shims:</p><code><pre>
+ret_type Y_procedure(params)
+{
+   void* S;
+   ret_type Ret;
+   const char* PrevProcedure = Proc_Current;
+   TraceCall		("ProcedureName", NULL);
+   FSMs_update          ("ProcedureName", NULL);
+
+   ...check parameters
+   if (parameter checks fail)
+     TraceBad("ProcedureName", "Error: parametername value out of range");
+
+   S = SysState_save	();
+   StackDepth++;
+   if (StackDepth > MaxStackDepth)
+     MaxStackDepth = StackDepth;
+
+   Ret = Z_procedure();
+   StackDepth -= 1;
+   ... check the post-conditions'
+   if (check conditions of return value)
+     TraceBad("ProcedureName", "Error: return value out of range");
+
+   SysState_check	(S);
+   SysState_free	(S);
+   TraceReturn		("ProcedureName");
+   Proc_Current = PrevProcedure;
+   return Ret;
+}</pre></code><p>Wow, that is a lot of stuff.  What is it doing?</p><p><dl>
+<dt>Performance tracking</dt><dd>maximum stack depth, procedure to procedure call transition counts, number of times being called, approximate duration of a call (note that the timing information gathered in this way does have wider error bars than would be on the real hardware)</dd>
+<dt>Tracing</dt><dd>logging which procedure gets called, when, and their sequence</dd>
+<dt>Boundary condition checking</dt><dd>Perform parameter and return value checking, processor / system variable checking</dd>
+<dt>Sequence checking</dt><dd>order of calls, and when it can be called.</dd>
+</dl></p><p>That's a lot. I'll begin discussing them here and will continue next time.</p><p><h2>Profiling and tracing</h2></p><p>Determining maximum call stack.  This is the single most useful figure.  Microcontrollers have a limited call stack.  (I should explain that the stack of return addresses is typically in a separate stack from the local data on microcontrollers and some other architectures.  This is very good.)  Since they are limited, it is important to know what the worst-case usage would be so that we know it will not overflow.  In effect, the worst case interrupts service routine stack usage plus the worst-case regular usage (ignoring the ISR).  This helps approximate those figure.</p><p>I intended to use the trace information, with the other performance measurements, to develop more powerful profiling features.  This turned out to be something I have not needed.  I will outline this in a later post, as a possible future task.</p><p><h2>Next time</h2></p><p>The checking of the <a href="20.html">boundary conditions (including call parameters)</a> and <a href="21.html">call sequence checking</a> each deserves an entry to themself.
+</p></div></body>
+</html>

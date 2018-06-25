@@ -1,0 +1,90 @@
+<html><head><title>Cracker Barrel: Reconstructing Position</title>
+<link href="http://randym.name/blog/rss" rel="alternate" title="Randy Maas RSS Feed" type="application/rss+xml" />
+<link rel="stylesheet" href="jqmath-0.2.0.css">
+<style type="text/css">
+body { color: #111111; background: #FFFFFF; }
+a, h2 a:hover { color: #2361A1; }
+h1, h2, h2 a { color: #111111; }
+h1, h2, h3, h6 { font-weight: normal; }
+h4, h5 { font-weight: bold; }
+h5, h6 { text-transform: uppercase; letter-spacing: 1px; }
+
+a, a:hover { text-decoration: none; }
+a img { border: none; }
+blockquote { border-left: 1px solid #ddd; color: #666; }
+pre { background: #eee; border: 1px solid #ddd; overflow: auto; clear: both; }
+code,pre { font-size: 0.9em; font-family:  Monaco, Consolas, "Andale Mono", Courier, "Courier New", Verdana, sans-serif; }
+pre { margin-bottom: 1.667em; padding: 0.583em 0.833em; background: #eee; }
+cite {background: #ffffe0; border: 1px solid #ddd; overflow: auto; clear: both; font-style: normal;}
+table
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-collapse: collapse;
+}
+
+td, th
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    margin: 0;
+    padding: 4px;
+    vertical-align: top;
+    text-align: left;
+}
+
+table.t1,td.t1,th.t1 {    border-style:none; border-width: 0px 0px 0px 0px;}
+#Main {
+	padding: 0px;
+	border: 0px dotted gray;
+	margin-left: 120px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+#Sidebar {
+	position: absolute;
+	margin: 0 0 0 -75px;
+	width: 90px;
+	height: auto;
+	border: 0px dotted gray;
+	background-color: transparent;
+	text-align: right;
+	line-height: 1em;
+}
+#Sidebar ul {
+	margin: 3.5em 0 5em 9em;
+}
+
+#Sidebar li {
+	list-style: none;
+	letter-spacing: 1px;
+	margin: 0 0 1em -7em;
+	padding: 0;
+}
+</style>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-31474143-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head><body><div id="Sidebar">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/about.html">About Randy Maas</a></li>
+<li><a href="rss">rss</a></li><li><a href="13.html">Older</a></li><li><a href="15.html">Newer</a></li></ul>
+</div><div id="Main">
+<h1>
+Cracker Barrel: Reconstructing Position</h1><p class="byline"><a href="mailto:randym@randym.name">Randall Maas</a> 5/25/2010 8:57:28 AM</p><p>In the summer of 1990 I started as a student assistant for an oceanographer at the University of Washington's Applied Physics Lab.  Somewhere along the way I was given a task to reconstruct where on earth (literally) a measurement was taken.  I was given a few different tapes, and copies of handwritten logs.  From there I
+tried to estimating position of measurements based on these different sources: the ships logs, recordings from the navigation equipment, the sensor itself, and so on.</p><p><h2>Historical background</h2></p><p>Wait, let's take a step back.  Remember that this is the summer of 1990, and I was given tapes.  This was pre-Gulf War, so GPS was an expensive gizmo that didn't work well yet.  A GPS unit cost thousands of dollars, and required external antennas.  The tapes were for data collected a year earlier, when there might be an hour or two a day where the GPS actually got a fix on your location.  Second, did I mention TAPES?  This was the reel-to-reel kind of tapes you saw in movies.  Tapes were strange: we had rules that we had to re-tension the tapes before I used them, so that they had the best chance of being read.</p><p>(Re-tension? What is that!?!  That means I had to put the tape in the machine and have it completely unwind, onto another spool, and then rewind onto the current spool.  And by "machine"  I mean I the tape player that it was written with, or so darned close that it was likely to be reliably read from.)</p><p>Anyway, back to story...</p><p><h2> The Navigation Loop</h2></p><p>The first tape I was given had data from the lab's instrument, which was sent into the ocean and recorded measurements at each depth.  This included magnetic sensors that tracked its movements.  (The sensor was pretty cool, since it used the earth's magnetic field to see how it moved; you still needed to know where it started though).  There was a miscellaneous set of files from the scientific survey had other instruments that they wanted to merge the data with, including data from an instrument package called a SeaBird.  And there was a tape that had the data log from the ships navigation systems (NAVLOOP) that was intended to provide data on where the ship was that put the probe in the water.</p><p>The navloop is pretty cool.  Basically is a text file of records, about once a second, from a bunch of different instruments on the ship.  Like a gyroscope, the GPS receivers, depth sounder, rudder position, magnetic compass, LORAN receiver, and so on.  This tells you the ships orientation, speed, position, the environment, and a whole lot of other things.</p><p><h2>Now the problems mount</h2></p><p>The first problem was that none of the clocks matched quite right.</p><p>The second problem  was that the handwritten logs were pretty sparse, and only useful for crude alignment.</p><p>Third, a scientific instrument attached to the side of a steel ship has limited use.  For oceanographers, it might be because the water next to a ship moves with the ship, has a higher temperature and so forth.  But it also means that the magnetic compass is useless.  This was the case with the SeaBird.</p><p>Fourth, instruments on the navloop disappeared and reappeared.  This might be due to it being serviced, or added.  But in this case it was because the ships crew had a fellow changing the software during the cruise.  This added a bug here and there, and fixed a bug here and there.</p><p>Fifth, just because a boat says has speed and direction, you can't use this to figure out its position very easily.   The boat may be turning, which throws everything off.  And the boats speed is measured relative to the water, which is moving.  And so on.</p><p>GPS was available then, but only for a few hours day, if at all.  (Remember this was before the Gulf War, so there weren't a lot satellites available).  Loran was available, but it was sporadic and didn't match other items.</p><p>Reading this you might think: use a Kalman filter to integrate it all, silly boy.  There are two problems: first, I did understand the basic idea of integrating position, acceleration, etc. but the data needed to be seriously cleaned up to know which acceleration went with which position, etc.  Second, the sample period was pretty bad for Kalman filtering.  Third, at the time the only material I had on Kalman filters was hair linear algebra with lots of derivatives, making it far from clear how it related.  (Since then I've learned a bit how to simplify the Kalman approach).</p><p>The end result wasn't perfect.   In effect, the processing tracked when an instrument or a field was not to be used.  It tracked rough corrections for them.  It gave precedent to major points that were known (every few hours) and tried to interpolate a speed of travel for them.  This interpolation wasn't quite linear, since I was looking at all of this data.  But the data wasn't good enough to be a pure velocity * time calculation.
+</p></div></body>
+</html>

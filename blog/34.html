@@ -1,0 +1,141 @@
+<html><head><title>CPD</title>
+<link href="http://randym.name/blog/rss" rel="alternate" title="Randy Maas RSS Feed" type="application/rss+xml" />
+<link rel="stylesheet" href="jqmath-0.2.0.css">
+<style type="text/css">
+body { color: #111111; background: #FFFFFF; }
+a, h2 a:hover { color: #2361A1; }
+h1, h2, h2 a { color: #111111; }
+h1, h2, h3, h6 { font-weight: normal; }
+h4, h5 { font-weight: bold; }
+h5, h6 { text-transform: uppercase; letter-spacing: 1px; }
+
+a, a:hover { text-decoration: none; }
+a img { border: none; }
+blockquote { border-left: 1px solid #ddd; color: #666; }
+pre { background: #eee; border: 1px solid #ddd; overflow: auto; clear: both; }
+code,pre { font-size: 0.9em; font-family:  Monaco, Consolas, "Andale Mono", Courier, "Courier New", Verdana, sans-serif; }
+pre { margin-bottom: 1.667em; padding: 0.583em 0.833em; background: #eee; }
+cite {background: #ffffe0; border: 1px solid #ddd; overflow: auto; clear: both; font-style: normal;}
+table
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-collapse: collapse;
+}
+
+td, th
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    margin: 0;
+    padding: 4px;
+    vertical-align: top;
+    text-align: left;
+}
+
+table.t1,td.t1,th.t1 {    border-style:none; border-width: 0px 0px 0px 0px;}
+#Main {
+	padding: 0px;
+	border: 0px dotted gray;
+	margin-left: 120px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+#Sidebar {
+	position: absolute;
+	margin: 0 0 0 -75px;
+	width: 90px;
+	height: auto;
+	border: 0px dotted gray;
+	background-color: transparent;
+	text-align: right;
+	line-height: 1em;
+}
+#Sidebar ul {
+	margin: 3.5em 0 5em 9em;
+}
+
+#Sidebar li {
+	list-style: none;
+	letter-spacing: 1px;
+	margin: 0 0 1em -7em;
+	padding: 0;
+}
+</style>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-31474143-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head><body><div id="Sidebar">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/about.html">About Randy Maas</a></li>
+<li><a href="rss">rss</a></li><li><a href="33.html">Older</a></li><li><a href="35.html">Newer</a></li></ul>
+</div><div id="Main">
+<h1>
+CPD</h1><p class="byline"><a href="mailto:randym@randym.name">Randall Maas</a> 10/3/2010 7:25:27 AM</p><p>This time I am going to describe a copy-paste detector I wrote several years ago.  This tool builds on the duplicate file finder I described earlier.  The concept was introduced to me with the Tom Copeland article <a href="http://tim.oreilly.com/lpt/a/3293">"Detecting Duplicate Code with PMD's CPD"</a> on the O'Reilly, in 2003.  That tool is part of the <a href="http://pmd.sourceforge.net/cpd.html">"PMD" toolset</a>.  Those tools proved invaluable at the time, because I was working with others on a set of large java-based programs.</p><p>As things are wont to do, I went on to other projects that used the C, C++, and C# languages.  However, PMD (and its CPD) did not support these languages.  I looked at how hard it would be to port PMD's CPD, but I abandoned that idea when I saw that CPD was part of the whole PMD toolset, and it was going to be a lot of work.  Instead, I decided to write one.</p><ul><li> The Basics of how copy-paste detection works
+</li><li> The parts of the program</li></ul><p><h2>Basics of how copy-paste detection works</h2></p><p>The copy-paste detector conceivably could keep track of every possible substring in every file (of every length from one element all the way up to the end the file).</p><p>This is not practical for two reasons.  (I think which reason you see as more obvious says a lot about you):</p><ul><li> The first is that the combinatorial explosion of every possible substring could get out of control very fast
+</li><li> The second is that we do not want white space or comments etc. to mess up the detection</li></ul><p>It turns out that you can deal with combinatorial explosion for small projects (maybe a couple of dozen files up to a thousand lines each).  Honestly, that surprised me.  But then again, small projects probably do not have so much redundancy to need to use this application.</p><p><h2>The parts of the program</h2></p><p>The parts of the program</p><ul><li>	File reader
+</li><li>Lexer / Tokenizer
+</li><li>Long-substring matching (in the form of Karp-Rubin matching)
+</li><li>	Stock algorithms: memory allocation, hashing, hash tables (associative arrays)</li></ul><p>One of the implicit goals was that the executable work stand-alone: that I would not have to include an external DLL.</p><p><h3>File Reader</h3></p><p>I outlined the beginnings of how it recursively scans the file system when I described my
+<a href="33.txt">"duplicate file finder"</a>.   But I will go into a bit more detail about the file reader this time.  The lowest layer is designed as a wrapper around OS file system interfaces.  There is a win32 implementation, and another for UNIX.  Primarily this is a .h file that <code>#define</code>s or declares procedures with a common naming and calling convention for the OS wrapper.  The file IO wrappers for Win32 look like:</p><code><pre>
+typedef HANDLE FileHandle_t;
+#define File_open(name)            CreateFileA (name, \
+                                                GENERIC_READ,           /* Open for reading  */ \
+                                                FILE_SHARE_READ,        /* Share for reading */ \
+                                                NULL,                   /* No security       */ \
+                                                OPEN_EXISTING,          /* Existing file only*/ \
+                                                FILE_ATTRIBUTE_NORMAL,  /* Normal file       */ \
+                                                NULL)                   /* No template file  */ \
+
+#define File_close(fd)             CloseHandle(fd)
+#define File_isGood(fd)            ((fd) != INVALID_HANDLE_VALUE)
+#define File_read(fd,buf,bufSize,numRead)  ReadFile(fd, buf, (DWORD) (bufSize), numRead, NULL)
+#define File_seek(fd,ofs)        SetFilePointer(fd,ofs,0,FILE_BEGIN)
+</pre></code><p>We are dealing with text files, which are small, we could read the whole file into memory for processing.  It would be exceptional for a text file to be 30MB (most editor I have seen would slow down and take a very long time to load it), but even then it would be something that would work on desktop computer.  I have done this in some projects.</p><p>However, in this project I already had a stock of code for reading and parsing text files.  (The spoils of earlier projects writing interpreters and compilers, primarily for prolog).  For the IO portion, the code is simple: it is a structure that holds a buffer, and the number of bytes in the buffer.  When the upper layers need more data in order to process properly,  the following happens:</p><ol><li> The remaining bytes (if any) in the buffer are moved to the front of the buffer.  (These remaining bytes are the first-part of a token or other structure that needs to be fully read in order to be processed.)
+</li><li> A <code>File_read()</code> is called to fill the rest of the buffer.</li></ol><p><h3>Lexer</h3></p><p>The next layer is the "lexer" or "tokenizer".   This is the stage that will simplify everything by stripping out comments and white spaces.</p><p>The lexer isn't too sophisticated.  First, it maps each character to the kinds of token it can be part of:</p><ul><li>	White space (including tabs, carriage returns, non-printable characters, etc)
+</li><li>Starts a number (e.g. a digit or minus sign)
+</li><li>Part of a number (e.g. a digit or period)
+</li><li>Digits
+</li><li>Upper case letters
+</li><li>Lower case letters
+</li><li>A quote more (i.e. something that can start or end a string)
+</li><li>	Punctuation</li></ul><p>This mapping is stored in a table, one entry per ASCII character.  The one used is broadly generic to C,C++,Java,C# and most programming languages.</p><p>The lexer then groups strings of items together with the following rules:</p><ul><li>	White space is ignored
+</li><li>A number can be a digit or anything else that starts a number, followed by digits or parts of a number
+</li><li>Letters, upper or lower case may be followed by any digits or letters.
+</li><li>A quote can be followed by any character, until another quote is seen.  (There is some handling of escaped quotes to treat them as a part of the string)
+</li><li>Punctuation is grouped together.  (This treats '++' and '+=' as a single token, which it is, but it also treats '(,,' as a single token was well, rather than 3 separate ones).
+</li><li>The special character pair // causes the tokenizer to ignore all characters until the end of the line character is seen
+</li><li>	The special character pair /* causes the tokenizer to ignore all characters until the character pair */ is seen</li></ul><p>For more accurate _parsing_, the mapping tables have to be done on an almost per-language basis, with finer distinction about what may start a token and what may compose it, and how comments are delimited.  Many languages would share such tables and rules, but one lexer won't do for all.</p><p>The API for the lexer is, basically, a procedure called 'ScanToken'.  It returns the token string, the file name that it came from, as well as the line and column in the file that the token starts at.  And the type of token (number, string, punctuation, or alphanumeric).</p><p><h3>Treating streams of tokens as strings</h3></p><p>At this point we can produce a stream of tokens ' each is a little string.   In essence, all the tokens for a file are joined back together, with a space between, to make a single cleaned-up string for each file.     It's only a matter of finding the longest common substring between files.</p><p>(Note: I don't quite just join the tokens together.  Along the way it has to track where each point in this cleaned-up file is in the original file.)</p><p>I choose to use a Karp Rubin algorithm to find the longest substrings.  The short version of the algorithm is:</p><code><pre>
+KarpRubin-esque(string* CleanedupFile, int Length)
+{
+     for (LengthIdx = 32, TargetLength = 1<<LengthIdx; LengthIdx >= MinLengthLengthIdx; TargetLength >>=1, LengthIdx')
+     for (Ofs = 0; Ofs + TargetLength <= Length; Ofs ++)
+     {
+         Substring = string copy(CleanedupFile + Ofs, TargetLength)
+         make a SHA1 or MD5 hash of Substring,
+         Store the hash, the file name CleanedupFile pointer, Ofs, and the location of substring in the original file into HashTable[LengthIdx];
+     }
+}
+</pre></code><p>When it stores this information in the hash table (described in <a href="33.txt">"duplicate file finder"</a>), it checks for a collision with a similar SHA1 hash code.  If it finds a collision, it adds it to the list of things to report.  (There is some checking here that it isn't already reporting about that area of the files).  The strings always start and end on a token size.</p><p>The CPD algorithm cheats into two ways.</p><ol><li> A true hash-based match has to compare the substrings.
+</li><li> The Karp-Rubin substrings are stored as powers-of-two, so the substring matching should use that length as the starting point.  It should compare as much past the end of the TargetLength that the string was hashed over to find as much as possible.</li></ol><p>The SHA1 hashing has so low a probability of false hit that I felt a deeper string comparison was overkill.  Similarly, I wanted to find where the duplicate code was, and wasn't going to spend a lot of time worrying that I found the very last character of it with CPD.  I would be opening the two portions of code in text editor anyway and making judgments based on them.</p><p>When CPD runs low on memory, it drops the hash table of the shortest substrings, and increases the minimum substring length stored.
+(The minimum substring length has a default value to prevent reporting usage a single variable over and over; this is a command line option too)</p><p>To allow for special cases ' like copy and pasted code which then renamed the variables ' the program allows treating all strings as the same token ('$string'), or all alphanumeric tokens as the same token ("$var").</p><h4>Stock algorithms</h4><p>This tool was also one of the motivations for writing a <a href="32.html">custom memory allocator</a>
+that I described earlier.I said the combinational explosion is tractable on a
+modern computer (gigabytes of VM), the compaction from the Karp-Rubin algorithm,
+and so forth.   But I was still concerned redistributing my CPD without extra C
+runtime libraries.  So I need to a memory allocator that could handle heavy memory
+usage.  You can read more about the design at <a href="32.html">custom memory allocator</a>.</p><h3>The future.</h3><p>Although I described the basics of the hash table I am using in my description of my <a href="33.html">"duplicate file finder"</a>, in  the future I could discuss in more detail the
+particular implementation.</p><p></p></div></body>
+</html>

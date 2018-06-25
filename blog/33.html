@@ -1,0 +1,116 @@
+<html><head><title>Duplicate file finder</title>
+<link href="http://randym.name/blog/rss" rel="alternate" title="Randy Maas RSS Feed" type="application/rss+xml" />
+<link rel="stylesheet" href="jqmath-0.2.0.css">
+<style type="text/css">
+body { color: #111111; background: #FFFFFF; }
+a, h2 a:hover { color: #2361A1; }
+h1, h2, h2 a { color: #111111; }
+h1, h2, h3, h6 { font-weight: normal; }
+h4, h5 { font-weight: bold; }
+h5, h6 { text-transform: uppercase; letter-spacing: 1px; }
+
+a, a:hover { text-decoration: none; }
+a img { border: none; }
+blockquote { border-left: 1px solid #ddd; color: #666; }
+pre { background: #eee; border: 1px solid #ddd; overflow: auto; clear: both; }
+code,pre { font-size: 0.9em; font-family:  Monaco, Consolas, "Andale Mono", Courier, "Courier New", Verdana, sans-serif; }
+pre { margin-bottom: 1.667em; padding: 0.583em 0.833em; background: #eee; }
+cite {background: #ffffe0; border: 1px solid #ddd; overflow: auto; clear: both; font-style: normal;}
+table
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-collapse: collapse;
+}
+
+td, th
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    margin: 0;
+    padding: 4px;
+    vertical-align: top;
+    text-align: left;
+}
+
+table.t1,td.t1,th.t1 {    border-style:none; border-width: 0px 0px 0px 0px;}
+#Main {
+	padding: 0px;
+	border: 0px dotted gray;
+	margin-left: 120px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+#Sidebar {
+	position: absolute;
+	margin: 0 0 0 -75px;
+	width: 90px;
+	height: auto;
+	border: 0px dotted gray;
+	background-color: transparent;
+	text-align: right;
+	line-height: 1em;
+}
+#Sidebar ul {
+	margin: 3.5em 0 5em 9em;
+}
+
+#Sidebar li {
+	list-style: none;
+	letter-spacing: 1px;
+	margin: 0 0 1em -7em;
+	padding: 0;
+}
+</style>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-31474143-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head><body><div id="Sidebar">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/about.html">About Randy Maas</a></li>
+<li><a href="rss">rss</a></li><li><a href="32.html">Older</a></li><li><a href="34.html">Newer</a></li></ul>
+</div><div id="Main">
+<h1>
+Duplicate file finder</h1><p class="byline"><a href="mailto:randym@randym.name">Randall Maas</a> 8/15/2010 2:34:39 PM</p><p>I'm going to describe a tool I wrote to find duplicate files.  I had a bunch of hard drives I wanted to get rid of.  These were a few hundred megabytes to a few gigs, and I wanted to copy them all to a big terabyte hard drive.  These drives were mostly backups of files, but they might have other stuff on them.  Once I copied the drive, I wanted to eliminate duplicates that had accumulated.</p><p>The tool is pretty straightforward:</p><p><pre>
+For each file in file system
+{
+   Read each block in file, computing its hash or check value (e.g. SHA1)
+   Store the result in a hash table, along with a name/path
+   If there is already an entry that has the same hash value, report it and the paths
+}
+</pre></p><p>There are a couple of interesting structures.  First is how the path names for the file are tracked.  The second is the hash table.</p><p><h2>Tracking the file paths</h2></p><p>The file names are tracked with a linked list, as a convenience:</p><p><img src="dupFile1.jpg"/></p><p>This allows the code to scan the file system be a recursion over the directories in the file system.
+ 
+<pre>
+NameNode* Root = NULL;
+ScanDir(NameNode* Dir)
+{
+    For each file in Directory (skipping '.' and '..')
+    {
+        Allocate node
+        Set parent to Dir
+       Copy local name into node</p><p>       if (File is another directory)
+          {
+             ScanDir(Node);
+              continue;
+          }
+   Read each block in file, computing its hash or check value (e.g. SHA1)
+   Store the result in a hash table, along with its name node
+   If there is already an entry that has the same hash value, report it and the paths
+}
+</pre></p><p>This has the small advantage of keeping memory fairly low per file as well.  The files hash value is 20 bytes, or so, and is fixed.  The file name ranges 8 to 20 typically &#45; but the full path is much longer than 20. </p><p><h2>The hash table</h2></p><p>The second is the hash table (a hash table of hashes, if you think about it).  The key is the file checksum (hash), with the path being the value to retrieve.  I happen to like probing hash tables that use two hash values.  I double hash the file checksum into two different 32-bit hash values.</p><p><img src="dupFile2.jpg"/></p><ul><li> The first hash value is where to start looking in the table
+</li><li> The second hash value is how to step further down in the table (the probe distance).  It wraps around via a mod operations.</li></ul><p>The algorithm stops searching the hash table when it runs into an empty slot.  When it stores a value, it puts an entry in there.  When the table drops below a critical number of empty slots, it resizes the table.  This involves creating a hash table that is at least twice as big, and is a prime number.  (I use a table of very large primes).</p><p><h2>The future</h2></p><p>This is an introduction to what I've got planned for next time: find duplicate portions of files, and copy-and-pasted source code.
+</p></div></body>
+</html>

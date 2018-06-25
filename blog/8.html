@@ -1,0 +1,156 @@
+<html><head><title>C's Switch / Case construct, Loop Unrolling and Duff's Device</title>
+<link href="http://randym.name/blog/rss" rel="alternate" title="Randy Maas RSS Feed" type="application/rss+xml" />
+<link rel="stylesheet" href="jqmath-0.2.0.css">
+<style type="text/css">
+body { color: #111111; background: #FFFFFF; }
+a, h2 a:hover { color: #2361A1; }
+h1, h2, h2 a { color: #111111; }
+h1, h2, h3, h6 { font-weight: normal; }
+h4, h5 { font-weight: bold; }
+h5, h6 { text-transform: uppercase; letter-spacing: 1px; }
+
+a, a:hover { text-decoration: none; }
+a img { border: none; }
+blockquote { border-left: 1px solid #ddd; color: #666; }
+pre { background: #eee; border: 1px solid #ddd; overflow: auto; clear: both; }
+code,pre { font-size: 0.9em; font-family:  Monaco, Consolas, "Andale Mono", Courier, "Courier New", Verdana, sans-serif; }
+pre { margin-bottom: 1.667em; padding: 0.583em 0.833em; background: #eee; }
+cite {background: #ffffe0; border: 1px solid #ddd; overflow: auto; clear: both; font-style: normal;}
+table
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-collapse: collapse;
+}
+
+td, th
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    margin: 0;
+    padding: 4px;
+    vertical-align: top;
+    text-align: left;
+}
+
+table.t1,td.t1,th.t1 {    border-style:none; border-width: 0px 0px 0px 0px;}
+#Main {
+	padding: 0px;
+	border: 0px dotted gray;
+	margin-left: 120px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+#Sidebar {
+	position: absolute;
+	margin: 0 0 0 -75px;
+	width: 90px;
+	height: auto;
+	border: 0px dotted gray;
+	background-color: transparent;
+	text-align: right;
+	line-height: 1em;
+}
+#Sidebar ul {
+	margin: 3.5em 0 5em 9em;
+}
+
+#Sidebar li {
+	list-style: none;
+	letter-spacing: 1px;
+	margin: 0 0 1em -7em;
+	padding: 0;
+}
+</style>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-31474143-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head><body><div id="Sidebar">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/about.html">About Randy Maas</a></li>
+<li><a href="rss">rss</a></li><li><a href="7.html">Older</a></li><li><a href="9.html">Newer</a></li></ul>
+</div><div id="Main">
+<h1>
+C's Switch / Case construct, Loop Unrolling and Duff's Device</h1><p class="byline"><a href="mailto:randym@randym.name">Randall Maas</a> 5/17/2010 10:24:37 AM</p><p>A few years ago I was in a fun discussion with one of our junior firmware engineers about the different constructs in C and how these constructs mapped to underlying machine code, and performance characteristics.   During the conversation came up that he didn't know the <code>switch</code>, <code>case</code>,<code>break</code> construct works in C, and how it makes Duff's device possible.  I'll briefly describe it here.</p><p><h2>The Switch, simplified</h2></p><p>The basic C switch block looks something like:</p><code><pre>switch (ValueExpression)
+{
+    default:
+      do something;
+      break;
+
+   case 23: // Fall thru
+   case 27:
+      do something
+      break;
+ }</pre></code><p>A naive C compiler splits this into two parts.   The <code>switch</code> and <code>case</code> statements are turned into an <code>if then else</code> tree.   The body &#45; all the bits that do something ' are placed into a second code block after the tree.  The two are linked by <code>goto</code> and labels.  And, finally, the <code>break</code>'s are turned into <code>goto</code> out of the block:</p><code><pre>if (ValueExpression == 23)
+   goto L_23;
+else if (ValueExpression == 27)
+   goto L_27;
+else
+  goto L_default;
+goto L_done;
+
+
+L_default:
+   do something;
+   goto L_done;
+L_23: // Fall thru
+L_27:
+   do something;
+   goto L_done;
+L_done:</pre></code><p>The <code>if then else</code> tree can be made a lot faster, with better compilers.   If the values are densely grouped, a compiler could use the value as an index into a jump table.  It could use a binary search of the values, either by careful arrangement of the tree or using a table and a special operation to scan the table.  Java (atleast the last VM spec I read) preferred that approach.  Or a hash based look up could be use.  Of course, these techniques could (and probably should) be used in combination.</p><p>In the end, I don't know how many compilers do these.  If a compiler optimizes at all, it is more likely to be able to optimize the switch case.  Recognizing patterns in an <code>if then else</code> tree are possible, but difficult enough that it seems a lot of compilers put it off.</p><p><h3>Other topics</h3>
+At this point we could discuss idea that language provides similar constructs, but having different characteristics in performance.  Is it better and reasonable that its user describe and have compiler identify the best (possibly in terms of memory, IO, and CPU) implementation?  Or is better to provide more constructs, and have a designer choose based on their characteristics ' with the tradeoff of providing different ways of saying almost the same thing (degeneracy)?</p><p>As a historical side note, I heard that <code>switch</code> was added to provide computed goto behaviour, without computed goto.</p><p><h2>Oh, and Duff's Device</h2></p><p>For those that aren't familiar Duff's device is a technique  that is used to perform<i>loop unrolling_.  Loop unrolling is used when you have a loop with an inner block that is (usually) so small that the loop's increment, test and branch consume a lot (ie more than say 10%) of the time.  The idea is just repeat the inner block a few times, and divide the loop counter.  Of course you need to add a few extra cycles of this inner block to make sure you perform its actions the proper amount of time.</p><p>That is, it would take a loop like:</p><code><pre>for (int I = 0; I < Max; I++)
+{
+   some action
+}</pre></code><p>Duff's device puts the loop _inside of</i> the <code>switch</code> statement, using the <code>switch</code> to balance out the number of times the inner block is called:</p><code><pre>switch(Max % 4)
+{
+   for (int I = 0; I &lt; Max/4 - 1; I++)
+   {
+      case 0:
+        some action
+      case 3:
+        some action
+      case 2:
+        some action
+      case 1:
+        some action
+   }
+}
+</pre></code><p>This would in turn get translated into:</p><code><pre>if ((Max%4) == 0)
+   goto L_0;
+else if ((Max%4) == 1)
+   goto L_1;
+else if ((Max%4) == 2)
+   goto L_2;
+else if ((Max%4) == 3)
+   goto L_3;
+else
+   goto L_done;
+
+   for (int I = 0; I &lt; Max/4 - 1; I++)
+   {
+L_0:
+        some action
+L_3:
+        some action
+L_2:
+        some action
+L_1:
+        some action
+   }
+L_done:
+</pre></code><p>As with the discussion of the <code>switch</code> the compiler's optimizer could automatically insert a Duff's device for loop unrolling &#45; if it knew that it should do this.  Indeed many optimizers do.  Just something to look at when reading the assembly output, when you're wondering why a small loop became a largish chunk of code.
+</p></div></body>
+</html>

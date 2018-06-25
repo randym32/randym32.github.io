@@ -1,0 +1,101 @@
+<html><head><title>Go lightly on the exclusive ors (XOR)</title>
+<link href="http://randym.name/blog/rss" rel="alternate" title="Randy Maas RSS Feed" type="application/rss+xml" />
+<link rel="stylesheet" href="jqmath-0.2.0.css">
+<style type="text/css">
+body { color: #111111; background: #FFFFFF; }
+a, h2 a:hover { color: #2361A1; }
+h1, h2, h2 a { color: #111111; }
+h1, h2, h3, h6 { font-weight: normal; }
+h4, h5 { font-weight: bold; }
+h5, h6 { text-transform: uppercase; letter-spacing: 1px; }
+
+a, a:hover { text-decoration: none; }
+a img { border: none; }
+blockquote { border-left: 1px solid #ddd; color: #666; }
+pre { background: #eee; border: 1px solid #ddd; overflow: auto; clear: both; }
+code,pre { font-size: 0.9em; font-family:  Monaco, Consolas, "Andale Mono", Courier, "Courier New", Verdana, sans-serif; }
+pre { margin-bottom: 1.667em; padding: 0.583em 0.833em; background: #eee; }
+cite {background: #ffffe0; border: 1px solid #ddd; overflow: auto; clear: both; font-style: normal;}
+table
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-collapse: collapse;
+}
+
+td, th
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    margin: 0;
+    padding: 4px;
+    vertical-align: top;
+    text-align: left;
+}
+
+table.t1,td.t1,th.t1 {    border-style:none; border-width: 0px 0px 0px 0px;}
+#Main {
+	padding: 0px;
+	border: 0px dotted gray;
+	margin-left: 120px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+#Sidebar {
+	position: absolute;
+	margin: 0 0 0 -75px;
+	width: 90px;
+	height: auto;
+	border: 0px dotted gray;
+	background-color: transparent;
+	text-align: right;
+	line-height: 1em;
+}
+#Sidebar ul {
+	margin: 3.5em 0 5em 9em;
+}
+
+#Sidebar li {
+	list-style: none;
+	letter-spacing: 1px;
+	margin: 0 0 1em -7em;
+	padding: 0;
+}
+</style>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-31474143-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head><body><div id="Sidebar">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/about.html">About Randy Maas</a></li>
+<li><a href="rss">rss</a></li><li><a href="27.html">Older</a></li><li><a href="29.html">Newer</a></li></ul>
+</div><div id="Main">
+<h1>
+Go lightly on the exclusive ors (XOR)</h1><p class="byline"><a href="mailto:randym@randym.name">Randall Maas</a> 7/1/2010 10:21:33 AM</p><p>When creating a code style guide, one of the considerations is the preferred choice between different constructs that achieve the same thing.  I usually prefer
+an idiom that is easier to understand, or can be maintained over the long term,
+even if it is slightly more verbose.</p><p>To illustrate, I suggest not using XOR's in production (non- throw away) code:</p><code><pre>
+   PORTA ^= 1 << 4;
+</pre></code><p>Why?</p><p>Some microcontrollers have more than one port.  On the PIC18's, for instance, check the pin state on <code>PORTA</code>, but set it on <code>LATA</code>.  The use of dual ports is supports checking for an open or shorted pin on the output.  (i.e., the setting of the driver is set and read from different registers that read the pins actual state).</p><p>Second, and just as important, is code maintenance after principle development.  I've found that there are many people problems with XOR constructions.  These are reasonable people, doing continuation (adding/removing features, fixing bugs, making custom changes, etc), or using the code to create manufacturing test code, or reading the code as part of electrical design, have.  The code has to be able to read by them.  </p><p>The code would then be:</p><code><pre>
+#define MyPin (1 << 4)
+
+
+   if (PORTA & MyPin)
+     LATA &= ~ MyPin;
+    else
+     LATA |= MyPin;
+</pre></code><p>Again, I prefer a guideline rather than an absolute rule.  Maybe the XOR is a better approach,
+or clearer.</p><p>And certainly XOR is very very useful in algorithms like LFSR, CRC, forward error correction codes, Reed-Solomon, RAID, and so forth.</p><p></p></div></body>
+</html>

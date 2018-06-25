@@ -1,0 +1,98 @@
+<html><head><title>Robot car</title>
+<link href="http://randym.name/blog/rss" rel="alternate" title="Randy Maas RSS Feed" type="application/rss+xml" />
+<link rel="stylesheet" href="jqmath-0.2.0.css" />
+<style type="text/css">
+body { color: #111111; background: #FFFFFF; }
+a, h2 a:hover { color: #2361A1; }
+h1, h2, h2 a { color: #111111; }
+h1, h2, h3, h6 { font-weight: normal; }
+h4, h5 { font-weight: bold; }
+h5, h6 { text-transform: uppercase; letter-spacing: 1px; }
+
+a, a:hover { text-decoration: none; }
+a img { border: none; }
+blockquote { border-left: 1px solid #ddd; color: #666; }
+pre { background: #eee; border: 1px solid #ddd; overflow: auto; clear: both; }
+code,pre { font-size: 0.9em; font-family:  Monaco, Consolas, "Andale Mono", Courier, "Courier New", Verdana, sans-serif; }
+pre { margin-bottom: 1.667em; padding: 0.583em 0.833em; background: #eee; }
+cite {padding: 0.3em 0.3em; line-height:180%; background: #ffffe0; border: 1px solid #ddd; overflow: auto; clear: both; font-style: normal; font-size: 85%;}
+.caption {font-size: small; text-align: center; color: #660000; margin: -20px 0 0 0; }
+p.note {padding: 0.571em 0.786em;  background: #f5f5f5; border: 1px solid #ddd; }
+iframe {align: center;}
+table
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-collapse: collapse;
+}
+
+td, th
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    margin: 0;
+    padding: 4px;
+    vertical-align: top;
+    text-align: left;
+}
+
+table.t1,td.t1,th.t1 {    border-style:none; border-width: 0px 0px 0px 0px;}
+#Main {
+	padding: 0px;
+	border: 0px dotted gray;
+	margin-left: 120px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+#Sidebar {
+	position: absolute;
+	margin: 0 0 0 -75px;
+	width: 90px;
+	height: auto;
+	border: 0px dotted gray;
+	background-color: transparent;
+	text-align: right;
+	line-height: 1em;
+}
+#Sidebar ul {
+	margin: 3.5em 0 5em 9em;
+}
+
+#Sidebar li {
+	list-style: none;
+	letter-spacing: 1px;
+	margin: 0 0 1em -7em;
+	padding: 0;
+}
+</style><script type="text/javascript">
+  var _gaq = _gaq || [];
+  var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-31474143-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head><body><div id="Sidebar">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/about.html">About Randy Maas</a></li>
+<li><a href="rss">rss</a></li>
+<li><a href="40.html">Older</a></li><li><a href="42.html">Newer</a></li>
+</ul>
+</div><div id="Main">
+<h1>Robot car</h1><p class="byline"><a href="mailto:randym@randym.name">Randall Maas</a> 8/9/2012 2:53:57 PM</p>
+<p>For fun, I thought I'd make  a  robot car with the boy.</p><p>During the initial part we'd have a remote control toy that zips around.  But it'd also be a step on the way to a Drone Airplane, such as you can find at <a href="http://diydrones.com">DIY Drones</a>.  Except it wouldn't fall out of the sky.</p><p>However, building a robot from scratch is hard.  The easiest way to start building a robot is to buy a robot. The second easiest way is to buy and RC car and put some custom electronics in, and call it a day.</p><p>For a couple of reasons, I bought a kit that uses regular servos and regular RC controls, rather than (say) a cheaper RC car from Target that uses odd-ball parts.  It's easier (and cheaper) to buy motor controls and servos from RC shops, such as <a href="http://hobbyking.com">Hobby King</a>.  Controlling these from a microcontroller is fairly straightforward.</p><p>We finished the car this spring (ignoring the outer shell):
+<img src="RC-CarTop.jpg"/>
+<img src="RC-CarSide.jpg"/></p><p>Alas, the boy loses interest pretty quick.  We drove it and he lost interest.</p><h3>How will it all work?</h3><p>Then, in the middle of summer (and at long last) a Raspberry Pi computer arrived.  (Another thing I bought to try to engage him, esp since he was interested for moment).  After an initial test run, it became clear that the Raspberry, will make it easy to prototype the robot brains.</p><p>First, let's get an idea of what peripherals I'll toss into the mix.</p><p><img src="RC-PeripheralTree.jpg"/></p><p>Optionally, I'm considering a RC override, possibly to recover the robot (more important if its a plane), possibly to train it.</p><p><img src="RC-Override.jpg"/></p><p>These will need special power considerations.  For starters, it's just plain sense to have a fuse, and tilt switch in the mix to cut the motor off it the vehicles tumbles or shorts.  The processor also has the ability to cut the power, although this is more of a courtesy.</p><p><img src="RC-Pwr-Tree1.jpg"/></p><p>To start it up, we have a momentary push button to bypass the relay, so that the system can power up.  However, the push button has a capacitor to prevent it from keeping the system on if it gets stuck.</p><p>The servo motors need their own power supply(s):
+<img src="RC-Pwr-Tree2.jpg"/></p><p>And the Raspberry Pi and USB Hubs need their own power supplies.
+<img src="RC-Pwr-Tree3.jpg"/></p><p>There seems to be many issues with the Raspberry Pi powering, so this will have be checked carefully.</p><p>The Hubs need to be powered.  The Raspberry Pi <a href="http://elinux.org/R-Pi_Troubleshooting#Keyboard_.2F_Mouse_.2F_Input_Devices">USB ports</a> are only supplied with 100mA.  Many peripherals need more, some peripherals need up to 500mA. Hence the power supply</p><p><a href="42.html">More later</a>.</p></div></body>
+</html>

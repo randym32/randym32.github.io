@@ -1,0 +1,105 @@
+<html><head><title>Raspberry Pi</title>
+<link href="http://randym.name/blog/rss" rel="alternate" title="Randy Maas RSS Feed" type="application/rss+xml" />
+<link rel="stylesheet" href="jqmath-0.2.0.css">
+<style type="text/css">
+body { color: #111111; background: #FFFFFF; }
+a, h2 a:hover { color: #2361A1; }
+h1, h2, h2 a { color: #111111; }
+h1, h2, h3, h6 { font-weight: normal; }
+h4, h5 { font-weight: bold; }
+h5, h6 { text-transform: uppercase; letter-spacing: 1px; }
+
+a, a:hover { text-decoration: none; }
+a img { border: none; }
+blockquote { border-left: 1px solid #ddd; color: #666; }
+pre { background: #eee; border: 1px solid #ddd; overflow: auto; clear: both; }
+code,pre { font-size: 0.9em; font-family:  Monaco, Consolas, "Andale Mono", Courier, "Courier New", Verdana, sans-serif; }
+pre { margin-bottom: 1.667em; padding: 0.583em 0.833em; background: #eee; }
+cite {background: #ffffe0; border: 1px solid #ddd; overflow: auto; clear: both; font-style: normal;}
+table
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-collapse: collapse;
+}
+
+td, th
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    margin: 0;
+    padding: 4px;
+    vertical-align: top;
+    text-align: left;
+}
+
+table.t1,td.t1,th.t1 {    border-style:none; border-width: 0px 0px 0px 0px;}
+#Main {
+	padding: 0px;
+	border: 0px dotted gray;
+	margin-left: 120px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+#Sidebar {
+	position: absolute;
+	margin: 0 0 0 -75px;
+	width: 90px;
+	height: auto;
+	border: 0px dotted gray;
+	background-color: transparent;
+	text-align: right;
+	line-height: 1em;
+}
+#Sidebar ul {
+	margin: 3.5em 0 5em 9em;
+}
+
+#Sidebar li {
+	list-style: none;
+	letter-spacing: 1px;
+	margin: 0 0 1em -7em;
+	padding: 0;
+}
+</style>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-31474143-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head><body><div id="Sidebar">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/about.html">About Randy Maas</a></li>
+<li><a href="rss">rss</a></li><li><a href="45.html">Older</a></li><li><a href="47.html">Newer</a></li></ul>
+</div><div id="Main">
+<h1>
+Raspberry Pi</h1><p class="byline"><a href="mailto:randym@randym.name">Randall Maas</a> 8/20/2012 4:06:25 PM</p><p>As I may have mentioned, I am using the Raspberry Pi as the robot's primary processor, mainly because it looks' to be a convenient embedded controller.  My plan is to selectively leverage the power of the UNIX legacy, while trying to avoid the UNIX curses.  To use commonly available USB parts and the boards GPIO port for the small number of special cases.</p><p>Everything I have sketched so far sounds rosy' So what is wrong with this design?</p><ul><li> Cost
+</li><li>Flakiness & Symptoms
+</li><li>Power problems
+</li><li>Configuration & Special environment concerns
+</li><li> The design may be overkill</li></ul><h3>Cost</h3><p>The thing most hyped about the Raspberry Pi is its putative price.  Discussions over emphasize one model (which you cannot get) of one part of the whole system as the price.  Between <a href="http://www.newark.com/raspberry-pi/raspbrry-pcba/raspberry-pi-model-b-board-only/dp/83T1943">S&H, taxes</a>, power supplies, SD cards, special USB hubs, etc.  the price gets to the more realistic cost $75-$100 quickly.</p><h3>Flaky flakiness & symptoms</h3><p>However, the thing most discussed after getting one is how flaky the Raspberry Pi is.  Flaky is normal for embedded ' and another reason to keep developing the code on a different platform.</p><p>However, flaky is not a good match for the Pi's target market: newbie's and folks with moderate background using computers.</p><ol><li> First sign is that keyboard <a href="http://elinux.org/R-Pi_Troubleshooting#R-Pi_does_not_respond_to_key_presses_.2F_Keyboard_randomly_repeats_key_presses">misses key presses and randomly repeats a key press</a>, indefinitely
+</li><li>The second is that it will spike in CPU usage and become unresponsive, perhaps in response to clicking on something
+</li><li>The mouse stops working with Bluetooth attached (or more specifically, when the Bluetooth stack starts).. or Wi-Fi is attached
+</li><li>Or the keyboard stops working
+</li><li>Or a <a href="http://elinux.org/R-Pi_Troubleshooting#Keyboard_.2F_Mouse_interferes_with_USB_WiFi_device">Wifi</a> device causes the system to die
+</li><li> Plugging/unplugging USB parts does not appear to get notice by the Pi ' or it gets noticed very very slowly.</li></ol><p>I have seen all of those; they are the top line items in the Raspberry Pi Troubleshooting FAQ.  And throughout forums.</p><p>Mostly likely, the software problems ' at least with popular parts of the software ' will get fixed.  The hardware ones are probably here to stay.</p><p>It could be the power supply.  Or the cable.  Or heat.  Or too many peripherals.  Or the wrong one or two peripherals.</p><h3>Power problems</h3><p>The FAQ identifies many of the flaky problems as being <a href="http://elinux.org/R-Pi_Troubleshooting#Troubleshooting_power_problems">power related</a>.  Worse, the power troubleshooting is very tricky.  And requires tools only an experienced hobbyist would have.</p><p>A micro USB port provides the Raspberry Pi's main power.  The Pi website emphasizes a few things here.  First, most USB chargers are too wimpy.  That most micro USB cables are not up to the task: they have enough resistance to lower the voltage.</p><p>A resettable fuse called a polyfuse protects the Pi's power input.  The basic idea is that they increase in resistance with temperature.  Current passing thru the polyfuse creates heat, the more current the more heat.  High enough temperature and they effectively are open circuit.  The resistance drops as it cools.  The Pi makes clear an extra tidbit: the power supplies on the Pi board ' or perhaps the USB peripherals ' are sensitive to the drops in voltage from the slight increases in the polyfuse resistance.</p><p>First  three lessons:</p><ol><li> Don't put the Pi on top of a hot power supply
+</li><li>Don't power USB peripherals from the Pi, 
+</li><li> Keeps it's configuration low power.</li></ol><h3>Configuration & Special environment concerns</h3><p>Given that it is on an outdoor, the electronic boards, including the Raspberry Pi, should be sealed, possibly with some degree of cooling</p><ol><li> The Pi box should be mounted away from hot parts.  For instance the motor and motor controller can get quite hot (and may need their own fan).
+</li><li>Every USB goes thru the hubs and the hubs are powered
+</li><li> The graphics system is generally off.  It consumes power, making the processor a bit hotter, and using more of the power budget that can go thru the fuse.</li></ol><p>My target development configuration looks a bit like:</p><p><img src="RC-PeripheralTree2.jpg"/></p><p>The keyboard/mouse/Ethernet are present to get the system sufficiently configured and debugged to be used headless and wireless.</p><p>And, being a UNIX, I need to configure it.  Unlike the iPhone, iPod, OS X, and Windows, the Wi-Fi will not configure itself.  By which I mean there is some editing of arcane files involved.  Again, not something well suited for newbie's.</p><p>I am still experimenting, with both the mainline Linux distribution for the more fancy pants GUI, the other for the <a href="http://learn.adafruit.com/adafruit-raspberry-pi-educational-linux-distro/overview">strictly headless operation.</a></p><p>Fortunately, there are <a href="http://raspberrypi.stackexchange.com/">others experimenting with the Pi</a>.</p><h3>The design may be overkill</h3><p>Experience keeps teaching that using an OS like UNIX is usually overkill.  Begging for project failure.  Even if it has some critical feature, it should be contained.  (This does not even get to how <i>slow</i> the Pi is to restart.)</p><p>It is still on the table because it looks to be easier to deal with than other kit.
+However, once it becomes too complex, I am cutting it loose.
+By too complex, I mean lots work to get anything done and it falls apart easy, with any variation, change, etc.</p><p>Atleast I'm not using CORBA.
+No project should ever suffer <i>that.</i>
+</p></div></body>
+</html>

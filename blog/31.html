@@ -1,0 +1,112 @@
+<html><head><title>Note on checking memory in embedded systems</title>
+<link href="http://randym.name/blog/rss" rel="alternate" title="Randy Maas RSS Feed" type="application/rss+xml" />
+<link rel="stylesheet" href="jqmath-0.2.0.css" />
+<style type="text/css">
+body { color: #111111; background: #FFFFFF; }
+a, h2 a:hover { color: #2361A1; }
+h1, h2, h2 a { color: #111111; }
+h1, h2, h3, h6 { font-weight: normal; }
+h4, h5 { font-weight: bold; }
+h5, h6 { text-transform: uppercase; letter-spacing: 1px; }
+
+a, a:hover { text-decoration: none; }
+a img { border: none; }
+blockquote { border-left: 1px solid #ddd; color: #666; }
+pre { background: #eee; border: 1px solid #ddd; overflow: auto; clear: both; }
+code,pre { font-size: 0.9em; font-family:  Monaco, Consolas, "Andale Mono", Courier, "Courier New", Verdana, sans-serif; }
+pre { margin-bottom: 1.667em; padding: 0.583em 0.833em; background: #eee; }
+cite {padding: 0.3em 0.3em; line-height:180%; background: #ffffe0; border: 1px solid #ddd; overflow: auto; clear: both; font-style: normal; font-size: 85%;}
+.caption {font-size: small; text-align: center; color: #660000; margin: -20px 0 0 0; }
+p.note {padding: 0.571em 0.786em;  background: #f5f5f5; border: 1px solid #ddd; }
+iframe {align: center;}
+table
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-collapse: collapse;
+}
+
+td, th
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    margin: 0;
+    padding: 4px;
+    vertical-align: top;
+    text-align: left;
+}
+
+table.t1,td.t1,th.t1 {    border-style:none; border-width: 0px 0px 0px 0px;}
+#Main {
+	padding: 0px;
+	border: 0px dotted gray;
+	margin-left: 120px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+#Sidebar {
+	position: absolute;
+	margin: 0 0 0 -75px;
+	width: 90px;
+	height: auto;
+	border: 0px dotted gray;
+	background-color: transparent;
+	text-align: right;
+	line-height: 1em;
+}
+#Sidebar ul {
+	margin: 3.5em 0 5em 9em;
+}
+
+#Sidebar li {
+	list-style: none;
+	letter-spacing: 1px;
+	margin: 0 0 1em -7em;
+	padding: 0;
+}
+</style><script type="text/javascript">
+  var _gaq = _gaq || [];
+  var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-31474143-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head><body><div id="Sidebar">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/about.html">About Randy Maas</a></li>
+<li><a href="rss">rss</a></li>
+<li><a href="30.html">Older</a></li><li><a href="32.html">Newer</a></li>
+</ul>
+</div><div id="Main">
+<h1>Note on checking memory in embedded systems</h1><p class="byline"><a href="mailto:randym@randym.name">Randall Maas</a> 8/1/2010 11:47:02 AM</p>
+<p>I was recently in a conversion and the topic of long-lived, but hard-to-field-service embedded systems came up.  The topic ranged over checking for system degradation through error counters to checking for memory corruption.  This time I thought I'd share some techniques (and ideas) on checking that the memory in embedded systems.</p><p>For quality, critical, or hard to service devices, it may be important to identify when there are hardware (or software) degrades or develops faults.  When such a problem is found, the design may call for the device to stop operating or reduce performance and functionality it is replaced.  This might be a system intended to be deployed in the field for a long time (possibly in inaccessible or not readily serviceable areas).  It might be a system with safety considerations.  Or one where the customer is buying based on quality for their own reasons.</p><p><ol>
+<li>Checking the program and other memory contents to that they have not changed.  This is often down with an Incremental CRC.</li>
+<li>Checking the storage hardware.  This ranges from basic device identifier checks (e.g. JEDEC Ids), continuity checks (including JTAG tests, and other connection tests), as well as the capacity to correctly retain values.</li>
+<li>Tracking bad regions in memory with a list or other structures.  Usually this tracks only the bad regions of memory and treats memory not in this set as good.</li>
+</ol></p><p>These ideas and techniques are long standing (some date back more than half a century).  They are simple enough to be included in even basic microcontrollers.  While I will be focusing on what software can contribute, there are numerous hardware techniques (e.g. ECC memory) that can be done as well.</p><p><h2>Basic firmware memory checks &#45; CRC of program memory.</h2></p><p>The simplest integrity check is to continuously scan memory regions, to verify that the contents have not changed unexpectedly.  This can be used to check that read-only (and infrequently changed) memory &#45; such as program memory &#45;  has not changed.  The basic process to continuously perform incremental CRC checks on the memory.   CRC's are compact and fast enough for most platforms.  (Although a particular CRC may not be appropriate for all platforms).  These are good for finding single bit errors, error runs, and so forth.  Of course, a CRC doesn't find malicious errors &#45; that is to say it is possible for someone to craft memory corruption that passes the CRC check.</p><p>The basic process for integrity checking is:</p><p><ol>
+<li>Initialize the check vector, usually at the start of program execution.</li>
+<li>As a low priority task incrementally check a block of memory.  In run-loop systems, add a call to the check at the bottom of the loop; can be conditional on nothing too important is waiting to be done.  This check reads a few bytes of program memory and passing each thru the CRC calculation routines, updating the CRC check value variable.</li>
+<li>When it reaches the end of program memory (<a href="3.html">padding as appropriate</a>), it confirms that the check-value matches the correct value.  The CRC may have included a "reflected" check value at the end of memory, or it may have that stored elsewhere.</li>
+<li>Repeats from step 1, reinitializing the whole process</li>
+</ol></p><p>I mentioned that this process should be applied to all of the read-only and infrequently changed storage in the system.  Often there are several such memory regions.  Such regions may include:</p><ul><li> Parameter memory
+</li><li>Unused or unallocated RAM, EEPROM, program memory, flash storage, etc.
+</li><li> Rarely changing areas of Flash, EEPROM, or RAM.</li></ul><p>Can do the checks sequentially, in parallel or a combination of those.  A different check state value for each the ones done in parallel or moves from onto the next.  I recommend that this process be used to check each of the different "read only" regions of memory to ensure their integrity.</p><p>This should include regions of memory that are empty or unused ' that is, have no code or data, but still is still a storage area.  In that way, it can help, capture errant writes.</p><p><h2>Checking storage hardware</h2></p><p>Several basic hardware checks can be done:</p><p><ol>
+<li>Perform a check that the memory modules have the expected JEDEC identifiers.  They should still be there and unchanged.  This is usually through a 'secondary' I2C bus to check to see what hardware is present.</li>
+<li>Do a read-write check of the storage (usually RAM) to look for stuck address/data lines, shorted pins, open pins, and bad memory cells.</li>
+</ol></p><p>The algorithm is documented in several places.  Bus based checks ' to find stuck pins on a bus, as well as damaged cells.</p><p>Michaels Barr's has described some specific tests for bus-based memory in the following book and article.  He does an excellent job of describing what problem is being tested for, and the mechanism he is using to test it.  And he includes useful source code.</p><p><ul>
+<li><cite>Michael Barr. <a href="http://www.netrino.com/Embedded-Systems/How-To/Memory-Test-Suite-C">"Software-Based Memory Testing,"</a> Embedded Systems Programming, July 2000, pp. 28-40.  </cite></li>
+<li><cite>Michael Barr, <a href="http://oreilly.com/catalog/9780596009830/">"Programming Embedded Systems"</a> 2nd Ed, O'Reilly Media 2006 </cite>  The code in the book is downloadable from the publishers website.  (And more or less contains the previous article)</li>
+</ul></p><p>The later is a destructive test; it destroys the contents of the memory.  This can be worked around by saving a window of the memory, performing the tests, and restoring it when that portion of the test is done.</p><p>These memory tests are often developed for manufacturing tests anyway, so it can be cost effective to develop them for both the main application and tests at one time.</p><p><h2>Degraded memory: tracking bad blocks</h2></p><p>Now that we've found some bad memory, we need a plan on how to respond.  This is roughly divided into one of two kinds of systems: those with paged memory and those without.</p><p><h3>Page Memory systems</h3></p><p><strong>Paged memory</strong> systems offer the easiest way to track bad blocks of memory.  With paged memory, the processor has a mechanism that maps the logical the addresses to the physical ones.  In our case, the key property is that the kernel software is responsible for ensuring that it doesn't allocate physical memory that is already in use.  We can exploit this mechanism to cleanly track the bad pages: all we have to is allocate the pages with bad storage cells, and never release them.  This table of bad pages should be stored in non-volatile memory and used at system start up to prevent the bad pages from being reused.</p><p>What if the bad memory page was being used?  Then we can use a technique called <em>block sparing</em>: copy the page of memory to a working area of memory, remap the logical address to the new address, and add the old address to the set of bad pages.  (If the page was copied before the test was performed, you can use that copy.)  If the memory wasn't corrupted (that is, it passes some other check on the contents, even though the storage hardware is failing for that page) or can be recovered, the system can continue.  Otherwise the hardware should then reinitialize and resume from a known state, or go into a restricted fault state.</p><p><h3>Other memory systems</h3></p><p>Tracking bad regions in non-paged memory is a little bit harder than page memory.  Structures such as  lists, or bitmaps can be used to track the bad regions.  Recovery is much harder that with paged memory.  In most cases you're probably using the memory ' i.e. the data stack, program variables with a fixed address there ' and can't relocate it.  It is better that the device enter a fault state, set a failed bit, and get replaced.</p><p><h2>Other memory checks</h2></p><p>More sophisticated checking techniques may include checks for each of many critical structures in memory.  This is finer grained, identifying what records are corrupted as well as the addressable regions.</p><p><h2>Did I ever find a problem with these techniques?</h2></p><p>Yes!  The worst problem I've found was memory corruption and it was a matter of figuring out how the corruption was triggered in otherwise good hardware and software.</p><p>It turned out that the micro-controller had a bad clock signal and would occasionally over-clock the processor.  The instruction pointer would randomly jump around in code and execute the instructions to write memory.  The random jumps meant the processor could (and eventually would) bypass any checks on write enables that occur before writing sensitive areas, such as program memory, or other nonvolatile memory.  There didn't have to be any calling path to this write-memory code, and it would still 'run' when the instruction pointer jumped to it.</p><p>(From here we could discuss memory structures that aid in recovery, structures that are resistant to errors.)
+</p></div></body>
+</html>

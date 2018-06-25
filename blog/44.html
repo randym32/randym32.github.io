@@ -1,0 +1,102 @@
+<html><head><title>Navigation Part 3: Steering</title>
+<link href="http://randym.name/blog/rss" rel="alternate" title="Randy Maas RSS Feed" type="application/rss+xml" />
+<link rel="stylesheet" href="jqmath-0.2.0.css">
+<style type="text/css">
+body { color: #111111; background: #FFFFFF; }
+a, h2 a:hover { color: #2361A1; }
+h1, h2, h2 a { color: #111111; }
+h1, h2, h3, h6 { font-weight: normal; }
+h4, h5 { font-weight: bold; }
+h5, h6 { text-transform: uppercase; letter-spacing: 1px; }
+
+a, a:hover { text-decoration: none; }
+a img { border: none; }
+blockquote { border-left: 1px solid #ddd; color: #666; }
+pre { background: #eee; border: 1px solid #ddd; overflow: auto; clear: both; }
+code,pre { font-size: 0.9em; font-family:  Monaco, Consolas, "Andale Mono", Courier, "Courier New", Verdana, sans-serif; }
+pre { margin-bottom: 1.667em; padding: 0.583em 0.833em; background: #eee; }
+cite {background: #ffffe0; border: 1px solid #ddd; overflow: auto; clear: both; font-style: normal;}
+table
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-collapse: collapse;
+}
+
+td, th
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    margin: 0;
+    padding: 4px;
+    vertical-align: top;
+    text-align: left;
+}
+
+table.t1,td.t1,th.t1 {    border-style:none; border-width: 0px 0px 0px 0px;}
+#Main {
+	padding: 0px;
+	border: 0px dotted gray;
+	margin-left: 120px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+#Sidebar {
+	position: absolute;
+	margin: 0 0 0 -75px;
+	width: 90px;
+	height: auto;
+	border: 0px dotted gray;
+	background-color: transparent;
+	text-align: right;
+	line-height: 1em;
+}
+#Sidebar ul {
+	margin: 3.5em 0 5em 9em;
+}
+
+#Sidebar li {
+	list-style: none;
+	letter-spacing: 1px;
+	margin: 0 0 1em -7em;
+	padding: 0;
+}
+</style>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-31474143-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head><body><div id="Sidebar">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/about.html">About Randy Maas</a></li>
+<li><a href="rss">rss</a></li><li><a href="43.html">Older</a></li><li><a href="45.html">Newer</a></li></ul>
+</div><div id="Main">
+<h1>
+Navigation Part 3: Steering</h1><p class="byline"><a href="mailto:randym@randym.name">Randall Maas</a> 8/13/2012 4:13:43 PM</p><p>Now that the bot knows where to go, the trick is to get it reasonably to said point.</p><h3>What I did not want to do:</h3><p>Again I'm deviating from <a href="http:diydrones.com">DIY Drones</a> .  Airplane navigation employs lots of models of forces, momentum and the teachings of <a href="http://en.wikipedia.org/wiki/Charles_Stark_Draper">Stark Draper</a>.</p><p>A car has forces that are hard to model, and almost no momentum.  I didn't want to come up with a detailed, physically accurate model of the bot.  I would have to model:</p><ul><li> Wheel slip
+</li><li>Radius of turn
+</li><li>Center of said radius
+</li><li>Misalignment of front wheels
+</li><li>Handle gear lash and wheel wobble
+</li><li> How PWM maps to wheel angle</li></ul><p>That's just way too much modeling, noisy variation, and frequent re-calibration.</p><h3>The Intuition</h3><p>My first intuition is that we don't need to worry about throttle control here.  Either the bot is moving or it's not.</p><p>I'm just going to cheat so long as I can use GPS.  I'll put off dead reckoning (as it's called in boats) or odometry (as it's called on land).  It's not as if I'm <a href="http://www.amazon.com/The-Apollo-Guidance-Computer-Architecture/dp/1441908765/ref=wl_it_dp_o_piT1_nS_nC?ie=UTF8&colid=U3PBQ4LZPYPB&coliid=I3AVMU6VTIBV2R">flying to the moon</a>.</p><p>My gut is that the steering involves the current position, the previous position, and the proximal goal.
+That the distinction of clockwise versus counter-clockwise tells us which way to turn.</p><p>For example we would want to turn right when the winding is counter-clockwise:</p><p>	<img src="RC-Steering1.jpg"/></p><p>And we want to turn right when the winding is clock-wise:</p><p>	<img src="RC-Steering2.jpg"/></p><p>The other intuition is that the larger the change in area, the more the steering angle needs to be corrected.</p><p>This leads to the <i>signed area</i> of the triangle.  Like the winding number, the sign distinguishes between clockwise and counter clockwise &#45; without the need to come up with a point within the triangle to wind around.  A negative sign is clockwise, a positive is counter-clockwise.  The magnitude is the area.</p><p>The signed area is computed as half the determinant:</p><p>$$1/2 det(\table A_x, B-x, C_x; A_y, B_y, C_y; 1,1,1)$$</p><p>or
+$$1/2 ((A_x-C_x)(B_y-A_y)-(A_x-B_x)(C_y-A_y))$$</p><p>There is one potential problem: what if the triangle has no area &#45; is the bot driving straight toward the goal or away from it?  The solution is to employ a change in distance if the area is too small.</p><h3>The numerical control loop</h3><p>The next step is to feed this change in area into a <a href="http://en.wikipedia.org/wiki/PID_controller">PID loop</a> as the error factor.  The PID loop's responsibility is to adjust the steering angle, with the goal to minimize the area.</p><p>The code (lifted from  <a href="http://en.wikipedia.org/wiki/PID_controller">wikipedia</a>) is:
+<pre><code>  error = setpoint - process_feedback
+  integral = integral + (error*dt)
+  derivative = (error - previous_error)/dt
+  steering angle = (Kp*error) + (Ki*integral) + (Kd*derivative)
+  previous_error = error</code></pre></p><p>(Actually, that is not entirely true.  The integral term is not updated for several seconds after starting out from a waypoint.)</p><p>The <var>setpoint</var>, <var>integral</var> and <var>previous_error</var> terms are reset when it starts from a waypoint, onto the net.</p><p>The drawback to this approach is that there are still three magic coefficients: <var>Kp</var>, <var>Ki</var>, <var>Kd</var>.  These have to manually sussed out for any given bot, or changes to it.   Not perfect, but I am some ideas on making them automatically set in the future.</p><h3>The future</h3><p>The first pass of the algorithm is somewhat naive and possibly very silly.
+I want to try for something elegant in the future to emphasize relative vehicle orientation.  I think the compass may help... I'll have to experiment iwth that.</p><p>Next time: <a href="44.html">the GPS unit</a>!
+</p></div></body>
+<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js'></script><script src='jqmath-etc-0.2.0.min.js'></script></html>

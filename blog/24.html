@@ -1,0 +1,99 @@
+<html><head><title>Brief interlude with Some of Microsoft's Analysis Tools</title>
+<link href="http://randym.name/blog/rss" rel="alternate" title="Randy Maas RSS Feed" type="application/rss+xml" />
+<link rel="stylesheet" href="jqmath-0.2.0.css">
+<style type="text/css">
+body { color: #111111; background: #FFFFFF; }
+a, h2 a:hover { color: #2361A1; }
+h1, h2, h2 a { color: #111111; }
+h1, h2, h3, h6 { font-weight: normal; }
+h4, h5 { font-weight: bold; }
+h5, h6 { text-transform: uppercase; letter-spacing: 1px; }
+
+a, a:hover { text-decoration: none; }
+a img { border: none; }
+blockquote { border-left: 1px solid #ddd; color: #666; }
+pre { background: #eee; border: 1px solid #ddd; overflow: auto; clear: both; }
+code,pre { font-size: 0.9em; font-family:  Monaco, Consolas, "Andale Mono", Courier, "Courier New", Verdana, sans-serif; }
+pre { margin-bottom: 1.667em; padding: 0.583em 0.833em; background: #eee; }
+cite {background: #ffffe0; border: 1px solid #ddd; overflow: auto; clear: both; font-style: normal;}
+table
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-collapse: collapse;
+}
+
+td, th
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    margin: 0;
+    padding: 4px;
+    vertical-align: top;
+    text-align: left;
+}
+
+table.t1,td.t1,th.t1 {    border-style:none; border-width: 0px 0px 0px 0px;}
+#Main {
+	padding: 0px;
+	border: 0px dotted gray;
+	margin-left: 120px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+#Sidebar {
+	position: absolute;
+	margin: 0 0 0 -75px;
+	width: 90px;
+	height: auto;
+	border: 0px dotted gray;
+	background-color: transparent;
+	text-align: right;
+	line-height: 1em;
+}
+#Sidebar ul {
+	margin: 3.5em 0 5em 9em;
+}
+
+#Sidebar li {
+	list-style: none;
+	letter-spacing: 1px;
+	margin: 0 0 1em -7em;
+	padding: 0;
+}
+</style>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-31474143-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head><body><div id="Sidebar">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/about.html">About Randy Maas</a></li>
+<li><a href="rss">rss</a></li><li><a href="23.html">Older</a></li><li><a href="25.html">Newer</a></li></ul>
+</div><div id="Main">
+<h1>
+Brief interlude with Some of Microsoft's Analysis Tools</h1><p class="byline"><a href="mailto:randym@randym.name">Randall Maas</a> 6/16/2010 9:56:42 AM</p><p>I've been describing the emulation of embedded software on a host platform, and encouraging use of the hosts code analysis tools to improve the code.   So I've had the good fortune that <a href="http://blogs.msdn.com/b/oldnewthing/">Raymond Chen</a> has mentioning some of Microsoft's <a href="http://msdn.microsoft.com/en-us/library/d3bbz7tz.aspx">code analysis tools</a> at the same time.  I have reproduced some of his links below:</p><p><ul>
+<li><a href="http://blogs.msdn.com/b/oldnewthing/archive/2010/06/15/10024931.aspx">Why it is called PREfast</a></li>
+<li>How the annotation helps <a href="http://blogs.msdn.com/b/oldnewthing/archive/2010/06/14/10024197.aspx">design better APIs for people</a> and catching bugs</li>
+</ul></p><p>In this case, Mr Chen is referring to how a designer conveys the rules of the API, with something they call Security Annotation Language (SAL).  The interesting things that you can see about an API include:</p><p><ul>
+<li>Some constraints on the value ' must be, maybe or must not be null (or zero)</li>
+<li>If the pointer is to a single variable or an array</li>
+<li>If the parameter that is the length (or other size) of the array</li>
+<li>If the pointer (buffer) passed is an input (e.g. populated)</li>
+<li>If the pointer (buffer) passed is an output (e.g. will be populated by the procedure)</li>
+<li>The kind of string termination, if any, that is used.</li>
+<li>That the string is a format string</li>
+</ul></p><p>These rules are made as "annotations" &#45; <a href="http://blogs.msdn.com/b/sdl/archive/2009/06/11/a-declspec-sal-to-attribute-sal-rosetta-stone.aspx">inline attributes or qualifiers</a> to each of the respective parameters  &#45; in the <a href="http://msdn.microsoft.com/en-us/library/aa383701.aspx">header file</a> exporting the API.  I don't think it makes the API easy to read, and the rules can be <a href="http://blogs.msdn.com/b/michael_howard/archive/2007/06/03/the-most-complex-sal-annotation.aspx">hard to read</a>.</p><p>I have not done anything to generate the transformed code using Microsoft's annotations.  This might might be an interesting project in the future.</p><p></p></div></body>
+</html>

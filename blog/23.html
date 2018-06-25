@@ -1,0 +1,122 @@
+<html><head><title>Testing that the API accepts the promised sequence of calls</title>
+<link href="http://randym.name/blog/rss" rel="alternate" title="Randy Maas RSS Feed" type="application/rss+xml" />
+<link rel="stylesheet" href="jqmath-0.2.0.css">
+<style type="text/css">
+body { color: #111111; background: #FFFFFF; }
+a, h2 a:hover { color: #2361A1; }
+h1, h2, h2 a { color: #111111; }
+h1, h2, h3, h6 { font-weight: normal; }
+h4, h5 { font-weight: bold; }
+h5, h6 { text-transform: uppercase; letter-spacing: 1px; }
+
+a, a:hover { text-decoration: none; }
+a img { border: none; }
+blockquote { border-left: 1px solid #ddd; color: #666; }
+pre { background: #eee; border: 1px solid #ddd; overflow: auto; clear: both; }
+code,pre { font-size: 0.9em; font-family:  Monaco, Consolas, "Andale Mono", Courier, "Courier New", Verdana, sans-serif; }
+pre { margin-bottom: 1.667em; padding: 0.583em 0.833em; background: #eee; }
+cite {background: #ffffe0; border: 1px solid #ddd; overflow: auto; clear: both; font-style: normal;}
+table
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-collapse: collapse;
+}
+
+td, th
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    margin: 0;
+    padding: 4px;
+    vertical-align: top;
+    text-align: left;
+}
+
+table.t1,td.t1,th.t1 {    border-style:none; border-width: 0px 0px 0px 0px;}
+#Main {
+	padding: 0px;
+	border: 0px dotted gray;
+	margin-left: 120px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+#Sidebar {
+	position: absolute;
+	margin: 0 0 0 -75px;
+	width: 90px;
+	height: auto;
+	border: 0px dotted gray;
+	background-color: transparent;
+	text-align: right;
+	line-height: 1em;
+}
+#Sidebar ul {
+	margin: 3.5em 0 5em 9em;
+}
+
+#Sidebar li {
+	list-style: none;
+	letter-spacing: 1px;
+	margin: 0 0 1em -7em;
+	padding: 0;
+}
+</style>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-31474143-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head><body><div id="Sidebar">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/about.html">About Randy Maas</a></li>
+<li><a href="rss">rss</a></li><li><a href="22.html">Older</a></li><li><a href="24.html">Newer</a></li></ul>
+</div><div id="Main">
+<h1>
+Testing that the API accepts the promised sequence of calls</h1><p class="byline"><a href="mailto:randym@randym.name">Randall Maas</a> 6/15/2010 10:33:53 AM</p><p>This entry is about a body of checks to verify that each API accepts the sequences of calls promised by the regex description.  This is done by turning each element of the regular expression into its own test procedure.  Each of the five regular expression constructs has its own format for the procedure:</p><p><ul>
+<li>Sequences of the constructs below</li>
+<li>Matching an API call</li>
+<li>|,Alternation.</li>
+<li>?,Optional.</li>
+<li>+,One or more.  This is translated into an alternation.  Note: the test method cheats since it can't generate an infinite number of calls to a routine.  Instead it checks that the routine can be called once and twice in the test pattern.</li>
+<li>*,0 or more.  This is translated into an alternation. Note: the test method cheats since it can't generate an infinite number of calls to a routine.  Instead it checks that the routine can be called once and twice in the test pattern.</li>
+</ul></p><p><h2>Sequences, and Matching an API call</h2></p><p>Matching an API calls is the best place to introduce the new concepts.  Each element of a sequence is turned into a procedure like the data, and is woven into each test procedure.  The code for an individual match node has the following structure:</p><code><pre>void __fastcall TD1(PCall_t* next)
+{
+   PCall_t PNext={next,TD2};
+   T_<i>Procedure</i>(&PNext);
+}</pre></code><p>Each of the regex's test procedure is named <code>TD<i>number</i></code>.  (These test procedures employ a different name format to distinguish between them and the procedures that test calling parameters.)  The testing of the API regex will call the procedure calling parameter tests.</p><p>The <code>next</code> variable is a pointer to the next test procedure in the overall (nested) sequence to call.  The first thing done, in a sequence procedure, is to prepend a pointer to the next test procedure in the sequence on the list.  Then it calls the test procedure for the procedure under test (if the element of the sequence is a procedure name), or the test procedure for the regex node (if it is a nested regex).</p><p>For example if we are testing the sequence <code>(A B) C</code>:</p><p><ol>
+<li>The first procedure will be passed a <code>null</code> <code>next</code>.</li> This node will prepend a pointer on the list to the test for <code>C</code>.</li>
+<li>Then it will call the procedure that tests the sequence <code>A B </code>.</li>
+<li>This second procedure will prepend the test for <code>B</code> onto the list.</li>
+<li>Then it will can the test for <code>A</code>, which in turn will resume by calling <code>B</code> and so on.</li>
+</ol></p><p><h2>| Alternation</h2></p><p>Alternation it is very similar to the calling parameter test procedure, with the management of the <code>next</code> call chain added in:</p><code><pre>void __fastcall TD2(PCall_t* next)
+{
+   PCall_t PNext;
+   void* BaseState = BrdState_save();
+   TraceNode_t* OT = Trace_tail;
+
+   <i>// call the first alternative</i>
+   <i>// first set up pointer to the next item after the alternative</i>
+   PNext.next=next;
+   PNext.Proc=TD3;
+   T_<i>procedure</i> ();
+   Trace_freeTo(OT);
+   BrdState_set(BaseState);
+
+   <i>// repeat for each of the other alternative</i>
+
+   BrdState_free(BaseState);
+}</pre></code><p>In other words, the procedure saves the state, tries an alternative, restores the state, tries another alternative, restores the state, and so on.</p><p><h2>Quantification</h2></p><p>The quantification nodes &#45; ?,+,* &#45; are all translated into alternation nodes, and the code is generated.</p><p><strong>+ One or More.</strong> The construct <code>Z+</code> is converted into <code>(Z Z) | Z</code>, and the code is generated as described above.</p><p><strong>?, Optional, Zero or One.</strong>. The construct <code>Z?</code> is converted into <code> Z |</code>.  The empty match in the alternation is a case where the generated code inserts a call to node after the <code>Z?</code>.  The code is generated as described earlier (with this exception).</p><p><strong>*, Many, Zero or More.</strong>. The construct <code>Z*</code> is converted into <code> ZZ| Z |</code>.</p><p><h2>Next time</h2></p><p>That is as far as I got with in developing the tool.  It has take me longer to write up the notes than it took to write the software.  (Originally it took a full week of work, according to my notes)</p><p>In the future I'll describe some of the ideas I had for testing, again related to regular expressions of the API, on checking to see if it is even possible to make a bad sequence of calls.
+</p></div></body>
+</html>

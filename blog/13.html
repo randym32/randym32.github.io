@@ -1,0 +1,88 @@
+<html><head><title>Addressing Misconceptions: On computers, Countable and Floating point numbers are not associative nor distributive</title>
+<link href="http://randym.name/blog/rss" rel="alternate" title="Randy Maas RSS Feed" type="application/rss+xml" />
+<link rel="stylesheet" href="jqmath-0.2.0.css">
+<style type="text/css">
+body { color: #111111; background: #FFFFFF; }
+a, h2 a:hover { color: #2361A1; }
+h1, h2, h2 a { color: #111111; }
+h1, h2, h3, h6 { font-weight: normal; }
+h4, h5 { font-weight: bold; }
+h5, h6 { text-transform: uppercase; letter-spacing: 1px; }
+
+a, a:hover { text-decoration: none; }
+a img { border: none; }
+blockquote { border-left: 1px solid #ddd; color: #666; }
+pre { background: #eee; border: 1px solid #ddd; overflow: auto; clear: both; }
+code,pre { font-size: 0.9em; font-family:  Monaco, Consolas, "Andale Mono", Courier, "Courier New", Verdana, sans-serif; }
+pre { margin-bottom: 1.667em; padding: 0.583em 0.833em; background: #eee; }
+cite {background: #ffffe0; border: 1px solid #ddd; overflow: auto; clear: both; font-style: normal;}
+table
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-collapse: collapse;
+}
+
+td, th
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    margin: 0;
+    padding: 4px;
+    vertical-align: top;
+    text-align: left;
+}
+
+table.t1,td.t1,th.t1 {    border-style:none; border-width: 0px 0px 0px 0px;}
+#Main {
+	padding: 0px;
+	border: 0px dotted gray;
+	margin-left: 120px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+#Sidebar {
+	position: absolute;
+	margin: 0 0 0 -75px;
+	width: 90px;
+	height: auto;
+	border: 0px dotted gray;
+	background-color: transparent;
+	text-align: right;
+	line-height: 1em;
+}
+#Sidebar ul {
+	margin: 3.5em 0 5em 9em;
+}
+
+#Sidebar li {
+	list-style: none;
+	letter-spacing: 1px;
+	margin: 0 0 1em -7em;
+	padding: 0;
+}
+</style>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-31474143-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head><body><div id="Sidebar">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/about.html">About Randy Maas</a></li>
+<li><a href="rss">rss</a></li><li><a href="12.html">Older</a></li><li><a href="14.html">Newer</a></li></ul>
+</div><div id="Main">
+<h1>
+Addressing Misconceptions: On computers, Countable and Floating point numbers are not associative nor distributive</h1><p class="byline"><a href="mailto:randym@randym.name">Randall Maas</a> 5/23/2010 10:59:54 PM</p><p>One of the subtlest way to create bugs in embedded systems is with the math in C.  Or, at least to assume that it is good enough, without considering how the compiler and hardware do math.</p><p>Arithmetic operators in C are not distributive.  You need to know &#45; and validate with &#45; more information, such as the actual possible range of values in the variables.  To wit, the countable numbers (ints, shorts, unsigned and signed, etc) preserve the<i>least significant digits</i> under arithmetic operation.   Worse - and something fewer people understand ' is that floating point values (floats and doubles) only preserve the most significant digits. </p><p><h2>The oops of ints</h2></p><p>In the integer family of types in C (and C-like) language  values can silently overflow, leaving you with a surprisingly small number (even a very negative one when you expect otherwise).   It helps if I give an example.</p><code><pre>   int X = (A-B) + (D - C);</pre></code><p>is not always the same as:</p><code><pre>   int Y = (A + D)  - (B + C);</pre></code><p>The sum of A and D could be large enough to overflow the integer (or whatever) type.  The same for the sum of B and C.  But &#45; and the likely reason that they were written as two subtractions before the addition &#45; B might shrink A enough, and C might shrink D enough to not overflow.   I've seen it a lot in small microcontrollers that are doing control loops.</p><p>Actually, there is subtle, but frequent bug.  What happens is that both the <code>A+D</code> and the <code>B+C</code> overflow almost always at the same time, making for the difference to be pretty close.   But there are a few cases where they don't.  I haven't found a test engineer that can design cases to test this.  Code review occasionally catches this.  And nature usually triggers it only after the code deploys ('ships'), and the person likely to work on the bug has no idea which formula is correct for stability.</p><p>There isn't a simple solution.  Often I just write down a derivative of the equations so that other people can check them.  (I do make mistakes after all).  And we try to use a wider type &#45; more bits &#45; than we think we'll need.  And we double check.  It helps.</p><p><h2>The oops of floating points</h2></p><p>As I mentioned, floating point preserves the most significant digits, dropping the least.  That is its major appeal &#45; it prevents the problems you see with the integer family above.    (Well, float point can overflow too, but it's less of an issue).   Let's just assume that you have a DSP, microcontroller or processor where floating point is practical.  There still is a class of bugs waiting to happen.   (Fortunately is rare if you're just replace the equations you were using ints for earlier)</p><code><pre>   double X = (A+B) + (D + C);</pre></code><p>is not always the same as:</p><code><pre>   double Y = (A + D) + (B + C);</pre></code><p>When, say, A and B are small numbers, and C and D are big ones here is what happens.  A plus D is D, because the digits of A are insignificant and dropped.   And, similarly, the digits of B are insignificant and are dropped.  But, A plus B does some up the digits, enough so that they do add with D and C, giving  a different result.</p><p>The answer, for such simple cases, is to arrange the arithmetic operations from the smallest number to the biggest.</p><p>It all seems pretty trivial.  Until you get into linear algebra, which is very heavily used in signal processing and control systems.  In those systems, the pretty matrix operations we learn as sophomores is very unstable.  Matrices get ridiculous numbers doing, say, an eigenvector.    (By ridiculous, not only the computed results not work very well, they can have not-a-number results ' singularities and infinites and such).  One way to prevent this is to permute the matrix before performing the operation, like that sort from smallest to largest, and the rearrange back to the proper order when done.</p><p>And that is where I have to cop out.  Numerical stability for these networks of multiplies and divides, sums and differences, is a specialty.  How to permute, and all the other things you need to do is something for good textbooks, and why you should use really really good libraries.</p><p><h2>The End</h2></p><p>For a moment, back to microcontrollers where floating point is not a practical option.  Even if you aren't going to be doing linear algebra.  What then?  I use rational numbers.  Basically it's multiplying by a 100, to track the pennies in sales figures, and knowing that you are dealing with currency in terms of pennies not dollars.  (And you need to use a wide enough integer type).  This can get pretty ugly, depending on the equations and how many digits you need to track.  Or, worse, if you need to increase the number of digits as the equation progresses.</p><p>But it is faster than floating point on some machines.</p><p></p></div></body>
+</html>

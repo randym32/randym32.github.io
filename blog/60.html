@@ -1,0 +1,116 @@
+<html><head><title>Problem: Many images of the Earth are mirror images</title>
+<link href="http://randym.name/blog/rss" rel="alternate" title="Randy Maas RSS Feed" type="application/rss+xml" />
+<link rel="stylesheet" href="jqmath-0.2.0.css" />
+<style type="text/css">
+body { color: #111111; background: #FFFFFF; }
+a, h2 a:hover { color: #2361A1; }
+h1, h2, h2 a { color: #111111; }
+h1, h2, h3, h6 { font-weight: normal; }
+h4, h5 { font-weight: bold; }
+h5, h6 { text-transform: uppercase; letter-spacing: 1px; }
+
+a, a:hover { text-decoration: none; }
+a img { border: none; }
+blockquote { border-left: 1px solid #ddd; color: #666; }
+pre { background: #eee; border: 1px solid #ddd; overflow: auto; clear: both; }
+code,pre { font-size: 0.9em; font-family:  Monaco, Consolas, "Andale Mono", Courier, "Courier New", Verdana, sans-serif; }
+pre { margin-bottom: 1.667em; padding: 0.583em 0.833em; background: #eee; }
+cite {padding: 0.3em 0.3em; line-height:180%; background: #ffffe0; border: 1px solid #ddd; overflow: auto; clear: both; font-style: normal; font-size: 85%;}
+.caption {font-size: small; text-align: center; color: #660000; margin: -20px 0 0 0; }
+p.note {padding: 0.571em 0.786em;  background: #f5f5f5; border: 1px solid #ddd; }
+iframe {align: center;}
+table
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-collapse: collapse;
+}
+
+td, th
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    margin: 0;
+    padding: 4px;
+    vertical-align: top;
+    text-align: left;
+}
+
+table.t1,td.t1,th.t1 {    border-style:none; border-width: 0px 0px 0px 0px;}
+#Main {
+	padding: 0px;
+	border: 0px dotted gray;
+	margin-left: 120px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+#Sidebar {
+	position: absolute;
+	margin: 0 0 0 -75px;
+	width: 90px;
+	height: auto;
+	border: 0px dotted gray;
+	background-color: transparent;
+	text-align: right;
+	line-height: 1em;
+}
+#Sidebar ul {
+	margin: 3.5em 0 5em 9em;
+}
+
+#Sidebar li {
+	list-style: none;
+	letter-spacing: 1px;
+	margin: 0 0 1em -7em;
+	padding: 0;
+}
+</style><script type="text/javascript">
+  var _gaq = _gaq || [];
+  var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-31474143-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head><body><div id="Sidebar">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/about.html">About Randy Maas</a></li>
+<li><a href="rss">rss</a></li>
+<li><a href="59.html">Older</a></li>
+</ul>
+</div><div id="Main">
+<h1>Problem: Many images of the Earth are mirror images</h1><p class="byline"><a href="mailto:randym@randym.name">Randall Maas</a> 12/21/2013 8:45:51 AM</p>
+<p>I'm pretty sure that most people simply do not know the topology of the earth.  Judging by the number of times that I see
+a globe horizontally flipped, and how many years that these globes remain uncorrect, I suspect that people don't see this
+mirroring as wrong. 
+(This leads me to believe that people do not know how the earth looks, is oriented, and rotates.. and how this is connected to common place
+phenomenon)</p><h3>Example 1: GLSL examples</h3><p>An example in GLSL, that Apple has shipped for years.  (Original copyright: 2002, Apple's mark: 2008)
+Along with one flipped it so that it is not longer a mirror image:</p><p><table border="0" style="border-width: 0 0 0px 0px;">
+<tr><th  style="border-width: 0px 0px 0 0;"><center>The earth as it came with GLSL demos</center></th>
+ <th  style="border-width: 0px 0px 0 0;"><center>The earth as it should look</center></th></tr>
+<tr style="border-width: 0px 0px 0 0;"><td  style="border-width: 0px 0px 0 0;"><center><img src="GLSL-earth-orig.png"/></center></td>
+ <td  style="border-width: 0px 0px 0 0;"><center><img src="GLSL-earth-fixed.png"/></center></td></tr></table></p><p>(Notice that the sun is lighting it from the&nbsp;<i>west</i> and darkness is in the&nbsp;<i>east</i> ?
+Let's just pretend that midday is over central america, ok?)</p><h3>Example 2:</h3><p>Another example (image originally from <a href="http://www.zugakousaku.com/">http://www.zugakousaku.com/</a>)</p><p><center><img src="zugakousaku-orig.jpg"/></center></p><p>Let's flip this one so that it is not longer a mirror image either:</p><p><center><img src="zugakousaku-fixed.jpg"/></center></p><p>(This is also true in Zugakousaku's other screen saver: <a href="http://www.zugakousaku.com/src/project.php?ref=odyssey-ja">Odyseey of Boys and Girls</a>)</p><h2>Here's what to fix:</h2><p>As a courtesy, here's what to changes need to happen to fix them.</p><h3>GLSL change</h3><p>In the GLSL shading example, the fragment shader has a line, like so, that specifies the texture coordinates:</p><p><pre><code></p><p>    Diffuse         = max(dot(lightVec, tnorm), 0.0);
+<b>    TexCoord        = gl_MultiTexCoord0.st;</b>
+    gl_Position     = ftransform();
+
+}
+</code></pre></p><p>Change this to:</p><p><pre><code></p><p>    Diffuse         = max(dot(lightVec, tnorm), 0.0);
+<b>    TexCoord        = gl_MultiTexCoord0.st * vec2(-1.0, 1.0);</b>
+    gl_Position     = ftransform();
+
+}
+</code></pre></p><h3>Fixes to Zugakousaku</h3><p>As I covered last time, just make sure you're culling the back faces.
+Zugakousaku screen savers seems to have two different problems that are solved by this.</p><p>In one of Zugakousaku screen savers , the sphere is&nbsp;<i>transparent</i> .  Due to the lighting, you primarily see the backside, hence the flip.
+By removing the back faces, only the front is seen.</p><p>In the other screen saver, the culling is set to the front. Again, you see the backside, and making the earth seem flipped.</p><p></p></div></body>
+</html>

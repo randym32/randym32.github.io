@@ -1,0 +1,104 @@
+<html><head><title>Hints for coding style guide</title>
+<link href="http://randym.name/blog/rss" rel="alternate" title="Randy Maas RSS Feed" type="application/rss+xml" />
+<link rel="stylesheet" href="jqmath-0.2.0.css">
+<style type="text/css">
+body { color: #111111; background: #FFFFFF; }
+a, h2 a:hover { color: #2361A1; }
+h1, h2, h2 a { color: #111111; }
+h1, h2, h3, h6 { font-weight: normal; }
+h4, h5 { font-weight: bold; }
+h5, h6 { text-transform: uppercase; letter-spacing: 1px; }
+
+a, a:hover { text-decoration: none; }
+a img { border: none; }
+blockquote { border-left: 1px solid #ddd; color: #666; }
+pre { background: #eee; border: 1px solid #ddd; overflow: auto; clear: both; }
+code,pre { font-size: 0.9em; font-family:  Monaco, Consolas, "Andale Mono", Courier, "Courier New", Verdana, sans-serif; }
+pre { margin-bottom: 1.667em; padding: 0.583em 0.833em; background: #eee; }
+cite {background: #ffffe0; border: 1px solid #ddd; overflow: auto; clear: both; font-style: normal;}
+table
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-collapse: collapse;
+}
+
+td, th
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    margin: 0;
+    padding: 4px;
+    vertical-align: top;
+    text-align: left;
+}
+
+table.t1,td.t1,th.t1 {    border-style:none; border-width: 0px 0px 0px 0px;}
+#Main {
+	padding: 0px;
+	border: 0px dotted gray;
+	margin-left: 120px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+#Sidebar {
+	position: absolute;
+	margin: 0 0 0 -75px;
+	width: 90px;
+	height: auto;
+	border: 0px dotted gray;
+	background-color: transparent;
+	text-align: right;
+	line-height: 1em;
+}
+#Sidebar ul {
+	margin: 3.5em 0 5em 9em;
+}
+
+#Sidebar li {
+	list-style: none;
+	letter-spacing: 1px;
+	margin: 0 0 1em -7em;
+	padding: 0;
+}
+</style>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-31474143-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head><body><div id="Sidebar">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/about.html">About Randy Maas</a></li>
+<li><a href="rss">rss</a></li><li><a href="35.html">Older</a></li><li><a href="37.html">Newer</a></li></ul>
+</div><div id="Main">
+<h1>
+Hints for coding style guide</h1><p class="byline"><a href="mailto:randym@randym.name">Randall Maas</a> 12/29/2010 8:17:10 PM</p><p>To me, a coding style guide is a writers guide, similar to what you'd see used with publications.  It is part of how a design is communicated (specs, requirements and, architecture) an implementation is communicated.   Communication of its implementation (coding style, comments, review) its testing, what can be expected of it (the code).</p><p>Although there may be different coding style guides for different projects, each  guide typically covers such things as:</p><ul><li>	Conventions for consistency, especially where variations are <a href="5.html">deadly</a>
+</li><li>Conventions for clarity to other people (e.g <a href="28.html">Go lightly on the XOr's</a>)
+</li><li>Conventions for clarity to the compiler and machine
+</li><li>Constraints (things you shouldn't do unless you need to)
+</li><li>Naming conventions.  How should you name folders, files, variables, types and so on?  It seems so arbitrary, but there are competing styles, each with good (and so-so) reasons for why their name formats are used.
+</li><li>Preferred types and type names what types to use
+</li><li>How to name types when you define your own
+</li><li>How to avoid <a href="3.html">common mistakes</a>, obvious don't dos
+</li><li><a href="7.html">Subtle traps</a>
+</li><li>Files.  A description of a files should have a <a href="37.html">defined sizing rule</a>.  Should everything go into a single file?  Should a file generally be less than 2000 lines?  200?   Should it be just a minimum of a procedure or variable?
+</li><li>	Procedures or other units.  How should they be named?  How should they be described?  <a href="37.html">How big should they be?</a>  How should they be broken up?</li></ul><p>Some of the goals are to allow code analysis or review by engineers on other software teams.
+Another is to help allow automated analysis or testing.  But another is the role of a style guide in process (_what_ are you trying to communicate with process?), a topic I may ponder in the future.</p><p>Other Coding Style Guide
+It can help to study other style guides (or refer to them).  Below are a couple.
+<a href="http://www.bitsavers.org/pdf/honeywell/multics/AN82-00_standardsSDN_Jun80.pdf">Multics Coding Standards</a></p><p>I can't recall a Unix style guide per se, but I believe each org (e.g. HP, Bell Labs) had one.  You may wish to contrast this with <a href="http://www.gnu.org/prep/standards/">GNU's guide</a>
+and <a href="http://www.nongnu.org/style-guide/">the 'non' guide</a></p><p>Michael Barr sells a <a href="http://www.netrino.com/Coding-Standard">coding standard</a>, but it seems more like a power point presentation for his consulting or a starting outline of what some of a style guide would contain, rather than full, representative style guide.  But it is also a good read.  </p><p><h2>Future</h2>
+I'll be coming back to this in the future entries.
+</p></div></body>
+</html>

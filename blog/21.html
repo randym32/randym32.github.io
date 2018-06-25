@@ -1,0 +1,110 @@
+<html><head><title>Protecting calling sequences</title>
+<link href="http://randym.name/blog/rss" rel="alternate" title="Randy Maas RSS Feed" type="application/rss+xml" />
+<link rel="stylesheet" href="jqmath-0.2.0.css" />
+<style type="text/css">
+body { color: #111111; background: #FFFFFF; }
+a, h2 a:hover { color: #2361A1; }
+h1, h2, h2 a { color: #111111; }
+h1, h2, h3, h6 { font-weight: normal; }
+h4, h5 { font-weight: bold; }
+h5, h6 { text-transform: uppercase; letter-spacing: 1px; }
+
+a, a:hover { text-decoration: none; }
+a img { border: none; }
+blockquote { border-left: 1px solid #ddd; color: #666; }
+pre { background: #eee; border: 1px solid #ddd; overflow: auto; clear: both; }
+code,pre { font-size: 0.9em; font-family:  Monaco, Consolas, "Andale Mono", Courier, "Courier New", Verdana, sans-serif; }
+pre { margin-bottom: 1.667em; padding: 0.583em 0.833em; background: #eee; }
+cite {padding: 0.3em 0.3em; line-height:180%; background: #ffffe0; border: 1px solid #ddd; overflow: auto; clear: both; font-style: normal; font-size: 85%;}
+.caption {font-size: small; text-align: center; color: #660000; margin: -20px 0 0 0; }
+p.note {padding: 0.571em 0.786em;  background: #f5f5f5; border: 1px solid #ddd; }
+iframe {align: center;}
+table
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-collapse: collapse;
+}
+
+td, th
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    margin: 0;
+    padding: 4px;
+    vertical-align: top;
+    text-align: left;
+}
+
+table.t1,td.t1,th.t1 {    border-style:none; border-width: 0px 0px 0px 0px;}
+#Main {
+	padding: 0px;
+	border: 0px dotted gray;
+	margin-left: 120px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+#Sidebar {
+	position: absolute;
+	margin: 0 0 0 -75px;
+	width: 90px;
+	height: auto;
+	border: 0px dotted gray;
+	background-color: transparent;
+	text-align: right;
+	line-height: 1em;
+}
+#Sidebar ul {
+	margin: 3.5em 0 5em 9em;
+}
+
+#Sidebar li {
+	list-style: none;
+	letter-spacing: 1px;
+	margin: 0 0 1em -7em;
+	padding: 0;
+}
+</style><script type="text/javascript">
+  var _gaq = _gaq || [];
+  var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-31474143-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head><body><div id="Sidebar">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/about.html">About Randy Maas</a></li>
+<li><a href="rss">rss</a></li>
+<li><a href="20.html">Older</a></li><li><a href="22.html">Newer</a></li>
+</ul>
+</div><div id="Main">
+<h1>Protecting calling sequences</h1><p class="byline"><a href="mailto:randym@randym.name">Randall Maas</a> 6/8/2010 12:18:42 AM</p>
+<p>Where we are?  I have been describing part of <a href="16.html">an emulator</a> that acts as <a href="19.html">a bug sieve</a>.  It helps automatically identify when it is likely there is a bug manifesting itself.  In the previous entries I described that the emulation checks that we are following rules for <a href="18.html">using a peripheral device</a>, that <a href="20.html">parameters to a call are in a valid range</a>, that variables are within their constraints, and that the output values are in a valid range.  This time I am going to explain how the emulation checks that the program is making acceptable sequences of procedure calls.</p><p><h2>Call sequences are Regular Expressions</h2></p><p>The heart is checking that the software is using acceptable calling patterns.  In a few papers, <a href="http://research.microsoft.com/~tball/">Thomas Ball</a> introduced (or at least explained) that almost all meaningful calling sequences can be expressed as regular expressions.  (<a href="http://research.microsoft.com/research/pubs/view.aspx?tr_id=220">Thomas Ball, "Programs Follow Paths" 1999, MSR-TR-99-01</a>).</p><p>Let's start with an example that Ball uses in 2004 presentation.  The convention is that a lock must always be unlocked before you can lock it again, and it can be locked only once per lock.  This is has the regular expression:</p><p><pre>(Lock Unlock)*</pre></p><p>Bear in that this only specifies what calls have to be made, and in what order.  It doesn't specify what the values are to a call.  (Those could be bogus, and the calling rules here wouldn't notice.)</p><p>In his presentation, he provides the following code, to ask the audience: <i>Is the locking correct?</i> </p><code><pre>do {
+    Lock(); 
+    nPacketsOld = nPackets;
+    if (request){
+          request = request->Next;
+          Unlock();
+          nPackets++;
+    }
+} while (nPackets != nPacketsOld); 
+Unlock(); </pre></code><p>He suggests the following simplification to help understand the code:</p><code><pre>do {
+    <strong>Lock(); </strong>
+ 
+    if(*){ 
+          <strong>Unlock();</strong>
+    }
+} while (*); 
+<strong>Unlock(); </strong></pre></code><p>Static analysis of code frequently employs this type of simplification; it retains the items under question, the control flow structures (marking their selector with a strike *), but removes all other data flow elements (variables, expressions, etc.), declarations, and the like.</p><p>However, I do not have a static analyzer that performs this on the embedded code I have.  But I wanted to come up with something to implement this check.  I decide a reasonable method is to have these calling pattern checks performed dynamically, while the program is running. </p><p><h2>A regular expression engine</h2></p><p>Let me give a real example for an API that is more complex than the simple lock pairing given earlier:</p><p><pre> (I2C_Init ( I2C_Start I2C_Send+ (I2C_RepeatedStart I2C_Send? I2C_Recv*)? I2C_Stop )* )+</pre></p><p>This is an API for an I2C module.  Quite complicated, no?  I wanted a regular expression tool that was simple enough for me modify, but could still match the regex operations above, plus a few other common ones (such as alternation).</p><p>I started with Russell Cox's DFA (<a href="http://swtch.com/~rsc/regexp/">"Regular Expression Matching can be fast and simple," January 2007</a>).  It was not selected for any particular reason other than it works, and supported the required regex operations.</p><p>I modified this code to allow lots of regex recognizer's to be running simultaneously.  And I modified it to automatically wrap all regular expressions in a "( )*" operation, to automatically reset then for the next round API calls after the first is completed.  I created a module to read in a set of regular expressions, and create one recognizer per expression.</p><p>The next step is updating the states of recognizers as calls are made.  When the expression recognizers are being created, I make a table that maps each specified procedure name to the regex recognizer that concerns it.  (This also means that a procedure can be specified in only one regular expression).  In the shim, before a call, the name of the procedure being called is mapped to the recognizer (if any), and passes the recognizer is passed the token.  If the recognizer says that the string of calls is not recognized, then we have an error, and the debugger is triggered.</p><p><h3>Eh, what about multiple instances?</h3></p><p>What about things like locks, files, objects, <i>et cetera</i> where there can be more than one, and the calls made with respect to these don't interact?  In those, case the sequences of:</p><p><pre>open (read |write)* close</pre></p><p>are not meaningful, because they'll trigger the debugger too often.</p><p>I did create a simple solution, at least in the framework.  For these items, the regex recognizers are duplicated when they are created.  Then there is a mapping of the instance id (whatever that is), and the procedure name to their own recognizers.  As I said, I put this into the framework, but I haven't really used it.  Most microcontroller code doesn't have many instance-based selections, so it did not come up that much.  (But, since this is the norm in software, I do expect to come up <i>eventually</i>.)</p><p><h2>Eventually and Modal statements</h2></p><p>Where the boundary conditions allowed a simple check against the past, regex's allow a specification of what must happen in the future.</p><p>At first glance, the regex appear to be just rules that must be followed, not productions of the future.  The way to look at this is once you have done a <code>lock</code> it says that <code>unlock</code> must eventually be called.  (In model checking tools, there is strange beast called <i>"linear temporal logic"</i> that has an operation called "eventually" to describe what you can expect to happen in the future.)</p><p>Normally the regex checks let sleeping dogs lie, as it were.   They all are waiting for the next procedure call, and don't complain (on their own) if it doesn't come.  To fix this I created a procedure that checks that all FSMs are in a starting state and not left hanging.   It is called at exit time, but it can be called at any other time when we're sure that all the other calls should have been made by (we reach the "eventually" point).</p><p>Since the typical <code>main()</code> in a micro controller is an infinite loop, one possibility is to insert this check at the bottom of the loop.  I found that this is not an appropriate place in general (too often tasks are partially complete, progressing with each cycle thru the loop), so I have not made it automatic.</p><p>Where to place this check remains an open problem.</p><p><h2>Other esoterics</h2></p><p><h3>C is a string generation specification</h3></p><p>Nerds may have noted that I have basically claimed that source code is a specification for generating strings of calls.  And that we want to check those strings.   Can we show a string generation specification is always matched by a regular expression or other grammar?  For software this is called "temporal safety."</p><p>Basically, it is easy for only very simple languages.  It is very, very hard when we're talking about general languages like C.</p><p><h3>Countable and Nestable locks</h3></p><p>Things like <code>(Lock Unlock)*</code> do not work with countable locks.  To do so we would need something more than regex for some interfaces.  Full context-free class would work, but isn't necessary.  There are perhaps even less common than object instances in microcontrollers.  They are common in embedded systems and other software to be sure.  But the issue just hasn't proven to be that important.</p><p><h2>Next time</h2></p><p>Next I'll discuss how some of this can be used to create <a href="22.html">(automated) unit tests</a>.</p><p></p></div></body>
+</html>

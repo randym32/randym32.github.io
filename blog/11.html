@@ -1,0 +1,111 @@
+<html><head><title>Logical Operators, Bitwise Operators, and Sequence Points</title>
+<link href="http://randym.name/blog/rss" rel="alternate" title="Randy Maas RSS Feed" type="application/rss+xml" />
+<link rel="stylesheet" href="jqmath-0.2.0.css" />
+<style type="text/css">
+body { color: #111111; background: #FFFFFF; }
+a, h2 a:hover { color: #2361A1; }
+h1, h2, h2 a { color: #111111; }
+h1, h2, h3, h6 { font-weight: normal; }
+h4, h5 { font-weight: bold; }
+h5, h6 { text-transform: uppercase; letter-spacing: 1px; }
+
+a, a:hover { text-decoration: none; }
+a img { border: none; }
+blockquote { border-left: 1px solid #ddd; color: #666; }
+pre { background: #eee; border: 1px solid #ddd; overflow: auto; clear: both; }
+code,pre { font-size: 0.9em; font-family:  Monaco, Consolas, "Andale Mono", Courier, "Courier New", Verdana, sans-serif; }
+pre { margin-bottom: 1.667em; padding: 0.583em 0.833em; background: #eee; }
+cite {padding: 0.3em 0.3em; line-height:180%; background: #ffffe0; border: 1px solid #ddd; overflow: auto; clear: both; font-style: normal; font-size: 85%;}
+.caption {font-size: small; text-align: center; color: #660000; margin: -20px 0 0 0; }
+p.note {padding: 0.571em 0.786em;  background: #f5f5f5; border: 1px solid #ddd; }
+iframe {align: center;}
+table
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-collapse: collapse;
+}
+
+td, th
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    margin: 0;
+    padding: 4px;
+    vertical-align: top;
+    text-align: left;
+}
+
+table.t1,td.t1,th.t1 {    border-style:none; border-width: 0px 0px 0px 0px;}
+#Main {
+	padding: 0px;
+	border: 0px dotted gray;
+	margin-left: 120px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+#Sidebar {
+	position: absolute;
+	margin: 0 0 0 -75px;
+	width: 90px;
+	height: auto;
+	border: 0px dotted gray;
+	background-color: transparent;
+	text-align: right;
+	line-height: 1em;
+}
+#Sidebar ul {
+	margin: 3.5em 0 5em 9em;
+}
+
+#Sidebar li {
+	list-style: none;
+	letter-spacing: 1px;
+	margin: 0 0 1em -7em;
+	padding: 0;
+}
+</style><script type="text/javascript">
+  var _gaq = _gaq || [];
+  var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-31474143-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head><body><div id="Sidebar">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/about.html">About Randy Maas</a></li>
+<li><a href="rss">rss</a></li>
+<li><a href="10.html">Older</a></li><li><a href="12.html">Newer</a></li>
+</ul>
+</div><div id="Main">
+<h1>Logical Operators, Bitwise Operators, and Sequence Points</h1><p class="byline"><a href="mailto:randym@randym.name">Randall Maas</a> 5/20/2010 12:49:58 PM</p>
+<p>From time to time, I read C code that uses the bitwise | operator when the logical || operator is more appropriate.  The code might look a bit like:</p><code><pre>
+int  Pass = A | B | C;
+</pre></code><p>or:</p><code><pre>
+if (!A|!B|!C)
+   Pass = 0;
+ else
+   Pass = 1;
+</pre></code><p>(There are similar cases with the & and && operators, but these tend to come up less frequently).</p><p>Sometimes this is the right construction.  This might be the case if all of the operands &#45; A, B, C, etc &#45; don't have any side effects, and are quick to evaluate.  And  you are checking the resulting bit pattern.   And you are not storing the result in a signed type.   (These are not strict rules, just typifying guidelines).    If the implementer intended to use the binary operator, I recommend that he include such a statement in the comments, as well as a description of what is going on.</p><p>What is the problem then?   The issue is that all of the operands are evaluated.  This is a problem if you (implicitly) should be stopping at the first pass (or first failure).  If these operands are calls to expensive operations, you are incurring the expense unnecessarily &#45; in the embedded world the threshold for 'expensive' can be quite low.   More importantly, it is common for the operands to have a side effects.  If you are doing operations, and the first one fails, it is almost always a terrible idea to perform subsequent operations in the sequence.</p><p>And, to make matters worse, I'm pretty convinced that there are compilers that will evaluate the operands in "the wrong order," different from what the implementer expected.  Especially when the optimizer is used.  (The age of the compiler matters too, as recent C standards have tried to specify portions of the evaluation order).  The typical example that this occurs is when the operands include modifications to a variable (<code>a *= 3, b++, c>>=7</code>).  It is undefined when the changes to these variables are applied.</p><p>Instead the logical || operator is usually the best choice.  It skips the rest of the sequence on the first true (non-zero) operand.  (With the logical && operator, it skips the rest of the sequence on the first false &#45; zero &#45; operand).  In complicated words, || is divided up into sequence points.</p><p>For example the following bit of contrived code, using the bitwise operator, would do something undefined to memory if the memory allocation failed:</p><code><pre>if (!AllocateMemory() | !WriteMemory())
+   Pass = 0;
+ else
+   Pass = 1;
+FreeMemory();
+</pre></code><p>whereas the following code would not:</p><code><pre>if (!AllocateMemory() || !WriteMemory())
+   Pass = 0;
+ else
+   Pass = 1;
+FreeMemory();
+</pre></code><p>(From here we could discuss interesting things like how to use the || operator to do error checking and handling, how C#'s version of the | operator is different and what this may mean, and some learned lessons in language design.)</p><p></p></div></body>
+</html>

@@ -1,0 +1,96 @@
+<html><head><title>Check for potential bad calling sequences</title>
+<link href="http://randym.name/blog/rss" rel="alternate" title="Randy Maas RSS Feed" type="application/rss+xml" />
+<link rel="stylesheet" href="jqmath-0.2.0.css">
+<style type="text/css">
+body { color: #111111; background: #FFFFFF; }
+a, h2 a:hover { color: #2361A1; }
+h1, h2, h2 a { color: #111111; }
+h1, h2, h3, h6 { font-weight: normal; }
+h4, h5 { font-weight: bold; }
+h5, h6 { text-transform: uppercase; letter-spacing: 1px; }
+
+a, a:hover { text-decoration: none; }
+a img { border: none; }
+blockquote { border-left: 1px solid #ddd; color: #666; }
+pre { background: #eee; border: 1px solid #ddd; overflow: auto; clear: both; }
+code,pre { font-size: 0.9em; font-family:  Monaco, Consolas, "Andale Mono", Courier, "Courier New", Verdana, sans-serif; }
+pre { margin-bottom: 1.667em; padding: 0.583em 0.833em; background: #eee; }
+cite {background: #ffffe0; border: 1px solid #ddd; overflow: auto; clear: both; font-style: normal;}
+table
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-collapse: collapse;
+}
+
+td, th
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    margin: 0;
+    padding: 4px;
+    vertical-align: top;
+    text-align: left;
+}
+
+table.t1,td.t1,th.t1 {    border-style:none; border-width: 0px 0px 0px 0px;}
+#Main {
+	padding: 0px;
+	border: 0px dotted gray;
+	margin-left: 120px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+#Sidebar {
+	position: absolute;
+	margin: 0 0 0 -75px;
+	width: 90px;
+	height: auto;
+	border: 0px dotted gray;
+	background-color: transparent;
+	text-align: right;
+	line-height: 1em;
+}
+#Sidebar ul {
+	margin: 3.5em 0 5em 9em;
+}
+
+#Sidebar li {
+	list-style: none;
+	letter-spacing: 1px;
+	margin: 0 0 1em -7em;
+	padding: 0;
+}
+</style>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-31474143-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head><body><div id="Sidebar">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/about.html">About Randy Maas</a></li>
+<li><a href="rss">rss</a></li><li><a href="25.html">Older</a></li><li><a href="27.html">Newer</a></li></ul>
+</div><div id="Main">
+<h1>
+Check for potential bad calling sequences</h1><p class="byline"><a href="mailto:randym@randym.name">Randall Maas</a> 6/27/2010 11:49:21 AM</p><p>One of the core ideas that I have been discussing is testing of embedded software internals.  My focus has been on modal testing &#45; testing hypothetical cases, and checking current state with past state.  I'd like to describe a technique that I believe will identify if it is <em>possible</em> for the code to generate a string calls that violate the system rules.  The analysis treats source code as a specification for generating strings of calls, and it will check those strings.  This will tell me if it is possible for the procedures to generate a bad calling sequence.</p><p>However, even the restricted form of C being used in my embedded systems is a more complex language than regular expressions.  How do I show that the (push down) state machine specified by the source code is a subset of the API calling rules?  I think I have a reasonable technique for changing the code to allow this type of analysis.</p><p><h2>Treating the code as an extended regular expression</h2></p><p>The analysis has to be able to explore all possible calling paths and infinite
+loops succinctly.  The tests work by scanning the procedure(s) under test as if they are a regular expression with a messy syntax.  Comments, variables, numbers, calls to uninteresting things etc. are all stripped out.</p><p>The branches ' all of the branches, including <code>if-else</code>, <code>switch</code>, <code>for</code>, <code>while</code>, <code>do</code>, <code>break</code>, <code>continue</code>, <code>goto</code> &#45; are the regular expression operations.  The calls to interesting things are retained.</p><p><ul>
+<li><code>while</code>, and <code>for</code> loops are treated in the same way as a regex * .  (Even if they should be treated as a +)</li>
+<li><code>switch</code> is treated as an alternation (|)</li>
+<li>Sequences points ' the <code>||</code> in <code>if</code>'s and RHS expressions ' are treated as alternation</li>
+<li><code>if-then-else</code> is treated as nested sequence and alternation, although a bit quirky</li>
+<li><code>continue</code>, <code>break</code>, <code>goto</code> are special operators that link to other nodes in the extended regex structure.</li>
+<li>Calls are changed to either calls to other test nodes, or the target procedures under test.</li>
+</ul></p><p>Then, like the procedure generated from other regex's to test the API, it creates a series of procedures for the above nodes.  It retains use of the framework of monitoring and checking that rules are followed, albeit without the checks on parameters and system variables.  For instance, procedures that are entered and exited are checked that the proper calling state has been honored.</p><p><h2>How this is different from the other kinds of API testing.</h2></p><p>The type of tests I've described previously have 'false negative' (type II) errors.  When the tests &amp; checks said the software broke the rules, it <em>broke</em> the rules.  Nevertheless, there may be a defect even if the test didn't say there was a problem.  Perhaps there is a specific set of parameter values that cause the procedure to misbehave, and they just got missed.</p><p>The defect scanner I am outlining here would have the opposite kind of errors.  It tries to see if it is <em>possible</em> there is a defect.  If it says no, there isn't a defect.  If it says there is a defect, it is likely there is truly a defect (but it might be wrong).</p><p>Side note.  Science, engineering, even software development have a long history shaggy dog stories along the lines of "An outsider points at random thing, asking what about that?  Someone looks, and has an 'ah hah' moment where he sees how it might be improved."  It wouldn't be hard to randomly point at the code.  Or point toward complex code, infrequently called code, or frequently called code, etc.  But I wanted the "pointing" to be weighted by a bit more analysis, so that it is very likely to be both right and consistent when it says something is wrong.</p><p><h2>How to map a found defect back to the original code</h2></p><p>This doesn't <em>locate</em> defects in the source code.  Nor can it create circumstances that describe how the defect triggers the bad API call &#45; after all, it removed the parameters and variables.  It might track the path thru the original source code &#45; which branches in the original source is assuming are taken &#45; and that might be helpful to the programmer who has to analyze the results.</p><p>To do this it would trace each point in the original code that it would be taking.  In the case of alternation, it would roll back a step.</p><p>The list of where in the code, what branches it took, might be enough for a programmer to figure how that might happen.</p><p><h2>Wild speculation about how this could be further improved</h2></p><p>The tool here must be automatic and single pass, so it needs a practical approach that does nearly the same thing.  (There are also methods to dynamically generate calls to explore all branch executions &#45; e.g. constraint solvers)  The values (or range of values) that are known to trigger branch points (or are empirically found to do so and fed back into tests).</p><p><h2>Next time</h2></p><p>I'll look at some ideas I wanted to try for performance characterization.</p><p></p></div></body>
+</html>

@@ -1,0 +1,114 @@
+<html><head><title>Navigation Part 2: Planning the gross route</title>
+<link href="http://randym.name/blog/rss" rel="alternate" title="Randy Maas RSS Feed" type="application/rss+xml" />
+<link rel="stylesheet" href="jqmath-0.2.0.css">
+<style type="text/css">
+body { color: #111111; background: #FFFFFF; }
+a, h2 a:hover { color: #2361A1; }
+h1, h2, h2 a { color: #111111; }
+h1, h2, h3, h6 { font-weight: normal; }
+h4, h5 { font-weight: bold; }
+h5, h6 { text-transform: uppercase; letter-spacing: 1px; }
+
+a, a:hover { text-decoration: none; }
+a img { border: none; }
+blockquote { border-left: 1px solid #ddd; color: #666; }
+pre { background: #eee; border: 1px solid #ddd; overflow: auto; clear: both; }
+code,pre { font-size: 0.9em; font-family:  Monaco, Consolas, "Andale Mono", Courier, "Courier New", Verdana, sans-serif; }
+pre { margin-bottom: 1.667em; padding: 0.583em 0.833em; background: #eee; }
+cite {background: #ffffe0; border: 1px solid #ddd; overflow: auto; clear: both; font-style: normal;}
+table
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-collapse: collapse;
+}
+
+td, th
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    margin: 0;
+    padding: 4px;
+    vertical-align: top;
+    text-align: left;
+}
+
+table.t1,td.t1,th.t1 {    border-style:none; border-width: 0px 0px 0px 0px;}
+#Main {
+	padding: 0px;
+	border: 0px dotted gray;
+	margin-left: 120px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+#Sidebar {
+	position: absolute;
+	margin: 0 0 0 -75px;
+	width: 90px;
+	height: auto;
+	border: 0px dotted gray;
+	background-color: transparent;
+	text-align: right;
+	line-height: 1em;
+}
+#Sidebar ul {
+	margin: 3.5em 0 5em 9em;
+}
+
+#Sidebar li {
+	list-style: none;
+	letter-spacing: 1px;
+	margin: 0 0 1em -7em;
+	padding: 0;
+}
+</style>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-31474143-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head><body><div id="Sidebar">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/about.html">About Randy Maas</a></li>
+<li><a href="rss">rss</a></li><li><a href="42.html">Older</a></li><li><a href="44.html">Newer</a></li></ul>
+</div><div id="Main">
+<h1>
+Navigation Part 2: Planning the gross route</h1><p class="byline"><a href="mailto:randym@randym.name">Randall Maas</a> 8/11/2012 11:53:50 AM</p><p>If we have a clear path from a starting point to the goal &#45; that is, one that does not cross a boundary &#45; our route planning is easy.  It is just a straight line.</p><p>But what if that path crosses a boundary though?</p><p><img src="RC-Plan1.jpg"/></p><p>In that case, we need a more sophisticated approach.</p><p>Fortunately, <a href="http://en.wikipedia.org/wiki/Nils_Nilsson_%28researcher%29">Nils Nilsson</a> told us almost everything we need to know about route planning: the <a href="http://en.wikipedia.org/wiki/A*">A* search algorithm</a>. </p><p>Planning a route is pretty much two parts:</p><ol><li>Plan the big picture
+</li><li>Do the fine planning for the next step you have to take</li></ol><p>We are going to create a gross (or coarse) route quickly, without a huge memory or processor load.  This type of route has the advantage that it does not have to be re-planned as the bot experiences minor deviations from the ideal path.</p><h3>Transforming the region into a graph</h3><p>The catch is that A* works by traversing a <i>graph</i>.   So the geographic region has to be converted into a graph, small areas that are connected logically.</p><p>The simplest method to transform the region into a graph is to</p><ol><li> 'bin' the points by dividing them a constant, and truncating the values (i.e. removing the fractional part).  
+</li><li> The points neighboring P are the 6 surrounding points (the combination of adding -1,0, and 1 to each axis), so long as the point is in the region and the path from P to the point doesn't cross a boundary.  (See <a href="42.html">the geo-fencing entry</a> for more details) </li></ol><p>If the region is divided into very small steps, we can skip the boundary crossing check.</p><p>To put it another way, the division constant controls how much work we do.  The ideal size is coarse enough that we are only checking a handful of points to see that they are in the region (and not crossing a boundary).</p><ul><li> If we make the grid <i>too fine</i>, the A* will use lots of memory and processing time to consider many small changes to the path, and we'll have to check many to see that they are in the region.
+</li><li>If we make the grid coarse, but <i>not coarse enough</i>, we will have to perform lots of region boundary crossing checks as well as checking that the point is in the region
+</li><li> If we make the grid <i>too coarse</i>, the sizing will effectively classify some small areas as not in the region when they could be used effectively.</li></ul><p>The good news is that, unless the region tree is describing a twisty maze with lots of small passages,   too coarse is a <i>huge</i> division value.  We probably do not need to worry about it too much.</p><h3>Filtering a path</h3><p>Once the A* algorithm produces a path thru graph, I like to simplify it.  This amounts a filtering stage to remove unnecessary waypoints.  What is unnecessary?</p><ul><li> A waypoint that is already on the path to another point
+</li><li> A waypoint that takes us slightly out of the way</li></ul><p>Smoothing the path is simple:
+<pre>
+	Take three successive points, and compute the area of the triangle
+	if (area < threshold1) or 
+	   (the line segment from the first to third point doesn't cross a region boundary)
+	 then
+		 remove the middle point
+</pre></p><p>The threshold is chosen to be small enough that the path will not cross the boundary.</p><h3>Making the fine route</h3><p>Now that we have the coarse route, we can benefit from a more detailed route.  This route isn't about being fancy.  It's about shortening the distance, since the coarse route is so ... coarse.</p><ol><li> Get the next node (P) on the coarse path
+</li><li>If distance between that node and the current position < threshold
+<pre> Remove the node from the coarse path
+ Repeat from step 1</pre>
+</li><li>If there are no more points in the coarse path, return P as the fine path
+</li><li>Get the second node (Q) in the coarse path
+</li><li>Plot an A* route from the current position to the point Q, using smaller division steps
+</li><li>Throw out the second half of this path
+</li><li>Filter this path as before
+</li><li>Return this path as the fine route</li></ol><p>It is very simple to use the fine path:</p><ol><li> If fine path is empty, stop
+</li><li>Get next node (P) on the fine path
+</li><li>If distance between that node and the current position < threshold
+<pre> Remove the node from the coarse path
+ Repeat from step 1</pre>
+</li><li> Set proximal goal as the node P</li></ol><p>With new position information, that process is repeated.</p><h3>Next time</h3><p>Next time I'll <a href="43.html">look at the steering</a></p><p></p></div></body>
+</html>

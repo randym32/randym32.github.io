@@ -1,0 +1,95 @@
+<html><head><title>Emulators and simulators</title>
+<link href="http://randym.name/blog/rss" rel="alternate" title="Randy Maas RSS Feed" type="application/rss+xml" />
+<link rel="stylesheet" href="jqmath-0.2.0.css">
+<style type="text/css">
+body { color: #111111; background: #FFFFFF; }
+a, h2 a:hover { color: #2361A1; }
+h1, h2, h2 a { color: #111111; }
+h1, h2, h3, h6 { font-weight: normal; }
+h4, h5 { font-weight: bold; }
+h5, h6 { text-transform: uppercase; letter-spacing: 1px; }
+
+a, a:hover { text-decoration: none; }
+a img { border: none; }
+blockquote { border-left: 1px solid #ddd; color: #666; }
+pre { background: #eee; border: 1px solid #ddd; overflow: auto; clear: both; }
+code,pre { font-size: 0.9em; font-family:  Monaco, Consolas, "Andale Mono", Courier, "Courier New", Verdana, sans-serif; }
+pre { margin-bottom: 1.667em; padding: 0.583em 0.833em; background: #eee; }
+cite {background: #ffffe0; border: 1px solid #ddd; overflow: auto; clear: both; font-style: normal;}
+table
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-collapse: collapse;
+}
+
+td, th
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    margin: 0;
+    padding: 4px;
+    vertical-align: top;
+    text-align: left;
+}
+
+table.t1,td.t1,th.t1 {    border-style:none; border-width: 0px 0px 0px 0px;}
+#Main {
+	padding: 0px;
+	border: 0px dotted gray;
+	margin-left: 120px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+#Sidebar {
+	position: absolute;
+	margin: 0 0 0 -75px;
+	width: 90px;
+	height: auto;
+	border: 0px dotted gray;
+	background-color: transparent;
+	text-align: right;
+	line-height: 1em;
+}
+#Sidebar ul {
+	margin: 3.5em 0 5em 9em;
+}
+
+#Sidebar li {
+	list-style: none;
+	letter-spacing: 1px;
+	margin: 0 0 1em -7em;
+	padding: 0;
+}
+</style>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-31474143-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head><body><div id="Sidebar">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/about.html">About Randy Maas</a></li>
+<li><a href="rss">rss</a></li><li><a href="15.html">Older</a></li><li><a href="17.html">Newer</a></li></ul>
+</div><div id="Main">
+<h1>
+Emulators and simulators</h1><p class="byline"><a href="mailto:randym@randym.name">Randall Maas</a> 5/30/2010 4:21:01 PM</p><p>In the land of embedded systems development, it is broadly accepted that you should have an emulator.  You do not need one with some simple systems, but you will find it hard to debug the design (hardware and software) without one.  Most people often use an ICE (an in-circuit-emulator) or the debug port on a micro-controller.  You can also use a simulator.  In this entry, I will outline the kinds of tools available, and their distinction.</p><p><h2>The Vendor's Emulators and Simulators</h2></p><p>First, I suggest looking to what the vendor has to offer.  If you are writing an app for a fairly well known platform, they will usually have an emulator or simulator available.  This is a good place to start.  You'll see emulators for the Palm Pre, <a href="http://developer.apple.com/iphone/library/documentation/Xcode/Conceptual/iphone_development/125-Using_iPhone_Simulator/iphone_simulator_application.html">iPhone</a>, <a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=A120E012-CA31-4BE9-A3BF-B9BF4F64CE72">Windows CE devices</a>, <a href="http://gizmodo.com/5513871/how-to-try-windows-phone-7-right-now">Win7phone</a>.  Older PDAs, like the Palm Pilot, had a <a href="http://en.wikipedia.org/wiki/Palm_OS_Emulator">simulator</a> (although it was called an emulator, it put more effort in than many other emulators)</p><p>The basic difference between a simulator and an emulator is the fidelity to the "real" thing, and depth of the illusion in reproducing it.  A simulator captures the same net effect.  The iPhone emulator does not emulate the behaviour of the processor and boards; it compiles the app as an OS X app that uses a special set of APIs that are (largely) the same as on the iPhone.</p><p>If you are using a microcontroller, you will usually want an In-Circuit Emulator, or use an adapter that connects to the debug port on the microcontroller.  This gives you the most detailed information about what is going on with the hardware, and in the microcontroller.  All moderns ones work with an IDE so you can step thru your code with a symbolic debugger.  In addition, most ICE's include some logic analyzer probe inputs, so you can trigger break points or trace activity.  (To be honest, other people have gotten more use out of these than I have, but they are still a useful option).</p><p>The one drawback is that ICE's cannot really probe into the state of the peripherals of your system.  Worse, if you are trying to debug a machine controller, hitting a break point at the wrong time could destroy things.  For instance, it might keep a motor power, until it tears something apart.  (In my case, the rest of the robot).  In short, ICE's have the drawback that they cannot debug anything else.</p><p>Moreover, ICE's only work with real &#45; if only prototype &#45; hardware.  If the hardware is not ready, is delay, broken, etc. an ICE will not work.  (This happens a lot with embedded development too).</p><p>This leads to "software" based emulation.  Sometimes a vendor will provide a <a href="http://www.microchip.com/stellent/idcplg?IdcService=SS_GET_PAGE&nodeId=2123&param=en022520">software emulation of their products</a>.  (Or you might <a href="http://www.picemulator.com/">find one elsewhere</a>.)   These are less common now, although you will see a few from the microcontroller vendor.  Often these are, well, useless.  Like the ICE, they do not emulate the external peripherals you are using, or the analog behaviour, or the physical dynamics of your system.  In addition, they usually only emulate a fraction of their product line, too often a model you are using.</p><p>That said, if you can find or create an emulator that does emulate processor you are using, a fair set of the peripherals you are using, and lets you extend it to model important features of your overall system, go for it.  I would love to hear about it.</p><p><h2>Distinction between emulation and simulation</h2></p><p>I have been mentioning emulator and simulator.  Let us just take a moment to go into the distinction between these.  The distinction is one of fidelity and detail to the original equipment.  An emulator puts a lot of emphasis on reproducing how the target functions internally, <a href="http://blogs.msdn.com/b/oldnewthing/archive/2010/05/19/10013611.aspx">including its limits</a>:</p><p><dl>
+<dt>emulation</dt><dd>Imitates the behaviour of a system, without concern for internal processes</dd>
+<dt>simulation</dt><dd>Mimics the behaviour of a system, with a high degree of fidelity to internal processes, state, etc.</dd>
+<dt>interpreter</dt><dd>Concerned with carrying out instructions / commands, rather than emulating a system.</dd>
+<dt>translation</dt><dd>Converts portions of a program written for a different processor into the instructions for this processor.  This can be done while the software is running.</dd>
+<dt>virtualization</dt><dd>Effects the illusion of each software program as being the only one.  This uses a significant portion of real hardware in the replication, with key pieces handled by the emulation software.  (i.e., it the multiplexing portion typically saves and restores the state context for each program.)</dd>
+<dt>paravirtualization</dt><dd>Similar to virtualization, except it presents the illusion of a device slightly different from the underlying hardware.  The virtualization system is emulating this portion of the hardware.</dd>
+</dl></p><p>For many people these distinctions are not important.  They are looking to see that the basic operations are supported, and how to get their application to work with them.  It can matter when they run into circumstances not simulated.  The common one for PDA's and phones include video quality, memory constraints, performance characteristics, device removal, and  so forth.  (For example: a memory leak easily goes unnoticed with this type of simulation since the  host virtual memory systems ' with its gigabytes of RAM ' is used.  But a contemporary PDA may have 128MB of RAM (multiply or divide by a factor of 4).  But, most application developers are willing to accept this to get the broad strokes of development and debugging done.</p><p>It is important for developers working with the deeper internals, or with systems whose operation is more than a little bit of stuff outside of the processor.  And it is important for developers who working to achieve high levels of reliability, safety or other quality factors.</p><p><h2>Next time</h2></p><p>Now that I've advocated the use of these, I will explain in the future how I wrote my own <a href="17.html">emulators</a> and simulators. </p><p></p></div></body>
+</html>

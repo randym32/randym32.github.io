@@ -1,0 +1,126 @@
+<html><head><title>Structure device drivers and error handling with sequence points</title>
+<link href="http://randym.name/blog/rss" rel="alternate" title="Randy Maas RSS Feed" type="application/rss+xml" />
+<link rel="stylesheet" href="jqmath-0.2.0.css" />
+<style type="text/css">
+body { color: #111111; background: #FFFFFF; }
+a, h2 a:hover { color: #2361A1; }
+h1, h2, h2 a { color: #111111; }
+h1, h2, h3, h6 { font-weight: normal; }
+h4, h5 { font-weight: bold; }
+h5, h6 { text-transform: uppercase; letter-spacing: 1px; }
+
+a, a:hover { text-decoration: none; }
+a img { border: none; }
+blockquote { border-left: 1px solid #ddd; color: #666; }
+pre { background: #eee; border: 1px solid #ddd; overflow: auto; clear: both; }
+code,pre { font-size: 0.9em; font-family:  Monaco, Consolas, "Andale Mono", Courier, "Courier New", Verdana, sans-serif; }
+pre { margin-bottom: 1.667em; padding: 0.583em 0.833em; background: #eee; }
+cite {padding: 0.3em 0.3em; line-height:180%; background: #ffffe0; border: 1px solid #ddd; overflow: auto; clear: both; font-style: normal; font-size: 85%;}
+.caption {font-size: small; text-align: center; color: #660000; margin: -20px 0 0 0; }
+p.note {padding: 0.571em 0.786em;  background: #f5f5f5; border: 1px solid #ddd; }
+iframe {align: center;}
+table
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-collapse: collapse;
+}
+
+td, th
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    margin: 0;
+    padding: 4px;
+    vertical-align: top;
+    text-align: left;
+}
+
+table.t1,td.t1,th.t1 {    border-style:none; border-width: 0px 0px 0px 0px;}
+#Main {
+	padding: 0px;
+	border: 0px dotted gray;
+	margin-left: 120px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+#Sidebar {
+	position: absolute;
+	margin: 0 0 0 -75px;
+	width: 90px;
+	height: auto;
+	border: 0px dotted gray;
+	background-color: transparent;
+	text-align: right;
+	line-height: 1em;
+}
+#Sidebar ul {
+	margin: 3.5em 0 5em 9em;
+}
+
+#Sidebar li {
+	list-style: none;
+	letter-spacing: 1px;
+	margin: 0 0 1em -7em;
+	padding: 0;
+}
+</style><script type="text/javascript">
+  var _gaq = _gaq || [];
+  var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-31474143-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head><body><div id="Sidebar">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/about.html">About Randy Maas</a></li>
+<li><a href="rss">rss</a></li>
+<li><a href="11.html">Older</a></li><li><a href="13.html">Newer</a></li>
+</ul>
+</div><div id="Main">
+<h1>Structure device drivers and error handling with sequence points</h1><p class="byline"><a href="mailto:randym@randym.name">Randall Maas</a> 5/21/2010 6:29:16 PM</p>
+<p>In a previous post I discussed logical OR, sequence points, and mentioned that  these are useful for writing driver code with failure handling.  This is a description of just that.</p><p><h2>The basic API</h2>
+First, let's say we're talking about a device on the I2C bus.  It could be a lot of other kinds of interfaces, but let's just say it's I2C.  To talk a device on the I2C bus, let's say we've wrapped the relevant microcontroller IO and registers stuff into a few procedures that do specific things:</p><p><ul>
+<li> <code>I2C_Start()</code> sends the I2C start symbol.  It always succeeds.</p><p><li> <code>I2C_Send()</code> sends a byte on the I2C bus.  It returns 0 if the send failed (possibly due to a bus collision) otherwise it succeeded.  If the transmission failed, no more bytes should be sent and a stop symbol should be sent.  That is, <code>I2C_Stop()</code> should be called, and the process can be restarted.</p><p><li> <code>I2C_Stop()</code> sends a stop symbol on the I2C bus.  It returns 0 if the send failed (possibly due to a bus collision) otherwise it succeeded.
+</ul></p><p>Each of these procedures is small and simple to understand.  They don't block indefinitely, and they can be analyzed for their impact on the rest of the system, including on timing and stack depth.  (They could return 0 on success, and an error code otherwise)</p><p><h2>The first set of  operations are built on the basic API</h2></p><p>At this point I would build a procedure to send the command message to the I2C device.  It checks for errors, but it does not perform any retries to recover from the error.  Again this returns a 0 on error, otherwise it is an error.</p><code><pre>byte I2C_SendCommand(byte* Buff, int Length)
+{
+   I2C_Start();
+
+   // Send the address to select the device.  This could be a parameter
+   if (  !I2C_Send(DeviceAddress1) 
+      || !I2C_Send(DeviceAddress2))
+     {
+        (void) I2C_Stop();
+        return 0;
+     }
+
+   // Send each of the bytes
+   for (int I = 0; I < Length; I++)
+     if (FAILURE == I2C_Send(Buff[I]))
+       {
+          (void) I2C_Stop();
+          return 0;
+       }
+
+   return I2C_Stop();
+}</pre></code><p>Although the procedure isn't trivial, it is pretty straightforward to understand, and it is small.  Notice that we always call the <code>I2C_Stop()</code> in the procedure, not at a higher layer.  The sequence points provide a nice structure of the actions to be done, but breaks immediately and false into the error state.</p><p>In some cases the error state handling might be complex enough to warrant grouping it in one area, and using a <code>goto</code> to go back to it.  (Fortunately this is rate on the smallest microcontrollers, and only shows up once you get to complex peripherals). </p><p>No matter what the error handling <i>does not loop</i>.  It is important in embedded designs to not use unbounded loops.  If you avoid them you can easily put together a pretty consistent, predictable system.  (This is not the same as a strict real-time system, especially one with the rate monotonic properties, but that is a topic for another time).</p><p>Side note:  The <code>(void)</code> before some of the <code>I2C_Stop()</code> calls is a construct a coworker taught me.  In these cases the return value from <code>I2C_Stop()</code> is not meaningful: the overall transfer failed.   However the compiler and other analysis tools don't know this.  We are marking that ignoring this as intentional to the tools and other developers with the <code>(void)</code>.</p><p><h2>The sophisticated operations with retry handling</h2></p><p>Although fail-fast approach has the operation working in most cases, it can fail.  What do you do then?  That depends on your design.  The simplest case is to retry a few times:</p><code><pre>byte SomeDeviceDoOperation()
+{
+   for (int I = 0; I < 5; I++)
+    if (I2C_SendCommand(CmdString))
+      return 1;
+
+   return 0;
+}</pre></code><p>This code is very brief, simple to understand, limited.  And for a lot embedded stuff you will probably be pretty happy with that.  Sure you might want to log the information, flag the device as broken, and so forth.  But that is it.</p><p>In other designs maybe not.  If you have cooperative design, where you have broken down each task into small fixed chunks that run to completion (i.e., these are not pre-empted for other threads in any way).  In this case, you will probably use some tracking variables indicating that you are trying to do the operation, you are in retry #, and so forth.  Every cycle thru the main loop you give it another chance to do its subtask, then go onto the next chunk of work for something else.  At some point these tracking variables indicate  that the retries are over, and it enables some other chain of subtasks to interwoven on the main loop.</p><p>If you're not comfortable with that, that's ok.  There are plenty of techniques you can choose from, (admittedly there are fewer the more you try to have safety/reliability/performance/other-quality).
+</p></div></body>
+</html>

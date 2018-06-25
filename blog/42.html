@@ -1,0 +1,101 @@
+<html><head><title>Navigation Part 1: Geo-fencing</title>
+<link href="http://randym.name/blog/rss" rel="alternate" title="Randy Maas RSS Feed" type="application/rss+xml" />
+<link rel="stylesheet" href="jqmath-0.2.0.css" />
+<style type="text/css">
+body { color: #111111; background: #FFFFFF; }
+a, h2 a:hover { color: #2361A1; }
+h1, h2, h2 a { color: #111111; }
+h1, h2, h3, h6 { font-weight: normal; }
+h4, h5 { font-weight: bold; }
+h5, h6 { text-transform: uppercase; letter-spacing: 1px; }
+
+a, a:hover { text-decoration: none; }
+a img { border: none; }
+blockquote { border-left: 1px solid #ddd; color: #666; }
+pre { background: #eee; border: 1px solid #ddd; overflow: auto; clear: both; }
+code,pre { font-size: 0.9em; font-family:  Monaco, Consolas, "Andale Mono", Courier, "Courier New", Verdana, sans-serif; }
+pre { margin-bottom: 1.667em; padding: 0.583em 0.833em; background: #eee; }
+cite {padding: 0.3em 0.3em; line-height:180%; background: #ffffe0; border: 1px solid #ddd; overflow: auto; clear: both; font-style: normal; font-size: 85%;}
+.caption {font-size: small; text-align: center; color: #660000; margin: -20px 0 0 0; }
+p.note {padding: 0.571em 0.786em;  background: #f5f5f5; border: 1px solid #ddd; }
+iframe {align: center;}
+table
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-collapse: collapse;
+}
+
+td, th
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    margin: 0;
+    padding: 4px;
+    vertical-align: top;
+    text-align: left;
+}
+
+table.t1,td.t1,th.t1 {    border-style:none; border-width: 0px 0px 0px 0px;}
+#Main {
+	padding: 0px;
+	border: 0px dotted gray;
+	margin-left: 120px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+#Sidebar {
+	position: absolute;
+	margin: 0 0 0 -75px;
+	width: 90px;
+	height: auto;
+	border: 0px dotted gray;
+	background-color: transparent;
+	text-align: right;
+	line-height: 1em;
+}
+#Sidebar ul {
+	margin: 3.5em 0 5em 9em;
+}
+
+#Sidebar li {
+	list-style: none;
+	letter-spacing: 1px;
+	margin: 0 0 1em -7em;
+	padding: 0;
+}
+</style><script type="text/javascript">
+  var _gaq = _gaq || [];
+  var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-31474143-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head><body><div id="Sidebar">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/about.html">About Randy Maas</a></li>
+<li><a href="rss">rss</a></li>
+<li><a href="41.html">Older</a></li><li><a href="43.html">Newer</a></li>
+</ul>
+</div><div id="Main">
+<h1>Navigation Part 1: Geo-fencing</h1><p class="byline"><a href="mailto:randym@randym.name">Randall Maas</a> 8/10/2012 4:07:15 PM</p>
+<p>The first step is to have a plan to keep the bot in the yard &#45; and out of the plants.  This means the knowing where the bot a can (and can't) go.   Geo-fencing is a virtual perimeter that keeps the drone (robot) inside the "fence."  <a href="http:diydrones.com">DIYDrone's</a> <a href="http://code.google.com/p/ardupilot/">"Ardupilot"</a> and <a href="http://code.google.com/p/ardupilot-mega/">"Ardupilot-Mega"</a> implement a fence.  However, <a href="http:diydrones.com">DIYDrone's</a> fences appear to be a simple box.  My yard (and parks) have irregular shapes.</p><p>My normal "go to" reference on geographic data structures is &nbsp;<i>Fundamentals of Spatial Information Systems</i> Robert Laurini &amp; Derek Thompson, 1992 Academic Press.  But it has big, hairy data structures for this problem &#45; things like <a href="http://en.wikipedia.org/wiki/R-tree">R-Trees</a>.  Here is an approach that better serves my bot. </p><h3>The in crowd</h3><p>First, we represent the region (my yard) as a polygon:</p><p>	<img src="RC-Yard1.jpg"/></p><p>First, how do we know if a point is in the region &#45; or not in the region?  The answer is the <a href="http://en.wikipedia.org/wiki/Winding_number">winding number</a>.  When the winding number is zero, the point is not in the region; otherwise, the point is in the region.</p><p>This is useful for telling if the bot has found itself outside of the yard... or that a point it is considering will be outside the yard.</p><h3>The out crowd</h3><p>The utility of the winding number is that we can add a second polygon that excludes an area of the region.   For instance, my house, flower beds, and other crud around my house:</p><p>	<img src="RC-Yard2.jpg"/></p><p>Notice that the polygon for the "good" area goes clockwise, while the polygon for the keep-out is counter-clockwise.  This is critical:</p><ul><li> When get the winding number for the "good" polygon, the number will have a negative sign when the point is in the region.
+</li><li> When get the winding number for the "bad" polygon, the number will have a positive sign when the point is in the region.</li></ul><p>This is put together to find out if a point is within the geo-fence.  First, the winding numbers are limited -1, 0,+1.  Next, compute the winding number for the point with respect to each polygon.  Sum the numbers.  If the number is negative, the point is in the fence; otherwise, it is not.</p><p>(This approach can be refined to use a tree structure to reduce the number of polygons we are looking at).</p><h3>Boundary conditions: Don't hop over or pee on an electric fence.</h3><p>Finally, we need to tell if we are crossing a boundary.  This is used to tell if we're going to go outside of the yard or go into a bad area.  For instance:</p><p>	<img src="RC-Yard3.jpg"/></p><p>Both the start and the goal points are in the region' but if the bot were to take the direct path, it would get into trouble.</p><p>Let's call the two points: P and Q.  P is the current point, and Q is the end point. The approach is simple:</p><p><pre>For each polygon:
+	For each line segment (E to F) of the polygon
+		if the line segments P->Q and E->F cross, the path crosses the fence</pre></p><p>This just leaves the question of whether or not the points cross.</p><p>We have to do <a href="http://stackoverflow.com/questions/7069420/check-if-two-line-segments-are-colliding-only-check-if-they-are-intersecting-n">two tests</a>:</p><ol><li>	Are P and Q on opposite sides of E->F ?
+</li><li>	Are E and F on opposite sides of P->Q ?</li></ol><p>If both are true, the line segments cross.</p><p>We can tell the points (P,Q) are on opposite sides of a segment (E,F) by taking the cross product :</p><p><pre>	if sign(U &times; V) != sign(U &times; W)  then opposite sides</pre></p><p>or</p><p><pre>	if sign(Ux*Vy-Uy*Vx) != sign(Ux*Wy-Uy*Wx) then opposites sides</pre></p><p>where</p><ul><li>	U = F-E
+</li><li>V = P-B
+</li><li>	W = Q-B</li></ul><p>Note: this approach only works if we don't have a "good" region inside of a "bad" region.</p><h3>Next time</h3><p>We'll look at <a href="43.html">navigation planning</a> next time
+</p></div></body>
+</html>

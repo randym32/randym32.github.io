@@ -1,0 +1,124 @@
+<html><head><title>Fleshing out the emulation framework</title>
+<link href="http://randym.name/blog/rss" rel="alternate" title="Randy Maas RSS Feed" type="application/rss+xml" />
+<link rel="stylesheet" href="jqmath-0.2.0.css">
+<style type="text/css">
+body { color: #111111; background: #FFFFFF; }
+a, h2 a:hover { color: #2361A1; }
+h1, h2, h2 a { color: #111111; }
+h1, h2, h3, h6 { font-weight: normal; }
+h4, h5 { font-weight: bold; }
+h5, h6 { text-transform: uppercase; letter-spacing: 1px; }
+
+a, a:hover { text-decoration: none; }
+a img { border: none; }
+blockquote { border-left: 1px solid #ddd; color: #666; }
+pre { background: #eee; border: 1px solid #ddd; overflow: auto; clear: both; }
+code,pre { font-size: 0.9em; font-family:  Monaco, Consolas, "Andale Mono", Courier, "Courier New", Verdana, sans-serif; }
+pre { margin-bottom: 1.667em; padding: 0.583em 0.833em; background: #eee; }
+cite {background: #ffffe0; border: 1px solid #ddd; overflow: auto; clear: both; font-style: normal;}
+table
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-collapse: collapse;
+}
+
+td, th
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    margin: 0;
+    padding: 4px;
+    vertical-align: top;
+    text-align: left;
+}
+
+table.t1,td.t1,th.t1 {    border-style:none; border-width: 0px 0px 0px 0px;}
+#Main {
+	padding: 0px;
+	border: 0px dotted gray;
+	margin-left: 120px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+#Sidebar {
+	position: absolute;
+	margin: 0 0 0 -75px;
+	width: 90px;
+	height: auto;
+	border: 0px dotted gray;
+	background-color: transparent;
+	text-align: right;
+	line-height: 1em;
+}
+#Sidebar ul {
+	margin: 3.5em 0 5em 9em;
+}
+
+#Sidebar li {
+	list-style: none;
+	letter-spacing: 1px;
+	margin: 0 0 1em -7em;
+	padding: 0;
+}
+</style>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-31474143-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head><body><div id="Sidebar">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/about.html">About Randy Maas</a></li>
+<li><a href="rss">rss</a></li><li><a href="17.html">Older</a></li><li><a href="19.html">Newer</a></li></ul>
+</div><div id="Main">
+<h1>
+Fleshing out the emulation framework</h1><p class="byline"><a href="mailto:randym@randym.name">Randall Maas</a> 6/2/2010 10:02:21 PM</p><p>As I explain <a href="17.html">previously</a>, the first part of the emulation was a tool that translates the source code into a form suitable for a PC host.  A new directory structure is created.  Then all of the generated code, templates, et cetera are deposited into this directory structure.  The structure includes:</p><p><ul>
+<li>A folder for test cases</li>
+<li>A folder for translated code</li>
+<li>A folder where a copy of the emulation framework is placed</li>
+</ul></p><p>Then I create a Visual Studio project from this "existing" source base.
+Now that I have expressed translating the source code, I will roughly describe the Framework for running the code, and filling in the missing elements.</p><p><h2>The basics of the emulation code</h2></p><p>This is an emulation of a <a href="http://blogs.msdn.com/b/oldnewthing/archive/2008/12/22/9244582.aspx">smaller system on a broader, often more generic one</a>.  This means that the functionality used by the software is remapped to what is provided by the host.  I will discuss the process of remapping the functionality.</p><p>Structure:
+<ul>
+<li>Supply missing functionality</li>
+<li>Set up</li>
+<li>Emulate the micro-controller</li>
+<li>Emulate digital peripherals on the board, not in the uController</li>
+<li>Emulate analog and physical behaviour</li>
+<li>Device simulation</li>
+<li>Microcontroller IO emulation</li>
+</ul></p><p><h2>Supplying the missing parts</h2></p><p>First, we need to supply a table of globals that the system uses.  This includes the named processor registers, and the C run time globals.  A file needs to provide a definition for them, and a header file that declares them.  (Although some key register are mapped to getter/setter procedures, not every register feature is emulated.  Just enough to allow development of that action.  Those registers that do something some just float as variables, disconnected in the world.)</p><p>Next, the framework needs to provide a set of procedures that were not translated (or translated poorly).  This might be assembly procedures from the platform library or the C run time library.  Or it might be for procedures that were too icky translate.  Or we might not have the source for other reasons.</p><p>Whenever I supply a replacement procedure, I usually used the prefix <code>X_</code> for the procedure.  The prefix is arbitrary, but the intent is to prevent collisions with translated procedures of the same name that I choose not use, for one reason or another.</p><p>The first procedure I always replace is <code>main()</code>.  This is done because <code>main</code> is needed to be the entry point for the host program on the PC.  The host needs to configure the emulation (and so forth) and then pass control to the emulated <code>main()</code>, which has now been renamed.  Second, I want to replace main anyway, with something I can use to test out the modules I am writing.</p><p><h2>The start up and initialization</h2></p><p>The main routine is responsible for preparing the emulation.  It calls routines to initialize the microcontroller emulation, including putting its registers into their default setting.  Then it calls the initializers in all of the emulation modules.  Their internal "registers" are set to their default values.</p><p>The modules may preload their memory image.  This is most useful with devices such as EEPROM or Flash components, which can load their image from a file, from a save point.  But conceivably it could a saved board state, of all the components.  Either way, these images might have been saved at some point during execution, sent in from the field, or be an interesting image saved from the test bench.  </p><p>The initialization also sets up memory and other state to reflect what a boot loader or debug monitor may have done to prepare the system for execution.</p><p><h2>Emulating the micro-controller and its built-in peripherals.</h2></p><p>Emulating the micro-controller has four elements:</p><p><ol>
+<li>Emulating the behaviour of a few key registers,</li>
+<li>Emulating the interrupts and sleeping,</li>
+<li>Emulating the passage of time, relative to the board as a whole,</li>
+<li>Emulating built-in peripherals.</li>
+</ol></p><p><h3>Emulating key registers</h3></p><p>Microcontrollers typically put a lot of emphasis on the flags in the registers.  Reading or writing them triggers actions in peripherals.  And the register settings are used to communicate with the controlling firmware.  There are three ways of emulating the behaviour of the most important registers:</p><p><ol>
+<li>Most of the registers are left as global variables.  The peripheral emulators access these, possibly thru the use of <code>#define</code> masks.  No actions are triggered by the embedded software accessing these register variables.  Or the peripherals may use <a href="http://blogs.msdn.com/b/oldnewthing/archive/2007/12/24/6849530.aspx">a hidden set of state variables and update the register variables periodically</a>.</li>
+<li>A small set of registers are redirected to "getter"/"setter" procedures.  These procedures link to the peripheral emulation procedures.  These procedures may update the registers, in a manner similar to the previous step.  The setter procedures are passed the value to set the register to, so it must know the format of those registers.  The getter procedures return the putative register value, and similar must know the format of the register it is emulating.</li>
+<li>Have the design of the embedded use named procedures to access these peripherals and then use the stub mechanism to replace the calls to this procedure.  This may be the best place to start when developing an emulation, to get it going.  As development progresses, I typically prefer to have many of the lower layers emulated, and move away from stubbing higher procedures.</li>
+</ol></p><p><h3>Emulating interrupts</h3></p><p>Interrupts are emulated in two parts.  First, a helper routine is used to determine if interrupts are enabled, and whether control should be passed to the interrupt service routine.  Second, many of the API stubs and peripheral emulations call this helper routine to trigger the interrupt handling.  In practice, this has proven to be pretty ad hoc.</p><p><h3>Emulating sleep</h3></p><p>Microcontrollers have a sleep instruction &#45; often wrapped in a macro &#45; which bears some discussion.  This missing procedure is emulated not by sleeping the device.  Most often is emulated by adjusting the "board time" to the next board event or interrupt, triggering the interrupt emulation.</p><p>What if there is no clear next event?  For instance, let us say the embedded software is sleeping until a byte is received on the UART, which will wake it.  In this case, the UART is emulated (see below) with a socket or COM port.  The software sleeps on a block <code>read()</code> of that IO handle. </p><p><h3>Emulating time</h3></p><p>The passage of time for the board is only loosely modeled.  In most cases time is modeled as sequences; they have order, but no measurable difference between two points.</p><p>In some cases, it is important to have a more meaningful measure of the passage of time relative to board operation.  This is useful since EEPROM write or erase cycles typically take a fixed amount of time, independent of the processor speed, and we would like to exercise the "wait" loop of the firmware.  Or the analog emulation uses the passage of time to emulate electrical change.</p><p>To do this I used the system PC high-resolution timer and map this to a representation of the flow of time, as it would be on the board.  (Attempts to use processor cycle counting in the uController won't work here either).  This is a pretty straightforward mapping.  PC timer value t0 is board time b; 1 board timer tick is m PC timer ticks.  Sleep and waiting for interrupts tweaks the mapping between the host time and the emulated time, so that other parts of the emulation are up to date.</p><p><h3>Emulating micro-controller peripherals</h3></p><p>As I mentioned earlier, the peripherals access is triggered by linking to register getter/setters, or by shims to key firmware procedures.</p><p>The getter/setter procedures have roughly the following outline:</p><p><ol>
+<li>do some emulation checks</li>
+<li>set state change</li>
+<li>Perform peripheral action that is triggered by this access</li>
+<li>Check for pending interrupts</li>
+<li>get new values</li>
+<li>return values</li>
+</ol></p><p>Although the procedure shim for an API varies with the API, it shares the idea that it carries out the peripheral action and checking for interrupts.  These actions include:</p><p><ul>
+<li>With ADC's the action is to carrying out a measurement conversion.  Typically, this is a quick read and scaling of a number elsewhere in the emulation and then setting the result register.</li>
+<li>With internal EEPROM and Flash, it performs the requested access.  This includes erase, read, or write.  For these Flash of memory, a write is usually implemented as an XOR or an OR, to reflect the required need for erase the flash cells first.</li>
+<li>For timer and clock counters, it sets a count and scaler based on the board time scalars.</li> 
+<li>UARTs are connected to sockets, or a COM port handle.  Whenever the TX register is written, the byte is written to the handle.  (We could buffer the bytes, an RXREG or RX ready check would be a flush.  But it is simpler if we do not.)  A check for a byte in the UART buffer queues or checks for a byte to be read.  A read of the receive register reads from the handle.</li>
+<li>I2C, SPI and similar serial bus interfaces that use very simple "protocols" of back and forth with key signal points, what is transmitted when, and the kinds of responses.  The peripheral does a little bit of protocol checking.    Then it looks up the device that we are talking to, based on port pin settings that select the chip; there may be more than one device connected to the I2C port, after all.  (I also have it check that one and only one device was selected) Then it calls the devices entry points to transfer the signal or bytes.</li>
+</ul></p><p>Note: There isn't a provision to allow the embedded software to emulate an I2C, SPI interface by bit banging.  I think that is more work to decode it than is worth it; better to contain the bit-banging to a few procedures and shim them out.</p><p><h2>Emulating external peripherals connected by I2C / SPI / etc</h2></p><p>When emulating devices on serial buses, I choose to use an "instance" structure with pointers to key behaviour routines. (Others may wish to use C++ class with virtual methods).  This allows more than one DAC of the same model, for instance.  I2C and SPI calls a procedure to indicate the start of a message, and a send procedure to exchange (send and receive) a byte at a time.</p><p>The basic approach is that the device emulator stores its state, buffers, etc in the instance structure.  As operations occur, it updates its internal state.</p><p>Because the communication does have a protocol, I typically implement a simple state machine.  For instance, I2C devices receive a byte or two for the address (two states) and a flag indicating a read or a write, governing the next state.  A write will follow with some bytes.  Then it makes changes internally and gives bytes back for the ack/nak of the response.  These are read piece by piece (including target bytes).   I usually had the state machines check for protocol errors.</p><p>For simple memory devices, this simple writes to a small memory space on the device.  Slightly more complex devices, like a DAC, use this memory state to change an output voltage, used elsewhere.  More complex devices like a calendar/clock, has its memory mapped controls that need to be simulated.  (In the case of the calendar/clock, it grabs a timestamp and smooshes them into the memory at the start of a transaction to simplify the reading).</p><p>SPI devices, e.g. flash or DACs, are similar.  The difference is that they receive commands to erase the device, as well as others.  This is handled by the state machine changing state based on the command field in the message.</p><p>Note: One idea I had was to use the <a href="http://labjack.com/u3">LabJack</a> (or a USB development board) and its <a href="http://labjack.com/support/ud/software-options/programming-ud">software</a> to redirect the ports, I2C, SPI, ADC, DAC, etc to connect to real peripherals.  This is more for the "cool" factor than a practical one &#45; if I had real hardware to talk to, I'd use an ICE.</p><p><h2>Emulating the analog and physical domain</h2></p><p>I found it necessary to emulate <i>some</i> analog state of the board, but much of this emulation is cursory.  It is a step above not doing it at all, and well below SPICE simulation.</p><p>Found I needed to do this to check battery and power levels, measure DAC outputs, controllable power supplies, RF signal strength, and so forth.  The intent is to capture enough of the measurements to allow development to reasonably proceed.  (A more complex framework emulating the analog and physical domains can certainly be warranted.  I may cover that in the future.)</p><p>The emulation is little more than a set of global variables and helper procedures.  These are set or called by the emulated peripherals.</p><p><h2>Next time</h2></p><p><a href="19.html">Next time</a> I'll examine the techniques I've tried to help catch bugs and do unit tests.</p><p></p></div></body>
+</html>

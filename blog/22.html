@@ -1,0 +1,130 @@
+<html><head><title>Unit Tests</title>
+<link href="http://randym.name/blog/rss" rel="alternate" title="Randy Maas RSS Feed" type="application/rss+xml" />
+<link rel="stylesheet" href="jqmath-0.2.0.css" />
+<style type="text/css">
+body { color: #111111; background: #FFFFFF; }
+a, h2 a:hover { color: #2361A1; }
+h1, h2, h2 a { color: #111111; }
+h1, h2, h3, h6 { font-weight: normal; }
+h4, h5 { font-weight: bold; }
+h5, h6 { text-transform: uppercase; letter-spacing: 1px; }
+
+a, a:hover { text-decoration: none; }
+a img { border: none; }
+blockquote { border-left: 1px solid #ddd; color: #666; }
+pre { background: #eee; border: 1px solid #ddd; overflow: auto; clear: both; }
+code,pre { font-size: 0.9em; font-family:  Monaco, Consolas, "Andale Mono", Courier, "Courier New", Verdana, sans-serif; }
+pre { margin-bottom: 1.667em; padding: 0.583em 0.833em; background: #eee; }
+cite {padding: 0.3em 0.3em; line-height:180%; background: #ffffe0; border: 1px solid #ddd; overflow: auto; clear: both; font-style: normal; font-size: 85%;}
+.caption {font-size: small; text-align: center; color: #660000; margin: -20px 0 0 0; }
+p.note {padding: 0.571em 0.786em;  background: #f5f5f5; border: 1px solid #ddd; }
+iframe {align: center;}
+table
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-collapse: collapse;
+}
+
+td, th
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    margin: 0;
+    padding: 4px;
+    vertical-align: top;
+    text-align: left;
+}
+
+table.t1,td.t1,th.t1 {    border-style:none; border-width: 0px 0px 0px 0px;}
+#Main {
+	padding: 0px;
+	border: 0px dotted gray;
+	margin-left: 120px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+#Sidebar {
+	position: absolute;
+	margin: 0 0 0 -75px;
+	width: 90px;
+	height: auto;
+	border: 0px dotted gray;
+	background-color: transparent;
+	text-align: right;
+	line-height: 1em;
+}
+#Sidebar ul {
+	margin: 3.5em 0 5em 9em;
+}
+
+#Sidebar li {
+	list-style: none;
+	letter-spacing: 1px;
+	margin: 0 0 1em -7em;
+	padding: 0;
+}
+</style><script type="text/javascript">
+  var _gaq = _gaq || [];
+  var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-31474143-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head><body><div id="Sidebar">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/about.html">About Randy Maas</a></li>
+<li><a href="rss">rss</a></li>
+<li><a href="21.html">Older</a></li><li><a href="23.html">Newer</a></li>
+</ul>
+</div><div id="Main">
+<h1>Unit Tests</h1><p class="byline"><a href="mailto:randym@randym.name">Randall Maas</a> 6/14/2010 1:34:33 PM</p>
+<p>This entry is about the unit tests that are automatically created as part of transforming the source code for the emulation.  The core idea is to call each of the procedures with different combinations of valid values for their parameters.  They are watched to see that they do not violate any of the rules outlined by the boundary conditions file and calling sequences rules.</p><p>These tests are optional &#45; one can run the emulation without them.  Nevertheless, they are automatically created to provide a means of rooting out bugs early.  It's been my observation that procedures are more like to be tested if it is easy to-do, fun, or required by the tooling framework.  By making it automatic, it makes them easy-to-do.</p><p>Unlike other types of analysis, this type tells you the inputs that caused the failure.  In my experience, an identifiable set of parameters that a cause problem will make more believable that there is an error and it easier to track the problem down.  Other types of analysis, like Lint, only say that there is an error, but it is not easy to figure out why.</p><p><h2>The test file</h2></p><p>The test files are created in a directory called "tests."  A top level test file is created there, called <code>TestCallParams.c</code> with a procedure, called <code>T1()</code> which will call of the test.
+At the present, there are two types of tests:</p><p><ol>
+<li>Tests combinations of the calling parameters</li>
+<li>Tests that the API actually works with the combinations promised by the regex.  (This is the corollary of checking that the software only makes called allowed by the regex).  I will cover these tests next time.</li>
+</ol></p><p>The tests are performed in a topological order.  Procedures that don't call others are tested first.  Then the procedures that only call procedures that have been tested.  And so forth.  (What about when a procedure calls itself, either directly or by calling another procedure?  This isn't an issue for me, as recursion is a no-no in my designs.)</p><p>Each being tested gets its own file, with a name is <code>T_<i>procedureName</i>.c</code> And the test procedure is named <code>T_<i>procedureName</i></code>, both after the name of the procedure under test.</p><p><h2>Form of the parameter calling tests.</h2></p><p>The original plan was for each procedures test to be a series of nested iterators over the acceptable range of values for each of the calling parameters.  This would create code that looks like</p><code><pre>   prepare state
+   for p1 in range a to b
+    for p2 in range c to d
+     ...
+    {
+       screen out combinations that we promised not to use (the extra boundary condition rules)
+       save state of globals, peripherals, FSM calling pattern checks, etc.
+       make call with p1, p2, ...
+       restore state of globals, peripherals, FSM calling pattern checks, etc.
+    }</pre></code><p>The ranges for the parameter values would be known from the preferred syntax in the boundary conditions file.  The shim that I have described in previous entries would do the job of checking that the procedure under test doesn't trigger bogus calls or bad return values.</p><p>I had to abandon this approach over the problem of "combinatorial explosion."   The combination of parameter ranges creates very very long loops for some procedures.  This is enough to be a concern, since even one test that takes an hour to complete will prevent the unit tests from getting used.  So I cut the space down using an N-pairs algorithm (more on this in a moment) to generate the combinations of parameters to test.  The procedure looks like:</p><code><pre>void __fastcall T_ProcedureX (PCall_t* next)
+{
+   void* BaseState = BrdState_save();
+   TraceNode_t* OT = Trace_tail;
+
+   <i>// call with tests parameters 1</i>
+   ProcedureX (param combination 1);
+   if (next) next->Proc(next->next);
+   Trace_freeTo(OT);
+   BrdState_set(BaseState);
+
+   <i>// repeat for each of the other parameter combinations</i>
+
+   BrdState_free(BaseState);
+}</pre></code><p>The code isn't pretty, but it was code that I was planning to write anyway for specific test cases.  For now, ignore the <code>PCall_t</code> type and the <code>next</code> variable.  The helper procedures that this uses include:</p><p><dl>
+<dt><code>BrdState_save()</code></dt><dd> preserves the current state of the board prior to the test.   (It is assumed that something else set up the board to its test condition)</dd>
+<dt><code>BrdState_set()</code></dt><dd> sets the state of the board to the specified conditions. </dd>
+<dt><code>BrdState_free()</code></dt><dd> disposes of any relevant resources of the saved state. </dd>
+<dt><code>Trace_freeTo()</code></dt><dd> rolls back the program trace to the start of the test (to throw out all the stuff from the successful test). </dd>
+</dl></p><p>The types of the parameters values are known from scanning the source code. 
+The combination of calling parameters is made based on test generation.</p><p><h2>About N-Pairs</h2></p><p>The N-Pairs test generation is a technique that leverages a property about combinatorial testing:  Most combinations are <em>degenerate</em>.  That is two (or more) combinations of parameters tests the same thing.  It speeds up testing if we are able skip those extra ones.  We 'only' need identify them.</p><p>Let's assume that that we are talking about the set of every combination of every parameter.  The first thing N-Pairs does is looks at every combination of N (e.g. 2) parameters and removes duplicate entries from the set.  That is it will look at every combination of parameters p1 and p2, then every combination of parameters p1 and p3, and so on.</p><p>In practice, the trick is to use an algorithm to create the list of combination directly, rather than by removing duplicates from a huge list.  The algorithm starts by creating a concrete set (e.g. a list) of values to use for each parameter.  This includes key values for the parameter, as well values randomly sampled from the acceptable range (as defined in the boundary conditions file, in the preferred form).  Then it chooses every set of N parameters, and generates combinations of values for each of those parameters, merging duplicates (i.e. when the pair of parameter values was used in an earlier call, which was testing other parameters pairs too)</p><p>Although I chose the possible parameter values randomly, there is another idea that bears consideration.  VectorCast (and other RTCA DO-178B tools) encourage testing each parameter at min, max, mid regularly spaced values between, instead of randomly selected.  The intent of RTCA DO-178B tools is to select parameters that cover every line of code and every branch, even if the selection must be done manually.  Most branches only consider a small number of parameters, allowing a N to be small (e.g., 2 to 3).</p><p>This seems a like a good idea to consider in the future, with one exception.  For a single variable, the regular interval could be harmonic with some key factor or other parameter, and the tests don't add much information.  I would prefer that it did more to test oddball values along the way.  In practice RTCA DO-178B tools and N-Pairs are likely to have different operator coverage, due to the feedback loop of manual selection versus the parameters chosen mechanically.</p><p><h2>Improvements to the tests that could be made</h2></p><p>I had several ideas on how to improve these kinds of tests.</p><p><strong>File of specific tests.</strong>  Ideally in the future I'd have a file that helps manually list the critical values for the parameters to test.  I'd like to be add specific tests ' specific input parameter values to use, and return results.  And I'd like to be able add label to these tests, something to link it bug tracking or test identifiers.</p><p>I'd like to be able to say that some functions are "well known" and what test vectors to use.   For instance, it would be nice to specify that procedure X is an implementation of the cosine function, it  should use a well understood set of values, with +/- a error band.</p><p><strong>Better guessing of critical values.</strong>
+It would be nice to have some sort of source code scanner to identify values that are likely to be key values.  These (and values +/- a small amount) are more likely to be good tests than purely randomly generated values.</p><p><strong>Parameters passed in a memory structure (message) </strong>
+First I would like to create a version of these tests, where the parameters are stored in a memory structure instead.  The parameters would not be passed as calling parameters.   The intent is to test the command system in the projects, where  commands and responses are sent and received over an IO channel (akin to RPC).  In these cases, the parameters are stored in a memory buffer and the command processor is called.</p><p>The parameter value generation would be done the same way.  And it always calls the same command processing entry point.  It would require specifying the memory layout, and creating test code to properly populate the structure.</p><p><strong>Tests other parameters used by the procedures.</strong>  I would like to be able to specify test values for global variables, eeprom or storage on a peripheral, that the procedure under test may use.</p><p><h2>Next time</h2></p><p>Next time I will describe how the tests <a href="23.html">check that the API accepts the sequence of calls it promised</a> in the regex spec.
+</p></div></body>
+</html>

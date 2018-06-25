@@ -1,0 +1,189 @@
+<html><head><title>Memory models</title>
+<link href="http://randym.name/blog/rss" rel="alternate" title="Randy Maas RSS Feed" type="application/rss+xml" />
+<link rel="stylesheet" href="jqmath-0.2.0.css">
+<style type="text/css">
+body { color: #111111; background: #FFFFFF; }
+a, h2 a:hover { color: #2361A1; }
+h1, h2, h2 a { color: #111111; }
+h1, h2, h3, h6 { font-weight: normal; }
+h4, h5 { font-weight: bold; }
+h5, h6 { text-transform: uppercase; letter-spacing: 1px; }
+
+a, a:hover { text-decoration: none; }
+a img { border: none; }
+blockquote { border-left: 1px solid #ddd; color: #666; }
+pre { background: #eee; border: 1px solid #ddd; overflow: auto; clear: both; }
+code,pre { font-size: 0.9em; font-family:  Monaco, Consolas, "Andale Mono", Courier, "Courier New", Verdana, sans-serif; }
+pre { margin-bottom: 1.667em; padding: 0.583em 0.833em; background: #eee; }
+cite {background: #ffffe0; border: 1px solid #ddd; overflow: auto; clear: both; font-style: normal;}
+table
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-collapse: collapse;
+}
+
+td, th
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    margin: 0;
+    padding: 4px;
+    vertical-align: top;
+    text-align: left;
+}
+
+table.t1,td.t1,th.t1 {    border-style:none; border-width: 0px 0px 0px 0px;}
+#Main {
+	padding: 0px;
+	border: 0px dotted gray;
+	margin-left: 120px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+#Sidebar {
+	position: absolute;
+	margin: 0 0 0 -75px;
+	width: 90px;
+	height: auto;
+	border: 0px dotted gray;
+	background-color: transparent;
+	text-align: right;
+	line-height: 1em;
+}
+#Sidebar ul {
+	margin: 3.5em 0 5em 9em;
+}
+
+#Sidebar li {
+	list-style: none;
+	letter-spacing: 1px;
+	margin: 0 0 1em -7em;
+	padding: 0;
+}
+</style>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-31474143-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head><body><div id="Sidebar">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/about.html">About Randy Maas</a></li>
+<li><a href="rss">rss</a></li><li><a href="29.html">Older</a></li><li><a href="31.html">Newer</a></li></ul>
+</div><div id="Main">
+<h1>
+Memory models</h1><p class="byline"><a href="mailto:randym@randym.name">Randall Maas</a> 7/19/2010 11:36:58 AM</p><p>I was recently curious about the issues of memory models.  I saw a video lecture wherein the instructor mentioned <a href="http://www.cs.umd.edu/~pugh/java/memoryModel/">research on the Java memory model</a>, eventually incorporated into <a href="http://www.jcp.org/en/jsr/detail?id=133">Java 5</a>, as the most complete on the issues involved.  It fixes a number of issues in earlier Java versions, a model that is not too different from C, C++, C#, and so on.  As he pointed out, everyone seems to be getting along fine before the analysis, did we really miss that much?  (Yes)  What were we missing?  Did we know about these, but choose to discretely ignore them, and not put them altogether?</p><p><cite>J Manson, W Pugh, S Adve, "The Java memory model" in <i>Proceedings of the Symposium on Principles of Programming Languages</i> 2005.</cite></p><p>The short version is that many of the mechanisms we've been sprinkling into C-like language address memory-model concerns, but not correct them.  The problems are there even if no ever used preemptive threads (whether in the CPU or OS), multiprogramming concepts, or even just used a "single core" CPU.  Interrupts, context switches, traps, signals, asynchronous IO callbacks, locks, exceptions, <code>setjmp()/longjmp()</code> all have problems with memory model semantics.</p><p>The rest of this note is structured as follows:</p><p><ol>
+<li>The issues involved with memory models</li>
+<li>What issues are not (traditionally) covered by memory models</li>
+<li>The actors involved</li>
+<li>What this means for code</li>
+<li>How this relates to performance</li>
+<li>The language's definition of memory and storage operations</li>
+<li>The memory hierarchy</li>
+</ol></p><p><h2>The Basics and Issues</h2></p><p><strong>First, what are the basic issues with a memory model?</strong></p><p><ul>
+<li>Consistency of behaviour, rather than <em>incidentally</em> appearing consistent,</li>
+<li>A way to specify how, when and where those memory actions happen</li>
+<li>A way to implicitly perform those memory actions fast</li>
+</ul></p><p><strong>No really, what are the basic issues with a memory model? </strong> The consistency problems arise when any of the actors put performance over correctness.  Almost all do, sometimes without recognizing this.  The memory model is a communication of what is needed to be done to correctly carry out what the software specifies, to do so consistently, especially in subtle cases.  The models typically divide themselves along the following lines:</p><p><ul>
+<li>The order of various reads and writes (or modifies), and who can change them.  Does it matter if they are rearranged a bit?  Can multiple loads from the same address be reordered?  (Can the value be read once and reused?)</li>
+<li>Whether various reads and/or writes can be merged or coalesced.  For instance, can we drop a read right after write?  (After all, we know what we just wrote.)</li>
+<li>Removal or insertion of reads and writes.  Can the computer store temporary values?  Change memory?  If we refer to variable X 3 times in an equation &#45; can we read it from memory each time?</li>
+<li>Alignment of memory access and penalties for different kinds of memory access.  Sometimes machine words for integers, pointers and/or floating pointer numbers must be follow very specific rules on where they can be stored, usually their alignment.  You can also get a type of corruption called "Cache tearing" if you write something that cross a cache boundary.</li>
+</ul></p><p><strong>What issues are not (traditionally) covered by memory models?</strong>  The following variable / memory issues are <em>not</em> discussed in memory model specifications.  (I think that is a pity, not the least of which is because they are a standard bug source).</p><p><ul>
+<li>Freeing a resource more than once or too many times</li>
+<li>Using a resource that has been free'd, including invoking deleted objects.</li>
+<li>Using a resource that hasn't been allocated or assigned a value yet: using invalid references, handles, etc.</li>
+<li>Buffer overruns and wild pointers</li>
+<li>Using values that have not (or may not have been) checked for validity</li>
+</ul></p><p><strong>Who is involved?  What are the actors?</strong>  These are roughly the rules software and hardware.</p><p><ul>
+<li>The language, and the rules it defines ' or doesn't ' about memory access and reordering.</li>
+<li>The compiler and its settings.  What behaviour can change between compilers, versions, and settings, and/or seemingly irrelevant code changes?</li>
+<li>The memory system, which acts more like a network of peripherals, special purpose processors, than simple storage.  These may have a queue of operations to do and it may prioritize or change the work as it sees fit.</li>
+</ul></p><p><h3>What does this mean for source code?</h3></p><p><strong>What does this mean for source code?</strong>  What are the issues?</p><p><ul>
+<li>The software looks like it is working but will have problems, but exhibits problems after running for a long time.</li>
+<li>Source code that has worked for a long time (decades even) might not work as it is migrated to new hardware, compilers, versions, etc.  This may be a combination of bugs in the code, compiler, or that the language has changed.</li>
+<li>How should you define consistent access rules &#45; what should always be <code>volatile</code>? Accessed with CAS? locked?  Which lock do you use?  How do you know you followed the rule consistently?</li>
+<li>How do you know you got the access rule right?  There may be hidden bugs from inconsistent access or inappropriate access.</li>
+<li>The qualifiers that a developer needs to understand are 'expert only.'  It is tricky to know what a C modifier (qualifier) is modifying.  It is considered expert level to know what is constant, what is cacheable and what can change rapidly in the following specification:<br>
+<code>const * volatile C ;</code></li>
+<li>In some cases, this presents tricky design issues with hard to understand code design, hard to understand how to modify it, and what <em>not</em> to modify.</li>
+<li>Attempts to fix / address this can create confusing code with more layers than are necessary or desirable.  Locks for instance, can be tricky to layer.</li>
+</ul></p><p>These issues aren't exclusive of each other.  In practice, I find it seems that these issues often overlap.</p><p><h2>How does this related to performance?</h2></p><p>The general trend has been for the actors to assume that they may rearrange memory operations for any reason, such as convenience or tuning performance.  It is the programmer role to specify or imply constraints on what rearrangements can't be done.</p><p>The general memory model <em>does</em> concern performance, but it is more concerned with correctness and <em>options</em> available to <em>allow</em> performance.  Although the discussions implicitly assume performance concepts, they devote little space them.   I am going to ignore performance tradeoffs except as a motivation why 'risky' constructs are (or were) used.</p><p><strong>What memory storage is not.</strong> Memory is not a direct, zero cost storage either for named variables, nor for addressable memory (well, byte indexed, since a text name is another way of addressing it).  The language, compiler, and hardware treat the memory access as an IO queue, akin to disk IO, with read/write IOs that can be cached, delayed, reordered, optimized, and so forth.</p><p><strong>Who creates the inconsistency?</strong>  Let's look where values are moved between memory subsystems.</p><p>First, the software developer must specify the right order of access (and conflict handling) for variables and structures.  A design error will leave inconsistency.  Or if he, or someone later, makes an error in carrying out the design, the errors can lay in the code, but not be problem enough to be identified and fixed.</p><p>Second, the compiler may not generate code that works quite as the programmer expects.  The compiler may store the result of operations and calls in registers, and write these out later.  It may cache values in registers, not only writing them out late, but also missing subsequent changes.  The compiler may choose to rearrange computations, for performance or as a fluke of its code generation.  It may reload the same address several times, instead of saving a copy elsewhere, but getting different results.  For instance, the compiler may need to use a register for other computation and have to reload the value when it is needed again.</p><p>Finally, the processor and memory subsystem issues several instructions simultaneously and rearranges IOs, (unless there is a dependency it knows about).   They cache memory regions, populating the cache with lots of read.  They buffer up reads and writes, writing thru memory transactions occur.</p><p><h2>The Language's definition of Memory and Storage</h2></p><p>If a language has a good set of rules (one properly implemented by compilers), there would be far less to worry about with compiler, memory hierarchy, and other actors.  But the C language family has a very weak set of storage rules, and only tightened these up with new generations of languages like Java and C#.</p><p>I'll describe some of the issues in the following sections:</p><p><ol>
+<li>A caution on what undefined means</li>
+<li>Variables can have undefined values, after an exception, <code>goto</code>, or jump.</li>
+<li>Keywords (and helper procedures) are expert only</li>
+<li>Variable and pointer attributes may not always be the proper approach</li>
+<li>The root of the problem</li>
+</ol></p><p><h3>A caution on what the term "undefined" means</h3></p><p>In the following sections, I will be referring to situations where variables don't have a well-defined value.  This means that there is a fundamental problem, and that the software must be designed differently.</p><p>No test can show that the code will work correctly &#45; it is not acceptable to try compiling the code and see if it works.  The software could change behaviour if the code is modified slightly, the compiler flags are changed, a different compiler version or a different compiler is used.</p><p>The origin of this variation is rooted in how compilers work.  Processors have too few registers forcing the compiler to free registers (by storing intermediate values in memory), and reload the register later.  There is no single algorithm in use that governs this predictably from a programmer point of view.  The compiler may change its allocation and use of registers &#45; and when they get re-read ' based on seemingly arbitrary things including minor changes in far off code.</p><p>There is another reason that the code may appear to work, but fail under stress.  Being "undefined" means that the compiler may not have generated proper memory handling instructions.  The situation has an undefined meaning after all, so the compiler may not know what the proper thing to do is.</p><p>Of course, a test can show that a compiler or code is <em>wrong</em>.  A test can't show the code is correct, won't have memory issues, or even that the compiler warnings are wrong (<a href="http://www.sqlite.org/faq.html#q17">Sorry SQLite, you're dangerously wrong on this one.</a>)</p><p><h3>Variable values may not be defined with Goto's, Exceptions, or Jumps..</h3></p><p>Let's start simple and look at cases where it is not defined what the value of variables will be, even though it may appear that they should have a defined value.</p><p><ul>
+<li>You <em>can</em> use <code>goto</code> into middle of a code block.</li>
+<li>You <em>shouldn't</em> <code>goto</code> <em>into</em> a <code>try</code> / <code>catch</code> / <code>finally</code> block.  The values of the variables are undefined, the exception handling may be corrupted, and resources may be leaked.</li>
+<li>You <em>shouldn't</em> <code>goto</code> <em>out of</em> a <code>try</code> / <code>catch</code> / <code>finally</code> block.  The values of the variables are undefined, the exception handling may be corrupted, and resources may be leaked.</li>
+<li>You <em>can</em> use <code>switch</code> / <code>case</code> into middle of a code block.</li>
+<li><code>setjmp()</code> and <code>longjmp()</code> are tricky.  Nonvolatile variables, especially nonvolatile automatic (local to function) variables that were changed <em>after</em> the <code>setjmp()</code> (and before the <code>longjmp()</code>) have an undefined value.  You <em>shouldn't</em> access them in that case, or you <em>should</em> mark them as <code>volatile</code>.</li>
+</ul></p><p>This is just a small area of the memory model.  The language specification (see the C99 standard, especially section 7.13.2.1) defines these cases, putting the onus on the programmer not create them.  I believe that you could address the branch issue in one of three ways.</p><p><ul>
+<li>Avoid language designs with these kinds of branches</li>
+<li>Simply report a compilation error if such a use after branch occurs</li>
+<li>Fix the variable definition to allow such use after branch (e.g. transactions)</li>
+</ul></p><p><a name="qualifiers">
+<h3>Qualifier keywords (and helper procedures) are expert only</h3></a></p><p>Source code is a communication to the compiler as well as to other people.  Let's look at the language constructs that signal to the compiler that it is not to rearrange the memory access.</p><p>There is a plethora of keywords to guide the compiler.  This tell how not to optimize, how to prevent the hardware from optimizing.  Certain key procedures in the library tell how to access memory, and are typically considered a part of the language.  Under broader language spec, those for vendor specific cases, and the coding style guides typically in play.</p><p><table>
+<tr><td><code>const</code></td><td>The variable (or pointer) to buffer can't written; no one is allowed to insert a write, but they are allowed to cache.</td></tr>
+<tr><td>C <code>volatile</code></td><td>The value must be re-read each time it is referenced by name (it isn't supposed be cached), and written with little delay after value is changed, can't be coalesced during writes, neither reads nor writes can be dropped nor merged.  This is intended for variables shared between multiple threads, interrupts, syscalls and other context switches, and asynchronous IO.</td></tr>
+<tr><td>C <code>atomic</code>, Java <code>volatile</code></td><td>The compiler is to preserve ordering of field access.  However it may not be possible to achieve this or prohibitively slow on many platforms.  Nor is it clear when to apply this qualifier to an object or struct.</td></tr>
+<tr><td><code>noalias, restrict</code></td><td>Used by the programmer to promise that variables (especially parameters) are not aliased.  This affects when stores and loads are made.  Without it, the compiler must assume that two pointers may overlap, and generate slow, conservative code to preserve subsequent accesses.</td></tr>
+<tr><td><code>synchronized, locked(), @synchronize()</code></td><td>Locks the object or specific lock object during execution of the code.</td></tr>
+<tr><td>Interlocked Increment/Decrement, Compare-And-Swap (CAS)</td><td>Updates a whole chunk of memory, hardware writes whole or none, conditional.  This is often the basis for locks and other synchronization mechanisms.</td></tr>
+<tr><td>read / write</td><td>The read/write model is standardized in language ' more so more recently in Java and C#.  (Traditionally it is mapped to an equivalent portion of the OS's storage model, with the language providing an interface to it.) </td></tr>
+</table></p><p>As we can see, these are tools for the programmer to tell the compiler how <em>not</em> to optimize.  Presumably, this is because it is worse than a system where the programmer must say where you can optimize.  Let's look at an illustrative example.</p><p>There used to be a <code>register</code> keyword in C, now deprecated.  The idea was that the programmer would analyze the code, either in his head or by profiling, and selectively annotate key variables with the <code>register</code> keyword.  This would guide the compiler with which variables should be given less data motion from working register and other memory.  The problem was that there was inadequate profiler support, and without a good way to know what to use it with and not.  The keyword was abused: why not use it with all variables?  With overuse, compilers generated worse code, putting so many variables into so few registers, thrashing the registers in the process.  Moreover, compilers improved until they were good enough to decide how to manage variable / register mappings.</p><p>There are rules, for the programmer, on effectively using the keywords.  Alas, it is not always clear how to use these keywords properly ' and how not use these.  Worse few programmers are likely to be aware of the rules and guidelines. </p><p><h3>Variables and pointer attributes may not always be the proper approach</h3></p><p>Let's take a moment for me to explain another reason why qualifying attributes are not ideal.  As natural as these attributes are, they have a weakness.</p><p>Storage is accessed via variables and pointers.  These are mapped onto addressable (potential shared) memory.  User can specify the address or memory region a variable is stored in: sometimes a memory or linker map, or with a compiler specific extension on the variables memory address.  Pointers can get their address by aliasing another pointer, a variable with the <code>&</code> operator, or by casting an integer.</p><p>It is too easy to lose the critical attributes when aliasing a variable or pointer ' one pointer may have them and another not, even though they point to the same address.  Since the language, associates access properties with the variables (or pointers) not the memory address this can lead to inconsistent access implementation.  This includes <code>volatile</code>, <code>const</code>, etc.  (See <a href="#qualifiers">the previous subsection</a> for some of the properties.)</p><p>This is especially undesirable when communicating with devices through shared memory.  (Although this is primarily a problem in C/C++, the same problem exists when Java and C# try to use hardware).  Nevertheless, historically it has been an acceptable trade for language simplicity.</p><p>There are a few type rules to address aliasing of pointers.  For instance, the C99 specification says that two pointers of two different types are not to be treated as </em>aliased</em>.
+However this goes against long standing tradition in code,
+Traditionally a program will use a generic structure to hold all sorts of data. The program will check a type code and cast this to a pointer of a more specific, but technically different, type.
+The C99 language documentation specifies that these are  <em>to be treated as not aliased</em>.  (Let's assume that the qualifiers are correct here.)</p><p>Although the specifics vary, a typical example of this casting is shown below:</p><code><pre>
+typedef struct
+{
+   int Type;
+} A_t;
+
+typdef struct
+{
+   int Type;
+   double Value;
+} B_t;
+
+'
+   A_t* Ptr1 = ...;
+   if (1 == Ptr1->Type)
+     {
+        B_t* Ptr2 = (B_t*) Ptr1;
+        work with Ptr2;
+       // <i>... Generic code may used with Ptr1 but it may have wrong memory semantics!</i>
+     }
+</pre></code><p>In the example, there are two pointers to the same memory structure, but with different types.  Changes using one pointer are not guaranteed to be properly (safely) seen in the other!</p><p><h2>Memory Hierarchies</h2></p><p>Memory hierarchies act like peripherals &#45; special purpose processors with a queue of stores and fetches.  (Implicitly memory hierarchies may be a network of storage peripherals, buses, with some contending with each other).  Multiple devices may issue the work: processors / cores, caches, and peripherals devices.  The operations may be buffered up and reordered for any reason, including improving speed.  They may even be optimized by removing redundant IOs or using cache values.</p><p>And the memory peripherals take commands intended to control these helpful reorderings and optimizations.</p><p><h3>An analogy to clocks and asynchronous digital circuits</h3></p><p>Let me start with an analogy to the electrical design of logic.  In logic, clocks are to synchronize the logic modules.  Different logic nodes process their inputs (to produce the output signals) at different rates; some are faster than others are.</p><p>This becomes a problem when the inputs arrive at a logic node at even slightly different times.  The node tries to process the change in input, then the input changes again.  Sometimes it changes too fast for the node, and the node can get scrambled or just have its output flail around.  These bogus results ripple through the logic network, spreading problems everywhere.  </p><p>So a signal is used to trigger when the inputs to the logic have stabilized and can be used: the clock signal.  It doesn't actually know directly that a given logic node is done or ready.  Instead, it sends a 'ready' signal at a rate that is slower than the processing time for each of the logic nodes, ensuring that everything has stabilized.</p><p>Engineers obsessed with performance have tried to do away with clocks for over half a century.  They use <em>asynchronous logic</em> that provides an output signal that says when the results are ready and stabilized.</p><p>Memory on microcontrollers and simpler (or older) computers is like the clock model.  Memory on faster processors, like those in servers, desktops, and high-end embedded devices is more like asynchronous logic.</p><p><h3>How the compiler must do asynchronous synchronization</h3></p><p>On many architectures, independent memory operations are asynchronous, and many may be in flight at once.  It is important to define the memory model precisely for these architectures;
+they are the ones that the issues crop up on.
+It is up to the compiler to insert special instructions that enforce their interdependency and expected behaviour.</p><p>For example:</p><code><pre>lock
+ op1 
+ op2
+unlock</pre></code><p>The compiler isn't supposed to let op1 or op2 or unlock be performed until after the <code>lock</code> step has completed.  Alas, while the compiler generates code with the operations after it in the instruction sequence, the processor may perform the operations anyway since they don't have any obvious dependency on the lock operations that are waiting to complete.</p><p>The compiler is supposed to insert special instructions (aka those asynchronous clock signals) to the memory system, called <a href="http://en.wikipedia.org/wiki/Memory_barrier">memory barriers</a>, fences, and other names.  They differ with each processor family in meaning, and what is available.</p><p><h3>The software engineer coordinates</h3></p><p>Even with "modern" programming environments, writing software still involves coordinating the hardware elements, especially where it is not practical for the compiler to figure out the right method.</p><p>First, the programmer is responsible for setting up the memory hierarchy, if necessary:</p><p><ul>
+<li>Whether a memory region can or can't be swapped out ("pinned")</li>
+<li>If the region is write thru, or can be cached.  For example, you don't want shared variables to be cached.</li>
+<li>Whether reads and writes can or can't be buffered up or merged.  For example, PCI bus has slow performance, especially for reads and writes smaller than its word size.  The default PCI configuration is to merge and buffer reads and writes, to aid performance.</li>
+</ul></p><p>Second, the compiler lets the programmer insert assembly instructions to manipulate the memory hierarchy.  This lets the programmer create special lock or synchronization structures.  And it is useful for cases where the programmer is also be responsible for flushing caches.</p><p>Many processors have separate instruction and data caches, and pipelines that may need to be cleared when memory is changed.  (The memory hierarchy isn't linked well enough to know that a write should update these caches in all cases).   For instance, the instruction cache may need clearing if dynamic library was loaded, code was dynamically linked, code was patched, or a signal-handling trampoline
+has been inserted onto the stack.</p><p><h3>A side note on "word tearing"</h3></p><p>There is another minor hardware effect I wanted to mention.  "Word tearing" happens
+when a part of memory is being written and read at the same time.  Let's say an integer
+in memory has the value 0x12345678, and one thread is changing the integer to 0xabcdef00.
+If a second thread reads the memory at the same time, without proper synchronization, it can
+read a value that no one, anywhere, "wrote".  It could read 0x1234ef00 for instance.</p><p>What is happening?  The bytes of the new value are being written out (little endian in this case) or distributed to the other core, when the second thread reads them.  In that case it reads values that are old and only part of the newly written values.</p><p>Like a lot of other memory model bugs, this can driver a programmer insane: the bug makes no
+sense and is intermittent.</p><p><h3>Hardware documentation and specifications</h3></p><p>Hardware specifications are complex.  They are often ambiguous enough that it isn't possible to know that what the programmer wants to achieve is actually impossible to do reliably and consistently.  Often the hardware's interesting behaviour is documented after the fact.  If we're lucky, there are attempts to improve and clearly specify what will be in future processor generations.</p><p><cite>Peter Sewell, Susmit Sarkak, Scott Owens, Francesco Zappa Nardelli, Magnus O Myreen,
+"X86-TSO: A Rigorous and Usable Programmer Model for x86 Multiprocessors" <i>Proceedings of the 36th SIGPLAN-SIGACT Symposium on Principles of Programming Languages (POPL)</i> 2009</cite></p><p><h2>Conclusion</h2></p><p>The root of these problems is twofold: the general trend of "optimizing" like crazy and market preference for apparent speed of safety.  Cheap memory is so slow that special memory processing tweaks stores and fetches, dangerously violating what it means to be storage.  The demand for performance is providing computers with increasing number of processor cores (especially since none of the "cores" is getting any faster).</p><p>Languages are required to explicitly state what proper memory operations are so that they can be properly implemented and tested.  This traditionally was done in part because the operations were understood, obvious, and matched to the hardware.   And there was a school of thought &#45; the Kernighan & Ritchie approach &#45; of having the language specify only a few rules that have to be followed and let the implementer make their own choices about the rest.  (Other language approaches are specific and say it is an error if program is trying to do something that is ambiguous or up to the compiler implementer)</p><p>The result is that there are elements of code (often memory access sequences) that are likely never to be correctly implemented on modern architectures (desktop, server, handheld, high-end embedded).  My opinion is that whole classes of IPC techniques will not be practical on those classes of CPUs.  This has left us with attempts to improve on the languages, and understand the limits of memory models, and what we can expect we cannot do.</p><p><strong>Software transactional memory</strong> was introduced in a (much hyped) attempt to do away with all of the issues and problems with synchronization, while retaining the language and interoperability with existing code.  It's pretty clear that this either failed or is another decade away from meaningful utility.</p><p>The <a href="http://lpd.epfl.ch/sgilbert/pubs/BrewersConjecture-SigAct.pdf"><strong>Consistency, Availability, Partititioning (CAP) Theorem</strong></a> presents another problem for the future.  The <a href="http://danweinreb.org/blog/what-does-the-proof-of-the-cap-theorem-mean">short version</a> is that you can't simultaneously have performance, scalability and consistency.
+the latency in memory operations completing ' or that they may fail to complete correctly.  This is the norm in distributed computing.  It may become the norm in servers and desktops as the memory hierarchy becomes more convoluted.</p><p>In the end I do not know that is a solution so much as there will be accepted folk wisdom around what not to do. </p><p></p></div></body>
+</html>

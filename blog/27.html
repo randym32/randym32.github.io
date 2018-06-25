@@ -1,0 +1,102 @@
+<html><head><title>Performance</title>
+<link href="http://randym.name/blog/rss" rel="alternate" title="Randy Maas RSS Feed" type="application/rss+xml" />
+<link rel="stylesheet" href="jqmath-0.2.0.css">
+<style type="text/css">
+body { color: #111111; background: #FFFFFF; }
+a, h2 a:hover { color: #2361A1; }
+h1, h2, h2 a { color: #111111; }
+h1, h2, h3, h6 { font-weight: normal; }
+h4, h5 { font-weight: bold; }
+h5, h6 { text-transform: uppercase; letter-spacing: 1px; }
+
+a, a:hover { text-decoration: none; }
+a img { border: none; }
+blockquote { border-left: 1px solid #ddd; color: #666; }
+pre { background: #eee; border: 1px solid #ddd; overflow: auto; clear: both; }
+code,pre { font-size: 0.9em; font-family:  Monaco, Consolas, "Andale Mono", Courier, "Courier New", Verdana, sans-serif; }
+pre { margin-bottom: 1.667em; padding: 0.583em 0.833em; background: #eee; }
+cite {background: #ffffe0; border: 1px solid #ddd; overflow: auto; clear: both; font-style: normal;}
+table
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-collapse: collapse;
+}
+
+td, th
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    margin: 0;
+    padding: 4px;
+    vertical-align: top;
+    text-align: left;
+}
+
+table.t1,td.t1,th.t1 {    border-style:none; border-width: 0px 0px 0px 0px;}
+#Main {
+	padding: 0px;
+	border: 0px dotted gray;
+	margin-left: 120px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+#Sidebar {
+	position: absolute;
+	margin: 0 0 0 -75px;
+	width: 90px;
+	height: auto;
+	border: 0px dotted gray;
+	background-color: transparent;
+	text-align: right;
+	line-height: 1em;
+}
+#Sidebar ul {
+	margin: 3.5em 0 5em 9em;
+}
+
+#Sidebar li {
+	list-style: none;
+	letter-spacing: 1px;
+	margin: 0 0 1em -7em;
+	padding: 0;
+}
+</style>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-31474143-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head><body><div id="Sidebar">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/about.html">About Randy Maas</a></li>
+<li><a href="rss">rss</a></li><li><a href="26.html">Older</a></li><li><a href="28.html">Newer</a></li></ul>
+</div><div id="Main">
+<h1>
+Performance</h1><p class="byline"><a href="mailto:randym@randym.name">Randall Maas</a> 6/29/2010 11:32:05 AM</p><p>In this entry, I would like to describe a profiling algorithm I considered, but never completed.  (The performance never matter enough to examine the profile results in depth.)  I believe that this approach can offer a different kind of insight.      </p><p>It is intended to answer the following questions:</p><p><ol>
+<li>What is the typical and worst case time for a procedure, task, or lock?  Typically, the more frequently a task is run, the faster it must run in order for the system to be correct.</li>
+<li>What are the core procedures that affect slow performance?</li>
+</ol></p><p><h2>Tracing Subsystem</h2></p><p>The performance profiling starts with execution time approximation.  This profiling information is tracked thru the trace subsystem.  As I mentioned earlier, the trace subsystem is intended to track all sorts of things, like locking and unlocking, I<sup>2</sup>C bus events, timer events, and so on.  It is used to produce (UML like) sequence diagrams.</p><p>The trace system is also intended for use as part of performance profiling.  When the trace system is called (at the entry and exit of a procedure), it will also send information to the profiling subsystem.</p><p>From there the information (and its analysis) is divided into two levels of profiling (simple and hard):</p><p><ol>
+<li>Static level: how many times the procedure was called and average duration of the call.</li>
+<li>Conditional: how A calls B (or A locks B) and the typical amount of time for that call.</li>
+</ol></p><p>To support these (especially the later), the trace module sends the following information to the profiling analysis subsystem.</p><p><ul>
+<li>It counts the number of times a procedure is called,</li>
+<li>It counts the number of times procedure A calls procedure B, </li>
+<li>It estimates the total amount of time spent in the procedure B, including all of the child calls, when procedure A calls it, </li>
+<li>It estimates the total amount of time spent in the procedure, excluding the child calls, when procedure A calls it, </li>
+<li>It estimates the total amount of time spent in the procedure, and all of the child calls, </li>
+<li>It estimates the total amount of time spent in the procedure, excluding the child calls,</li>
+<li>It tracks the number of waiters for a lock</li>
+</ul></p><p>Note: it could also track other statistics about the call duration, including the variance, min and max time, etc.</p><p><h2>Call transition Probability</h2></p><p>How could this information get used to identify the most important routines?  Let's look at how these details can help simplify and focus attention on the most important procedures, locks, devices, etc.  This tracked information is made into a big matrix of information.  The matrix is sparse (a procedure calls maybe eight others), and internally represented as a hash table.</p><p>The matrix is used to compute the transition probability from one procedure to the next and how long the call takes.  For numerical reasons the zero call instances are change to an almost zero probability, called epsilon.  The transition probability is used to compute the standing probability of each procedure; that is, the probability the procedure will be involved in the call (either working or calling another).  This forms an eigenvector &#45; a probability of each procedure being involved in call.</p><p>Then list of procedures is sorted from the highest rank to the lowest, and work with them.  Or we could sort based on the probability the procedure will be called, and its duration (normal and worst case)</p><p>Then this information is reported, usually as a table, with extra information and the key elements flagged.</p><p>The intent of all this matrix/eigenvector stuff is to find a procedure doesn't directly do a lot of slow work, but is the one that dispatches lots of work.  That procedure is still important, even though little time is spent directly in it.</p><p></p></div></body>
+</html>

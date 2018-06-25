@@ -1,0 +1,96 @@
+<html><head><title>Looking at some of the testing I'd like to do in the future</title>
+<link href="http://randym.name/blog/rss" rel="alternate" title="Randy Maas RSS Feed" type="application/rss+xml" />
+<link rel="stylesheet" href="jqmath-0.2.0.css">
+<style type="text/css">
+body { color: #111111; background: #FFFFFF; }
+a, h2 a:hover { color: #2361A1; }
+h1, h2, h2 a { color: #111111; }
+h1, h2, h3, h6 { font-weight: normal; }
+h4, h5 { font-weight: bold; }
+h5, h6 { text-transform: uppercase; letter-spacing: 1px; }
+
+a, a:hover { text-decoration: none; }
+a img { border: none; }
+blockquote { border-left: 1px solid #ddd; color: #666; }
+pre { background: #eee; border: 1px solid #ddd; overflow: auto; clear: both; }
+code,pre { font-size: 0.9em; font-family:  Monaco, Consolas, "Andale Mono", Courier, "Courier New", Verdana, sans-serif; }
+pre { margin-bottom: 1.667em; padding: 0.583em 0.833em; background: #eee; }
+cite {background: #ffffe0; border: 1px solid #ddd; overflow: auto; clear: both; font-style: normal;}
+table
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-collapse: collapse;
+}
+
+td, th
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    margin: 0;
+    padding: 4px;
+    vertical-align: top;
+    text-align: left;
+}
+
+table.t1,td.t1,th.t1 {    border-style:none; border-width: 0px 0px 0px 0px;}
+#Main {
+	padding: 0px;
+	border: 0px dotted gray;
+	margin-left: 120px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+#Sidebar {
+	position: absolute;
+	margin: 0 0 0 -75px;
+	width: 90px;
+	height: auto;
+	border: 0px dotted gray;
+	background-color: transparent;
+	text-align: right;
+	line-height: 1em;
+}
+#Sidebar ul {
+	margin: 3.5em 0 5em 9em;
+}
+
+#Sidebar li {
+	list-style: none;
+	letter-spacing: 1px;
+	margin: 0 0 1em -7em;
+	padding: 0;
+}
+</style>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-31474143-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head><body><div id="Sidebar">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/about.html">About Randy Maas</a></li>
+<li><a href="rss">rss</a></li><li><a href="24.html">Older</a></li><li><a href="26.html">Newer</a></li></ul>
+</div><div id="Main">
+<h1>
+Looking at some of the testing I'd like to do in the future</h1><p class="byline"><a href="mailto:randym@randym.name">Randall Maas</a> 6/18/2010 1:06:42 PM</p><p>Now that I have described how I automated unit tests for embedded system, I would like to discuss some things that I did not get around to.  (At least not yet.)  Below is a list of some of the kinds of things I'd like to revisit in the future.</p><p><ol>
+<li>I'd like to improve testing to show the code works (or doesn't) well when hardware is failing.  I don't want bugs in the failure handling to make a situation worse.  This could be done by replacing the procedure it calls with special ones for the test.  Ones that emulate a particular degradation or failure.  (This is often called "mocks" in object testing contexts.)  </li>
+<li>I'd like to know if it <em>possible</em> for the procedures to generate a bad calling sequence.  There are some techniques for changing the code to allow this type of analysis.</li>
+<li>I'd like to know that the software performs reasonably, even if components degrade, and to identify where to focus if I wanted to improve the performance, processing time or power utilization.</li>
+<li>Improve how it displays sequences or visual histories, to help understand what leads to (or may lead to) bugs, and to help examine the sequencing to see if it is really what the designer wants.</li>
+<li>Expand the catalog of peripherals and microcontroller elements (or models) that it can emulate.</li>
+<li>I'd like to know where a value came from ' what other variables, calculations, sources, etc.  And I'd like to have better testing that values are reasonably checked (e.g. high, low, etc) and tested.</li>
+</ol>
+</p></div></body>
+</html>

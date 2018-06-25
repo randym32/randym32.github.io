@@ -1,0 +1,107 @@
+<html><head><title>Better location identification within yard</title>
+<link href="http://randym.name/blog/rss" rel="alternate" title="Randy Maas RSS Feed" type="application/rss+xml" />
+<link rel="stylesheet" href="jqmath-0.2.0.css" />
+<style type="text/css">
+body { color: #111111; background: #FFFFFF; }
+a, h2 a:hover { color: #2361A1; }
+h1, h2, h2 a { color: #111111; }
+h1, h2, h3, h6 { font-weight: normal; }
+h4, h5 { font-weight: bold; }
+h5, h6 { text-transform: uppercase; letter-spacing: 1px; }
+
+a, a:hover { text-decoration: none; }
+a img { border: none; }
+blockquote { border-left: 1px solid #ddd; color: #666; }
+pre { background: #eee; border: 1px solid #ddd; overflow: auto; clear: both; }
+code,pre { font-size: 0.9em; font-family:  Monaco, Consolas, "Andale Mono", Courier, "Courier New", Verdana, sans-serif; }
+pre { margin-bottom: 1.667em; padding: 0.583em 0.833em; background: #eee; }
+cite {padding: 0.3em 0.3em; line-height:180%; background: #ffffe0; border: 1px solid #ddd; overflow: auto; clear: both; font-style: normal; font-size: 85%;}
+.caption {font-size: small; text-align: center; color: #660000; margin: -20px 0 0 0; }
+p.note {padding: 0.571em 0.786em;  background: #f5f5f5; border: 1px solid #ddd; }
+iframe {align: center;}
+table
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-collapse: collapse;
+}
+
+td, th
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    margin: 0;
+    padding: 4px;
+    vertical-align: top;
+    text-align: left;
+}
+
+table.t1,td.t1,th.t1 {    border-style:none; border-width: 0px 0px 0px 0px;}
+#Main {
+	padding: 0px;
+	border: 0px dotted gray;
+	margin-left: 120px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+#Sidebar {
+	position: absolute;
+	margin: 0 0 0 -75px;
+	width: 90px;
+	height: auto;
+	border: 0px dotted gray;
+	background-color: transparent;
+	text-align: right;
+	line-height: 1em;
+}
+#Sidebar ul {
+	margin: 3.5em 0 5em 9em;
+}
+
+#Sidebar li {
+	list-style: none;
+	letter-spacing: 1px;
+	margin: 0 0 1em -7em;
+	padding: 0;
+}
+</style><script type="text/javascript">
+  var _gaq = _gaq || [];
+  var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-31474143-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head><body><div id="Sidebar">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/about.html">About Randy Maas</a></li>
+<li><a href="rss">rss</a></li>
+<li><a href="51.html">Older</a></li><li><a href="53.html">Newer</a></li>
+</ul>
+</div><div id="Main">
+<h1>Better location identification within yard</h1><p class="byline"><a href="mailto:randym@randym.name">Randall Maas</a> 7/26/2013 9:13:24 AM</p>
+<p>This is a note on improving the locating feature of the car.  When I last described the  <a href="45.html">locating feature</a> of the robocar, it was based on principally on GPS, followed by some estimation techniques.  There are some limits to how well these work.</p><ol><li> First, my yard &#45; and any other &#45; isn't a "flat" plane on the surface of a perfect sphere; it's has slopes, hills, and such, making the surface bigger than a simple plane.  This is a two fold problem: converting the GPS 3coords into the 2d surface that I know as my yard requires some ad hoc math.  And geomapping software, such as Google Maps, Bing Maps, or Open Maps gets everything wrong when you zoom in closer than, say, a 100 meters ' the landmarks in all the wrong places.  I'm sure surveyors don't have this problem.
+</li><li> Second, GPS and small GPS receivers are rarely accurate to a few meters, some days not even accurate to tens of meters. I'd like to see decimeters accuracy more consistently.  This mostly has to do with small antenna and receivers that take in only a small number of channels in the device.</li></ol><h2>Why not inertial measurement units?</h2><p>Adding in more position estimators into the robocar is fun.  I bought a couple of inertial measurement units &#45; intended for aerovehicles, with gyroscopes and accelerometers.   But these are not the most productive solution.  They are based on integration motion, and noice.  It can be a lot of work to keep noise and accumulated error down, while still getting useful information when you're moving as slow as car does.  So, sure an IMU can contribute a lot, but I think my effort should go into another approach.</p><p>So the fix?  Cameras.</p><h2>Using cameras</h2><p>The idea is that a camera, such as a wireless webcam, would look out at section of my yard.  I said my yard wasn't a plane, but piecewise it is.  And most of what this camera is looking at is a flat plane.</p><p>So take what a webcam sees:</p><p><img src="52webCam.jpg"/></p><p>And map it onto an ideal map of my yard:</p><p><img src="52ideal.jpg"/></p><p>So, all a base computer needs to do is:</p><ol><li> Know how to map the points in the camera image to the coordinates on an ideal 2-d map of my yard.. and do so with more consistent precision (and accuracy) than GPS.
+</li><li>Find the robocar and perform that mapping
+</li><li> Send the results to the robocar</li></ol><h3>Planar homography</h3><p>The first step sounds like arm waving.  My plan would be to apply <a href="https://www.cs.ubc.ca/grads/resources/thesis/May09/Dubrofsky_Elan.pdf">&nbsp;<i>planar homography</i> </a> to solve that problem.  Planar homography is a linear algebra technique that maps one view of a plane (such as what a webcam sees) to the another view of the plane (such as the ideal map), using some linear algebra (which a lot of money was spent for me to learn).  The mapping is, mostly, <a href="http://www.youtube.com/watch?v=fVJeJMWZcq8">a transform matrix that when multiplied against the point in the webcam's coordinates produces a point in the ideal map's coordinates</a></p><p>Conceptually, the matrix is just a structure that contains:</p><ol><li> The amount of horizontal and vertical offset there is between the two coordinates
+</li><li>The amount of rotation from one coordinate to the other, and
+</li><li> How skewed one plane is with respect to the other ' that is, the amount of perspective in the webcam.</li></ol><h3>A note on camera position</h3><p>It's the last point that is the biggest limit to quality of this process.  If the webcam is looking out toward the horizon, it simply isn't going to do a good job at approximating position in the ideal yard plane.  The best position is for the webcam to be looking down.</p><p>In my case, I was figuring I'd mount the webcam high up on pole on my deck, so that it looks "down" on the yard as much as
+ possible.</p><h2>Calibration</h2><p>The camera &#45; or each camera &#45; must be individually calibrated.  That process has a couple of manual steps.</p><ol><li> First, the computer would need to know the locations of several key landmarks, in whatever coordinates are being used for the ideal yard map.
+</li><li>Someone (me) would have to pick off in the webcam image the landmark positions.  It's best if the landmarks are as close as possible to the corners of the webcam image.
+</li><li> Finally, the computer does some <a href="http://ezekiel.vancouver.wsu.edu/~cs330/projects/homography/homography.pdf">linear algebra</a> and produces the relevant matrix and other terms</li></ol><p>Notes:</p><ol><li> The links above use an overly generic (and hence abstract) method to describe the construction of the matrix.  That's the hazard of the using academic material.  Don't panic: the math can be made pretty easy for this; there's no need to create (or use) a generic linear algebra solver.
+</li><li>  If the webcam moves around a lot ' and it might ' maybe it might be useful to put a visual marker in the yard at the landmarks.  With a little bit of work, the software can adjust the webcam coordinates of the landmarks as the camera moves</li></ol><h2>Use</h2><p>From there, the software needs to </p><ol><li> Find the robocar in the webcam.  I don't know how to do this yet.  Maybe attach an unusually colored ball to the top of the robocar, and look for that color in the webcam image
+</li><li>Check the coordinates ' are they in reasonable bounds?
+</li><li>Multiply against the matrix
+</li><li> Send the results to the robocar.</li></ol><p>Fancier, and possibly more accurate, approach might be to use a mesh of webcams that overlap and look out at various areas of the yard.  This would involve some estimate of how wide the error is for a given position in one webcam's perspective and switch to a better one.  Or maybe a way to fuse multiple approximations together.</p><h2>Irrelevant Bonus</h2><p>Finally, the <a href="http://www.youtube.com/watch?v=DgGV3l82NTk">fundamental matrix song</a>, for no real reason.
+</p></div></body>
+</html>

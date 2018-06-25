@@ -1,0 +1,120 @@
+<html><head><title>Addressing Misconceptions: Loop Termination</title>
+<link href="http://randym.name/blog/rss" rel="alternate" title="Randy Maas RSS Feed" type="application/rss+xml" />
+<link rel="stylesheet" href="jqmath-0.2.0.css" />
+<style type="text/css">
+body { color: #111111; background: #FFFFFF; }
+a, h2 a:hover { color: #2361A1; }
+h1, h2, h2 a { color: #111111; }
+h1, h2, h3, h6 { font-weight: normal; }
+h4, h5 { font-weight: bold; }
+h5, h6 { text-transform: uppercase; letter-spacing: 1px; }
+
+a, a:hover { text-decoration: none; }
+a img { border: none; }
+blockquote { border-left: 1px solid #ddd; color: #666; }
+pre { background: #eee; border: 1px solid #ddd; overflow: auto; clear: both; }
+code,pre { font-size: 0.9em; font-family:  Monaco, Consolas, "Andale Mono", Courier, "Courier New", Verdana, sans-serif; }
+pre { margin-bottom: 1.667em; padding: 0.583em 0.833em; background: #eee; }
+cite {padding: 0.3em 0.3em; line-height:180%; background: #ffffe0; border: 1px solid #ddd; overflow: auto; clear: both; font-style: normal; font-size: 85%;}
+.caption {font-size: small; text-align: center; color: #660000; margin: -20px 0 0 0; }
+p.note {padding: 0.571em 0.786em;  background: #f5f5f5; border: 1px solid #ddd; }
+iframe {align: center;}
+table
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-collapse: collapse;
+}
+
+td, th
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    margin: 0;
+    padding: 4px;
+    vertical-align: top;
+    text-align: left;
+}
+
+table.t1,td.t1,th.t1 {    border-style:none; border-width: 0px 0px 0px 0px;}
+#Main {
+	padding: 0px;
+	border: 0px dotted gray;
+	margin-left: 120px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+#Sidebar {
+	position: absolute;
+	margin: 0 0 0 -75px;
+	width: 90px;
+	height: auto;
+	border: 0px dotted gray;
+	background-color: transparent;
+	text-align: right;
+	line-height: 1em;
+}
+#Sidebar ul {
+	margin: 3.5em 0 5em 9em;
+}
+
+#Sidebar li {
+	list-style: none;
+	letter-spacing: 1px;
+	margin: 0 0 1em -7em;
+	padding: 0;
+}
+</style><script type="text/javascript">
+  var _gaq = _gaq || [];
+  var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-31474143-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head><body><div id="Sidebar">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/about.html">About Randy Maas</a></li>
+<li><a href="rss">rss</a></li>
+<li><a href="4.html">Older</a></li><li><a href="6.html">Newer</a></li>
+</ul>
+</div><div id="Main">
+<h1>Addressing Misconceptions: Loop Termination</h1><p class="byline"><a href="mailto:randym@randym.name">Randall Maas</a> 5/13/2010 12:58:52 PM</p>
+<p>One of the first things someone new to a language like C is that it integer variables wrap around.  For example the following is an infinite loop:</p><code><pre>	for(char I = 0; I < 256; I++)
+	 do something;</pre></code><p>(Worse, in C char might be signed, and you could replace 256 with 128 for the same effect in those cases).   I was bitten by this, and I don't know of any C programmer that hasn't been.  (There is even a <a href="http://channel9.msdn.com/posts/Peli/The-Verification-Corner-Loop-Termination/">Microsoft Video</a> that purported to prove loop termination, but failed with the above loop).   There are lots of similar things I've seen people get bitten by, and have been bitten by myself.  That is what this entry is about.</p><p>This could be a wonderful launching point about why this problem exists in other languages like Java and C#, yet is more of a 'rite of passage' in C.  We could discuss silent overflow and underflow, and whether it is possible, reasonable or desirable to have a language that supports making them explicit and trapping them.  Another time perhaps.</p><p><h2>When this applies to binary search</h2></p><p>As I said, termination errors are a fairly common problem that people stumble across.  In  2006 <a href="http://googleresearch.blogspot.com/2006/06/extra-extra-read-all-about-it-nearly.html">a google blog post</a> gained some popularity, because it claimed to discover such a bug, (supposedly one that no one knew about it before).  Then it proposed a fix.</p><p>The loop in this case is the text book example of binary search.  I'll use an edit of the code he posted:</p><code><pre>1:   int low = 0; // The starting area to search at 
+2:   int high = ..; // The end of the area to search
+3:
+4:         while (low &lt;= high) {
+5:             int mid = (low + high) / 2;
+6:             int midVal = a[mid];
+7:
+8:             if (midVal &lt; key)
+9:                 low = mid + 1;
+10:             else if (midVal &gt; key)
+11:                 high = mid - 1;
+12:             else
+12:                 return mid; // key found
+13:         }
+14:         return -(low + 1);  // key not found.</pre></code><p>He wanted this code to work with very large data sets, and the variables to be 'int's ' because Java uses those.  (Again this problem is not new, croping up for generations now - for example, people commonly used compilers that had 16bit ints, and but the size of the array was 32 bits).   He reported the bug as the method you find a mid point in array:</p><code><pre>	mid = (low + high)/2;
+	get entry at Array[mid]</pre></code><p>Given his conditions, that is correct.   He identified this as the sum of low plus high as overflowing.  Then proposed the following fix, change the code to:</p><p>For C:	<code>mid = (unsigned)(low + high)  &gt;&gt;1;</code><br>
+Java:   <code>mid = (low + high) &gt;&gt;&gt; 1;</code></p><p>Second, the number of inputs is limited to 2<sup>31</sup>-1 for 32 bit integers, 2<sup>15</sup>-1 for 16 bit integers, etc.</p><p>I ignored the whole blog frenzy since his fix didn't work.  The good news is that he has since found that he was wrong  and had to fix his fix with:</p><p>For C:	<code>mid = ( (unsigned) low + (unsigned) high)  &gt;&gt;1;</code><br></p><p><h2>Why that fix doesn't always work</h2></p><p>Taking into account the sign is a good thing.   But the fix doesn't work if you want to work with the full range of unsigned numbers.  That is low, high, and mid are all unsigned (say) 32 bit variables, and you want to sort 2<sup>32</sup>-1 items.
+Let's look again at a simplified form of the search that takes the worst case traversal with this:</p><code><pre>1:   unsigned  low = 0; // The starting area to search at 
+2:   unsigned high = ~0u; // The end of the area to search
+3:
+4:         while (low &lt;= high) {
+5:             unsigned mid = ((unsigned) low + (unsigned) high)  &gt;&gt; 1;
+9:             low = mid + 1;
+13:         }</pre></code><p>The loop will not terminate.  Whenever 'low' is not 0, the calculation of mid will overflow.  This means that low will get closer to high, then jump back toward zero, never converging on it.</p><p>What is the fix, then, that works with signed and unsigned integers, of most any bit length?  First, the condition must change to:</p><code><pre>         while (1) {</pre></code><p>This removes the check to see if low is greater than high &#45; there is no way to represent a value as greater than high when high is at the maximum value (e.g., 2<sup>32</sup>-1).  (The loop termination will be added later).</p><p>Second the computation of mid must change to:</p><code><pre>	mid = (low&gt;&gt;1) + (high&gt;&gt;1) + (((low+high)&gt;&gt;1)&amp;1);</pre></code><p>That works by precondition the significant value of low and high so that their sum won't overflow, and then computing the minor value to keep the search stable.</p><p>Third, the computation of the next low value must change to:</p><code><pre>       if (high == mid)
+         break;
+       low = mid + 1;</pre></code><p>This adds the termination condition if the mid point was the high end.</p><p>Of course this formulation may still have bugs, or cases where the loop won't terminate.</p><p>All of this could lead to interesting discussions of why determining loop termination is very hard, why example code in text books is simplified, why adding error checks and stability makes code ugly, how to ensure that successive approximation converges or terminates, and so on.</p><p></p></div></body>
+</html>

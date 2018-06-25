@@ -1,0 +1,131 @@
+<html><head><title>Panopticon</title>
+<link href="http://randym.name/blog/rss" rel="alternate" title="Randy Maas RSS Feed" type="application/rss+xml" />
+<link rel="stylesheet" href="jqmath-0.2.0.css" />
+<style type="text/css">
+body { color: #111111; background: #FFFFFF; }
+a, h2 a:hover { color: #2361A1; }
+h1, h2, h2 a { color: #111111; }
+h1, h2, h3, h6 { font-weight: normal; }
+h4, h5 { font-weight: bold; }
+h5, h6 { text-transform: uppercase; letter-spacing: 1px; }
+
+a, a:hover { text-decoration: none; }
+a img { border: none; }
+blockquote { border-left: 1px solid #ddd; color: #666; }
+pre { background: #eee; border: 1px solid #ddd; overflow: auto; clear: both; }
+code,pre { font-size: 0.9em; font-family:  Monaco, Consolas, "Andale Mono", Courier, "Courier New", Verdana, sans-serif; }
+pre { margin-bottom: 1.667em; padding: 0.583em 0.833em; background: #eee; }
+cite {padding: 0.3em 0.3em; line-height:180%; background: #ffffe0; border: 1px solid #ddd; overflow: auto; clear: both; font-style: normal; font-size: 85%;}
+.caption {font-size: small; text-align: center; color: #660000; margin: -20px 0 0 0; }
+p.note {padding: 0.571em 0.786em;  background: #f5f5f5; border: 1px solid #ddd; }
+iframe {align: center;}
+table
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-collapse: collapse;
+}
+
+td, th
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    margin: 0;
+    padding: 4px;
+    vertical-align: top;
+    text-align: left;
+}
+
+table.t1,td.t1,th.t1 {    border-style:none; border-width: 0px 0px 0px 0px;}
+#Main {
+	padding: 0px;
+	border: 0px dotted gray;
+	margin-left: 120px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+#Sidebar {
+	position: absolute;
+	margin: 0 0 0 -75px;
+	width: 90px;
+	height: auto;
+	border: 0px dotted gray;
+	background-color: transparent;
+	text-align: right;
+	line-height: 1em;
+}
+#Sidebar ul {
+	margin: 3.5em 0 5em 9em;
+}
+
+#Sidebar li {
+	list-style: none;
+	letter-spacing: 1px;
+	margin: 0 0 1em -7em;
+	padding: 0;
+}
+</style><script type="text/javascript">
+  var _gaq = _gaq || [];
+  var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-31474143-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head><body><div id="Sidebar">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/about.html">About Randy Maas</a></li>
+<li><a href="rss">rss</a></li>
+<li><a href="60.html">Older</a></li>
+</ul>
+</div><div id="Main">
+<h1>Panopticon</h1><p class="byline"><a href="mailto:randym@randym.name">Randall Maas</a> 8/6/2014 8:17:27 PM</p>
+<p>I have a small pile of "interesting ideas" that I'd like to
+try someday, time and motivation permitting.</p><p>One of these fun ideas that I have would be to create a panopticon using a bunch of cameras.  Such as
+using several cameras watching my the yard (ie, to monitoring my robot), and combine
+all of them into single "panoramic" image of the whole yard.  Or to create a ring of cameras
+point outward, maybe mounted on a car or ballon,  to capture wide horizons.</p><p>Broadly speaking, there are two kinds of panopticon here.  One is a birds eye image, looking
+down on the ideal map. The other single point of view, looking out from a center.  The later
+is the one that is more interesting to me at the moment.</p><h2>The Conceptual design</h2><p>The conceptual design is moderately simple:</p><ol><li> Image Registration: Figure out which parts of the two images line up;  this ranges from 
+the simple (as is used with star charts), to using FFT's.  Doing it by hand or brute force is
+seldom much fun.
+</li><li>Figure out how to warp camera images so that they have similar perspectives.
+This is a bit trickier, as it's "arbitrary" &#45; lots of different approaches will work.
+So it's a matter of picking a suitable one.
+</li><li>Figure out the intermediate pixel sizing for the target image and construct a buffer
+to hold the target image.
+</li><li>Figure out the "location" in the big buffer for each image.  I'd say pick four
+"corners" of the camera image, and the respective points in the big buffer.
+</li><li> Warp each images to their portion of the big buffer.  Stretch goal: Give priority to
+the image that retains the most detail in that region.</li></ol><p>All approaches will distort the image, and this is no different.  It's just a simple
+start.  The advantage here is that most of this processing isn't need for every frame.
+Since the cameras are mounted, steps 1-4a need only be done every (say) few seconds or
+minutes.  Each frame still needs to have it's pixels copied to the output buffer.</p><h3>Stretching it to get better detail.</h3><p>I mentioned in step 5 giving priority to the most detailed image... What's that mean?
+One camera might have a part of the image with detail and the other out of focus, or small.
+So it's better to use the camera that has a higher quality image (at least, higher
+quality in that area.)</p><p>And how to do it?  Well, it's conceptually simple:</p><ol><li> Convert the image to grayscale.  This is also a neccessary step in the image registration process.
+</li><li>Blurring it slightly,to reduce noise
+</li><li>Performing edge detection.  Like the FFT, this is another common tool, but using convolution filters.
+</li><li>Blur some more, and
+</li><li> Count the number of pixels in the region above a threshold</li></ol><p>The count&nbsp;<i>and</i> the size of the area (in the source image) is a figure of how detailed that area is
+in the source image.  It's a matter of picking the higher scoring one.</p><h2>Tools that do this for you</h2><p>The fun part is that the the tools to do this are now very common.  
+There are kits, like OpenCV with all the building blocks.
+More importantly, the Windows, OS X, and iOS environments include very expansive
+image and video manipulation frameworks.  These have the tools are likely to, over time,
+include the above as either standard examples, or prepackaged recipes.</p><p>The trick is to recognize the&nbsp;<i>other</i> applications for the examples.  These really are
+just other names, or variations of the process:</p><ul><li> Make panorama's
+</li><li>Video stabilization
+</li><li>Image replace/fix 
+</li><li> Stitching
+</li></ul></div></body>
+</html>

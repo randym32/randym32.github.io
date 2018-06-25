@@ -1,0 +1,116 @@
+<html><head><title>Boundary Conditions</title>
+<link href="http://randym.name/blog/rss" rel="alternate" title="Randy Maas RSS Feed" type="application/rss+xml" />
+<link rel="stylesheet" href="jqmath-0.2.0.css">
+<style type="text/css">
+body { color: #111111; background: #FFFFFF; }
+a, h2 a:hover { color: #2361A1; }
+h1, h2, h2 a { color: #111111; }
+h1, h2, h3, h6 { font-weight: normal; }
+h4, h5 { font-weight: bold; }
+h5, h6 { text-transform: uppercase; letter-spacing: 1px; }
+
+a, a:hover { text-decoration: none; }
+a img { border: none; }
+blockquote { border-left: 1px solid #ddd; color: #666; }
+pre { background: #eee; border: 1px solid #ddd; overflow: auto; clear: both; }
+code,pre { font-size: 0.9em; font-family:  Monaco, Consolas, "Andale Mono", Courier, "Courier New", Verdana, sans-serif; }
+pre { margin-bottom: 1.667em; padding: 0.583em 0.833em; background: #eee; }
+cite {background: #ffffe0; border: 1px solid #ddd; overflow: auto; clear: both; font-style: normal;}
+table
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-collapse: collapse;
+}
+
+td, th
+{
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    margin: 0;
+    padding: 4px;
+    vertical-align: top;
+    text-align: left;
+}
+
+table.t1,td.t1,th.t1 {    border-style:none; border-width: 0px 0px 0px 0px;}
+#Main {
+	padding: 0px;
+	border: 0px dotted gray;
+	margin-left: 120px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+#Sidebar {
+	position: absolute;
+	margin: 0 0 0 -75px;
+	width: 90px;
+	height: auto;
+	border: 0px dotted gray;
+	background-color: transparent;
+	text-align: right;
+	line-height: 1em;
+}
+#Sidebar ul {
+	margin: 3.5em 0 5em 9em;
+}
+
+#Sidebar li {
+	list-style: none;
+	letter-spacing: 1px;
+	margin: 0 0 1em -7em;
+	padding: 0;
+}
+</style>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-31474143-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></head><body><div id="Sidebar">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/about.html">About Randy Maas</a></li>
+<li><a href="rss">rss</a></li><li><a href="19.html">Older</a></li><li><a href="21.html">Newer</a></li></ul>
+</div><div id="Main">
+<h1>
+Boundary Conditions</h1><p class="byline"><a href="mailto:randym@randym.name">Randall Maas</a> 6/6/2010 11:37:21 PM</p><p>In a <a href="19.html">previous entry</a> I outlined the beginnings of how the emulator monitors for errors.  In this entry and the next, I will discuss how to I specify the rules of proper code execution, and how the specification is changed into mechanical checks.  This time I will discuss how to check boundary conditions, with an approach that is very similar to design by contract.</p><p>In the abstract, this method works by dividing the software up to a number of regions, and then listing various stylized (that is, simplistic) rules on how things should be in each region.  The three kinds of regions are global variables, structures (comprised of fields), and procedures (comprised of parameter and return values).</p><p><h2>File format</h2></p><p>I will quickly describe the file format for the boundary condition.  This is a good way to see what is going on.  The file has four sections:</p><p><ul>
+<li>Constants.  This section is for convenience.  It is simply a list of text names and their associated literal (numerical) value.  The intent is to ease maintenance on the rest of the file, and to add some clarity to the other rules.</li>
+<li>Structure Field Ranges.  This allows specifying the rules about values that each field may have.</li>
+<li>Global Variable Ranges.  This allows specifying rules about values that each global variable may have.</li>
+<li>Procedure Parameter Ranges.  This allows specify rules about the procedures parameter values and return values.</li>
+</ul></p><p>Let's look at the section defining Procedure Parameter Ranges in more detail.  (The other sections are similar).  Below is an example:</p><code><pre>
+procedureFoo(param1,param2)
+   0 != param1
+   return > param1
+</pre></code><p>There are three elements to each body of procedure rules.  There is the procedure name, which followed by a list of its parameters.  You can use any name you want for each parameter.  (The reason for specifying them here is that a procedures declarations and definition often have different names for parameters.  None can be counted as definitive.)  The parameters do not have their type specified here.</p><p>Finally, this declaration is followed by the actual conditions, an indented list of comparisons.  This layout is meant to be similar to the "such that" clauses in linear programming (aka constrained optimization).  In addition, the conditions are intended to catch out of range conditions.</p><p>The comparison can be one of > >= == != &lt;= or &lt;.  In the general case, the expressions for either side of the comparison are arithmetic expressions that may involve variables, literals (i.e., numbers), named constants or the return value (identified as <code>return</code>).  The variables that can be referred to are the listed parameters and global variables.</p><p>There general case is, well, general, and should be used sparingly.  Instead, there is a special, preferred style for comparison expressions.  The expressions on the left hand of the comparison contains <code>return</code>, a parameter name, or a global variable name.  The expressions on the right can contain literal values and named constants.</p><p>There are two reasons for this preference.  First, rules in this form are exported into <a href="http://www.gimpel.com/">PC-Lint</a> rules (i.e., <a href="http://www.gimpel.com/html/manual.pdf">the "semantic" conditions</a>), which lets PC-Lint do interesting forms of analysis and help developers catch their bugs earlier.  The second reason is that it is used to create a suite of tests, a process I will discuss in the future.</p><p>Note: The rules for the globals and structures are listed in a similar fashion, without parameters.</p><p>Note: Actually I lied.  There is another kind of clause, other than these comparisons.  More on this kind of clause and its semantics in a moment.</p><p><h2>Similarities to Design By Contract.</h2></p><p>It probably is not a great surprise that these conditions are going to be mapped into the equivalent of C's "<a href="http://en.wikipedia.org/wiki/Assert">asserts</a>," or elements of <a href="http://en.wikipedia.org/wiki/Design_by_contract">"Design By Contract"</a>.</p><p>The boundary conditions can be seen as pre-conditions, post-conditions, and invariants:</p><p><ul>
+<li>An expression that refers only to the parameter values and globals, but does not use the "prev" clause, is a pre-condition.</li>
+<li>Any expression that refers to the return value, or uses the "Prev" clause is a post-condition.  It may refer to parameter values, as well as global variables.</li>
+<li>An expression that refers only to global variables is an invariant or a post condition.</li>
+</ul></p><p>(Inner conditions might be crudely done in the code with "asserts.")</p><p>This gives a pretty good indication how the rules will be consumed the code transformer and where it will place them as checks.  After all of the conditions have been read, and (lightly) analyzed, they are grouped.  The "invariants" emitted as part of the <code>Sys_check()</code> procedure, which is called at the end of the shim routines.  The pre- and post-conditions are gathered on a per procedure basis, and placed within the <a href="19.html">shim routine</a>, before and after the call to the target routine.</p><p>As anyone who has used pre- and post-condition checking knows, these can be pretty useful.  But there is a twist that allows much more interesting post-conditions.</p><p><h2>Modal Logic clauses</h2></p><p>I mentioned earlier that there is another type of clause other than simple comparisons.  It is different because it allows a pseudo-function (called <code>Prev()</code>) and <code>&&</code> conjunctions of comparison expressions.  It is easiest to explain these with a couple of useful examples.  </p><p>Let's say that I'm working with a circular buffer.  The following constraints will catch when put too much into a buffer, causing it to overflow:</p><p><strong>Checking for buffer overrun</strong>
+<code><pre>
+   if Prev(Head) != Prev(Tail) &&  Head  == Tail && Tail != Prev(Tail)  error ("Buffer overflow")
+</pre></code></p><p>There was stuff in the buffer, we added something (but didn't remove anything) and now the buffer is <i>empty</i>.  Ooops.</p><p>And we can check for taking too much out of the buffer, causing it to underflow:</p><p><strong>Checking for buffer underrun</strong>
+<code><pre>
+   if Prev(Head) == Prev(Tail) && Head  != Tail &&  Head  !=  Prev(Head) error ("Buffer underflow")
+</pre></code></p><p>The <code>Prev()</code> provides the value of <code>Head</code> <i>before</i> the routine modified it, while <code>Head</code> is the value <i>after</i> the routine modified.  In this case, the buffer was empty, we removed something (!), and now the buffer appears to have contents.  This is <i>two</i> bugs since the buffer probably holds out of date junk.</p><p>In the past, all of the rules specified only one condition.  If the condition is violated, it triggers the debugger.  But these requires more than one condition, and if all of them do happen (rather than be violated), an error is triggered.  That is the outright reverse of the earlier boundary conditions.</p><p>However, I found it easier to specify these kinds of checks in this way.  These cases are patterns of specific bad things to look for, and it needs to be as simple as possible to express them.
+ 
+Nerds may recognize these boundary conditions in a different form.  Take all of the boundary conditions listed earlier, and negate them.  Add these modal checks onto the list.  That is, make a big if check like:</p><code><pre>   if (!Rule1 || !Rule2 || ...)   error
+   else if (modal rule1) error1
+   else if (modal rule2) error2
+...
+</pre></code><p>What we are looking at is 
+<a href="http://en.wikipedia.org/wiki/Conjunctive_normal_form">conjunctive-normal form</a>, aka <a href="http://en.wikipedia.org/wiki/Horn_clause">Horn clauses</a>, to "prove" the existence of an Error.</p><p><h2>Saving state as the basis for <code>Prev()</code></h2></p><p>How the <code>Prev()</code> is an interesting operation.  It lets us concern ourselves with stepwise changes in values, and how a procedure should or should not change a value.  Let's look at how it implemented.</p><p>The short version is that the state of all the global variables is saved at the start of the shim, before the target routine is called.  (The parameter values are saved as well, but they have no change with time here).  <code>Prev()</code> is simply <code>SavedState-><i>NamedVariabe</i></code> and is used after the target routine has been called.</p><p>This only leaves the question of how the state is saved.  </p><p>As part of the code translation, the translator scans thru and finds all of the global variables, as well as the named registers.  Then it generates a <code>struct</code>, which declares each.  This structures holds the microcontroller register, the target C run-time's variables, and the global variables from the embedded software, such.  Then the translator generates a procedure that allocates such a struct and copies each of the global variables to it, one at a time.
+ 
+<h2>Notes</h2></p><p>1.  What this does not do.  This does not any provision for substantial structural checks.  This would be something like traversing data structures for consistency, and the like.  Conceivably a person could add some to the framework, and they could be called at each return point.  Such a test would scan program structures in ram, check structures within EEPROM, external memory devices.  I think this is would be quite valuable, but it is not trivial to express.</p><p>2. The techniques outlined here are far from full "Design By Contract."  We are not specify what the algorithm should do, what you can expect about it, what you can say about the parameters meaning, the meaning of the results, and so forth.</p><p>3. Nor do I consider this sufficiently similar to Dijkstra's Guarded statements.  Mainly because the <a href="http://en.wikipedia.org/wiki/Guarded_Command_Language">Guarded Command Language</a> allowed much finer granularity on what may have a condition.  Any statement could have a condition on it, and specify what should happen if the condition was not met.</p><p><h2>Next time</h2></p><p>Next time I will discuss <a href="21.html">how calling sequences are enforced</a>.</p><p></p></div></body>
+</html>
