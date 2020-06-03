@@ -13,7 +13,20 @@
       "is_incremental": false
     },
     {
+      "type": "Conceptual",
+      "source_relative_path": "api/gripes.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/gripes.html",
+          "hash": "0wndcEAcIkGfUARr3T3vUQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
       "log_codes": [
+        "InvalidFileLink",
         "UidNotFound"
       ],
       "type": "Conceptual",
@@ -21,7 +34,7 @@
       "output": {
         ".html": {
           "relative_path": "api/index.html",
-          "hash": "vsIYPT357i0ZAfW55fk7JA=="
+          "hash": "SZ5Fh0/oAuUARAZ3oBu0Bg=="
         }
       },
       "is_incremental": false,
@@ -33,7 +46,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "wyInjRQ1hn5ZUdK8SRf+OQ=="
+          "hash": "8x/5H0ei1vZpcFPjofkuAw=="
         }
       },
       "is_incremental": false,
@@ -895,8 +908,8 @@
         "ConceptualDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build",
-          "total_file_count": 2,
-          "skipped_file_count": 1
+          "total_file_count": 3,
+          "skipped_file_count": 2
         },
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": true,
