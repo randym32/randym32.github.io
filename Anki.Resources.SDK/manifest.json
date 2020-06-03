@@ -1,0 +1,933 @@
+{
+  "homepages": [],
+  "source_base_path": "G:/projects/vector/Anki.Resources.SDK",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      },
+      "is_incremental": false
+    },
+    {
+      "log_codes": [
+        "UidNotFound"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "vsIYPT357i0ZAfW55fk7JA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "wyInjRQ1hn5ZUdK8SRf+OQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.AudioKinetic.AudioAssets.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.AudioKinetic.AudioAssets.html",
+          "hash": "zuddOhScd+8WwfS7/nUW8w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.AudioKinetic.BNKReader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.AudioKinetic.BNKReader.html",
+          "hash": "yCZ4T9TcfbWTbNDZypNLIA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.AudioKinetic.EventInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.AudioKinetic.EventInfo.html",
+          "hash": "5S8HuTMmwgNDA3dKTW0KYA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.AudioKinetic.FileInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.AudioKinetic.FileInfo.html",
+          "hash": "S0vrxOL3L9wEIbhfyAvM+A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.AudioKinetic.IMAWaveProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.AudioKinetic.IMAWaveProvider.html",
+          "hash": "UWXAuDdvnQPlfkr+EiGv4w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.AudioKinetic.WEMReader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.AudioKinetic.WEMReader.html",
+          "hash": "qJb4y6Al4m5WTc/i2iVdmQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.AudioKinetic.XML.File.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.AudioKinetic.XML.File.html",
+          "hash": "Ay1iPgomYdYDZ9+H3mrRZQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.AudioKinetic.XML.PluginInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.AudioKinetic.XML.PluginInfo.html",
+          "hash": "YSir1HYpwhO61GGttXiafw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.AudioKinetic.XML.PluginInfoPluginsPlugin.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.AudioKinetic.XML.PluginInfoPluginsPlugin.html",
+          "hash": "uBYfIjN310cdjBVK7Ioegg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.AudioKinetic.XML.SoundBanksInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.AudioKinetic.XML.SoundBanksInfo.html",
+          "hash": "RqRmS5duBHJdCpmgUjkouQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.AudioKinetic.XML.SoundBanksInfoRootPaths.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.AudioKinetic.XML.SoundBanksInfoRootPaths.html",
+          "hash": "TE0EcTgoQ+s1cpT7cgDGVA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.AudioKinetic.XML.SoundBanksInfoSoundBanksSoundBank.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.AudioKinetic.XML.SoundBanksInfoSoundBanksSoundBank.html",
+          "hash": "it99E63ObDumT4dy+54UjQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.AudioKinetic.XML.SoundBanksInfoSoundBanksSoundBankIncludedEventsEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.AudioKinetic.XML.SoundBanksInfoSoundBanksSoundBankIncludedEventsEvent.html",
+          "hash": "HqknYZC1nzjnLpu3xAC6mQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.AudioKinetic.XML.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.AudioKinetic.XML.html",
+          "hash": "zsu301KabRQgxiBKQj9sDA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.AudioKinetic.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.AudioKinetic.html",
+          "hash": "WV3mK38aeI2tmFNu3qH10w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.CozmoAnim.AnimClip.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.CozmoAnim.AnimClip.html",
+          "hash": "tMc0KSsOXcOtt+97wLKNew=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.CozmoAnim.AnimClips.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.CozmoAnim.AnimClips.html",
+          "hash": "cO+1Lys5/xhCh9DPb8oIXA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.CozmoAnim.BackpackLights.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.CozmoAnim.BackpackLights.html",
+          "hash": "IVVBT9vrqZE6xdLNd8F+Aw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.CozmoAnim.BodyMotion.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.CozmoAnim.BodyMotion.html",
+          "hash": "m+fNANMLmbmbQCKYpfCBMQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.CozmoAnim.Event.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.CozmoAnim.Event.html",
+          "hash": "EGWhYH3lshmvCOFIhLHK8g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.CozmoAnim.FaceAnimation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.CozmoAnim.FaceAnimation.html",
+          "hash": "CizhrEy8vC+E245qn3B6bg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.CozmoAnim.HeadAngle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.CozmoAnim.HeadAngle.html",
+          "hash": "v8osKzH/9iC5EusUUo7KOw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.CozmoAnim.Keyframes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.CozmoAnim.Keyframes.html",
+          "hash": "IDnqyVM2NhOabZdizw4pKw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.CozmoAnim.LiftHeight.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.CozmoAnim.LiftHeight.html",
+          "hash": "WtBQ+ZABXCmVzlTvRSYnrg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.CozmoAnim.ProceduralFace.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.CozmoAnim.ProceduralFace.html",
+          "hash": "UBk1AKwwjmzBD/Lt+VFIkg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.CozmoAnim.RecordHeading.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.CozmoAnim.RecordHeading.html",
+          "hash": "1oQLZ6xzJ+uRoZlwyA8Xdg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.CozmoAnim.RobotAudio.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.CozmoAnim.RobotAudio.html",
+          "hash": "YuQKVc8Wgvsod3bio8/EfA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.CozmoAnim.TurnToRecordedHeading.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.CozmoAnim.TurnToRecordedHeading.html",
+          "hash": "pjhRWBWaNyTPdqitpC6TMA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.CozmoAnim.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.CozmoAnim.html",
+          "hash": "UOPKxIyrsbgrkqwCAFEUsg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.Resources.SDK.AnimationGroupItem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.Resources.SDK.AnimationGroupItem.html",
+          "hash": "dsJNJNhIrYqvh/p10r9ZtA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.Resources.SDK.Assets.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.Resources.SDK.Assets.html",
+          "hash": "3z6j4ed0X34S9YQbUKt/Yw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.Resources.SDK.AssetsType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.Resources.SDK.AssetsType.html",
+          "hash": "7kjtzYn0+/GVdf9KQskmqw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.Resources.SDK.BehaviorCoordinator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.Resources.SDK.BehaviorCoordinator.html",
+          "hash": "HgCY1CIhkTbr7lM65H5l2Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.Resources.SDK.BlackJack.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.Resources.SDK.BlackJack.html",
+          "hash": "1uOKHZeO4h8OhhncGf90Ug=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.Resources.SDK.Clock.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.Resources.SDK.Clock.html",
+          "hash": "nEeIqRmNeLD5PoCTiJ28FA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.Resources.SDK.CompositeImage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.Resources.SDK.CompositeImage.html",
+          "hash": "u1CLPxcl5xdlOvtTtQLq5Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.Resources.SDK.DecayGraph.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.Resources.SDK.DecayGraph.html",
+          "hash": "i3hJ4Ye87mABzo1Ppi9hgw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.Resources.SDK.EmotionAffector.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.Resources.SDK.EmotionAffector.html",
+          "hash": "xAgQ+ferhyFX9ZqvuxszxQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.Resources.SDK.EmotionEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.Resources.SDK.EmotionEvent.html",
+          "hash": "9c3aexGUfJRkf4lw0wlOfw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.Resources.SDK.LightFrame.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.Resources.SDK.LightFrame.html",
+          "hash": "S50lvun9r5yzOqTgPiL3WA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.Resources.SDK.LightsPattern.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.Resources.SDK.LightsPattern.html",
+          "hash": "r4B3PECzRDC4b5xckgw8Yg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.Resources.SDK.MinMax.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.Resources.SDK.MinMax.html",
+          "hash": "uT0lURYH2Jrg8kYU+dmHKg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.Resources.SDK.SimpleVoiceResponse.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.Resources.SDK.SimpleVoiceResponse.html",
+          "hash": "4ij9sYSKE9m6VPVh8NY9Og=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.Resources.SDK.SpriteBox.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.Resources.SDK.SpriteBox.html",
+          "hash": "t4U2iWhYeSIV8ZfS8ImXQQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.Resources.SDK.SpriteSequence.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.Resources.SDK.SpriteSequence.html",
+          "hash": "uQPHoSZ6eySwQfBVodQYew=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.Resources.SDK.TextSubstitution.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.Resources.SDK.TextSubstitution.html",
+          "hash": "XWkCYTjkoVbfooY+p09Brg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.Resources.SDK.UserIntentMap.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.Resources.SDK.UserIntentMap.html",
+          "hash": "rHCKLkBrhft7I978K+3Dqg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.Resources.SDK.Weather.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.Resources.SDK.Weather.html",
+          "hash": "vgZogvR0lECEm6r3R6MsCQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.Resources.SDK.XY.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.Resources.SDK.XY.html",
+          "hash": "3JS6DCwmVsPLZigFlbmFoQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.Resources.SDK.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.Resources.SDK.html",
+          "hash": "0zaeGg7YR+OhiAptszcTdA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.VectorAnim.AnimClip.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.VectorAnim.AnimClip.html",
+          "hash": "uz+OKhw+gKnfCZPTULBLKg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.VectorAnim.AnimClips.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.VectorAnim.AnimClips.html",
+          "hash": "4A0VDvaR3JhJE3T/jXSx2w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.VectorAnim.AudioEventGroup.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.VectorAnim.AudioEventGroup.html",
+          "hash": "MZwCTxFAWCFlKKXrmtyLUA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.VectorAnim.AudioParameter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.VectorAnim.AudioParameter.html",
+          "hash": "CS2clRrfAq7RCmlxzimCVw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.VectorAnim.AudioState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.VectorAnim.AudioState.html",
+          "hash": "Wa824UzH/iet6Xksr12Ymg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.VectorAnim.AudioSwitch.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.VectorAnim.AudioSwitch.html",
+          "hash": "opuiA8//ULatAWPjcHECVw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.VectorAnim.BackpackLights.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.VectorAnim.BackpackLights.html",
+          "hash": "TypChCpmbiOk7tu9aGwAAg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.VectorAnim.FaceAnimation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.VectorAnim.FaceAnimation.html",
+          "hash": "DaDgqNOht9k2J6FNX3FLiA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.VectorAnim.Keyframes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.VectorAnim.Keyframes.html",
+          "hash": "Nht7RT7Ddn6wcNJF/90EUA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.VectorAnim.ProceduralFace.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.VectorAnim.ProceduralFace.html",
+          "hash": "D4lip9KbfuI2tbeQnL09fA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.VectorAnim.RobotAudio.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.VectorAnim.RobotAudio.html",
+          "hash": "8bPfEs9FGVMhD6OzmxhpXQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.VectorAnim.SpriteBox.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.VectorAnim.SpriteBox.html",
+          "hash": "Gaz8UuiuwtIqoBK6rHJhjg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.VectorAnim.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.VectorAnim.html",
+          "hash": "m4AoT2+yZLT9j/KcsAwLEw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/RCM.FolderWrapper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RCM.FolderWrapper.html",
+          "hash": "FJs7jGpMuGKbKHaQpga+Mg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/RCM.IFolderWrapper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RCM.IFolderWrapper.html",
+          "hash": "t8q48Q6GdZXgi+owD+rgyQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/RCM.Util.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RCM.Util.html",
+          "hash": "OTgeBEqilgUzCMFa13BZcQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/RCM.ZipWrapper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RCM.ZipWrapper.html",
+          "hash": "TtMFs1ZMrOZqza4Y8YuSRw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/RCM.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/RCM.html",
+          "hash": "j8e7yu+1Hlf8LHNVjjQ2Nw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "obj/api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "n7Ie1fKlzbhNIcnRgJcvJA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "qPs6ZmdlD52z0+LIuaNN7w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": true,
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 2,
+          "skipped_file_count": 1
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 68,
+          "skipped_file_count": 68
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: should not trace intermediate info.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

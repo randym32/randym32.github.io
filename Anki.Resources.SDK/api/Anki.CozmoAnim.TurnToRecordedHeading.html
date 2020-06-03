@@ -1,0 +1,1021 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Struct TurnToRecordedHeading
+   | Resources SDK </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Struct TurnToRecordedHeading
+   | Resources SDK ">
+    <meta name="generator" content="docfx 2.54.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                  <img id="logo" class="png" src="../logo-small.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar"></div>
+          </div>
+        </nav>
+        
+    <div class="topcorner">
+      <form class="navbar-form navbar-right" role="search" id="search">
+        <div class="form-group">
+          <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+        </div>
+      </form>
+      </div>
+      </header>
+      <div class="container-fluid body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container-fluid body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search" style="margin-left: -15px">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+             <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Anki.CozmoAnim.TurnToRecordedHeading">
+  
+  
+  <h1 id="Anki_CozmoAnim_TurnToRecordedHeading" data-uid="Anki.CozmoAnim.TurnToRecordedHeading" class="text-break">Struct TurnToRecordedHeading
+  </h1>
+  <div class="markdown level0 summary"><p>The TurnToRecordedHeading is used to specify how Vector should turn to the
+previously recorded heading.  The robot reach the target heading in the
+duration given, ramping up the movement speed smoothly until it reaches
+that position (within some tolerance).</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">FlatBuffers.IFlatbufferObject</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetype.equals#System_ValueType_Equals_System_Object_">ValueType.Equals(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetype.gethashcode#System_ValueType_GetHashCode">ValueType.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetype.tostring#System_ValueType_ToString">ValueType.ToString()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Anki.CozmoAnim.html">Anki.CozmoAnim</a></h6>
+  <h6><strong>Assembly</strong>: Anki.Resources.SDK.dll</h6>
+  <h5 id="Anki_CozmoAnim_TurnToRecordedHeading_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public struct TurnToRecordedHeading : IFlatbufferObject</code></pre>
+  </div>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="Anki_CozmoAnim_TurnToRecordedHeading_AccelDegPerSec2_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.AccelDegPerSec2*"></a>
+  <h4 id="Anki_CozmoAnim_TurnToRecordedHeading_AccelDegPerSec2" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.AccelDegPerSec2">AccelDegPerSec2</h4>
+  <div class="markdown level1 summary"><p>How fast Vector should accelerate when turning.  default: 1000</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public short AccelDegPerSec2 { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int16">Int16</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_CozmoAnim_TurnToRecordedHeading_ByteBuffer_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.ByteBuffer*"></a>
+  <h4 id="Anki_CozmoAnim_TurnToRecordedHeading_ByteBuffer" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.ByteBuffer">ByteBuffer</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ByteBuffer ByteBuffer { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">FlatBuffers.ByteBuffer</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_CozmoAnim_TurnToRecordedHeading_DecelDegPerSec2_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.DecelDegPerSec2*"></a>
+  <h4 id="Anki_CozmoAnim_TurnToRecordedHeading_DecelDegPerSec2" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.DecelDegPerSec2">DecelDegPerSec2</h4>
+  <div class="markdown level1 summary"><p>How fast Vector should decelerate when turning.  default: 1000</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public short DecelDegPerSec2 { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int16">Int16</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_CozmoAnim_TurnToRecordedHeading_DurationTimeMs_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.DurationTimeMs*"></a>
+  <h4 id="Anki_CozmoAnim_TurnToRecordedHeading_DurationTimeMs" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.DurationTimeMs">DurationTimeMs</h4>
+  <div class="markdown level1 summary"><p>The amount of time to move to the recorded heading.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint DurationTimeMs { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_CozmoAnim_TurnToRecordedHeading_NumHalfRevs_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.NumHalfRevs*"></a>
+  <h4 id="Anki_CozmoAnim_TurnToRecordedHeading_NumHalfRevs" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.NumHalfRevs">NumHalfRevs</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ushort NumHalfRevs { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint16">UInt16</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_CozmoAnim_TurnToRecordedHeading_OffsetDeg_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.OffsetDeg*"></a>
+  <h4 id="Anki_CozmoAnim_TurnToRecordedHeading_OffsetDeg" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.OffsetDeg">OffsetDeg</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public short OffsetDeg { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int16">Int16</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_CozmoAnim_TurnToRecordedHeading_SpeedDegPerSec_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.SpeedDegPerSec*"></a>
+  <h4 id="Anki_CozmoAnim_TurnToRecordedHeading_SpeedDegPerSec" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.SpeedDegPerSec">SpeedDegPerSec</h4>
+  <div class="markdown level1 summary"><p>The speed that Vector should turn at.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public short SpeedDegPerSec { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int16">Int16</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_CozmoAnim_TurnToRecordedHeading_ToleranceDeg_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.ToleranceDeg*"></a>
+  <h4 id="Anki_CozmoAnim_TurnToRecordedHeading_ToleranceDeg" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.ToleranceDeg">ToleranceDeg</h4>
+  <div class="markdown level1 summary"><p>This specifies how close the actual heading is to the target before
+considering the movement complete.  Default: 2</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ushort ToleranceDeg { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint16">UInt16</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_CozmoAnim_TurnToRecordedHeading_TriggerTimeMs_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.TriggerTimeMs*"></a>
+  <h4 id="Anki_CozmoAnim_TurnToRecordedHeading_TriggerTimeMs" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.TriggerTimeMs">TriggerTimeMs</h4>
+  <div class="markdown level1 summary"><p>The time when Vector should begin to turn to the recorded heading.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint TriggerTimeMs { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_CozmoAnim_TurnToRecordedHeading_UseShortestDir_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.UseShortestDir*"></a>
+  <h4 id="Anki_CozmoAnim_TurnToRecordedHeading_UseShortestDir" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.UseShortestDir">UseShortestDir</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool UseShortestDir { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="Anki_CozmoAnim_TurnToRecordedHeading___assign_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.__assign*"></a>
+  <h4 id="Anki_CozmoAnim_TurnToRecordedHeading___assign_System_Int32_FlatBuffers_ByteBuffer_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.__assign(System.Int32,FlatBuffers.ByteBuffer)">__assign(Int32, ByteBuffer)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TurnToRecordedHeading __assign(int _i, ByteBuffer _bb)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">_i</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">FlatBuffers.ByteBuffer</span></td>
+        <td><span class="parametername">_bb</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Anki.CozmoAnim.TurnToRecordedHeading.html">TurnToRecordedHeading</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_CozmoAnim_TurnToRecordedHeading___init_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.__init*"></a>
+  <h4 id="Anki_CozmoAnim_TurnToRecordedHeading___init_System_Int32_FlatBuffers_ByteBuffer_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.__init(System.Int32,FlatBuffers.ByteBuffer)">__init(Int32, ByteBuffer)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void __init(int _i, ByteBuffer _bb)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">_i</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">FlatBuffers.ByteBuffer</span></td>
+        <td><span class="parametername">_bb</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_CozmoAnim_TurnToRecordedHeading_AddAccelDegPerSec2_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.AddAccelDegPerSec2*"></a>
+  <h4 id="Anki_CozmoAnim_TurnToRecordedHeading_AddAccelDegPerSec2_FlatBuffers_FlatBufferBuilder_System_Int16_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.AddAccelDegPerSec2(FlatBuffers.FlatBufferBuilder,System.Int16)">AddAccelDegPerSec2(FlatBufferBuilder, Int16)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AddAccelDegPerSec2(FlatBufferBuilder builder, short accelDegPerSec2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">FlatBuffers.FlatBufferBuilder</span></td>
+        <td><span class="parametername">builder</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int16">Int16</a></td>
+        <td><span class="parametername">accelDegPerSec2</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_CozmoAnim_TurnToRecordedHeading_AddDecelDegPerSec2_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.AddDecelDegPerSec2*"></a>
+  <h4 id="Anki_CozmoAnim_TurnToRecordedHeading_AddDecelDegPerSec2_FlatBuffers_FlatBufferBuilder_System_Int16_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.AddDecelDegPerSec2(FlatBuffers.FlatBufferBuilder,System.Int16)">AddDecelDegPerSec2(FlatBufferBuilder, Int16)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AddDecelDegPerSec2(FlatBufferBuilder builder, short decelDegPerSec2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">FlatBuffers.FlatBufferBuilder</span></td>
+        <td><span class="parametername">builder</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int16">Int16</a></td>
+        <td><span class="parametername">decelDegPerSec2</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_CozmoAnim_TurnToRecordedHeading_AddDurationTimeMs_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.AddDurationTimeMs*"></a>
+  <h4 id="Anki_CozmoAnim_TurnToRecordedHeading_AddDurationTimeMs_FlatBuffers_FlatBufferBuilder_System_UInt32_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.AddDurationTimeMs(FlatBuffers.FlatBufferBuilder,System.UInt32)">AddDurationTimeMs(FlatBufferBuilder, UInt32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AddDurationTimeMs(FlatBufferBuilder builder, uint durationTimeMs)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">FlatBuffers.FlatBufferBuilder</span></td>
+        <td><span class="parametername">builder</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td><span class="parametername">durationTimeMs</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_CozmoAnim_TurnToRecordedHeading_AddNumHalfRevs_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.AddNumHalfRevs*"></a>
+  <h4 id="Anki_CozmoAnim_TurnToRecordedHeading_AddNumHalfRevs_FlatBuffers_FlatBufferBuilder_System_UInt16_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.AddNumHalfRevs(FlatBuffers.FlatBufferBuilder,System.UInt16)">AddNumHalfRevs(FlatBufferBuilder, UInt16)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AddNumHalfRevs(FlatBufferBuilder builder, ushort numHalfRevs)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">FlatBuffers.FlatBufferBuilder</span></td>
+        <td><span class="parametername">builder</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint16">UInt16</a></td>
+        <td><span class="parametername">numHalfRevs</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_CozmoAnim_TurnToRecordedHeading_AddOffsetDeg_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.AddOffsetDeg*"></a>
+  <h4 id="Anki_CozmoAnim_TurnToRecordedHeading_AddOffsetDeg_FlatBuffers_FlatBufferBuilder_System_Int16_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.AddOffsetDeg(FlatBuffers.FlatBufferBuilder,System.Int16)">AddOffsetDeg(FlatBufferBuilder, Int16)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AddOffsetDeg(FlatBufferBuilder builder, short offsetDeg)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">FlatBuffers.FlatBufferBuilder</span></td>
+        <td><span class="parametername">builder</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int16">Int16</a></td>
+        <td><span class="parametername">offsetDeg</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_CozmoAnim_TurnToRecordedHeading_AddSpeedDegPerSec_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.AddSpeedDegPerSec*"></a>
+  <h4 id="Anki_CozmoAnim_TurnToRecordedHeading_AddSpeedDegPerSec_FlatBuffers_FlatBufferBuilder_System_Int16_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.AddSpeedDegPerSec(FlatBuffers.FlatBufferBuilder,System.Int16)">AddSpeedDegPerSec(FlatBufferBuilder, Int16)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AddSpeedDegPerSec(FlatBufferBuilder builder, short speedDegPerSec)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">FlatBuffers.FlatBufferBuilder</span></td>
+        <td><span class="parametername">builder</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int16">Int16</a></td>
+        <td><span class="parametername">speedDegPerSec</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_CozmoAnim_TurnToRecordedHeading_AddToleranceDeg_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.AddToleranceDeg*"></a>
+  <h4 id="Anki_CozmoAnim_TurnToRecordedHeading_AddToleranceDeg_FlatBuffers_FlatBufferBuilder_System_UInt16_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.AddToleranceDeg(FlatBuffers.FlatBufferBuilder,System.UInt16)">AddToleranceDeg(FlatBufferBuilder, UInt16)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AddToleranceDeg(FlatBufferBuilder builder, ushort toleranceDeg)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">FlatBuffers.FlatBufferBuilder</span></td>
+        <td><span class="parametername">builder</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint16">UInt16</a></td>
+        <td><span class="parametername">toleranceDeg</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_CozmoAnim_TurnToRecordedHeading_AddTriggerTimeMs_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.AddTriggerTimeMs*"></a>
+  <h4 id="Anki_CozmoAnim_TurnToRecordedHeading_AddTriggerTimeMs_FlatBuffers_FlatBufferBuilder_System_UInt32_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.AddTriggerTimeMs(FlatBuffers.FlatBufferBuilder,System.UInt32)">AddTriggerTimeMs(FlatBufferBuilder, UInt32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AddTriggerTimeMs(FlatBufferBuilder builder, uint triggerTimeMs)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">FlatBuffers.FlatBufferBuilder</span></td>
+        <td><span class="parametername">builder</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td><span class="parametername">triggerTimeMs</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_CozmoAnim_TurnToRecordedHeading_AddUseShortestDir_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.AddUseShortestDir*"></a>
+  <h4 id="Anki_CozmoAnim_TurnToRecordedHeading_AddUseShortestDir_FlatBuffers_FlatBufferBuilder_System_Boolean_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.AddUseShortestDir(FlatBuffers.FlatBufferBuilder,System.Boolean)">AddUseShortestDir(FlatBufferBuilder, Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AddUseShortestDir(FlatBufferBuilder builder, bool useShortestDir)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">FlatBuffers.FlatBufferBuilder</span></td>
+        <td><span class="parametername">builder</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">useShortestDir</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_CozmoAnim_TurnToRecordedHeading_CreateTurnToRecordedHeading_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.CreateTurnToRecordedHeading*"></a>
+  <h4 id="Anki_CozmoAnim_TurnToRecordedHeading_CreateTurnToRecordedHeading_FlatBuffers_FlatBufferBuilder_System_UInt32_System_UInt32_System_Int16_System_Int16_System_Int16_System_Int16_System_UInt16_System_UInt16_System_Boolean_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.CreateTurnToRecordedHeading(FlatBuffers.FlatBufferBuilder,System.UInt32,System.UInt32,System.Int16,System.Int16,System.Int16,System.Int16,System.UInt16,System.UInt16,System.Boolean)">CreateTurnToRecordedHeading(FlatBufferBuilder, UInt32, UInt32, Int16, Int16, Int16, Int16, UInt16, UInt16, Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Offset&lt;TurnToRecordedHeading&gt; CreateTurnToRecordedHeading(FlatBufferBuilder builder, uint triggerTime_ms = 0U, uint durationTime_ms = 0U, short offset_deg = 0, short speed_degPerSec = 0, short accel_degPerSec2 = 1000, short decel_degPerSec2 = 1000, ushort tolerance_deg = 2, ushort numHalfRevs = 0, bool useShortestDir = false)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">FlatBuffers.FlatBufferBuilder</span></td>
+        <td><span class="parametername">builder</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td><span class="parametername">triggerTime_ms</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td><span class="parametername">durationTime_ms</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int16">Int16</a></td>
+        <td><span class="parametername">offset_deg</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int16">Int16</a></td>
+        <td><span class="parametername">speed_degPerSec</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int16">Int16</a></td>
+        <td><span class="parametername">accel_degPerSec2</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int16">Int16</a></td>
+        <td><span class="parametername">decel_degPerSec2</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint16">UInt16</a></td>
+        <td><span class="parametername">tolerance_deg</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint16">UInt16</a></td>
+        <td><span class="parametername">numHalfRevs</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">useShortestDir</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">FlatBuffers.Offset</span>&lt;<a class="xref" href="Anki.CozmoAnim.TurnToRecordedHeading.html">TurnToRecordedHeading</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_CozmoAnim_TurnToRecordedHeading_EndTurnToRecordedHeading_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.EndTurnToRecordedHeading*"></a>
+  <h4 id="Anki_CozmoAnim_TurnToRecordedHeading_EndTurnToRecordedHeading_FlatBuffers_FlatBufferBuilder_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.EndTurnToRecordedHeading(FlatBuffers.FlatBufferBuilder)">EndTurnToRecordedHeading(FlatBufferBuilder)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Offset&lt;TurnToRecordedHeading&gt; EndTurnToRecordedHeading(FlatBufferBuilder builder)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">FlatBuffers.FlatBufferBuilder</span></td>
+        <td><span class="parametername">builder</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">FlatBuffers.Offset</span>&lt;<a class="xref" href="Anki.CozmoAnim.TurnToRecordedHeading.html">TurnToRecordedHeading</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_CozmoAnim_TurnToRecordedHeading_GetRootAsTurnToRecordedHeading_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.GetRootAsTurnToRecordedHeading*"></a>
+  <h4 id="Anki_CozmoAnim_TurnToRecordedHeading_GetRootAsTurnToRecordedHeading_FlatBuffers_ByteBuffer_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.GetRootAsTurnToRecordedHeading(FlatBuffers.ByteBuffer)">GetRootAsTurnToRecordedHeading(ByteBuffer)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TurnToRecordedHeading GetRootAsTurnToRecordedHeading(ByteBuffer _bb)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">FlatBuffers.ByteBuffer</span></td>
+        <td><span class="parametername">_bb</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Anki.CozmoAnim.TurnToRecordedHeading.html">TurnToRecordedHeading</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_CozmoAnim_TurnToRecordedHeading_GetRootAsTurnToRecordedHeading_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.GetRootAsTurnToRecordedHeading*"></a>
+  <h4 id="Anki_CozmoAnim_TurnToRecordedHeading_GetRootAsTurnToRecordedHeading_FlatBuffers_ByteBuffer_Anki_CozmoAnim_TurnToRecordedHeading_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.GetRootAsTurnToRecordedHeading(FlatBuffers.ByteBuffer,Anki.CozmoAnim.TurnToRecordedHeading)">GetRootAsTurnToRecordedHeading(ByteBuffer, TurnToRecordedHeading)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TurnToRecordedHeading GetRootAsTurnToRecordedHeading(ByteBuffer _bb, TurnToRecordedHeading obj)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">FlatBuffers.ByteBuffer</span></td>
+        <td><span class="parametername">_bb</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Anki.CozmoAnim.TurnToRecordedHeading.html">TurnToRecordedHeading</a></td>
+        <td><span class="parametername">obj</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Anki.CozmoAnim.TurnToRecordedHeading.html">TurnToRecordedHeading</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_CozmoAnim_TurnToRecordedHeading_StartTurnToRecordedHeading_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.StartTurnToRecordedHeading*"></a>
+  <h4 id="Anki_CozmoAnim_TurnToRecordedHeading_StartTurnToRecordedHeading_FlatBuffers_FlatBufferBuilder_" data-uid="Anki.CozmoAnim.TurnToRecordedHeading.StartTurnToRecordedHeading(FlatBuffers.FlatBufferBuilder)">StartTurnToRecordedHeading(FlatBufferBuilder)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void StartTurnToRecordedHeading(FlatBufferBuilder builder)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">FlatBuffers.FlatBufferBuilder</span></td>
+        <td><span class="parametername">builder</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">FlatBuffers.IFlatbufferObject</span>
+  </div>
+  
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container-fluid">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright (c) 2020 by Randall Maas</span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

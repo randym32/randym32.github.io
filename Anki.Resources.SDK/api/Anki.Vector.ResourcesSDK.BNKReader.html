@@ -1,0 +1,315 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class BNKReader
+   | Resources SDK </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class BNKReader
+   | Resources SDK ">
+    <meta name="generator" content="docfx 2.53.1.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather+Sans:r,i,b,bi%7CExo+2:600&amp;subset=latin,latin-ext,latin,latin-ext" media="all">
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                  <img id="logo" class="png" src="../logo-small.png" alt="">
+                  Vector Resource SDK Documentation
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container-fluid hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+    <div class="topcorner">
+      <form class="navbar-form navbar-right" role="search" id="search">
+        <div class="form-group">
+          <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+        </div>
+      </form>
+      </div>
+      </header>
+      <div class="container-fluid body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container-fluid body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search" style="margin-left: -15px">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+             <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Anki.Vector.ResourcesSDK.BNKReader">
+  
+  
+  <h1 id="Anki_Vector_ResourcesSDK_BNKReader" data-uid="Anki.Vector.ResourcesSDK.BNKReader" class="text-break">Class BNKReader
+  </h1>
+  <div class="markdown level0 summary"><p>This class is used to scan sound bank (BNK) files</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">BNKReader</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Anki.Vector.ResourcesSDK.html">Anki.Vector.ResourcesSDK</a></h6>
+  <h6><strong>Assembly</strong>: Anki.Vector.ResourcesSDK.dll</h6>
+  <h5 id="Anki_Vector_ResourcesSDK_BNKReader_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class BNKReader : IDisposable</code></pre>
+  </div>
+  <h5 id="Anki_Vector_ResourcesSDK_BNKReader_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>The sound bank files decoding is based on the format documented at
+<a href="http://wiki.xentax.com/index.php/Wwise_SoundBank_(*.bnk)">http://wiki.xentax.com/index.php/Wwise_SoundBank_(*.bnk)</a></p>
+<p>Vector's Bank files have the following sections in them:</p>
+<ul><li>BKHD</li><li>INIT</li><li>STMG</li><li>HIRC</li><li>ENVS</li><li>PLAT</li><li>DIDX </li><li>DATA</li><li>STID - this is used once, just to call out the Vector_VO .bnk file</li></ul>
+<p>The following may be added in the future</p>
+<ul><li>Switch groups</li><li>Switches</li><li>State group</li><li>States</li><li>Custom states</li><li>Game parameters</li><li>Audio buses</li></ul>
+</div>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="Anki_Vector_ResourcesSDK_BNKReader_Dispose_" data-uid="Anki.Vector.ResourcesSDK.BNKReader.Dispose*"></a>
+  <h4 id="Anki_Vector_ResourcesSDK_BNKReader_Dispose" data-uid="Anki.Vector.ResourcesSDK.BNKReader.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"><p>Dispose of any internal resources.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+  
+  
+  <a id="Anki_Vector_ResourcesSDK_BNKReader_Dispose_" data-uid="Anki.Vector.ResourcesSDK.BNKReader.Dispose*"></a>
+  <h4 id="Anki_Vector_ResourcesSDK_BNKReader_Dispose_System_Boolean_" data-uid="Anki.Vector.ResourcesSDK.BNKReader.Dispose(System.Boolean)">Dispose(Boolean)</h4>
+  <div class="markdown level1 summary"><p>Dispose of the binary stream.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">disposing</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_Vector_ResourcesSDK_BNKReader_Events_" data-uid="Anki.Vector.ResourcesSDK.BNKReader.Events*"></a>
+  <h4 id="Anki_Vector_ResourcesSDK_BNKReader_Events" data-uid="Anki.Vector.ResourcesSDK.BNKReader.Events">Events()</h4>
+  <div class="markdown level1 summary"><p>This is used to enumerate the names and id of events used in the sound bank
+file</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;EventInfo&gt; Events()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Anki.Vector.ResourcesSDK.EventInfo.html">EventInfo</a>&gt;</td>
+        <td><p>A descriptor of the events</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_Vector_ResourcesSDK_BNKReader_Retain_" data-uid="Anki.Vector.ResourcesSDK.BNKReader.Retain*"></a>
+  <h4 id="Anki_Vector_ResourcesSDK_BNKReader_Retain" data-uid="Anki.Vector.ResourcesSDK.BNKReader.Retain">Retain()</h4>
+  <div class="markdown level1 summary"><p>Increment the reference count for this object.
+Decrement the count using Dispose().</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Retain()</code></pre>
+  </div>
+  
+  
+  <a id="Anki_Vector_ResourcesSDK_BNKReader_Sounds_" data-uid="Anki.Vector.ResourcesSDK.BNKReader.Sounds*"></a>
+  <h4 id="Anki_Vector_ResourcesSDK_BNKReader_Sounds" data-uid="Anki.Vector.ResourcesSDK.BNKReader.Sounds">Sounds()</h4>
+  <div class="markdown level1 summary"><p>This is used to enumerate the names and id of sounds used in the sound bank
+file</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;FileInfo&gt; Sounds()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Anki.Vector.ResourcesSDK.FileInfo.html">FileInfo</a>&gt;</td>
+        <td><p>A descriptor of the file, including its ids</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_Vector_ResourcesSDK_BNKReader_WEMForID_" data-uid="Anki.Vector.ResourcesSDK.BNKReader.WEMForID*"></a>
+  <h4 id="Anki_Vector_ResourcesSDK_BNKReader_WEMForID_System_UInt32_" data-uid="Anki.Vector.ResourcesSDK.BNKReader.WEMForID(System.UInt32)">WEMForID(UInt32)</h4>
+  <div class="markdown level1 summary"><p>Look up a WEM audio file object for the given file id</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public WEMReader WEMForID(uint WEMFileId)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td><span class="parametername">WEMFileId</span></td>
+        <td><p>The identifier of the WEM file</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Anki.Vector.ResourcesSDK.WEMReader.html">WEMReader</a></td>
+        <td><p>null on error, otherwise the object to access the file</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Anki_Vector_ResourcesSDK_BNKReader_WEMForID_System_UInt32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The Data Index section is a table of file identifiers and their
+positions/sizes embedded in the data segment.</p>
+</div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+  </div>
+  
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container-fluid">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright (c) 2020 by Randall Maas</span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

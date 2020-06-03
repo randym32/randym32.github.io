@@ -1,0 +1,548 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class WEMReader
+   | Resources SDK </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class WEMReader
+   | Resources SDK ">
+    <meta name="generator" content="docfx 2.54.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                  <img id="logo" class="png" src="../logo-small.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar"></div>
+          </div>
+        </nav>
+        
+    <div class="topcorner">
+      <form class="navbar-form navbar-right" role="search" id="search">
+        <div class="form-group">
+          <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+        </div>
+      </form>
+      </div>
+      </header>
+      <div class="container-fluid body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container-fluid body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search" style="margin-left: -15px">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+             <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Anki.AudioKinetic.WEMReader">
+  
+  
+  <h1 id="Anki_AudioKinetic_WEMReader" data-uid="Anki.AudioKinetic.WEMReader" class="text-break">Class WEMReader
+  </h1>
+  <div class="markdown level0 summary"><p>This is used to open up the WEM audio files and WEM segment in the SoundBank
+(BNK) file and setup something that NAudio can access.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">WEMReader</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Anki.AudioKinetic.html">Anki.AudioKinetic</a></h6>
+  <h6><strong>Assembly</strong>: Anki.Resources.SDK.dll</h6>
+  <h5 id="Anki_AudioKinetic_WEMReader_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class WEMReader : IDisposable</code></pre>
+  </div>
+  <h5 id="Anki_AudioKinetic_WEMReader_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>A lot of the format info came from:</p>
+<ul><li><a href="http://bobdoleowndu.github.io/mgsv/documentation/soundswapping.html">http://bobdoleowndu.github.io/mgsv/documentation/soundswapping.html</a></li><li><a href="https://github.com/losnoco/vgmstream/blob/master/src/meta/wwise.c">VGMStream&apos;s WWise support</a></li></ul>
+<p>Making this a kind of plug-in/extension to NAudio was done because it is
+NAudio is ubiquitous, powerful in ways that matter.  There is an existing
+framework (NVorbis) that we use here -- similar to how vgmstream uses
+libvorbis -- to decode the audiostream from Cozmo resources.  By
+integrating with NAudio, it is easy to hook into Anki.Vector.SDK, and many
+other potential programs without learning new tricks.</p>
+</div>
+  <h5 id="Anki_AudioKinetic_WEMReader_examples"><strong>Examples</strong></h5>
+  <p>You can pipe the sounds into NAudio using code like:</p>
+<pre><code>  var WEM = new WEMReader(&quot;some path to a .wem&quot;);
+  WEM.Open();
+  var waveOut      = new WaveOut();
+  var waveProvider = WEM.WaveProvider();
+  waveOut.Init(waveProvider);
+  waveOut.Play();
+  Thread.Sleep(30000);
+  waveOut.Stop();
+  waveProvider.Dispose();
+  waveOut.Dispose();</code></pre>
+
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  
+  <a id="Anki_AudioKinetic_WEMReader__ctor_" data-uid="Anki.AudioKinetic.WEMReader.#ctor*"></a>
+  <h4 id="Anki_AudioKinetic_WEMReader__ctor_System_IO_Stream_" data-uid="Anki.AudioKinetic.WEMReader.#ctor(System.IO.Stream)">WEMReader(Stream)</h4>
+  <div class="markdown level1 summary"><p>Provides access the a WEM sound file or segment</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public WEMReader(Stream stream)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
+        <td><span class="parametername">stream</span></td>
+        <td><p>Stream with the sound file embedded</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Anki_AudioKinetic_WEMReader__ctor_System_IO_Stream__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Call Open() to begin reading the file</p>
+</div>
+  
+  
+  <a id="Anki_AudioKinetic_WEMReader__ctor_" data-uid="Anki.AudioKinetic.WEMReader.#ctor*"></a>
+  <h4 id="Anki_AudioKinetic_WEMReader__ctor_System_String_" data-uid="Anki.AudioKinetic.WEMReader.#ctor(System.String)">WEMReader(String)</h4>
+  <div class="markdown level1 summary"><p>Provides access the a WEM sound file</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public WEMReader(string filePath)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">filePath</span></td>
+        <td><p>The path to the sound file</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Anki_AudioKinetic_WEMReader__ctor_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Call Open() to begin reading the file</p>
+</div>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="Anki_AudioKinetic_WEMReader_AudioFormat_" data-uid="Anki.AudioKinetic.WEMReader.AudioFormat*"></a>
+  <h4 id="Anki_AudioKinetic_WEMReader_AudioFormat" data-uid="Anki.AudioKinetic.WEMReader.AudioFormat">AudioFormat</h4>
+  <div class="markdown level1 summary"><p>The Audio format of the encapsulated data.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint AudioFormat { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Anki_AudioKinetic_WEMReader_AudioFormat_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><table><thead><tr><th>value</th><th>Description</th></tr></thead><tbody><tr><td>0xffff</td><td>WWise&apos;s Vorbis stream, using Tremor (fixed-point Vorbis)</td></tr><tr><td>0x0002</td><td>WWise IMA ADPCM</td></tr></tbody></table>
+</div>
+  
+  
+  <a id="Anki_AudioKinetic_WEMReader_AvgBytesPerSec_" data-uid="Anki.AudioKinetic.WEMReader.AvgBytesPerSec*"></a>
+  <h4 id="Anki_AudioKinetic_WEMReader_AvgBytesPerSec" data-uid="Anki.AudioKinetic.WEMReader.AvgBytesPerSec">AvgBytesPerSec</h4>
+  <div class="markdown level1 summary"><p>The average number of bytes per second</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint AvgBytesPerSec { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_AudioKinetic_WEMReader_BitsPerSample_" data-uid="Anki.AudioKinetic.WEMReader.BitsPerSample*"></a>
+  <h4 id="Anki_AudioKinetic_WEMReader_BitsPerSample" data-uid="Anki.AudioKinetic.WEMReader.BitsPerSample">BitsPerSample</h4>
+  <div class="markdown level1 summary"><p>The number of bits per sample</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint BitsPerSample { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_AudioKinetic_WEMReader_BlockAlign_" data-uid="Anki.AudioKinetic.WEMReader.BlockAlign*"></a>
+  <h4 id="Anki_AudioKinetic_WEMReader_BlockAlign" data-uid="Anki.AudioKinetic.WEMReader.BlockAlign">BlockAlign</h4>
+  <div class="markdown level1 summary"><p>The block alignment</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint BlockAlign { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_AudioKinetic_WEMReader_Duration_" data-uid="Anki.AudioKinetic.WEMReader.Duration*"></a>
+  <h4 id="Anki_AudioKinetic_WEMReader_Duration" data-uid="Anki.AudioKinetic.WEMReader.Duration">Duration</h4>
+  <div class="markdown level1 summary"><p>An estimate the duration of the sound, in seconds.
+(0 on error)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float Duration { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_AudioKinetic_WEMReader_NumChannels_" data-uid="Anki.AudioKinetic.WEMReader.NumChannels*"></a>
+  <h4 id="Anki_AudioKinetic_WEMReader_NumChannels" data-uid="Anki.AudioKinetic.WEMReader.NumChannels">NumChannels</h4>
+  <div class="markdown level1 summary"><p>The number of channels in the audio file</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint NumChannels { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_AudioKinetic_WEMReader_SampleRate_" data-uid="Anki.AudioKinetic.WEMReader.SampleRate*"></a>
+  <h4 id="Anki_AudioKinetic_WEMReader_SampleRate" data-uid="Anki.AudioKinetic.WEMReader.SampleRate">SampleRate</h4>
+  <div class="markdown level1 summary"><p>The number of samples per second from audio file</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint SampleRate { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="Anki_AudioKinetic_WEMReader_DataStream_" data-uid="Anki.AudioKinetic.WEMReader.DataStream*"></a>
+  <h4 id="Anki_AudioKinetic_WEMReader_DataStream" data-uid="Anki.AudioKinetic.WEMReader.DataStream">DataStream()</h4>
+  <div class="markdown level1 summary"><p>Returns a stream of the data for the sound, in its format</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Stream DataStream()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
+        <td><p>null on error, otherwise a stream of the data</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_AudioKinetic_WEMReader_Dispose_" data-uid="Anki.AudioKinetic.WEMReader.Dispose*"></a>
+  <h4 id="Anki_AudioKinetic_WEMReader_Dispose" data-uid="Anki.AudioKinetic.WEMReader.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"><p>Dispose of any extra resources</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+  
+  
+  <a id="Anki_AudioKinetic_WEMReader_Dispose_" data-uid="Anki.AudioKinetic.WEMReader.Dispose*"></a>
+  <h4 id="Anki_AudioKinetic_WEMReader_Dispose_System_Boolean_" data-uid="Anki.AudioKinetic.WEMReader.Dispose(System.Boolean)">Dispose(Boolean)</h4>
+  <div class="markdown level1 summary"><p>Dispose fo the binary stream</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">disposing</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_AudioKinetic_WEMReader_Open_" data-uid="Anki.AudioKinetic.WEMReader.Open*"></a>
+  <h4 id="Anki_AudioKinetic_WEMReader_Open" data-uid="Anki.AudioKinetic.WEMReader.Open">Open()</h4>
+  <div class="markdown level1 summary"><p>Opens the file and checks out its basic format</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Open()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>false if there was an error, true if the file was opened successfully</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_AudioKinetic_WEMReader_WaveProvider_" data-uid="Anki.AudioKinetic.WEMReader.WaveProvider*"></a>
+  <h4 id="Anki_AudioKinetic_WEMReader_WaveProvider" data-uid="Anki.AudioKinetic.WEMReader.WaveProvider">WaveProvider()</h4>
+  <div class="markdown level1 summary"><p>This provides an NAudio WaveProvider that can be used to play this file</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IWaveProvider WaveProvider()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">NAudio.Wave.IWaveProvider</span></td>
+        <td><p>null on error, otherwise a wave provider</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Anki_AudioKinetic_WEMReader_WaveProvider_examples">Examples</h5>
+  <pre><code>  var waveOut      = new WaveOut();
+  var waveProvider = WEM.WaveProvider();
+  waveOut.Init(waveProvider);
+  waveOut.Play();
+  Thread.Sleep(30000);
+  waveOut.Stop();
+  waveProvider.Dispose();
+  waveOut.Dispose();</code></pre>
+
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+  </div>
+  
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container-fluid">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright (c) 2020 by Randall Maas</span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

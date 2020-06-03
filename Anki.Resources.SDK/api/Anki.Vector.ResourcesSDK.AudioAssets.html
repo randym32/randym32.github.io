@@ -1,0 +1,569 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class AudioAssets
+   | Resources SDK </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class AudioAssets
+   | Resources SDK ">
+    <meta name="generator" content="docfx 2.53.1.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather+Sans:r,i,b,bi%7CExo+2:600&amp;subset=latin,latin-ext,latin,latin-ext" media="all">
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                  <img id="logo" class="png" src="../logo-small.png" alt="">
+                  Vector Resource SDK Documentation
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container-fluid hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+    <div class="topcorner">
+      <form class="navbar-form navbar-right" role="search" id="search">
+        <div class="form-group">
+          <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+        </div>
+      </form>
+      </div>
+      </header>
+      <div class="container-fluid body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container-fluid body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search" style="margin-left: -15px">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+             <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Anki.Vector.ResourcesSDK.AudioAssets">
+  
+  
+  <h1 id="Anki_Vector_ResourcesSDK_AudioAssets" data-uid="Anki.Vector.ResourcesSDK.AudioAssets" class="text-break">Class AudioAssets
+  </h1>
+  <div class="markdown level0 summary"><p>This class is used to wrap the audio assets in Vector and Cozmo.
+These assets are Audio-Kinetic WWise soundbank files and other supporting
+files.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">AudioAssets</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Anki.Vector.ResourcesSDK.html">Anki.Vector.ResourcesSDK</a></h6>
+  <h6><strong>Assembly</strong>: Anki.Vector.ResourcesSDK.dll</h6>
+  <h5 id="Anki_Vector_ResourcesSDK_AudioAssets_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class AudioAssets : IDisposable</code></pre>
+  </div>
+  <h5 id="Anki_Vector_ResourcesSDK_AudioAssets_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>This supports the audio assets as bare files, as is done with Vector
+resources; or in a zip file, as is done with Cozmo resources.</p>
+<p>Only features that are present in Cozmo or Vector are given much attention;
+other WWise features are ignored.</p>
+</div>
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  
+  <a id="Anki_Vector_ResourcesSDK_AudioAssets__ctor_" data-uid="Anki.Vector.ResourcesSDK.AudioAssets.#ctor*"></a>
+  <h4 id="Anki_Vector_ResourcesSDK_AudioAssets__ctor_RCM_IFolderWrapper_" data-uid="Anki.Vector.ResourcesSDK.AudioAssets.#ctor(RCM.IFolderWrapper)">AudioAssets(IFolderWrapper)</h4>
+  <div class="markdown level1 summary"><p>Creates an object that can access the audio system resources</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AudioAssets(IFolderWrapper folderWrapper)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="RCM.IFolderWrapper.html">IFolderWrapper</a></td>
+        <td><span class="parametername">folderWrapper</span></td>
+        <td><p>The file/archive wrapper that can access
+the sound bank information</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_Vector_ResourcesSDK_AudioAssets__ctor_" data-uid="Anki.Vector.ResourcesSDK.AudioAssets.#ctor*"></a>
+  <h4 id="Anki_Vector_ResourcesSDK_AudioAssets__ctor_System_String_" data-uid="Anki.Vector.ResourcesSDK.AudioAssets.#ctor(System.String)">AudioAssets(String)</h4>
+  <div class="markdown level1 summary"><p>Creates an object that can access the audio system resources</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AudioAssets(string basePath)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">basePath</span></td>
+        <td><p>A path a zip file, or a /sound folder, which
+can contain bare files, or an AudioAssets.zip container</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Anki_Vector_ResourcesSDK_AudioAssets__ctor_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This automatically detects if the audio assets are wrapped or not</p>
+</div>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="Anki_Vector_ResourcesSDK_AudioAssets_Languages_" data-uid="Anki.Vector.ResourcesSDK.AudioAssets.Languages*"></a>
+  <h4 id="Anki_Vector_ResourcesSDK_AudioAssets_Languages" data-uid="Anki.Vector.ResourcesSDK.AudioAssets.Languages">Languages</h4>
+  <div class="markdown level1 summary"><p>The languages within the audio assets system</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ICollection&lt;string&gt; Languages { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Anki_Vector_ResourcesSDK_AudioAssets_Languages_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>These are similar to locales, but the names are different;
+it also incldues a special effects language (SFX)</p>
+</div>
+  
+  
+  <a id="Anki_Vector_ResourcesSDK_AudioAssets_Plugins_" data-uid="Anki.Vector.ResourcesSDK.AudioAssets.Plugins*"></a>
+  <h4 id="Anki_Vector_ResourcesSDK_AudioAssets_Plugins" data-uid="Anki.Vector.ResourcesSDK.AudioAssets.Plugins">Plugins</h4>
+  <div class="markdown level1 summary"><p>A list of the audio plug-ins in the sound processing pipeline</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ICollection&lt;string&gt; Plugins { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_Vector_ResourcesSDK_AudioAssets_SoundBanks_" data-uid="Anki.Vector.ResourcesSDK.AudioAssets.SoundBanks*"></a>
+  <h4 id="Anki_Vector_ResourcesSDK_AudioAssets_SoundBanks" data-uid="Anki.Vector.ResourcesSDK.AudioAssets.SoundBanks">SoundBanks</h4>
+  <div class="markdown level1 summary"><p>Retrieves a list of the sound banks</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ICollection&lt;string&gt; SoundBanks { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Anki_Vector_ResourcesSDK_AudioAssets_SoundBanks_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The banks can be localized, but there isn't any reason here</p>
+</div>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="Anki_Vector_ResourcesSDK_AudioAssets_Dispose_" data-uid="Anki.Vector.ResourcesSDK.AudioAssets.Dispose*"></a>
+  <h4 id="Anki_Vector_ResourcesSDK_AudioAssets_Dispose" data-uid="Anki.Vector.ResourcesSDK.AudioAssets.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"><p>Dispose of any internal resources</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+  
+  
+  <a id="Anki_Vector_ResourcesSDK_AudioAssets_Dispose_" data-uid="Anki.Vector.ResourcesSDK.AudioAssets.Dispose*"></a>
+  <h4 id="Anki_Vector_ResourcesSDK_AudioAssets_Dispose_System_Boolean_" data-uid="Anki.Vector.ResourcesSDK.AudioAssets.Dispose(System.Boolean)">Dispose(Boolean)</h4>
+  <div class="markdown level1 summary"><p>Dispose of the archive</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">disposing</span></td>
+        <td><p>true, right?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_Vector_ResourcesSDK_AudioAssets_IDForString_" data-uid="Anki.Vector.ResourcesSDK.AudioAssets.IDForString*"></a>
+  <h4 id="Anki_Vector_ResourcesSDK_AudioAssets_IDForString_System_String_" data-uid="Anki.Vector.ResourcesSDK.AudioAssets.IDForString(System.String)">IDForString(String)</h4>
+  <div class="markdown level1 summary"><p>Compute the AudioKinetic WWise ID from the string</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static uint IDForString(string str)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">str</span></td>
+        <td><p>The string</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td><p>The 32-bit ID for the string</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_Vector_ResourcesSDK_AudioAssets_Retain_" data-uid="Anki.Vector.ResourcesSDK.AudioAssets.Retain*"></a>
+  <h4 id="Anki_Vector_ResourcesSDK_AudioAssets_Retain" data-uid="Anki.Vector.ResourcesSDK.AudioAssets.Retain">Retain()</h4>
+  <div class="markdown level1 summary"><p>Increment the reference count for this object.
+Decrement the count using Dispose().</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Retain()</code></pre>
+  </div>
+  
+  
+  <a id="Anki_Vector_ResourcesSDK_AudioAssets_SoundBank_" data-uid="Anki.Vector.ResourcesSDK.AudioAssets.SoundBank*"></a>
+  <h4 id="Anki_Vector_ResourcesSDK_AudioAssets_SoundBank_System_String_System_String_" data-uid="Anki.Vector.ResourcesSDK.AudioAssets.SoundBank(System.String,System.String)">SoundBank(String, String)</h4>
+  <div class="markdown level1 summary"><p>Opens the file sound bank reader for the given sound bank name.  The
+path to the file is looked up from the configuration file.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BNKReader SoundBank(string soundBankName, string language = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">soundBankName</span></td>
+        <td><p>The name of the sound bank file; a caseless
+match is used</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">language</span></td>
+        <td><p>A language specifier, to select from the
+alternatives; if NULL the first bank found (without regard to its
+language) is used. (Ignored for now).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Anki.Vector.ResourcesSDK.BNKReader.html">BNKReader</a></td>
+        <td><p>null on error, otherwise the sound bank reader</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Anki_Vector_ResourcesSDK_AudioAssets_SoundBank_System_String_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The banks can be localized, but there isn't any reason here</p>
+</div>
+  
+  
+  <a id="Anki_Vector_ResourcesSDK_AudioAssets_StringForID_" data-uid="Anki.Vector.ResourcesSDK.AudioAssets.StringForID*"></a>
+  <h4 id="Anki_Vector_ResourcesSDK_AudioAssets_StringForID_System_UInt32_" data-uid="Anki.Vector.ResourcesSDK.AudioAssets.StringForID(System.UInt32)">StringForID(UInt32)</h4>
+  <div class="markdown level1 summary"><p>Looks up a string for an AudioKinetic WWise ID.
+(This only works if the name was previously used to compute the ID).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string StringForID(uint ID)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td><span class="parametername">ID</span></td>
+        <td><p>A 32-bit ID</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><p>null, if the string is not known; otherwis the string that produces the ID</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_Vector_ResourcesSDK_AudioAssets_WEM_" data-uid="Anki.Vector.ResourcesSDK.AudioAssets.WEM*"></a>
+  <h4 id="Anki_Vector_ResourcesSDK_AudioAssets_WEM_System_UInt32_System_String_" data-uid="Anki.Vector.ResourcesSDK.AudioAssets.WEM(System.UInt32,System.String)">WEM(UInt32, String)</h4>
+  <div class="markdown level1 summary"><p>Opens the WEM file corresponding to the given file ID.
+The file may be embedded within the soundbank file, or may be external.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public WEMReader WEM(uint fileID, string language)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td><span class="parametername">fileID</span></td>
+        <td><p>The identifier for the WEM to tretireve</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">language</span></td>
+        <td><p>A language specifier, to select from the
+alternatives; if NULL the first bank found (without regard to its
+language) is used. (Ignored for now).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Anki.Vector.ResourcesSDK.WEMReader.html">WEMReader</a></td>
+        <td><p>An object that can read the WEM file</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Anki_Vector_ResourcesSDK_AudioAssets_WEM_System_UInt32_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This scans all of the sound banks until it finds one</p>
+</div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+  </div>
+  
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container-fluid">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright (c) 2020 by Randall Maas</span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
