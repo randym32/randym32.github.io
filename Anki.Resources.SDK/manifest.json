@@ -18,7 +18,7 @@
       "output": {
         ".html": {
           "relative_path": "api/gripes.html",
-          "hash": "0wndcEAcIkGfUARr3T3vUQ=="
+          "hash": "ZB8G3nWRxfPC5rakyBEcMw=="
         }
       },
       "is_incremental": false,
@@ -45,7 +45,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "TrUFYwg8N7b4pEpPF7FfEg=="
+          "hash": "2RkWLZF5WcGIzHNZZWrN/g=="
         }
       },
       "is_incremental": false,
@@ -417,7 +417,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.Resources.SDK.Assets.html",
-          "hash": "3z6j4ed0X34S9YQbUKt/Yw=="
+          "hash": "+fFQcOBCoIeWRclAwQeNFA=="
         }
       },
       "is_incremental": false,
@@ -477,7 +477,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.Resources.SDK.CompositeImage.html",
-          "hash": "u1CLPxcl5xdlOvtTtQLq5Q=="
+          "hash": "B6IK+suOrl07RbnD8d4hYg=="
         }
       },
       "is_incremental": false,
@@ -908,13 +908,13 @@
           "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 3,
-          "skipped_file_count": 2
+          "skipped_file_count": 3
         },
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 68,
-          "skipped_file_count": 68
+          "skipped_file_count": 32
         },
         "TocDocumentProcessor": {
           "can_incremental": false,
