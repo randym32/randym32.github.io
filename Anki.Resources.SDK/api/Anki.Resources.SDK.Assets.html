@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class Assets
    | Resources SDK ">
-    <meta name="generator" content="docfx 2.54.0.0">
+    <meta name="generator" content="docfx 2.55.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -83,7 +83,7 @@
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
-    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level0"><span class="xref">System.Object</span></div>
     <div class="level1"><span class="xref">Assets</span></div>
   </div>
   <div classs="implements">
@@ -233,6 +233,83 @@
       </tr>
     </tbody>
   </table>
+  
+  
+  <h4 id="Anki_Resources_SDK_Assets_ConditionSchema" data-uid="Anki.Resources.SDK.Assets.ConditionSchema">ConditionSchema</h4>
+  <div class="markdown level1 summary"><p>The condition node schema</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly ConditionSchema ConditionSchema</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Anki.Resources.SDK.ConditionSchema.html">ConditionSchema</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="Anki_Resources_SDK_Assets_DisplaySize" data-uid="Anki.Resources.SDK.Assets.DisplaySize">DisplaySize</h4>
+  <div class="markdown level1 summary"><p>The size of the LCD</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly Size DisplaySize</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Drawing.Size</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="Anki_Resources_SDK_Assets_VisionScheduleConfig" data-uid="Anki.Resources.SDK.Assets.VisionScheduleConfig">VisionScheduleConfig</h4>
+  <div class="markdown level1 summary"><p>The vision scheduler configuration specifies the frequency to run a
+given image processing step, for each of the vision processing
+subsystems modes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly IReadOnlyDictionary&lt;string, VisionModeSetting&gt; VisionScheduleConfig</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>, <a class="xref" href="Anki.Resources.SDK.VisionModeSetting.html">VisionModeSetting</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="properties">Properties
   </h3>
   
@@ -263,6 +340,34 @@
   </table>
   
   
+  <a id="Anki_Resources_SDK_Assets_AnimationTriggerName2GroupName_" data-uid="Anki.Resources.SDK.Assets.AnimationTriggerName2GroupName*"></a>
+  <h4 id="Anki_Resources_SDK_Assets_AnimationTriggerName2GroupName" data-uid="Anki.Resources.SDK.Assets.AnimationTriggerName2GroupName">AnimationTriggerName2GroupName</h4>
+  <div class="markdown level1 summary"><p>Maps the animation trigger name to animation group filename (without the extension)
+The animation name.  Effectively this is the JSON file (without the
+“.json” suffix) for the animation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyDictionary&lt;string, string&gt; AnimationTriggerName2GroupName { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="Anki_Resources_SDK_Assets_AnimationTriggerNames_" data-uid="Anki.Resources.SDK.Assets.AnimationTriggerNames*"></a>
   <h4 id="Anki_Resources_SDK_Assets_AnimationTriggerNames" data-uid="Anki.Resources.SDK.Assets.AnimationTriggerNames">AnimationTriggerNames</h4>
   <div class="markdown level1 summary"><p>Provides a list of the animation trigger names.</p>
@@ -283,6 +388,32 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1">IReadOnlyCollection</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_Resources_SDK_Assets_AnimMultiplyDefined_" data-uid="Anki.Resources.SDK.Assets.AnimMultiplyDefined*"></a>
+  <h4 id="Anki_Resources_SDK_Assets_AnimMultiplyDefined" data-uid="Anki.Resources.SDK.Assets.AnimMultiplyDefined">AnimMultiplyDefined</h4>
+  <div class="markdown level1 summary"><p>Tracks which animation clips are defined in multiple files.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyDictionary&lt;string, string&gt; AnimMultiplyDefined { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -367,6 +498,33 @@
   </table>
   
   
+  <a id="Anki_Resources_SDK_Assets_Classifiers_" data-uid="Anki.Resources.SDK.Assets.Classifiers*"></a>
+  <h4 id="Anki_Resources_SDK_Assets_Classifiers" data-uid="Anki.Resources.SDK.Assets.Classifiers">Classifiers</h4>
+  <div class="markdown level1 summary"><p>A table of the classifiers (and detectors) included or configured in
+the resources.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyDictionary&lt;string, ClassifierInfo&gt; Classifiers { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>, <a class="xref" href="Anki.Resources.SDK.ClassifierInfo.html">ClassifierInfo</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="Anki_Resources_SDK_Assets_CubeLightsTriggerNames_" data-uid="Anki.Resources.SDK.Assets.CubeLightsTriggerNames*"></a>
   <h4 id="Anki_Resources_SDK_Assets_CubeLightsTriggerNames" data-uid="Anki.Resources.SDK.Assets.CubeLightsTriggerNames">CubeLightsTriggerNames</h4>
   <div class="markdown level1 summary"><p>Provides a list of the cube light animation trigger names.</p>
@@ -413,6 +571,32 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>, <a class="xref" href="Anki.Resources.SDK.EmotionEvent.html">EmotionEvent</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_Resources_SDK_Assets_EmotionRanges_" data-uid="Anki.Resources.SDK.Assets.EmotionRanges*"></a>
+  <h4 id="Anki_Resources_SDK_Assets_EmotionRanges" data-uid="Anki.Resources.SDK.Assets.EmotionRanges">EmotionRanges</h4>
+  <div class="markdown level1 summary"><p>The allowed value range for each dimension of the emotion</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyDictionary&lt;string, MinMax&gt; EmotionRanges { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>, <a class="xref" href="Anki.Resources.SDK.MinMax.html">MinMax</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -471,6 +655,32 @@
   </table>
   
   
+  <a id="Anki_Resources_SDK_Assets_ImageLayoutTriggerName2Filename_" data-uid="Anki.Resources.SDK.Assets.ImageLayoutTriggerName2Filename*"></a>
+  <h4 id="Anki_Resources_SDK_Assets_ImageLayoutTriggerName2Filename" data-uid="Anki.Resources.SDK.Assets.ImageLayoutTriggerName2Filename">ImageLayoutTriggerName2Filename</h4>
+  <div class="markdown level1 summary"><p>Maps the trigger name to the display layout filename.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyDictionary&lt;string, string&gt; ImageLayoutTriggerName2Filename { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="Anki_Resources_SDK_Assets_ImageLayoutTriggerNames_" data-uid="Anki.Resources.SDK.Assets.ImageLayoutTriggerNames*"></a>
   <h4 id="Anki_Resources_SDK_Assets_ImageLayoutTriggerNames" data-uid="Anki.Resources.SDK.Assets.ImageLayoutTriggerNames">ImageLayoutTriggerNames</h4>
   <div class="markdown level1 summary"><p>Provides a list of the image layout trigger names.</p>
@@ -497,6 +707,32 @@
   </table>
   
   
+  <a id="Anki_Resources_SDK_Assets_ImageMapTriggerName2Filename_" data-uid="Anki.Resources.SDK.Assets.ImageMapTriggerName2Filename*"></a>
+  <h4 id="Anki_Resources_SDK_Assets_ImageMapTriggerName2Filename" data-uid="Anki.Resources.SDK.Assets.ImageMapTriggerName2Filename">ImageMapTriggerName2Filename</h4>
+  <div class="markdown level1 summary"><p>Maps the trigger name to the image map filename.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyDictionary&lt;string, string&gt; ImageMapTriggerName2Filename { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="Anki_Resources_SDK_Assets_IndependentSpriteNames_" data-uid="Anki.Resources.SDK.Assets.IndependentSpriteNames*"></a>
   <h4 id="Anki_Resources_SDK_Assets_IndependentSpriteNames" data-uid="Anki.Resources.SDK.Assets.IndependentSpriteNames">IndependentSpriteNames</h4>
   <div class="markdown level1 summary"><p>Provides a list of the independent sprite names</p>
@@ -517,6 +753,58 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1">IReadOnlyCollection</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_Resources_SDK_Assets_Servers_" data-uid="Anki.Resources.SDK.Assets.Servers*"></a>
+  <h4 id="Anki_Resources_SDK_Assets_Servers" data-uid="Anki.Resources.SDK.Assets.Servers">Servers</h4>
+  <div class="markdown level1 summary"><p>Provides a table of the servers and their addresses</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyDictionary&lt;string, string&gt; Servers { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_Resources_SDK_Assets_SimpleMoods_" data-uid="Anki.Resources.SDK.Assets.SimpleMoods*"></a>
+  <h4 id="Anki_Resources_SDK_Assets_SimpleMoods" data-uid="Anki.Resources.SDK.Assets.SimpleMoods">SimpleMoods</h4>
+  <div class="markdown level1 summary"><p>The built in table of simple moods.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyDictionary&lt;string, string&gt; SimpleMoods { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -605,118 +893,6 @@ above. Default: “unmatched_intent”</p>
   </h3>
   
   
-  <a id="Anki_Resources_SDK_Assets_Analyze_" data-uid="Anki.Resources.SDK.Assets.Analyze*"></a>
-  <h4 id="Anki_Resources_SDK_Assets_Analyze_System_Text_StringBuilder_Anki_Resources_SDK_SpriteSequence_" data-uid="Anki.Resources.SDK.Assets.Analyze(System.Text.StringBuilder,Anki.Resources.SDK.SpriteSequence)">Analyze(StringBuilder, SpriteSequence)</h4>
-  <div class="markdown level1 summary"><p>Analyzes the sprite sequence for issues</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void Analyze(StringBuilder errs, SpriteSequence spriteSequence)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.text.stringbuilder">StringBuilder</a></td>
-        <td><span class="parametername">errs</span></td>
-        <td><p>The errors found within the animation clip</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Anki.Resources.SDK.SpriteSequence.html">SpriteSequence</a></td>
-        <td><span class="parametername">spriteSequence</span></td>
-        <td><p>The sprite sequence to analyze</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="Anki_Resources_SDK_Assets_Analyze_" data-uid="Anki.Resources.SDK.Assets.Analyze*"></a>
-  <h4 id="Anki_Resources_SDK_Assets_Analyze_System_Text_StringBuilder_System_String_Anki_Resources_SDK_CompositeImage_" data-uid="Anki.Resources.SDK.Assets.Analyze(System.Text.StringBuilder,System.String,Anki.Resources.SDK.CompositeImage)">Analyze(StringBuilder, String, CompositeImage)</h4>
-  <div class="markdown level1 summary"><p>Analyzes the composite image structure</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Analyze(StringBuilder errs, string errKey, CompositeImage compositeImage)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.text.stringbuilder">StringBuilder</a></td>
-        <td><span class="parametername">errs</span></td>
-        <td><p>The errors found within the animation clip</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
-        <td><span class="parametername">errKey</span></td>
-        <td><p>The label to help identify which animation clip this
-error is referring to</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Anki.Resources.SDK.CompositeImage.html">CompositeImage</a></td>
-        <td><span class="parametername">compositeImage</span></td>
-        <td><p>The composite image to check</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="Anki_Resources_SDK_Assets_AnalyzeAnimation_" data-uid="Anki.Resources.SDK.Assets.AnalyzeAnimation*"></a>
-  <h4 id="Anki_Resources_SDK_Assets_AnalyzeAnimation_System_Text_StringBuilder_System_String_" data-uid="Anki.Resources.SDK.Assets.AnalyzeAnimation(System.Text.StringBuilder,System.String)">AnalyzeAnimation(StringBuilder, String)</h4>
-  <div class="markdown level1 summary"><p>Analyzes an animation clip, starting from the key frames</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void AnalyzeAnimation(StringBuilder errs, string animationName)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.text.stringbuilder">StringBuilder</a></td>
-        <td><span class="parametername">errs</span></td>
-        <td><p>The errors found within the animation clip</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
-        <td><span class="parametername">animationName</span></td>
-        <td><p>The animation name (the name of the clip not the trigger name)</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
   <a id="Anki_Resources_SDK_Assets_AnalyzeAnimationTriggerName_" data-uid="Anki.Resources.SDK.Assets.AnalyzeAnimationTriggerName*"></a>
   <h4 id="Anki_Resources_SDK_Assets_AnalyzeAnimationTriggerName_System_Text_StringBuilder_System_String_" data-uid="Anki.Resources.SDK.Assets.AnalyzeAnimationTriggerName(System.Text.StringBuilder,System.String)">AnalyzeAnimationTriggerName(StringBuilder, String)</h4>
   <div class="markdown level1 summary"><p>Analyzes the animation(s) and support files implied by the given
@@ -747,129 +923,6 @@ animation trigger name.</p>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
         <td><span class="parametername">triggerName</span></td>
         <td><p>The animation trigger name</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="Anki_Resources_SDK_Assets_AnalyzeCondition_" data-uid="Anki.Resources.SDK.Assets.AnalyzeCondition*"></a>
-  <h4 id="Anki_Resources_SDK_Assets_AnalyzeCondition_System_Text_StringBuilder_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="Anki.Resources.SDK.Assets.AnalyzeCondition(System.Text.StringBuilder,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">AnalyzeCondition(StringBuilder, String, Dictionary&lt;String, Object&gt;)</h4>
-  <div class="markdown level1 summary"><p>This is used to help analyze a condition with in a behavior node</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void AnalyzeCondition(StringBuilder errs, string errKey, Dictionary&lt;string, object&gt; cond)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.text.stringbuilder">StringBuilder</a></td>
-        <td><span class="parametername">errs</span></td>
-        <td><p>The errors found within the condition tree</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
-        <td><span class="parametername">errKey</span></td>
-        <td><p>The label to help identify which condition this
-error is referring to</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>&gt;</td>
-        <td><span class="parametername">cond</span></td>
-        <td><p>The condition structure</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="Anki_Resources_SDK_Assets_AnalyzeIndependentSprite_" data-uid="Anki.Resources.SDK.Assets.AnalyzeIndependentSprite*"></a>
-  <h4 id="Anki_Resources_SDK_Assets_AnalyzeIndependentSprite_System_String_" data-uid="Anki.Resources.SDK.Assets.AnalyzeIndependentSprite(System.String)">AnalyzeIndependentSprite(String)</h4>
-  <div class="markdown level1 summary"><p>Analyzes the independent sprite for issues</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public StringBuilder AnalyzeIndependentSprite(string spriteName)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
-        <td><span class="parametername">spriteName</span></td>
-        <td><p>The name of the independent sprite to examine</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.text.stringbuilder">StringBuilder</a></td>
-        <td><p>The errors, if any</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="Anki_Resources_SDK_Assets_AnalyzeMaps_" data-uid="Anki.Resources.SDK.Assets.AnalyzeMaps*"></a>
-  <h4 id="Anki_Resources_SDK_Assets_AnalyzeMaps_System_Text_StringBuilder_System_String_" data-uid="Anki.Resources.SDK.Assets.AnalyzeMaps(System.Text.StringBuilder,System.String)">AnalyzeMaps(StringBuilder, String)</h4>
-  <div class="markdown level1 summary"><p>Analyzes the image map structure</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void AnalyzeMaps(StringBuilder errs, string errKey)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.text.stringbuilder">StringBuilder</a></td>
-        <td><span class="parametername">errs</span></td>
-        <td><p>The errors found within the image maps</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
-        <td><span class="parametername">errKey</span></td>
-        <td><p>The label to help identify which image map this
-error is referring to</p>
 </td>
       </tr>
     </tbody>
@@ -958,7 +1011,7 @@ error is referring to</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></td>
+        <td><span class="xref">System.Object</span></td>
         <td><p>null on error, otherwise an animation object of type
 Anki.VectAnim.Keyframes, Anki.CozmoAnim.Keyframes or TBD JSON
 animation</p>
@@ -1123,7 +1176,7 @@ animation</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>&gt;</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>, <span class="xref">System.Object</span>&gt;</td>
         <td><span class="parametername">cond</span></td>
         <td><p>The condition JSON structure</p>
 </td>
@@ -1269,7 +1322,7 @@ animation</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.drawing.bitmap">Bitmap</a></td>
+        <td><span class="xref">System.Drawing.Bitmap</span></td>
         <td><p>The sprite</p>
 </td>
       </tr>

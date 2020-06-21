@@ -5694,38 +5694,6 @@ references:
   isSpec: "True"
   fullName: Anki.Resources.SDK.Assets.Assets
   nameWithType: Assets.Assets
-- uid: Anki.Resources.SDK.Assets.Analyze(System.Text.StringBuilder,Anki.Resources.SDK.SpriteSequence)
-  name: Analyze(StringBuilder, SpriteSequence)
-  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_Analyze_System_Text_StringBuilder_Anki_Resources_SDK_SpriteSequence_
-  commentId: M:Anki.Resources.SDK.Assets.Analyze(System.Text.StringBuilder,Anki.Resources.SDK.SpriteSequence)
-  fullName: Anki.Resources.SDK.Assets.Analyze(System.Text.StringBuilder, Anki.Resources.SDK.SpriteSequence)
-  nameWithType: Assets.Analyze(StringBuilder, SpriteSequence)
-- uid: Anki.Resources.SDK.Assets.Analyze(System.Text.StringBuilder,System.String,Anki.Resources.SDK.CompositeImage)
-  name: Analyze(StringBuilder, String, CompositeImage)
-  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_Analyze_System_Text_StringBuilder_System_String_Anki_Resources_SDK_CompositeImage_
-  commentId: M:Anki.Resources.SDK.Assets.Analyze(System.Text.StringBuilder,System.String,Anki.Resources.SDK.CompositeImage)
-  fullName: Anki.Resources.SDK.Assets.Analyze(System.Text.StringBuilder, System.String, Anki.Resources.SDK.CompositeImage)
-  nameWithType: Assets.Analyze(StringBuilder, String, CompositeImage)
-- uid: Anki.Resources.SDK.Assets.Analyze*
-  name: Analyze
-  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_Analyze_
-  commentId: Overload:Anki.Resources.SDK.Assets.Analyze
-  isSpec: "True"
-  fullName: Anki.Resources.SDK.Assets.Analyze
-  nameWithType: Assets.Analyze
-- uid: Anki.Resources.SDK.Assets.AnalyzeAnimation(System.Text.StringBuilder,System.String)
-  name: AnalyzeAnimation(StringBuilder, String)
-  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_AnalyzeAnimation_System_Text_StringBuilder_System_String_
-  commentId: M:Anki.Resources.SDK.Assets.AnalyzeAnimation(System.Text.StringBuilder,System.String)
-  fullName: Anki.Resources.SDK.Assets.AnalyzeAnimation(System.Text.StringBuilder, System.String)
-  nameWithType: Assets.AnalyzeAnimation(StringBuilder, String)
-- uid: Anki.Resources.SDK.Assets.AnalyzeAnimation*
-  name: AnalyzeAnimation
-  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_AnalyzeAnimation_
-  commentId: Overload:Anki.Resources.SDK.Assets.AnalyzeAnimation
-  isSpec: "True"
-  fullName: Anki.Resources.SDK.Assets.AnalyzeAnimation
-  nameWithType: Assets.AnalyzeAnimation
 - uid: Anki.Resources.SDK.Assets.AnalyzeAnimationTriggerName(System.Text.StringBuilder,System.String)
   name: AnalyzeAnimationTriggerName(StringBuilder, String)
   href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_AnalyzeAnimationTriggerName_System_Text_StringBuilder_System_String_
@@ -5739,48 +5707,6 @@ references:
   isSpec: "True"
   fullName: Anki.Resources.SDK.Assets.AnalyzeAnimationTriggerName
   nameWithType: Assets.AnalyzeAnimationTriggerName
-- uid: Anki.Resources.SDK.Assets.AnalyzeCondition(System.Text.StringBuilder,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  name: AnalyzeCondition(StringBuilder, String, Dictionary<String, Object>)
-  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_AnalyzeCondition_System_Text_StringBuilder_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__
-  commentId: M:Anki.Resources.SDK.Assets.AnalyzeCondition(System.Text.StringBuilder,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  name.vb: AnalyzeCondition(StringBuilder, String, Dictionary(Of String, Object))
-  fullName: Anki.Resources.SDK.Assets.AnalyzeCondition(System.Text.StringBuilder, System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
-  fullName.vb: Anki.Resources.SDK.Assets.AnalyzeCondition(System.Text.StringBuilder, System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
-  nameWithType: Assets.AnalyzeCondition(StringBuilder, String, Dictionary<String, Object>)
-  nameWithType.vb: Assets.AnalyzeCondition(StringBuilder, String, Dictionary(Of String, Object))
-- uid: Anki.Resources.SDK.Assets.AnalyzeCondition*
-  name: AnalyzeCondition
-  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_AnalyzeCondition_
-  commentId: Overload:Anki.Resources.SDK.Assets.AnalyzeCondition
-  isSpec: "True"
-  fullName: Anki.Resources.SDK.Assets.AnalyzeCondition
-  nameWithType: Assets.AnalyzeCondition
-- uid: Anki.Resources.SDK.Assets.AnalyzeIndependentSprite(System.String)
-  name: AnalyzeIndependentSprite(String)
-  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_AnalyzeIndependentSprite_System_String_
-  commentId: M:Anki.Resources.SDK.Assets.AnalyzeIndependentSprite(System.String)
-  fullName: Anki.Resources.SDK.Assets.AnalyzeIndependentSprite(System.String)
-  nameWithType: Assets.AnalyzeIndependentSprite(String)
-- uid: Anki.Resources.SDK.Assets.AnalyzeIndependentSprite*
-  name: AnalyzeIndependentSprite
-  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_AnalyzeIndependentSprite_
-  commentId: Overload:Anki.Resources.SDK.Assets.AnalyzeIndependentSprite
-  isSpec: "True"
-  fullName: Anki.Resources.SDK.Assets.AnalyzeIndependentSprite
-  nameWithType: Assets.AnalyzeIndependentSprite
-- uid: Anki.Resources.SDK.Assets.AnalyzeMaps(System.Text.StringBuilder,System.String)
-  name: AnalyzeMaps(StringBuilder, String)
-  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_AnalyzeMaps_System_Text_StringBuilder_System_String_
-  commentId: M:Anki.Resources.SDK.Assets.AnalyzeMaps(System.Text.StringBuilder,System.String)
-  fullName: Anki.Resources.SDK.Assets.AnalyzeMaps(System.Text.StringBuilder, System.String)
-  nameWithType: Assets.AnalyzeMaps(StringBuilder, String)
-- uid: Anki.Resources.SDK.Assets.AnalyzeMaps*
-  name: AnalyzeMaps
-  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_AnalyzeMaps_
-  commentId: Overload:Anki.Resources.SDK.Assets.AnalyzeMaps
-  isSpec: "True"
-  fullName: Anki.Resources.SDK.Assets.AnalyzeMaps
-  nameWithType: Assets.AnalyzeMaps
 - uid: Anki.Resources.SDK.Assets.AnimationDuration(System.String)
   name: AnimationDuration(String)
   href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_AnimationDuration_System_String_
@@ -5833,6 +5759,19 @@ references:
   isSpec: "True"
   fullName: Anki.Resources.SDK.Assets.AnimationNames
   nameWithType: Assets.AnimationNames
+- uid: Anki.Resources.SDK.Assets.AnimationTriggerName2GroupName
+  name: AnimationTriggerName2GroupName
+  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_AnimationTriggerName2GroupName
+  commentId: P:Anki.Resources.SDK.Assets.AnimationTriggerName2GroupName
+  fullName: Anki.Resources.SDK.Assets.AnimationTriggerName2GroupName
+  nameWithType: Assets.AnimationTriggerName2GroupName
+- uid: Anki.Resources.SDK.Assets.AnimationTriggerName2GroupName*
+  name: AnimationTriggerName2GroupName
+  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_AnimationTriggerName2GroupName_
+  commentId: Overload:Anki.Resources.SDK.Assets.AnimationTriggerName2GroupName
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.Assets.AnimationTriggerName2GroupName
+  nameWithType: Assets.AnimationTriggerName2GroupName
 - uid: Anki.Resources.SDK.Assets.AnimationTriggerNames
   name: AnimationTriggerNames
   href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_AnimationTriggerNames
@@ -5846,6 +5785,19 @@ references:
   isSpec: "True"
   fullName: Anki.Resources.SDK.Assets.AnimationTriggerNames
   nameWithType: Assets.AnimationTriggerNames
+- uid: Anki.Resources.SDK.Assets.AnimMultiplyDefined
+  name: AnimMultiplyDefined
+  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_AnimMultiplyDefined
+  commentId: P:Anki.Resources.SDK.Assets.AnimMultiplyDefined
+  fullName: Anki.Resources.SDK.Assets.AnimMultiplyDefined
+  nameWithType: Assets.AnimMultiplyDefined
+- uid: Anki.Resources.SDK.Assets.AnimMultiplyDefined*
+  name: AnimMultiplyDefined
+  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_AnimMultiplyDefined_
+  commentId: Overload:Anki.Resources.SDK.Assets.AnimMultiplyDefined
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.Assets.AnimMultiplyDefined
+  nameWithType: Assets.AnimMultiplyDefined
 - uid: Anki.Resources.SDK.Assets.App2UserIntent
   name: App2UserIntent
   href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_App2UserIntent
@@ -5910,6 +5862,19 @@ references:
   isSpec: "True"
   fullName: Anki.Resources.SDK.Assets.BlackJack
   nameWithType: Assets.BlackJack
+- uid: Anki.Resources.SDK.Assets.Classifiers
+  name: Classifiers
+  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_Classifiers
+  commentId: P:Anki.Resources.SDK.Assets.Classifiers
+  fullName: Anki.Resources.SDK.Assets.Classifiers
+  nameWithType: Assets.Classifiers
+- uid: Anki.Resources.SDK.Assets.Classifiers*
+  name: Classifiers
+  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_Classifiers_
+  commentId: Overload:Anki.Resources.SDK.Assets.Classifiers
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.Assets.Classifiers
+  nameWithType: Assets.Classifiers
 - uid: Anki.Resources.SDK.Assets.Cloud2Response
   name: Cloud2Response
   href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_Cloud2Response
@@ -5935,6 +5900,12 @@ references:
   isSpec: "True"
   fullName: Anki.Resources.SDK.Assets.CompositeImageForTrigger
   nameWithType: Assets.CompositeImageForTrigger
+- uid: Anki.Resources.SDK.Assets.ConditionSchema
+  name: ConditionSchema
+  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_ConditionSchema
+  commentId: F:Anki.Resources.SDK.Assets.ConditionSchema
+  fullName: Anki.Resources.SDK.Assets.ConditionSchema
+  nameWithType: Assets.ConditionSchema
 - uid: Anki.Resources.SDK.Assets.ConditionToString(System.Collections.Generic.IReadOnlyDictionary{System.String,System.Object})
   name: ConditionToString(IReadOnlyDictionary<String, Object>)
   href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_ConditionToString_System_Collections_Generic_IReadOnlyDictionary_System_String_System_Object__
@@ -5977,6 +5948,12 @@ references:
   isSpec: "True"
   fullName: Anki.Resources.SDK.Assets.CubeLightsTriggerNames
   nameWithType: Assets.CubeLightsTriggerNames
+- uid: Anki.Resources.SDK.Assets.DisplaySize
+  name: DisplaySize
+  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_DisplaySize
+  commentId: F:Anki.Resources.SDK.Assets.DisplaySize
+  fullName: Anki.Resources.SDK.Assets.DisplaySize
+  nameWithType: Assets.DisplaySize
 - uid: Anki.Resources.SDK.Assets.Dispose
   name: Dispose()
   href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_Dispose
@@ -6009,6 +5986,19 @@ references:
   isSpec: "True"
   fullName: Anki.Resources.SDK.Assets.EmotionEvents
   nameWithType: Assets.EmotionEvents
+- uid: Anki.Resources.SDK.Assets.EmotionRanges
+  name: EmotionRanges
+  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_EmotionRanges
+  commentId: P:Anki.Resources.SDK.Assets.EmotionRanges
+  fullName: Anki.Resources.SDK.Assets.EmotionRanges
+  nameWithType: Assets.EmotionRanges
+- uid: Anki.Resources.SDK.Assets.EmotionRanges*
+  name: EmotionRanges
+  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_EmotionRanges_
+  commentId: Overload:Anki.Resources.SDK.Assets.EmotionRanges
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.Assets.EmotionRanges
+  nameWithType: Assets.EmotionRanges
 - uid: Anki.Resources.SDK.Assets.EmotionValueRanges
   name: EmotionValueRanges
   href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_EmotionValueRanges
@@ -6035,6 +6025,19 @@ references:
   isSpec: "True"
   fullName: Anki.Resources.SDK.Assets.Features
   nameWithType: Assets.Features
+- uid: Anki.Resources.SDK.Assets.ImageLayoutTriggerName2Filename
+  name: ImageLayoutTriggerName2Filename
+  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_ImageLayoutTriggerName2Filename
+  commentId: P:Anki.Resources.SDK.Assets.ImageLayoutTriggerName2Filename
+  fullName: Anki.Resources.SDK.Assets.ImageLayoutTriggerName2Filename
+  nameWithType: Assets.ImageLayoutTriggerName2Filename
+- uid: Anki.Resources.SDK.Assets.ImageLayoutTriggerName2Filename*
+  name: ImageLayoutTriggerName2Filename
+  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_ImageLayoutTriggerName2Filename_
+  commentId: Overload:Anki.Resources.SDK.Assets.ImageLayoutTriggerName2Filename
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.Assets.ImageLayoutTriggerName2Filename
+  nameWithType: Assets.ImageLayoutTriggerName2Filename
 - uid: Anki.Resources.SDK.Assets.ImageLayoutTriggerNames
   name: ImageLayoutTriggerNames
   href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_ImageLayoutTriggerNames
@@ -6048,6 +6051,19 @@ references:
   isSpec: "True"
   fullName: Anki.Resources.SDK.Assets.ImageLayoutTriggerNames
   nameWithType: Assets.ImageLayoutTriggerNames
+- uid: Anki.Resources.SDK.Assets.ImageMapTriggerName2Filename
+  name: ImageMapTriggerName2Filename
+  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_ImageMapTriggerName2Filename
+  commentId: P:Anki.Resources.SDK.Assets.ImageMapTriggerName2Filename
+  fullName: Anki.Resources.SDK.Assets.ImageMapTriggerName2Filename
+  nameWithType: Assets.ImageMapTriggerName2Filename
+- uid: Anki.Resources.SDK.Assets.ImageMapTriggerName2Filename*
+  name: ImageMapTriggerName2Filename
+  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_ImageMapTriggerName2Filename_
+  commentId: Overload:Anki.Resources.SDK.Assets.ImageMapTriggerName2Filename
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.Assets.ImageMapTriggerName2Filename
+  nameWithType: Assets.ImageMapTriggerName2Filename
 - uid: Anki.Resources.SDK.Assets.IndependentSprite(System.String)
   name: IndependentSprite(String)
   href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_IndependentSprite_System_String_
@@ -6100,6 +6116,32 @@ references:
   isSpec: "True"
   fullName: Anki.Resources.SDK.Assets.LocalizedTextSubstitution
   nameWithType: Assets.LocalizedTextSubstitution
+- uid: Anki.Resources.SDK.Assets.Servers
+  name: Servers
+  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_Servers
+  commentId: P:Anki.Resources.SDK.Assets.Servers
+  fullName: Anki.Resources.SDK.Assets.Servers
+  nameWithType: Assets.Servers
+- uid: Anki.Resources.SDK.Assets.Servers*
+  name: Servers
+  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_Servers_
+  commentId: Overload:Anki.Resources.SDK.Assets.Servers
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.Assets.Servers
+  nameWithType: Assets.Servers
+- uid: Anki.Resources.SDK.Assets.SimpleMoods
+  name: SimpleMoods
+  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_SimpleMoods
+  commentId: P:Anki.Resources.SDK.Assets.SimpleMoods
+  fullName: Anki.Resources.SDK.Assets.SimpleMoods
+  nameWithType: Assets.SimpleMoods
+- uid: Anki.Resources.SDK.Assets.SimpleMoods*
+  name: SimpleMoods
+  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_SimpleMoods_
+  commentId: Overload:Anki.Resources.SDK.Assets.SimpleMoods
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.Assets.SimpleMoods
+  nameWithType: Assets.SimpleMoods
 - uid: Anki.Resources.SDK.Assets.SpriteSequence(System.String)
   name: SpriteSequence(String)
   href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_SpriteSequence_System_String_
@@ -6139,6 +6181,12 @@ references:
   isSpec: "True"
   fullName: Anki.Resources.SDK.Assets.unmatched_intent
   nameWithType: Assets.unmatched_intent
+- uid: Anki.Resources.SDK.Assets.VisionScheduleConfig
+  name: VisionScheduleConfig
+  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_VisionScheduleConfig
+  commentId: F:Anki.Resources.SDK.Assets.VisionScheduleConfig
+  fullName: Anki.Resources.SDK.Assets.VisionScheduleConfig
+  nameWithType: Assets.VisionScheduleConfig
 - uid: Anki.Resources.SDK.Assets.Weather
   name: Weather
   href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_Weather
@@ -6194,6 +6242,214 @@ references:
   commentId: T:Anki.Resources.SDK.BlackJack
   fullName: Anki.Resources.SDK.BlackJack
   nameWithType: BlackJack
+- uid: Anki.Resources.SDK.Classification
+  name: Classification
+  href: api/Anki.Resources.SDK.Classification.html
+  commentId: T:Anki.Resources.SDK.Classification
+  fullName: Anki.Resources.SDK.Classification
+  nameWithType: Classification
+- uid: Anki.Resources.SDK.Classification.Label
+  name: Label
+  href: api/Anki.Resources.SDK.Classification.html#Anki_Resources_SDK_Classification_Label
+  commentId: P:Anki.Resources.SDK.Classification.Label
+  fullName: Anki.Resources.SDK.Classification.Label
+  nameWithType: Classification.Label
+- uid: Anki.Resources.SDK.Classification.Label*
+  name: Label
+  href: api/Anki.Resources.SDK.Classification.html#Anki_Resources_SDK_Classification_Label_
+  commentId: Overload:Anki.Resources.SDK.Classification.Label
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.Classification.Label
+  nameWithType: Classification.Label
+- uid: Anki.Resources.SDK.Classification.Probability
+  name: Probability
+  href: api/Anki.Resources.SDK.Classification.html#Anki_Resources_SDK_Classification_Probability
+  commentId: P:Anki.Resources.SDK.Classification.Probability
+  fullName: Anki.Resources.SDK.Classification.Probability
+  nameWithType: Classification.Probability
+- uid: Anki.Resources.SDK.Classification.Probability*
+  name: Probability
+  href: api/Anki.Resources.SDK.Classification.html#Anki_Resources_SDK_Classification_Probability_
+  commentId: Overload:Anki.Resources.SDK.Classification.Probability
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.Classification.Probability
+  nameWithType: Classification.Probability
+- uid: Anki.Resources.SDK.Classifier_TFLite
+  name: Classifier_TFLite
+  href: api/Anki.Resources.SDK.Classifier_TFLite.html
+  commentId: T:Anki.Resources.SDK.Classifier_TFLite
+  fullName: Anki.Resources.SDK.Classifier_TFLite
+  nameWithType: Classifier_TFLite
+- uid: Anki.Resources.SDK.Classifier_TFLite.#ctor(System.String,System.String,System.String,System.Collections.Generic.IReadOnlyList{System.String},System.Int32,System.Int32)
+  name: Classifier_TFLite(String, String, String, IReadOnlyList<String>, Int32, Int32)
+  href: api/Anki.Resources.SDK.Classifier_TFLite.html#Anki_Resources_SDK_Classifier_TFLite__ctor_System_String_System_String_System_String_System_Collections_Generic_IReadOnlyList_System_String__System_Int32_System_Int32_
+  commentId: M:Anki.Resources.SDK.Classifier_TFLite.#ctor(System.String,System.String,System.String,System.Collections.Generic.IReadOnlyList{System.String},System.Int32,System.Int32)
+  name.vb: Classifier_TFLite(String, String, String, IReadOnlyList(Of String), Int32, Int32)
+  fullName: Anki.Resources.SDK.Classifier_TFLite.Classifier_TFLite(System.String, System.String, System.String, System.Collections.Generic.IReadOnlyList<System.String>, System.Int32, System.Int32)
+  fullName.vb: Anki.Resources.SDK.Classifier_TFLite.Classifier_TFLite(System.String, System.String, System.String, System.Collections.Generic.IReadOnlyList(Of System.String), System.Int32, System.Int32)
+  nameWithType: Classifier_TFLite.Classifier_TFLite(String, String, String, IReadOnlyList<String>, Int32, Int32)
+  nameWithType.vb: Classifier_TFLite.Classifier_TFLite(String, String, String, IReadOnlyList(Of String), Int32, Int32)
+- uid: Anki.Resources.SDK.Classifier_TFLite.#ctor*
+  name: Classifier_TFLite
+  href: api/Anki.Resources.SDK.Classifier_TFLite.html#Anki_Resources_SDK_Classifier_TFLite__ctor_
+  commentId: Overload:Anki.Resources.SDK.Classifier_TFLite.#ctor
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.Classifier_TFLite.Classifier_TFLite
+  nameWithType: Classifier_TFLite.Classifier_TFLite
+- uid: Anki.Resources.SDK.Classifier_TFLite.Dispose
+  name: Dispose()
+  href: api/Anki.Resources.SDK.Classifier_TFLite.html#Anki_Resources_SDK_Classifier_TFLite_Dispose
+  commentId: M:Anki.Resources.SDK.Classifier_TFLite.Dispose
+  fullName: Anki.Resources.SDK.Classifier_TFLite.Dispose()
+  nameWithType: Classifier_TFLite.Dispose()
+- uid: Anki.Resources.SDK.Classifier_TFLite.Dispose(System.Boolean)
+  name: Dispose(Boolean)
+  href: api/Anki.Resources.SDK.Classifier_TFLite.html#Anki_Resources_SDK_Classifier_TFLite_Dispose_System_Boolean_
+  commentId: M:Anki.Resources.SDK.Classifier_TFLite.Dispose(System.Boolean)
+  fullName: Anki.Resources.SDK.Classifier_TFLite.Dispose(System.Boolean)
+  nameWithType: Classifier_TFLite.Dispose(Boolean)
+- uid: Anki.Resources.SDK.Classifier_TFLite.Dispose*
+  name: Dispose
+  href: api/Anki.Resources.SDK.Classifier_TFLite.html#Anki_Resources_SDK_Classifier_TFLite_Dispose_
+  commentId: Overload:Anki.Resources.SDK.Classifier_TFLite.Dispose
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.Classifier_TFLite.Dispose
+  nameWithType: Classifier_TFLite.Dispose
+- uid: Anki.Resources.SDK.Classifier_TFLite.InputTensor
+  name: InputTensor
+  href: api/Anki.Resources.SDK.Classifier_TFLite.html#Anki_Resources_SDK_Classifier_TFLite_InputTensor
+  commentId: P:Anki.Resources.SDK.Classifier_TFLite.InputTensor
+  fullName: Anki.Resources.SDK.Classifier_TFLite.InputTensor
+  nameWithType: Classifier_TFLite.InputTensor
+- uid: Anki.Resources.SDK.Classifier_TFLite.InputTensor*
+  name: InputTensor
+  href: api/Anki.Resources.SDK.Classifier_TFLite.html#Anki_Resources_SDK_Classifier_TFLite_InputTensor_
+  commentId: Overload:Anki.Resources.SDK.Classifier_TFLite.InputTensor
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.Classifier_TFLite.InputTensor
+  nameWithType: Classifier_TFLite.InputTensor
+- uid: Anki.Resources.SDK.Classifier_TFLite.IsCategorization
+  name: IsCategorization()
+  href: api/Anki.Resources.SDK.Classifier_TFLite.html#Anki_Resources_SDK_Classifier_TFLite_IsCategorization
+  commentId: M:Anki.Resources.SDK.Classifier_TFLite.IsCategorization
+  fullName: Anki.Resources.SDK.Classifier_TFLite.IsCategorization()
+  nameWithType: Classifier_TFLite.IsCategorization()
+- uid: Anki.Resources.SDK.Classifier_TFLite.IsCategorization*
+  name: IsCategorization
+  href: api/Anki.Resources.SDK.Classifier_TFLite.html#Anki_Resources_SDK_Classifier_TFLite_IsCategorization_
+  commentId: Overload:Anki.Resources.SDK.Classifier_TFLite.IsCategorization
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.Classifier_TFLite.IsCategorization
+  nameWithType: Classifier_TFLite.IsCategorization
+- uid: Anki.Resources.SDK.Classifier_TFLite.OutputTensor
+  name: OutputTensor
+  href: api/Anki.Resources.SDK.Classifier_TFLite.html#Anki_Resources_SDK_Classifier_TFLite_OutputTensor
+  commentId: P:Anki.Resources.SDK.Classifier_TFLite.OutputTensor
+  fullName: Anki.Resources.SDK.Classifier_TFLite.OutputTensor
+  nameWithType: Classifier_TFLite.OutputTensor
+- uid: Anki.Resources.SDK.Classifier_TFLite.OutputTensor*
+  name: OutputTensor
+  href: api/Anki.Resources.SDK.Classifier_TFLite.html#Anki_Resources_SDK_Classifier_TFLite_OutputTensor_
+  commentId: Overload:Anki.Resources.SDK.Classifier_TFLite.OutputTensor
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.Classifier_TFLite.OutputTensor
+  nameWithType: Classifier_TFLite.OutputTensor
+- uid: Anki.Resources.SDK.Classifier_TFLite.ProcessImage(Anki.Resources.SDK.ImageContainer)
+  name: ProcessImage(ImageContainer)
+  href: api/Anki.Resources.SDK.Classifier_TFLite.html#Anki_Resources_SDK_Classifier_TFLite_ProcessImage_Anki_Resources_SDK_ImageContainer_
+  commentId: M:Anki.Resources.SDK.Classifier_TFLite.ProcessImage(Anki.Resources.SDK.ImageContainer)
+  fullName: Anki.Resources.SDK.Classifier_TFLite.ProcessImage(Anki.Resources.SDK.ImageContainer)
+  nameWithType: Classifier_TFLite.ProcessImage(ImageContainer)
+- uid: Anki.Resources.SDK.Classifier_TFLite.ProcessImage*
+  name: ProcessImage
+  href: api/Anki.Resources.SDK.Classifier_TFLite.html#Anki_Resources_SDK_Classifier_TFLite_ProcessImage_
+  commentId: Overload:Anki.Resources.SDK.Classifier_TFLite.ProcessImage
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.Classifier_TFLite.ProcessImage
+  nameWithType: Classifier_TFLite.ProcessImage
+- uid: Anki.Resources.SDK.ClassifierInfo
+  name: ClassifierInfo
+  href: api/Anki.Resources.SDK.ClassifierInfo.html
+  commentId: T:Anki.Resources.SDK.ClassifierInfo
+  fullName: Anki.Resources.SDK.ClassifierInfo
+  nameWithType: ClassifierInfo
+- uid: Anki.Resources.SDK.ClassifierInfo.CreateClassifier
+  name: CreateClassifier()
+  href: api/Anki.Resources.SDK.ClassifierInfo.html#Anki_Resources_SDK_ClassifierInfo_CreateClassifier
+  commentId: M:Anki.Resources.SDK.ClassifierInfo.CreateClassifier
+  fullName: Anki.Resources.SDK.ClassifierInfo.CreateClassifier()
+  nameWithType: ClassifierInfo.CreateClassifier()
+- uid: Anki.Resources.SDK.ClassifierInfo.CreateClassifier*
+  name: CreateClassifier
+  href: api/Anki.Resources.SDK.ClassifierInfo.html#Anki_Resources_SDK_ClassifierInfo_CreateClassifier_
+  commentId: Overload:Anki.Resources.SDK.ClassifierInfo.CreateClassifier
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.ClassifierInfo.CreateClassifier
+  nameWithType: ClassifierInfo.CreateClassifier
+- uid: Anki.Resources.SDK.ClassifierInfo.Definition
+  name: Definition
+  href: api/Anki.Resources.SDK.ClassifierInfo.html#Anki_Resources_SDK_ClassifierInfo_Definition
+  commentId: P:Anki.Resources.SDK.ClassifierInfo.Definition
+  fullName: Anki.Resources.SDK.ClassifierInfo.Definition
+  nameWithType: ClassifierInfo.Definition
+- uid: Anki.Resources.SDK.ClassifierInfo.Definition*
+  name: Definition
+  href: api/Anki.Resources.SDK.ClassifierInfo.html#Anki_Resources_SDK_ClassifierInfo_Definition_
+  commentId: Overload:Anki.Resources.SDK.ClassifierInfo.Definition
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.ClassifierInfo.Definition
+  nameWithType: ClassifierInfo.Definition
+- uid: Anki.Resources.SDK.ClassifierInfo.FullPath
+  name: FullPath
+  href: api/Anki.Resources.SDK.ClassifierInfo.html#Anki_Resources_SDK_ClassifierInfo_FullPath
+  commentId: F:Anki.Resources.SDK.ClassifierInfo.FullPath
+  fullName: Anki.Resources.SDK.ClassifierInfo.FullPath
+  nameWithType: ClassifierInfo.FullPath
+- uid: Anki.Resources.SDK.ClassifierInfo.Labels
+  name: Labels
+  href: api/Anki.Resources.SDK.ClassifierInfo.html#Anki_Resources_SDK_ClassifierInfo_Labels
+  commentId: P:Anki.Resources.SDK.ClassifierInfo.Labels
+  fullName: Anki.Resources.SDK.ClassifierInfo.Labels
+  nameWithType: ClassifierInfo.Labels
+- uid: Anki.Resources.SDK.ClassifierInfo.Labels*
+  name: Labels
+  href: api/Anki.Resources.SDK.ClassifierInfo.html#Anki_Resources_SDK_ClassifierInfo_Labels_
+  commentId: Overload:Anki.Resources.SDK.ClassifierInfo.Labels
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.ClassifierInfo.Labels
+  nameWithType: ClassifierInfo.Labels
+- uid: Anki.Resources.SDK.ClassifierInfo.Name
+  name: Name
+  href: api/Anki.Resources.SDK.ClassifierInfo.html#Anki_Resources_SDK_ClassifierInfo_Name
+  commentId: P:Anki.Resources.SDK.ClassifierInfo.Name
+  fullName: Anki.Resources.SDK.ClassifierInfo.Name
+  nameWithType: ClassifierInfo.Name
+- uid: Anki.Resources.SDK.ClassifierInfo.Name*
+  name: Name
+  href: api/Anki.Resources.SDK.ClassifierInfo.html#Anki_Resources_SDK_ClassifierInfo_Name_
+  commentId: Overload:Anki.Resources.SDK.ClassifierInfo.Name
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.ClassifierInfo.Name
+  nameWithType: ClassifierInfo.Name
+- uid: Anki.Resources.SDK.ClassifierInfo.Parameters
+  name: Parameters
+  href: api/Anki.Resources.SDK.ClassifierInfo.html#Anki_Resources_SDK_ClassifierInfo_Parameters
+  commentId: P:Anki.Resources.SDK.ClassifierInfo.Parameters
+  fullName: Anki.Resources.SDK.ClassifierInfo.Parameters
+  nameWithType: ClassifierInfo.Parameters
+- uid: Anki.Resources.SDK.ClassifierInfo.Parameters*
+  name: Parameters
+  href: api/Anki.Resources.SDK.ClassifierInfo.html#Anki_Resources_SDK_ClassifierInfo_Parameters_
+  commentId: Overload:Anki.Resources.SDK.ClassifierInfo.Parameters
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.ClassifierInfo.Parameters
+  nameWithType: ClassifierInfo.Parameters
+- uid: Anki.Resources.SDK.ClassifierInfo.Type
+  name: Type
+  href: api/Anki.Resources.SDK.ClassifierInfo.html#Anki_Resources_SDK_ClassifierInfo_Type
+  commentId: F:Anki.Resources.SDK.ClassifierInfo.Type
+  fullName: Anki.Resources.SDK.ClassifierInfo.Type
+  nameWithType: ClassifierInfo.Type
 - uid: Anki.Resources.SDK.Clock
   name: Clock
   href: api/Anki.Resources.SDK.Clock.html
@@ -6245,6 +6501,50 @@ references:
   isSpec: "True"
   fullName: Anki.Resources.SDK.CompositeImage.Layout
   nameWithType: CompositeImage.Layout
+- uid: Anki.Resources.SDK.CompositeImage.Layouts
+  name: Layouts
+  href: api/Anki.Resources.SDK.CompositeImage.html#Anki_Resources_SDK_CompositeImage_Layouts
+  commentId: F:Anki.Resources.SDK.CompositeImage.Layouts
+  fullName: Anki.Resources.SDK.CompositeImage.Layouts
+  nameWithType: CompositeImage.Layouts
+- uid: Anki.Resources.SDK.CompositeImage.Maps
+  name: Maps
+  href: api/Anki.Resources.SDK.CompositeImage.html#Anki_Resources_SDK_CompositeImage_Maps
+  commentId: F:Anki.Resources.SDK.CompositeImage.Maps
+  fullName: Anki.Resources.SDK.CompositeImage.Maps
+  nameWithType: CompositeImage.Maps
+- uid: Anki.Resources.SDK.ConditionSchema
+  name: ConditionSchema
+  href: api/Anki.Resources.SDK.ConditionSchema.html
+  commentId: T:Anki.Resources.SDK.ConditionSchema
+  fullName: Anki.Resources.SDK.ConditionSchema
+  nameWithType: ConditionSchema
+- uid: Anki.Resources.SDK.ConditionSchema.conditionKeys
+  name: conditionKeys
+  href: api/Anki.Resources.SDK.ConditionSchema.html#Anki_Resources_SDK_ConditionSchema_conditionKeys
+  commentId: P:Anki.Resources.SDK.ConditionSchema.conditionKeys
+  fullName: Anki.Resources.SDK.ConditionSchema.conditionKeys
+  nameWithType: ConditionSchema.conditionKeys
+- uid: Anki.Resources.SDK.ConditionSchema.conditionKeys*
+  name: conditionKeys
+  href: api/Anki.Resources.SDK.ConditionSchema.html#Anki_Resources_SDK_ConditionSchema_conditionKeys_
+  commentId: Overload:Anki.Resources.SDK.ConditionSchema.conditionKeys
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.ConditionSchema.conditionKeys
+  nameWithType: ConditionSchema.conditionKeys
+- uid: Anki.Resources.SDK.ConditionSchema.type2keys
+  name: type2keys
+  href: api/Anki.Resources.SDK.ConditionSchema.html#Anki_Resources_SDK_ConditionSchema_type2keys
+  commentId: P:Anki.Resources.SDK.ConditionSchema.type2keys
+  fullName: Anki.Resources.SDK.ConditionSchema.type2keys
+  nameWithType: ConditionSchema.type2keys
+- uid: Anki.Resources.SDK.ConditionSchema.type2keys*
+  name: type2keys
+  href: api/Anki.Resources.SDK.ConditionSchema.html#Anki_Resources_SDK_ConditionSchema_type2keys_
+  commentId: Overload:Anki.Resources.SDK.ConditionSchema.type2keys
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.ConditionSchema.type2keys
+  nameWithType: ConditionSchema.type2keys
 - uid: Anki.Resources.SDK.DecayGraph
   name: DecayGraph
   href: api/Anki.Resources.SDK.DecayGraph.html
@@ -6354,19 +6654,166 @@ references:
   isSpec: "True"
   fullName: Anki.Resources.SDK.EmotionEvent.name
   nameWithType: EmotionEvent.name
-- uid: Anki.Resources.SDK.EmotionEvent.RepetitionPenalty
-  name: RepetitionPenalty
-  href: api/Anki.Resources.SDK.EmotionEvent.html#Anki_Resources_SDK_EmotionEvent_RepetitionPenalty
-  commentId: P:Anki.Resources.SDK.EmotionEvent.RepetitionPenalty
-  fullName: Anki.Resources.SDK.EmotionEvent.RepetitionPenalty
-  nameWithType: EmotionEvent.RepetitionPenalty
-- uid: Anki.Resources.SDK.EmotionEvent.RepetitionPenalty*
-  name: RepetitionPenalty
-  href: api/Anki.Resources.SDK.EmotionEvent.html#Anki_Resources_SDK_EmotionEvent_RepetitionPenalty_
-  commentId: Overload:Anki.Resources.SDK.EmotionEvent.RepetitionPenalty
+- uid: Anki.Resources.SDK.EmotionEvent.repetitionPenalty
+  name: repetitionPenalty
+  href: api/Anki.Resources.SDK.EmotionEvent.html#Anki_Resources_SDK_EmotionEvent_repetitionPenalty
+  commentId: P:Anki.Resources.SDK.EmotionEvent.repetitionPenalty
+  fullName: Anki.Resources.SDK.EmotionEvent.repetitionPenalty
+  nameWithType: EmotionEvent.repetitionPenalty
+- uid: Anki.Resources.SDK.EmotionEvent.repetitionPenalty*
+  name: repetitionPenalty
+  href: api/Anki.Resources.SDK.EmotionEvent.html#Anki_Resources_SDK_EmotionEvent_repetitionPenalty_
+  commentId: Overload:Anki.Resources.SDK.EmotionEvent.repetitionPenalty
   isSpec: "True"
-  fullName: Anki.Resources.SDK.EmotionEvent.RepetitionPenalty
-  nameWithType: EmotionEvent.RepetitionPenalty
+  fullName: Anki.Resources.SDK.EmotionEvent.repetitionPenalty
+  nameWithType: EmotionEvent.repetitionPenalty
+- uid: Anki.Resources.SDK.ImageContainer
+  name: ImageContainer
+  href: api/Anki.Resources.SDK.ImageContainer.html
+  commentId: T:Anki.Resources.SDK.ImageContainer
+  fullName: Anki.Resources.SDK.ImageContainer
+  nameWithType: ImageContainer
+- uid: Anki.Resources.SDK.ImageContainer.#ctor(Emgu.CV.Mat)
+  name: ImageContainer(Mat)
+  href: api/Anki.Resources.SDK.ImageContainer.html#Anki_Resources_SDK_ImageContainer__ctor_Emgu_CV_Mat_
+  commentId: M:Anki.Resources.SDK.ImageContainer.#ctor(Emgu.CV.Mat)
+  fullName: Anki.Resources.SDK.ImageContainer.ImageContainer(Emgu.CV.Mat)
+  nameWithType: ImageContainer.ImageContainer(Mat)
+- uid: Anki.Resources.SDK.ImageContainer.#ctor*
+  name: ImageContainer
+  href: api/Anki.Resources.SDK.ImageContainer.html#Anki_Resources_SDK_ImageContainer__ctor_
+  commentId: Overload:Anki.Resources.SDK.ImageContainer.#ctor
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.ImageContainer.ImageContainer
+  nameWithType: ImageContainer.ImageContainer
+- uid: Anki.Resources.SDK.ImageContainer.Dispose
+  name: Dispose()
+  href: api/Anki.Resources.SDK.ImageContainer.html#Anki_Resources_SDK_ImageContainer_Dispose
+  commentId: M:Anki.Resources.SDK.ImageContainer.Dispose
+  fullName: Anki.Resources.SDK.ImageContainer.Dispose()
+  nameWithType: ImageContainer.Dispose()
+- uid: Anki.Resources.SDK.ImageContainer.Dispose(System.Boolean)
+  name: Dispose(Boolean)
+  href: api/Anki.Resources.SDK.ImageContainer.html#Anki_Resources_SDK_ImageContainer_Dispose_System_Boolean_
+  commentId: M:Anki.Resources.SDK.ImageContainer.Dispose(System.Boolean)
+  fullName: Anki.Resources.SDK.ImageContainer.Dispose(System.Boolean)
+  nameWithType: ImageContainer.Dispose(Boolean)
+- uid: Anki.Resources.SDK.ImageContainer.Dispose*
+  name: Dispose
+  href: api/Anki.Resources.SDK.ImageContainer.html#Anki_Resources_SDK_ImageContainer_Dispose_
+  commentId: Overload:Anki.Resources.SDK.ImageContainer.Dispose
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.ImageContainer.Dispose
+  nameWithType: ImageContainer.Dispose
+- uid: Anki.Resources.SDK.ImageContainer.Image(System.Drawing.Size,Emgu.CV.CvEnum.DepthType,System.Boolean)
+  name: Image(Size, DepthType, Boolean)
+  href: api/Anki.Resources.SDK.ImageContainer.html#Anki_Resources_SDK_ImageContainer_Image_System_Drawing_Size_Emgu_CV_CvEnum_DepthType_System_Boolean_
+  commentId: M:Anki.Resources.SDK.ImageContainer.Image(System.Drawing.Size,Emgu.CV.CvEnum.DepthType,System.Boolean)
+  fullName: Anki.Resources.SDK.ImageContainer.Image(System.Drawing.Size, Emgu.CV.CvEnum.DepthType, System.Boolean)
+  nameWithType: ImageContainer.Image(Size, DepthType, Boolean)
+- uid: Anki.Resources.SDK.ImageContainer.Image*
+  name: Image
+  href: api/Anki.Resources.SDK.ImageContainer.html#Anki_Resources_SDK_ImageContainer_Image_
+  commentId: Overload:Anki.Resources.SDK.ImageContainer.Image
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.ImageContainer.Image
+  nameWithType: ImageContainer.Image
+- uid: Anki.Resources.SDK.ImageLayout
+  name: ImageLayout
+  href: api/Anki.Resources.SDK.ImageLayout.html
+  commentId: T:Anki.Resources.SDK.ImageLayout
+  fullName: Anki.Resources.SDK.ImageLayout
+  nameWithType: ImageLayout
+- uid: Anki.Resources.SDK.ImageLayout.layerName
+  name: layerName
+  href: api/Anki.Resources.SDK.ImageLayout.html#Anki_Resources_SDK_ImageLayout_layerName
+  commentId: P:Anki.Resources.SDK.ImageLayout.layerName
+  fullName: Anki.Resources.SDK.ImageLayout.layerName
+  nameWithType: ImageLayout.layerName
+- uid: Anki.Resources.SDK.ImageLayout.layerName*
+  name: layerName
+  href: api/Anki.Resources.SDK.ImageLayout.html#Anki_Resources_SDK_ImageLayout_layerName_
+  commentId: Overload:Anki.Resources.SDK.ImageLayout.layerName
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.ImageLayout.layerName
+  nameWithType: ImageLayout.layerName
+- uid: Anki.Resources.SDK.ImageLayout.spriteBoxLayout
+  name: spriteBoxLayout
+  href: api/Anki.Resources.SDK.ImageLayout.html#Anki_Resources_SDK_ImageLayout_spriteBoxLayout
+  commentId: P:Anki.Resources.SDK.ImageLayout.spriteBoxLayout
+  fullName: Anki.Resources.SDK.ImageLayout.spriteBoxLayout
+  nameWithType: ImageLayout.spriteBoxLayout
+- uid: Anki.Resources.SDK.ImageLayout.spriteBoxLayout*
+  name: spriteBoxLayout
+  href: api/Anki.Resources.SDK.ImageLayout.html#Anki_Resources_SDK_ImageLayout_spriteBoxLayout_
+  commentId: Overload:Anki.Resources.SDK.ImageLayout.spriteBoxLayout
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.ImageLayout.spriteBoxLayout
+  nameWithType: ImageLayout.spriteBoxLayout
+- uid: Anki.Resources.SDK.ImageMap
+  name: ImageMap
+  href: api/Anki.Resources.SDK.ImageMap.html
+  commentId: T:Anki.Resources.SDK.ImageMap
+  fullName: Anki.Resources.SDK.ImageMap
+  nameWithType: ImageMap
+- uid: Anki.Resources.SDK.ImageMap.images
+  name: images
+  href: api/Anki.Resources.SDK.ImageMap.html#Anki_Resources_SDK_ImageMap_images
+  commentId: P:Anki.Resources.SDK.ImageMap.images
+  fullName: Anki.Resources.SDK.ImageMap.images
+  nameWithType: ImageMap.images
+- uid: Anki.Resources.SDK.ImageMap.images*
+  name: images
+  href: api/Anki.Resources.SDK.ImageMap.html#Anki_Resources_SDK_ImageMap_images_
+  commentId: Overload:Anki.Resources.SDK.ImageMap.images
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.ImageMap.images
+  nameWithType: ImageMap.images
+- uid: Anki.Resources.SDK.ImageMap.layerName
+  name: layerName
+  href: api/Anki.Resources.SDK.ImageMap.html#Anki_Resources_SDK_ImageMap_layerName
+  commentId: P:Anki.Resources.SDK.ImageMap.layerName
+  fullName: Anki.Resources.SDK.ImageMap.layerName
+  nameWithType: ImageMap.layerName
+- uid: Anki.Resources.SDK.ImageMap.layerName*
+  name: layerName
+  href: api/Anki.Resources.SDK.ImageMap.html#Anki_Resources_SDK_ImageMap_layerName_
+  commentId: Overload:Anki.Resources.SDK.ImageMap.layerName
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.ImageMap.layerName
+  nameWithType: ImageMap.layerName
+- uid: Anki.Resources.SDK.IProcessImage
+  name: IProcessImage
+  href: api/Anki.Resources.SDK.IProcessImage.html
+  commentId: T:Anki.Resources.SDK.IProcessImage
+  fullName: Anki.Resources.SDK.IProcessImage
+  nameWithType: IProcessImage
+- uid: Anki.Resources.SDK.IProcessImage.IsCategorization
+  name: IsCategorization()
+  href: api/Anki.Resources.SDK.IProcessImage.html#Anki_Resources_SDK_IProcessImage_IsCategorization
+  commentId: M:Anki.Resources.SDK.IProcessImage.IsCategorization
+  fullName: Anki.Resources.SDK.IProcessImage.IsCategorization()
+  nameWithType: IProcessImage.IsCategorization()
+- uid: Anki.Resources.SDK.IProcessImage.IsCategorization*
+  name: IsCategorization
+  href: api/Anki.Resources.SDK.IProcessImage.html#Anki_Resources_SDK_IProcessImage_IsCategorization_
+  commentId: Overload:Anki.Resources.SDK.IProcessImage.IsCategorization
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.IProcessImage.IsCategorization
+  nameWithType: IProcessImage.IsCategorization
+- uid: Anki.Resources.SDK.IProcessImage.ProcessImage(Anki.Resources.SDK.ImageContainer)
+  name: ProcessImage(ImageContainer)
+  href: api/Anki.Resources.SDK.IProcessImage.html#Anki_Resources_SDK_IProcessImage_ProcessImage_Anki_Resources_SDK_ImageContainer_
+  commentId: M:Anki.Resources.SDK.IProcessImage.ProcessImage(Anki.Resources.SDK.ImageContainer)
+  fullName: Anki.Resources.SDK.IProcessImage.ProcessImage(Anki.Resources.SDK.ImageContainer)
+  nameWithType: IProcessImage.ProcessImage(ImageContainer)
+- uid: Anki.Resources.SDK.IProcessImage.ProcessImage*
+  name: ProcessImage
+  href: api/Anki.Resources.SDK.IProcessImage.html#Anki_Resources_SDK_IProcessImage_ProcessImage_
+  commentId: Overload:Anki.Resources.SDK.IProcessImage.ProcessImage
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.IProcessImage.ProcessImage
+  nameWithType: IProcessImage.ProcessImage
 - uid: Anki.Resources.SDK.LightFrame
   name: LightFrame
   href: api/Anki.Resources.SDK.LightFrame.html
@@ -6623,6 +7070,38 @@ references:
   isSpec: "True"
   fullName: Anki.Resources.SDK.SpriteBox.y
   nameWithType: SpriteBox.y
+- uid: Anki.Resources.SDK.SpriteMapBox
+  name: SpriteMapBox
+  href: api/Anki.Resources.SDK.SpriteMapBox.html
+  commentId: T:Anki.Resources.SDK.SpriteMapBox
+  fullName: Anki.Resources.SDK.SpriteMapBox
+  nameWithType: SpriteMapBox
+- uid: Anki.Resources.SDK.SpriteMapBox.spriteBoxName
+  name: spriteBoxName
+  href: api/Anki.Resources.SDK.SpriteMapBox.html#Anki_Resources_SDK_SpriteMapBox_spriteBoxName
+  commentId: P:Anki.Resources.SDK.SpriteMapBox.spriteBoxName
+  fullName: Anki.Resources.SDK.SpriteMapBox.spriteBoxName
+  nameWithType: SpriteMapBox.spriteBoxName
+- uid: Anki.Resources.SDK.SpriteMapBox.spriteBoxName*
+  name: spriteBoxName
+  href: api/Anki.Resources.SDK.SpriteMapBox.html#Anki_Resources_SDK_SpriteMapBox_spriteBoxName_
+  commentId: Overload:Anki.Resources.SDK.SpriteMapBox.spriteBoxName
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.SpriteMapBox.spriteBoxName
+  nameWithType: SpriteMapBox.spriteBoxName
+- uid: Anki.Resources.SDK.SpriteMapBox.spriteName
+  name: spriteName
+  href: api/Anki.Resources.SDK.SpriteMapBox.html#Anki_Resources_SDK_SpriteMapBox_spriteName
+  commentId: P:Anki.Resources.SDK.SpriteMapBox.spriteName
+  fullName: Anki.Resources.SDK.SpriteMapBox.spriteName
+  nameWithType: SpriteMapBox.spriteName
+- uid: Anki.Resources.SDK.SpriteMapBox.spriteName*
+  name: spriteName
+  href: api/Anki.Resources.SDK.SpriteMapBox.html#Anki_Resources_SDK_SpriteMapBox_spriteName_
+  commentId: Overload:Anki.Resources.SDK.SpriteMapBox.spriteName
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.SpriteMapBox.spriteName
+  nameWithType: SpriteMapBox.spriteName
 - uid: Anki.Resources.SDK.SpriteSequence
   name: SpriteSequence
   href: api/Anki.Resources.SDK.SpriteSequence.html
@@ -6655,6 +7134,18 @@ references:
   isSpec: "True"
   fullName: Anki.Resources.SDK.SpriteSequence.Count
   nameWithType: SpriteSequence.Count
+- uid: Anki.Resources.SDK.SpriteSequence.FileNameFormat
+  name: FileNameFormat
+  href: api/Anki.Resources.SDK.SpriteSequence.html#Anki_Resources_SDK_SpriteSequence_FileNameFormat
+  commentId: F:Anki.Resources.SDK.SpriteSequence.FileNameFormat
+  fullName: Anki.Resources.SDK.SpriteSequence.FileNameFormat
+  nameWithType: SpriteSequence.FileNameFormat
+- uid: Anki.Resources.SDK.SpriteSequence.Name
+  name: Name
+  href: api/Anki.Resources.SDK.SpriteSequence.html#Anki_Resources_SDK_SpriteSequence_Name
+  commentId: F:Anki.Resources.SDK.SpriteSequence.Name
+  fullName: Anki.Resources.SDK.SpriteSequence.Name
+  nameWithType: SpriteSequence.Name
 - uid: Anki.Resources.SDK.TextSubstitution
   name: TextSubstitution
   href: api/Anki.Resources.SDK.TextSubstitution.html
@@ -6787,6 +7278,90 @@ references:
   isSpec: "True"
   fullName: Anki.Resources.SDK.UserIntentMap.user_intent
   nameWithType: UserIntentMap.user_intent
+- uid: Anki.Resources.SDK.VisionModeSetting
+  name: VisionModeSetting
+  href: api/Anki.Resources.SDK.VisionModeSetting.html
+  commentId: T:Anki.Resources.SDK.VisionModeSetting
+  fullName: Anki.Resources.SDK.VisionModeSetting
+  nameWithType: VisionModeSetting
+- uid: Anki.Resources.SDK.VisionModeSetting.high
+  name: high
+  href: api/Anki.Resources.SDK.VisionModeSetting.html#Anki_Resources_SDK_VisionModeSetting_high
+  commentId: P:Anki.Resources.SDK.VisionModeSetting.high
+  fullName: Anki.Resources.SDK.VisionModeSetting.high
+  nameWithType: VisionModeSetting.high
+- uid: Anki.Resources.SDK.VisionModeSetting.high*
+  name: high
+  href: api/Anki.Resources.SDK.VisionModeSetting.html#Anki_Resources_SDK_VisionModeSetting_high_
+  commentId: Overload:Anki.Resources.SDK.VisionModeSetting.high
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.VisionModeSetting.high
+  nameWithType: VisionModeSetting.high
+- uid: Anki.Resources.SDK.VisionModeSetting.low
+  name: low
+  href: api/Anki.Resources.SDK.VisionModeSetting.html#Anki_Resources_SDK_VisionModeSetting_low
+  commentId: P:Anki.Resources.SDK.VisionModeSetting.low
+  fullName: Anki.Resources.SDK.VisionModeSetting.low
+  nameWithType: VisionModeSetting.low
+- uid: Anki.Resources.SDK.VisionModeSetting.low*
+  name: low
+  href: api/Anki.Resources.SDK.VisionModeSetting.html#Anki_Resources_SDK_VisionModeSetting_low_
+  commentId: Overload:Anki.Resources.SDK.VisionModeSetting.low
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.VisionModeSetting.low
+  nameWithType: VisionModeSetting.low
+- uid: Anki.Resources.SDK.VisionModeSetting.med
+  name: med
+  href: api/Anki.Resources.SDK.VisionModeSetting.html#Anki_Resources_SDK_VisionModeSetting_med
+  commentId: P:Anki.Resources.SDK.VisionModeSetting.med
+  fullName: Anki.Resources.SDK.VisionModeSetting.med
+  nameWithType: VisionModeSetting.med
+- uid: Anki.Resources.SDK.VisionModeSetting.med*
+  name: med
+  href: api/Anki.Resources.SDK.VisionModeSetting.html#Anki_Resources_SDK_VisionModeSetting_med_
+  commentId: Overload:Anki.Resources.SDK.VisionModeSetting.med
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.VisionModeSetting.med
+  nameWithType: VisionModeSetting.med
+- uid: Anki.Resources.SDK.VisionModeSetting.mode
+  name: mode
+  href: api/Anki.Resources.SDK.VisionModeSetting.html#Anki_Resources_SDK_VisionModeSetting_mode
+  commentId: P:Anki.Resources.SDK.VisionModeSetting.mode
+  fullName: Anki.Resources.SDK.VisionModeSetting.mode
+  nameWithType: VisionModeSetting.mode
+- uid: Anki.Resources.SDK.VisionModeSetting.mode*
+  name: mode
+  href: api/Anki.Resources.SDK.VisionModeSetting.html#Anki_Resources_SDK_VisionModeSetting_mode_
+  commentId: Overload:Anki.Resources.SDK.VisionModeSetting.mode
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.VisionModeSetting.mode
+  nameWithType: VisionModeSetting.mode
+- uid: Anki.Resources.SDK.VisionModeSetting.relativeCost
+  name: relativeCost
+  href: api/Anki.Resources.SDK.VisionModeSetting.html#Anki_Resources_SDK_VisionModeSetting_relativeCost
+  commentId: P:Anki.Resources.SDK.VisionModeSetting.relativeCost
+  fullName: Anki.Resources.SDK.VisionModeSetting.relativeCost
+  nameWithType: VisionModeSetting.relativeCost
+- uid: Anki.Resources.SDK.VisionModeSetting.relativeCost*
+  name: relativeCost
+  href: api/Anki.Resources.SDK.VisionModeSetting.html#Anki_Resources_SDK_VisionModeSetting_relativeCost_
+  commentId: Overload:Anki.Resources.SDK.VisionModeSetting.relativeCost
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.VisionModeSetting.relativeCost
+  nameWithType: VisionModeSetting.relativeCost
+- uid: Anki.Resources.SDK.VisionModeSetting.standard
+  name: standard
+  href: api/Anki.Resources.SDK.VisionModeSetting.html#Anki_Resources_SDK_VisionModeSetting_standard
+  commentId: P:Anki.Resources.SDK.VisionModeSetting.standard
+  fullName: Anki.Resources.SDK.VisionModeSetting.standard
+  nameWithType: VisionModeSetting.standard
+- uid: Anki.Resources.SDK.VisionModeSetting.standard*
+  name: standard
+  href: api/Anki.Resources.SDK.VisionModeSetting.html#Anki_Resources_SDK_VisionModeSetting_standard_
+  commentId: Overload:Anki.Resources.SDK.VisionModeSetting.standard
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.VisionModeSetting.standard
+  nameWithType: VisionModeSetting.standard
 - uid: Anki.Resources.SDK.Weather
   name: Weather
   href: api/Anki.Resources.SDK.Weather.html
@@ -11581,6 +12156,19 @@ references:
   isSpec: "True"
   fullName: RCM.Util.JsonToNormal
   nameWithType: Util.JsonToNormal
+- uid: RCM.Util.NumberOfBitsSet(System.UInt32)
+  name: NumberOfBitsSet(UInt32)
+  href: api/RCM.Util.html#RCM_Util_NumberOfBitsSet_System_UInt32_
+  commentId: M:RCM.Util.NumberOfBitsSet(System.UInt32)
+  fullName: RCM.Util.NumberOfBitsSet(System.UInt32)
+  nameWithType: Util.NumberOfBitsSet(UInt32)
+- uid: RCM.Util.NumberOfBitsSet*
+  name: NumberOfBitsSet
+  href: api/RCM.Util.html#RCM_Util_NumberOfBitsSet_
+  commentId: Overload:RCM.Util.NumberOfBitsSet
+  isSpec: "True"
+  fullName: RCM.Util.NumberOfBitsSet
+  nameWithType: Util.NumberOfBitsSet
 - uid: RCM.Util.RemoveBasePath(System.String,System.String)
   name: RemoveBasePath(String, String)
   href: api/RCM.Util.html#RCM_Util_RemoveBasePath_System_String_System_String_

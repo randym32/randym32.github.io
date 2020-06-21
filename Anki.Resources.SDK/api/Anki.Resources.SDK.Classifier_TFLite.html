@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class BNKReader
+    <title>Class Classifier_TFLite
    | Resources SDK </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class BNKReader
+    <meta name="title" content="Class Classifier_TFLite
    | Resources SDK ">
     <meta name="generator" content="docfx 2.55.0.0">
     
@@ -72,70 +72,106 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Anki.AudioKinetic.BNKReader">
+            <article class="content wrap" id="_content" data-uid="Anki.Resources.SDK.Classifier_TFLite">
   
   
-  <h1 id="Anki_AudioKinetic_BNKReader" data-uid="Anki.AudioKinetic.BNKReader" class="text-break">Class BNKReader
+  <h1 id="Anki_Resources_SDK_Classifier_TFLite" data-uid="Anki.Resources.SDK.Classifier_TFLite" class="text-break">Class Classifier_TFLite
   </h1>
-  <div class="markdown level0 summary"><p>This class is used to scan sound bank (BNK) files.  These are containers of
-many &quot;assets&quot; used to create sounds in response to dynamic game play.</p>
+  <div class="markdown level0 summary"><p>This class is used to perform classification/detection based on
+images passed to a TFLite model.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
-    <div class="level1"><span class="xref">BNKReader</span></div>
+    <div class="level1"><span class="xref">Classifier_TFLite</span></div>
   </div>
   <div classs="implements">
     <h5>Implements</h5>
+    <div><a class="xref" href="Anki.Resources.SDK.IProcessImage.html">IProcessImage</a></div>
     <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="Anki.AudioKinetic.html">Anki.AudioKinetic</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Anki.Resources.SDK.html">Anki.Resources.SDK</a></h6>
   <h6><strong>Assembly</strong>: Anki.Resources.SDK.dll</h6>
-  <h5 id="Anki_AudioKinetic_BNKReader_syntax">Syntax</h5>
+  <h5 id="Anki_Resources_SDK_Classifier_TFLite_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class BNKReader : IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class Classifier_TFLite : IProcessImage, IDisposable</code></pre>
   </div>
-  <h5 id="Anki_AudioKinetic_BNKReader_remarks"><strong>Remarks</strong></h5>
-  <div class="markdown level0 remarks"><table><tbody><tr><td>The audio bus hierarchy</td><td>
-   A sound bank has setups for how the sounds flow from files (and other
-   inputs), thru mixers, and other filters to the output.</td></tr><tr><td>Sound effects</td><td></td></tr><tr><td>Music compositions</td><td>These probably are used 
-    heavily in Cozmo, but appear unused in Vector</td></tr><tr><td>State transition management</td><td>How altering
-    the settings of effects during play.</td></tr><tr><td>Audio events &amp; actions</td><td>A map of audio
-    events to the actions to carry out when that event occurs, such as
-    playing a sound, stopping other sounds, changing mixer settings, and so
-    on</td></tr><tr><td>Other sound banks</td><td>The set of other sound
-    bank files to load.</td></tr><tr><td>Sounds</td><td>WEM sound files, either embedded, or
-   a reference to an external file.</td></tr></tbody></table>
-</div>
-  <h5 id="Anki_AudioKinetic_BNKReader_examples"><strong>Examples</strong></h5>
-  <p>You can pipe the sounds into NAudio using code like:</p>
-<pre><code>  var WEM = soundBank.WEM( .. the id for the sound ..)
-  var waveOut      = new WaveOut();
-  var waveProvider = WEM.WaveProvider();
-  waveOut.Init(waveProvider);
-  waveOut.Play();
-  Thread.Sleep(30000);
-  waveOut.Stop();
-  waveProvider.Dispose();
-  waveOut.Dispose();</code></pre>
-
-  <h3 id="properties">Properties
+  <h3 id="constructors">Constructors
   </h3>
   
   
-  <a id="Anki_AudioKinetic_BNKReader_Events_" data-uid="Anki.AudioKinetic.BNKReader.Events*"></a>
-  <h4 id="Anki_AudioKinetic_BNKReader_Events" data-uid="Anki.AudioKinetic.BNKReader.Events">Events</h4>
-  <div class="markdown level1 summary"><p>This is used to enumerate the names and id of events used in the sound bank
-file.
-Audio events are sent to &quot;apply actions to the different sound objects or
-object groups..  The actions you select specify whether the Wwise objects
-will play, stop, pause, .. mute, set volume, enable effect bypass, and so on.”</p>
+  <a id="Anki_Resources_SDK_Classifier_TFLite__ctor_" data-uid="Anki.Resources.SDK.Classifier_TFLite.#ctor*"></a>
+  <h4 id="Anki_Resources_SDK_Classifier_TFLite__ctor_System_String_System_String_System_String_System_Collections_Generic_IReadOnlyList_System_String__System_Int32_System_Int32_" data-uid="Anki.Resources.SDK.Classifier_TFLite.#ctor(System.String,System.String,System.String,System.Collections.Generic.IReadOnlyList{System.String},System.Int32,System.Int32)">Classifier_TFLite(String, String, String, IReadOnlyList&lt;String&gt;, Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Initializes the node to process the</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IEnumerable&lt;EventInfo&gt; Events { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Classifier_TFLite(string path, string inputName, string outputName, IReadOnlyList&lt;string&gt; labels, int numColumns = 1, int numRows = 1)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">path</span></td>
+        <td><p>The path to the model file</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">inputName</span></td>
+        <td><p>The name of the input to use</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">outputName</span></td>
+        <td><p>The name of the output to use</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><span class="parametername">labels</span></td>
+        <td><p>The labels used for each of the classification
+steps.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">numColumns</span></td>
+        <td><p>The number of columns in the grid of
+classifications.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">numRows</span></td>
+        <td><p>The number of rows in the grid of classifications.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="Anki_Resources_SDK_Classifier_TFLite_InputTensor_" data-uid="Anki.Resources.SDK.Classifier_TFLite.InputTensor*"></a>
+  <h4 id="Anki_Resources_SDK_Classifier_TFLite_InputTensor" data-uid="Anki.Resources.SDK.Classifier_TFLite.InputTensor">InputTensor</h4>
+  <div class="markdown level1 summary"><p>The input to the model.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Tensor InputTensor { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -147,23 +183,21 @@ will play, stop, pause, .. mute, set volume, enable effect bypass, and so on.”
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Anki.AudioKinetic.EventInfo.html">EventInfo</a>&gt;</td>
-        <td><p>A descriptor of the events</p>
-</td>
+        <td><span class="xref">Emgu.TF.Lite.Tensor</span></td>
+        <td></td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Anki_AudioKinetic_BNKReader_Sounds_" data-uid="Anki.AudioKinetic.BNKReader.Sounds*"></a>
-  <h4 id="Anki_AudioKinetic_BNKReader_Sounds" data-uid="Anki.AudioKinetic.BNKReader.Sounds">Sounds</h4>
-  <div class="markdown level1 summary"><p>This is used to enumerate the names and id of sounds used in the sound bank
-file</p>
+  <a id="Anki_Resources_SDK_Classifier_TFLite_OutputTensor_" data-uid="Anki.Resources.SDK.Classifier_TFLite.OutputTensor*"></a>
+  <h4 id="Anki_Resources_SDK_Classifier_TFLite_OutputTensor" data-uid="Anki.Resources.SDK.Classifier_TFLite.OutputTensor">OutputTensor</h4>
+  <div class="markdown level1 summary"><p>The output from the model.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IEnumerable&lt;FileInfo&gt; Sounds { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Tensor OutputTensor { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -175,9 +209,8 @@ file</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Anki.AudioKinetic.FileInfo.html">FileInfo</a>&gt;</td>
-        <td><p>A descriptor of the file, including its ids</p>
-</td>
+        <td><span class="xref">Emgu.TF.Lite.Tensor</span></td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -185,9 +218,9 @@ file</p>
   </h3>
   
   
-  <a id="Anki_AudioKinetic_BNKReader_Dispose_" data-uid="Anki.AudioKinetic.BNKReader.Dispose*"></a>
-  <h4 id="Anki_AudioKinetic_BNKReader_Dispose" data-uid="Anki.AudioKinetic.BNKReader.Dispose">Dispose()</h4>
-  <div class="markdown level1 summary"><p>Dispose of any internal resources.</p>
+  <a id="Anki_Resources_SDK_Classifier_TFLite_Dispose_" data-uid="Anki.Resources.SDK.Classifier_TFLite.Dispose*"></a>
+  <h4 id="Anki_Resources_SDK_Classifier_TFLite_Dispose" data-uid="Anki.Resources.SDK.Classifier_TFLite.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"><p>Release the IDiposable resources</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -196,9 +229,9 @@ file</p>
   </div>
   
   
-  <a id="Anki_AudioKinetic_BNKReader_Dispose_" data-uid="Anki.AudioKinetic.BNKReader.Dispose*"></a>
-  <h4 id="Anki_AudioKinetic_BNKReader_Dispose_System_Boolean_" data-uid="Anki.AudioKinetic.BNKReader.Dispose(System.Boolean)">Dispose(Boolean)</h4>
-  <div class="markdown level1 summary"><p>Dispose of the binary stream.</p>
+  <a id="Anki_Resources_SDK_Classifier_TFLite_Dispose_" data-uid="Anki.Resources.SDK.Classifier_TFLite.Dispose*"></a>
+  <h4 id="Anki_Resources_SDK_Classifier_TFLite_Dispose_System_Boolean_" data-uid="Anki.Resources.SDK.Classifier_TFLite.Dispose(System.Boolean)">Dispose(Boolean)</h4>
+  <div class="markdown level1 summary"><p>Release the IDiposable resources</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -218,21 +251,22 @@ file</p>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td><span class="parametername">disposing</span></td>
-        <td></td>
+        <td><p>True if called from Dispose()</p>
+</td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Anki_AudioKinetic_BNKReader_Retain_" data-uid="Anki.AudioKinetic.BNKReader.Retain*"></a>
-  <h4 id="Anki_AudioKinetic_BNKReader_Retain" data-uid="Anki.AudioKinetic.BNKReader.Retain">Retain()</h4>
-  <div class="markdown level1 summary"><p>Increment the reference count for this object.
-Decrement the count using Dispose().</p>
+  <a id="Anki_Resources_SDK_Classifier_TFLite_IsCategorization_" data-uid="Anki.Resources.SDK.Classifier_TFLite.IsCategorization*"></a>
+  <h4 id="Anki_Resources_SDK_Classifier_TFLite_IsCategorization" data-uid="Anki.Resources.SDK.Classifier_TFLite.IsCategorization">IsCategorization()</h4>
+  <div class="markdown level1 summary"><p>This returns true if the results are a list of categories, false if
+it is a localization</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public BNKReader Retain()</code></pre>
+    <pre><code class="lang-csharp hljs">public bool IsCategorization()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -244,22 +278,22 @@ Decrement the count using Dispose().</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Anki.AudioKinetic.BNKReader.html">BNKReader</a></td>
-        <td><p>This object</p>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>true if a categorization, false if a localization</p>
 </td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Anki_AudioKinetic_BNKReader_WEM_" data-uid="Anki.AudioKinetic.BNKReader.WEM*"></a>
-  <h4 id="Anki_AudioKinetic_BNKReader_WEM_System_UInt32_" data-uid="Anki.AudioKinetic.BNKReader.WEM(System.UInt32)">WEM(UInt32)</h4>
-  <div class="markdown level1 summary"><p>Look up a WEM audio file object for the given file id</p>
+  <a id="Anki_Resources_SDK_Classifier_TFLite_ProcessImage_" data-uid="Anki.Resources.SDK.Classifier_TFLite.ProcessImage*"></a>
+  <h4 id="Anki_Resources_SDK_Classifier_TFLite_ProcessImage_Anki_Resources_SDK_ImageContainer_" data-uid="Anki.Resources.SDK.Classifier_TFLite.ProcessImage(Anki.Resources.SDK.ImageContainer)">ProcessImage(ImageContainer)</h4>
+  <div class="markdown level1 summary"><p>Processes the input image to determine the classification</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public WEMReader WEM(uint WEMFileId)</code></pre>
+    <pre><code class="lang-csharp hljs">public Classification[, ] ProcessImage(ImageContainer imageContainer)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -272,9 +306,9 @@ Decrement the count using Dispose().</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
-        <td><span class="parametername">WEMFileId</span></td>
-        <td><p>The identifier of the WEM file to retrieve</p>
+        <td><a class="xref" href="Anki.Resources.SDK.ImageContainer.html">ImageContainer</a></td>
+        <td><span class="parametername">imageContainer</span></td>
+        <td><p>The image to process</p>
 </td>
       </tr>
     </tbody>
@@ -289,17 +323,18 @@ Decrement the count using Dispose().</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Anki.AudioKinetic.WEMReader.html">WEMReader</a></td>
-        <td><p>null on error, otherwise the object to access the file</p>
+        <td><a class="xref" href="Anki.Resources.SDK.Classification.html">Classification</a>[,]</td>
+        <td><p>If two dimensional, it is a grid of the image and the
+classification of each cell within it.  If one dimensional, it is list
+of classifications for the whole image.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Anki_AudioKinetic_BNKReader_WEM_System_UInt32__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The Data Index section is a table of file identifiers and their
-positions/sizes embedded in the data segment.</p>
-</div>
   <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="Anki.Resources.SDK.IProcessImage.html">IProcessImage</a>
+  </div>
   <div>
       <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
   </div>

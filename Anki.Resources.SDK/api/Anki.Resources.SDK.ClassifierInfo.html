@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class File
+    <title>Class ClassifierInfo
    | Resources SDK </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class File
+    <meta name="title" content="Class ClassifierInfo
    | Resources SDK ">
     <meta name="generator" content="docfx 2.55.0.0">
     
@@ -72,36 +72,90 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Anki.AudioKinetic.XML.File">
+            <article class="content wrap" id="_content" data-uid="Anki.Resources.SDK.ClassifierInfo">
   
   
-  <h1 id="Anki_AudioKinetic_XML_File" data-uid="Anki.AudioKinetic.XML.File" class="text-break">Class File
+  <h1 id="Anki_Resources_SDK_ClassifierInfo" data-uid="Anki.Resources.SDK.ClassifierInfo" class="text-break">Class ClassifierInfo
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>This is a class intended to support a variety of classifiers and detectors,
+such as those built on Open CV, TFlite, and off-boarded (bumped to an
+external server.)</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
-    <div class="level1"><span class="xref">File</span></div>
+    <div class="level1"><span class="xref">ClassifierInfo</span></div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="Anki.AudioKinetic.XML.html">Anki.AudioKinetic.XML</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Anki.Resources.SDK.html">Anki.Resources.SDK</a></h6>
   <h6><strong>Assembly</strong>: Anki.Resources.SDK.dll</h6>
-  <h5 id="Anki_AudioKinetic_XML_File_syntax">Syntax</h5>
+  <h5 id="Anki_Resources_SDK_ClassifierInfo_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Serializable]
-public class File</code></pre>
+    <pre><code class="lang-csharp hljs">public class ClassifierInfo</code></pre>
   </div>
+  <h3 id="fields">Fields
+  </h3>
+  
+  
+  <h4 id="Anki_Resources_SDK_ClassifierInfo_FullPath" data-uid="Anki.Resources.SDK.ClassifierInfo.FullPath">FullPath</h4>
+  <div class="markdown level1 summary"><p>The full path to the classifier file</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly string FullPath</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="Anki_Resources_SDK_ClassifierInfo_Type" data-uid="Anki.Resources.SDK.ClassifierInfo.Type">Type</h4>
+  <div class="markdown level1 summary"><p>The type of classifier model -- e.g. OpenCV, TFLite, or Offboard</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly string Type</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="properties">Properties
   </h3>
   
   
-  <a id="Anki_AudioKinetic_XML_File_Id_" data-uid="Anki.AudioKinetic.XML.File.Id*"></a>
-  <h4 id="Anki_AudioKinetic_XML_File_Id" data-uid="Anki.AudioKinetic.XML.File.Id">Id</h4>
+  <a id="Anki_Resources_SDK_ClassifierInfo_Definition_" data-uid="Anki.Resources.SDK.ClassifierInfo.Definition*"></a>
+  <h4 id="Anki_Resources_SDK_ClassifierInfo_Definition" data-uid="Anki.Resources.SDK.ClassifierInfo.Definition">Definition</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public uint Id { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public IReadOnlyDictionary&lt;string, object&gt; Definition { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -113,20 +167,22 @@ public class File</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Anki_AudioKinetic_XML_File_Language_" data-uid="Anki.AudioKinetic.XML.File.Language*"></a>
-  <h4 id="Anki_AudioKinetic_XML_File_Language" data-uid="Anki.AudioKinetic.XML.File.Language">Language</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="Anki_Resources_SDK_ClassifierInfo_Labels_" data-uid="Anki.Resources.SDK.ClassifierInfo.Labels*"></a>
+  <h4 id="Anki_Resources_SDK_ClassifierInfo_Labels" data-uid="Anki.Resources.SDK.ClassifierInfo.Labels">Labels</h4>
+  <div class="markdown level1 summary"><p>The labels for the potential outputs.  This is shared with the
+classifier as well.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Language { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;string&gt; Labels { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -138,70 +194,21 @@ public class File</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Anki_AudioKinetic_XML_File_Path_" data-uid="Anki.AudioKinetic.XML.File.Path*"></a>
-  <h4 id="Anki_AudioKinetic_XML_File_Path" data-uid="Anki.AudioKinetic.XML.File.Path">Path</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="Anki_Resources_SDK_ClassifierInfo_Name_" data-uid="Anki.Resources.SDK.ClassifierInfo.Name*"></a>
+  <h4 id="Anki_Resources_SDK_ClassifierInfo_Name" data-uid="Anki.Resources.SDK.ClassifierInfo.Name">Name</h4>
+  <div class="markdown level1 summary"><p>The name of the classifier</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Path { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="Anki_AudioKinetic_XML_File_PrefetchSize_" data-uid="Anki.AudioKinetic.XML.File.PrefetchSize*"></a>
-  <h4 id="Anki_AudioKinetic_XML_File_PrefetchSize" data-uid="Anki.AudioKinetic.XML.File.PrefetchSize">PrefetchSize</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public uint PrefetchSize { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="Anki_AudioKinetic_XML_File_ShortName_" data-uid="Anki.AudioKinetic.XML.File.ShortName*"></a>
-  <h4 id="Anki_AudioKinetic_XML_File_ShortName" data-uid="Anki.AudioKinetic.XML.File.ShortName">ShortName</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string ShortName { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string Name { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -218,6 +225,65 @@ public class File</code></pre>
       </tr>
     </tbody>
   </table>
+  
+  
+  <a id="Anki_Resources_SDK_ClassifierInfo_Parameters_" data-uid="Anki.Resources.SDK.ClassifierInfo.Parameters*"></a>
+  <h4 id="Anki_Resources_SDK_ClassifierInfo_Parameters" data-uid="Anki.Resources.SDK.ClassifierInfo.Parameters">Parameters</h4>
+  <div class="markdown level1 summary"><p>The parameters for interpreting the model.
+As there is a variety of models the kinds of parameters can vary a lot</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyDictionary&lt;string, object&gt; Parameters { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="Anki_Resources_SDK_ClassifierInfo_CreateClassifier_" data-uid="Anki.Resources.SDK.ClassifierInfo.CreateClassifier*"></a>
+  <h4 id="Anki_Resources_SDK_ClassifierInfo_CreateClassifier" data-uid="Anki.Resources.SDK.ClassifierInfo.CreateClassifier">CreateClassifier()</h4>
+  <div class="markdown level1 summary"><p>Creates a classifier to process images</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IProcessImage CreateClassifier()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Anki.Resources.SDK.IProcessImage.html">IProcessImage</a></td>
+        <td><p>null on error, otherwise the classifier</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Anki_Resources_SDK_ClassifierInfo_CreateClassifier_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The object may be disposable as well</p>
+</div>
   
 </article>
           </div>

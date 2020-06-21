@@ -5,11 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Enum AssetsType
-   | Resources SDK </title>
+    <title>Packages | Resources SDK </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Enum AssetsType
-   | Resources SDK ">
+    <meta name="title" content="Packages | Resources SDK ">
     <meta name="generator" content="docfx 2.55.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
@@ -72,42 +70,67 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Anki.Resources.SDK.AssetsType">
-  
-  
-  <h1 id="Anki_Resources_SDK_AssetsType" data-uid="Anki.Resources.SDK.AssetsType" class="text-break">Enum AssetsType
-  </h1>
-  <div class="markdown level0 summary"><p>The type of assets folder</p>
-</div>
-  <div class="markdown level0 conceptual"></div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="Anki.Resources.SDK.html">Anki.Resources.SDK</a></h6>
-  <h6><strong>Assembly</strong>: Anki.Resources.SDK.dll</h6>
-  <h5 id="Anki_Resources_SDK_AssetsType_syntax">Syntax</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public enum AssetsType</code></pre>
-  </div>
-  <h3 id="fields">Fields
-  </h3>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    <thead>
-    <tbody>
-      <tr>
-        <td id="Anki_Resources_SDK_AssetsType_Cozmo">Cozmo</td>
-        <td><p>Cozmo-style assets</p>
-</td>
-      </tr>
-      <tr>
-        <td id="Anki_Resources_SDK_AssetsType_Vector">Vector</td>
-        <td><p>Vector-style assets</p>
-</td>
-      </tr>
-    </tbody>
-  </thead></thead></table>
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="packages">Packages</h1>
+
+<p>This library employs the following nuget packages:</p>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NAudio</td>
+<td>Used for sound playback of decoded audio</td>
+</tr>
+<tr>
+<td>NVorbis</td>
+<td>Used to decode Vorbis audio</td>
+</tr>
+<tr>
+<td>NAudio.Vorbis</td>
+<td>Used to complete the bridging of Vorbis to the audio playback.</td>
+</tr>
+<tr>
+<td>System.Text.Json</td>
+<td>Used to read JSON files; the JSON files are heavily used in the resources folder</td>
+</tr>
+<tr>
+<td>System . ? Display</td>
+<td>Used for the bitmap images</td>
+</tr>
+<tr>
+<td>EMGU.CV</td>
+<td>Used to provide OpenCV to C# by wrapping it.  This is used by the vision classifiers.</td>
+</tr>
+<tr>
+<td>EMGU.TF.Lite</td>
+<td>Used to provide TFLite to C# by wrapping it.  This is used by the vision classifiers.</td>
+</tr>
+</tbody>
+</table>
+<p>Applications may have to apply some of the other packages in to be fully realized:</p>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Emgu.CV.runtime.windows</td>
+<td>Used to provide the windows-specific openCV binaries.</td>
+</tr>
+<tr>
+<td>Emgu.TF.Lite.runtime.windows</td>
+<td>Used to provide the windows-specific TFLite binaries.</td>
+</tr>
+</tbody>
+</table>
 </article>
           </div>
           

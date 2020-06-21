@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class File
+    <title>Class ImageContainer
    | Resources SDK </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class File
+    <meta name="title" content="Class ImageContainer
    | Resources SDK ">
     <meta name="generator" content="docfx 2.55.0.0">
     
@@ -72,38 +72,143 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Anki.AudioKinetic.XML.File">
+            <article class="content wrap" id="_content" data-uid="Anki.Resources.SDK.ImageContainer">
   
   
-  <h1 id="Anki_AudioKinetic_XML_File" data-uid="Anki.AudioKinetic.XML.File" class="text-break">Class File
+  <h1 id="Anki_Resources_SDK_ImageContainer" data-uid="Anki.Resources.SDK.ImageContainer" class="text-break">Class ImageContainer
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>This is used to hold the image from the camera and converted sizes</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
-    <div class="level1"><span class="xref">File</span></div>
+    <div class="level1"><span class="xref">ImageContainer</span></div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="Anki.AudioKinetic.XML.html">Anki.AudioKinetic.XML</a></h6>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Anki.Resources.SDK.html">Anki.Resources.SDK</a></h6>
   <h6><strong>Assembly</strong>: Anki.Resources.SDK.dll</h6>
-  <h5 id="Anki_AudioKinetic_XML_File_syntax">Syntax</h5>
+  <h5 id="Anki_Resources_SDK_ImageContainer_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Serializable]
-public class File</code></pre>
+    <pre><code class="lang-csharp hljs">public class ImageContainer : IDisposable</code></pre>
   </div>
-  <h3 id="properties">Properties
+  <h3 id="constructors">Constructors
   </h3>
   
   
-  <a id="Anki_AudioKinetic_XML_File_Id_" data-uid="Anki.AudioKinetic.XML.File.Id*"></a>
-  <h4 id="Anki_AudioKinetic_XML_File_Id" data-uid="Anki.AudioKinetic.XML.File.Id">Id</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="Anki_Resources_SDK_ImageContainer__ctor_" data-uid="Anki.Resources.SDK.ImageContainer.#ctor*"></a>
+  <h4 id="Anki_Resources_SDK_ImageContainer__ctor_Emgu_CV_Mat_" data-uid="Anki.Resources.SDK.ImageContainer.#ctor(Emgu.CV.Mat)">ImageContainer(Mat)</h4>
+  <div class="markdown level1 summary"><p>Creates the container of the image and it's various sizes</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public uint Id { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public ImageContainer(Mat image)</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Emgu.CV.Mat</span></td>
+        <td><span class="parametername">image</span></td>
+        <td><p>The original image</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="Anki_Resources_SDK_ImageContainer_Dispose_" data-uid="Anki.Resources.SDK.ImageContainer.Dispose*"></a>
+  <h4 id="Anki_Resources_SDK_ImageContainer_Dispose" data-uid="Anki.Resources.SDK.ImageContainer.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"><p>Releases the internal resources</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+  
+  
+  <a id="Anki_Resources_SDK_ImageContainer_Dispose_" data-uid="Anki.Resources.SDK.ImageContainer.Dispose*"></a>
+  <h4 id="Anki_Resources_SDK_ImageContainer_Dispose_System_Boolean_" data-uid="Anki.Resources.SDK.ImageContainer.Dispose(System.Boolean)">Dispose(Boolean)</h4>
+  <div class="markdown level1 summary"><p>Dispose of the internal stuff</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">disposing</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_Resources_SDK_ImageContainer_Image_" data-uid="Anki.Resources.SDK.ImageContainer.Image*"></a>
+  <h4 id="Anki_Resources_SDK_ImageContainer_Image_System_Drawing_Size_Emgu_CV_CvEnum_DepthType_System_Boolean_" data-uid="Anki.Resources.SDK.ImageContainer.Image(System.Drawing.Size,Emgu.CV.CvEnum.DepthType,System.Boolean)">Image(Size, DepthType, Boolean)</h4>
+  <div class="markdown level1 summary"><p>This is used to get a representation of the image at the requested size</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Mat Image(Size size, DepthType depth, bool inRGBOrder)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.drawing.size">Size</a></td>
+        <td><span class="parametername">size</span></td>
+        <td><p>The size of the image</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Emgu.CV.CvEnum.DepthType</span></td>
+        <td><span class="parametername">depth</span></td>
+        <td><p>The type of the image pixel elements</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">inRGBOrder</span></td>
+        <td><p>If true, the image should be in RGB order; false is BGR</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
@@ -113,111 +218,16 @@ public class File</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
-        <td></td>
+        <td><span class="xref">Emgu.CV.Mat</span></td>
+        <td><p>The image</p>
+</td>
       </tr>
     </tbody>
   </table>
-  
-  
-  <a id="Anki_AudioKinetic_XML_File_Language_" data-uid="Anki.AudioKinetic.XML.File.Language*"></a>
-  <h4 id="Anki_AudioKinetic_XML_File_Language" data-uid="Anki.AudioKinetic.XML.File.Language">Language</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Language { get; set; }</code></pre>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="Anki_AudioKinetic_XML_File_Path_" data-uid="Anki.AudioKinetic.XML.File.Path*"></a>
-  <h4 id="Anki_AudioKinetic_XML_File_Path" data-uid="Anki.AudioKinetic.XML.File.Path">Path</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Path { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="Anki_AudioKinetic_XML_File_PrefetchSize_" data-uid="Anki.AudioKinetic.XML.File.PrefetchSize*"></a>
-  <h4 id="Anki_AudioKinetic_XML_File_PrefetchSize" data-uid="Anki.AudioKinetic.XML.File.PrefetchSize">PrefetchSize</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public uint PrefetchSize { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="Anki_AudioKinetic_XML_File_ShortName_" data-uid="Anki.AudioKinetic.XML.File.ShortName*"></a>
-  <h4 id="Anki_AudioKinetic_XML_File_ShortName" data-uid="Anki.AudioKinetic.XML.File.ShortName">ShortName</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string ShortName { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   
 </article>
           </div>

@@ -8,7 +8,7 @@
     <title> | Resources SDK </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content=" | Resources SDK ">
-    <meta name="generator" content="docfx 2.54.0.0">
+    <meta name="generator" content="docfx 2.55.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -94,12 +94,24 @@ given min and max) while the animation plays.</p>
       <h4><a class="xref" href="Anki.Resources.SDK.BlackJack.html">BlackJack</a></h4>
       <section><p>The behavior to support the Black Jack game</p>
 </section>
+      <h4><a class="xref" href="Anki.Resources.SDK.Classifier_TFLite.html">Classifier_TFLite</a></h4>
+      <section><p>This class is used to perform classification/detection based on
+images passed to a TFLite model.</p>
+</section>
+      <h4><a class="xref" href="Anki.Resources.SDK.ClassifierInfo.html">ClassifierInfo</a></h4>
+      <section><p>This is a class intended to support a variety of classifiers and detectors,
+such as those built on Open CV, TFlite, and off-boarded (bumped to an
+external server.)</p>
+</section>
       <h4><a class="xref" href="Anki.Resources.SDK.Clock.html">Clock</a></h4>
       <section><p>The behavior to support the Clock / Timer behaviors</p>
 </section>
       <h4><a class="xref" href="Anki.Resources.SDK.CompositeImage.html">CompositeImage</a></h4>
       <section><p>A composite image defines layers on the display with rectangular areas
 where images and sprite sequences will be drawn.</p>
+</section>
+      <h4><a class="xref" href="Anki.Resources.SDK.ConditionSchema.html">ConditionSchema</a></h4>
+      <section><p>Schema information about conditions</p>
 </section>
       <h4><a class="xref" href="Anki.Resources.SDK.DecayGraph.html">DecayGraph</a></h4>
       <section><p>This describes how an emotion decays over time.</p>
@@ -109,6 +121,16 @@ where images and sprite sequences will be drawn.</p>
 </section>
       <h4><a class="xref" href="Anki.Resources.SDK.EmotionEvent.html">EmotionEvent</a></h4>
       <section><p>The EmotionEvent describes how the emotions respond to a given event.</p>
+</section>
+      <h4><a class="xref" href="Anki.Resources.SDK.ImageContainer.html">ImageContainer</a></h4>
+      <section><p>This is used to hold the image from the camera and converted sizes</p>
+</section>
+      <h4><a class="xref" href="Anki.Resources.SDK.ImageLayout.html">ImageLayout</a></h4>
+      <section><p>A screen layout defines rectangular areas on the display where images and
+sprite sequences will be drawn.</p>
+</section>
+      <h4><a class="xref" href="Anki.Resources.SDK.ImageMap.html">ImageMap</a></h4>
+      <section><p>An image map describes which images and sprite sequences to display.</p>
 </section>
       <h4><a class="xref" href="Anki.Resources.SDK.LightFrame.html">LightFrame</a></h4>
       <section><p>This is used to desribe the illumination of a single light</p>
@@ -125,6 +147,9 @@ where images and sprite sequences will be drawn.</p>
       <h4><a class="xref" href="Anki.Resources.SDK.SpriteBox.html">SpriteBox</a></h4>
       <section><p>A sprite box defines a rectangular area on the display to draw an image of sprite sequence.</p>
 </section>
+      <h4><a class="xref" href="Anki.Resources.SDK.SpriteMapBox.html">SpriteMapBox</a></h4>
+      <section><p>The name of the image or sprite sequence to display in the sprite box.</p>
+</section>
       <h4><a class="xref" href="Anki.Resources.SDK.SpriteSequence.html">SpriteSequence</a></h4>
       <section><p>This is a wrapper around an sprite sequence</p>
 </section>
@@ -135,12 +160,29 @@ where images and sprite sequences will be drawn.</p>
       <section><p>A table that maps the intent received by the cloud or application to
 the intent name used internally.  This includes renaming the parameters.</p>
 </section>
+      <h4><a class="xref" href="Anki.Resources.SDK.VisionModeSetting.html">VisionModeSetting</a></h4>
+      <section><p>This is used to as part of the vision scheduler configuration.
+It specifies the frequency to run a given image processing step, for each
+of the vision processing subsystems modes. 1 means &quot;runs every frame,&quot;
+4 every fourth frame, and so on.</p>
+</section>
       <h4><a class="xref" href="Anki.Resources.SDK.Weather.html">Weather</a></h4>
       <section><p>The Weather behavior</p>
 </section>
       <h4><a class="xref" href="Anki.Resources.SDK.XY.html">XY</a></h4>
       <section><p>The XY structure is used to define how a value (often the value associated
 with an emotion dimension) should decay with time.</p>
+</section>
+    <h3 id="structs">Structs
+  </h3>
+      <h4><a class="xref" href="Anki.Resources.SDK.Classification.html">Classification</a></h4>
+      <section><p>The classification in each grid cell.</p>
+</section>
+    <h3 id="interfaces">Interfaces
+  </h3>
+      <h4><a class="xref" href="Anki.Resources.SDK.IProcessImage.html">IProcessImage</a></h4>
+      <section><p>This interface allows us to work with many different kinds of image
+processing steps.</p>
 </section>
     <h3 id="enums">Enums
   </h3>

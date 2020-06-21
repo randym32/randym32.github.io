@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class File
+    <title>Class VisionModeSetting
    | Resources SDK </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class File
+    <meta name="title" content="Class VisionModeSetting
    | Resources SDK ">
     <meta name="generator" content="docfx 2.55.0.0">
     
@@ -72,36 +72,41 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Anki.AudioKinetic.XML.File">
+            <article class="content wrap" id="_content" data-uid="Anki.Resources.SDK.VisionModeSetting">
   
   
-  <h1 id="Anki_AudioKinetic_XML_File" data-uid="Anki.AudioKinetic.XML.File" class="text-break">Class File
+  <h1 id="Anki_Resources_SDK_VisionModeSetting" data-uid="Anki.Resources.SDK.VisionModeSetting" class="text-break">Class VisionModeSetting
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>This is used to as part of the vision scheduler configuration.
+It specifies the frequency to run a given image processing step, for each
+of the vision processing subsystems modes. 1 means &quot;runs every frame,&quot;
+4 every fourth frame, and so on.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
-    <div class="level1"><span class="xref">File</span></div>
+    <div class="level1"><span class="xref">VisionModeSetting</span></div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="Anki.AudioKinetic.XML.html">Anki.AudioKinetic.XML</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Anki.Resources.SDK.html">Anki.Resources.SDK</a></h6>
   <h6><strong>Assembly</strong>: Anki.Resources.SDK.dll</h6>
-  <h5 id="Anki_AudioKinetic_XML_File_syntax">Syntax</h5>
+  <h5 id="Anki_Resources_SDK_VisionModeSetting_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Serializable]
-public class File</code></pre>
+    <pre><code class="lang-csharp hljs">public class VisionModeSetting</code></pre>
   </div>
   <h3 id="properties">Properties
   </h3>
   
   
-  <a id="Anki_AudioKinetic_XML_File_Id_" data-uid="Anki.AudioKinetic.XML.File.Id*"></a>
-  <h4 id="Anki_AudioKinetic_XML_File_Id" data-uid="Anki.AudioKinetic.XML.File.Id">Id</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="Anki_Resources_SDK_VisionModeSetting_high_" data-uid="Anki.Resources.SDK.VisionModeSetting.high*"></a>
+  <h4 id="Anki_Resources_SDK_VisionModeSetting_high" data-uid="Anki.Resources.SDK.VisionModeSetting.high">high</h4>
+  <div class="markdown level1 summary"><p>When in high &quot;mode&quot; run the image processing step every n frames.  This
+value must be a power of two.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public uint Id { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public uint high { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -120,63 +125,15 @@ public class File</code></pre>
   </table>
   
   
-  <a id="Anki_AudioKinetic_XML_File_Language_" data-uid="Anki.AudioKinetic.XML.File.Language*"></a>
-  <h4 id="Anki_AudioKinetic_XML_File_Language" data-uid="Anki.AudioKinetic.XML.File.Language">Language</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="Anki_Resources_SDK_VisionModeSetting_low_" data-uid="Anki.Resources.SDK.VisionModeSetting.low*"></a>
+  <h4 id="Anki_Resources_SDK_VisionModeSetting_low" data-uid="Anki.Resources.SDK.VisionModeSetting.low">low</h4>
+  <div class="markdown level1 summary"><p>When in low &quot;mode&quot; run the image processing step every n frames.
+This value must be a power of two.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Language { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="Anki_AudioKinetic_XML_File_Path_" data-uid="Anki.AudioKinetic.XML.File.Path*"></a>
-  <h4 id="Anki_AudioKinetic_XML_File_Path" data-uid="Anki.AudioKinetic.XML.File.Path">Path</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Path { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="Anki_AudioKinetic_XML_File_PrefetchSize_" data-uid="Anki.AudioKinetic.XML.File.PrefetchSize*"></a>
-  <h4 id="Anki_AudioKinetic_XML_File_PrefetchSize" data-uid="Anki.AudioKinetic.XML.File.PrefetchSize">PrefetchSize</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public uint PrefetchSize { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public uint low { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -195,13 +152,41 @@ public class File</code></pre>
   </table>
   
   
-  <a id="Anki_AudioKinetic_XML_File_ShortName_" data-uid="Anki.AudioKinetic.XML.File.ShortName*"></a>
-  <h4 id="Anki_AudioKinetic_XML_File_ShortName" data-uid="Anki.AudioKinetic.XML.File.ShortName">ShortName</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="Anki_Resources_SDK_VisionModeSetting_med_" data-uid="Anki.Resources.SDK.VisionModeSetting.med*"></a>
+  <h4 id="Anki_Resources_SDK_VisionModeSetting_med" data-uid="Anki.Resources.SDK.VisionModeSetting.med">med</h4>
+  <div class="markdown level1 summary"><p>When in medium &quot;mode&quot; run the image processing step every n frames.
+This value must be a power of two.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string ShortName { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public uint med { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_Resources_SDK_VisionModeSetting_mode_" data-uid="Anki.Resources.SDK.VisionModeSetting.mode*"></a>
+  <h4 id="Anki_Resources_SDK_VisionModeSetting_mode" data-uid="Anki.Resources.SDK.VisionModeSetting.mode">mode</h4>
+  <div class="markdown level1 summary"><p>The name of the image processing step.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string mode { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -214,6 +199,61 @@ public class File</code></pre>
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_Resources_SDK_VisionModeSetting_relativeCost_" data-uid="Anki.Resources.SDK.VisionModeSetting.relativeCost*"></a>
+  <h4 id="Anki_Resources_SDK_VisionModeSetting_relativeCost" data-uid="Anki.Resources.SDK.VisionModeSetting.relativeCost">relativeCost</h4>
+  <div class="markdown level1 summary"><p>A &quot;heuristic weighting to drive separation of heavy-weight tasks between
+frames where 1 should indicate our lowest cost process e.g. &quot;Markers&quot; is
+~16x as resource intensive as &quot;CheckingQuality&quot;</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint relativeCost { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_Resources_SDK_VisionModeSetting_standard_" data-uid="Anki.Resources.SDK.VisionModeSetting.standard*"></a>
+  <h4 id="Anki_Resources_SDK_VisionModeSetting_standard" data-uid="Anki.Resources.SDK.VisionModeSetting.standard">standard</h4>
+  <div class="markdown level1 summary"><p>When in medium &quot;mode&quot; run the image processing step every n frames.
+This value must be a power of two.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint standard { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
         <td></td>
       </tr>
     </tbody>
