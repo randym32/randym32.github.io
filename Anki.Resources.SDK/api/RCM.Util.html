@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class Util
    | Resources SDK ">
-    <meta name="generator" content="docfx 2.55.0.0">
+    <meta name="generator" content="docfx 2.56.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -97,7 +97,7 @@
   
   <a id="RCM_Util_AssemblyDirectory_" data-uid="RCM.Util.AssemblyDirectory*"></a>
   <h4 id="RCM_Util_AssemblyDirectory" data-uid="RCM.Util.AssemblyDirectory">AssemblyDirectory</h4>
-  <div class="markdown level1 summary"><p>The path of the executing assembly</p>
+  <div class="markdown level1 summary"><p>The path of the executing assembly.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -115,7 +115,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
-        <td></td>
+        <td><p>The path of the executing assembly.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -199,7 +200,8 @@
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
         <td><span class="parametername">imagePath</span></td>
-        <td></td>
+        <td><p>The path to the image file.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -273,7 +275,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static uint NumberOfBitsSet(uint i)</code></pre>
+    <pre><code class="lang-csharp hljs">public static uint NumberOfBitsSet(uint value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -287,8 +289,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
-        <td><span class="parametername">i</span></td>
-        <td><p>value to count bits in</p>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value to count bits in</p>
 </td>
       </tr>
     </tbody>
@@ -414,7 +416,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Dictionary&lt;string, object&gt; ToDict(Dictionary&lt;string, object&gt; a)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Dictionary&lt;string, object&gt; ToDict(Dictionary&lt;string, object&gt; jsonDictionary)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -428,7 +430,7 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>&gt;</td>
-        <td><span class="parametername">a</span></td>
+        <td><span class="parametername">jsonDictionary</span></td>
         <td><p>The dictionary of JSON elements</p>
 </td>
       </tr>
@@ -459,7 +461,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Dictionary&lt;string, object&gt; ToDict(JsonElement a)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Dictionary&lt;string, object&gt; ToDict(JsonElement jsonDictionary)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -473,7 +475,7 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.text.json.jsonelement">JsonElement</a></td>
-        <td><span class="parametername">a</span></td>
+        <td><span class="parametername">jsonDictionary</span></td>
         <td><p>The JSON element</p>
 </td>
       </tr>

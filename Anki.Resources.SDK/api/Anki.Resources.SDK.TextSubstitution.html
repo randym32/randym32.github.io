@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class TextSubstitution
    | Resources SDK ">
-    <meta name="generator" content="docfx 2.55.0.0">
+    <meta name="generator" content="docfx 2.56.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -91,19 +91,48 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class TextSubstitution</code></pre>
   </div>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="Anki_Resources_SDK_TextSubstitution_Keys_" data-uid="Anki.Resources.SDK.TextSubstitution.Keys*"></a>
+  <h4 id="Anki_Resources_SDK_TextSubstitution_Keys" data-uid="Anki.Resources.SDK.TextSubstitution.Keys">Keys</h4>
+  <div class="markdown level1 summary"><p>Enumerates over the set of localization keys.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;string&gt; Keys { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><p>Enumerates over the set of localization keys.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="methods">Methods
   </h3>
   
   
-  <a id="Anki_Resources_SDK_TextSubstitution_LocalizedString_" data-uid="Anki.Resources.SDK.TextSubstitution.LocalizedString*"></a>
-  <h4 id="Anki_Resources_SDK_TextSubstitution_LocalizedString_System_String_System_Collections_Generic_IReadOnlyDictionary_System_String_System_String__" data-uid="Anki.Resources.SDK.TextSubstitution.LocalizedString(System.String,System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})">LocalizedString(String, IReadOnlyDictionary&lt;String, String&gt;)</h4>
+  <a id="Anki_Resources_SDK_TextSubstitution_LocalizedText_" data-uid="Anki.Resources.SDK.TextSubstitution.LocalizedText*"></a>
+  <h4 id="Anki_Resources_SDK_TextSubstitution_LocalizedText_System_String_System_Collections_Generic_IReadOnlyDictionary_System_String_System_String__" data-uid="Anki.Resources.SDK.TextSubstitution.LocalizedText(System.String,System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})">LocalizedText(String, IReadOnlyDictionary&lt;String, String&gt;)</h4>
   <div class="markdown level1 summary"><p>This procedure looks up the localized string with possible substitution
 strings.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string LocalizedString(string key, IReadOnlyDictionary&lt;string, string&gt; substitutions)</code></pre>
+    <pre><code class="lang-csharp hljs">public string LocalizedText(string key, IReadOnlyDictionary&lt;string, string&gt; substitutions)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -125,6 +154,52 @@ strings.</p>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
         <td><span class="parametername">substitutions</span></td>
         <td><p>A table of text substitutions</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><p>null on error, otherwise the string with placeholder substitutions</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Anki_Resources_SDK_TextSubstitution_LocalizedTextWithoutSubstitutions_" data-uid="Anki.Resources.SDK.TextSubstitution.LocalizedTextWithoutSubstitutions*"></a>
+  <h4 id="Anki_Resources_SDK_TextSubstitution_LocalizedTextWithoutSubstitutions_System_String_" data-uid="Anki.Resources.SDK.TextSubstitution.LocalizedTextWithoutSubstitutions(System.String)">LocalizedTextWithoutSubstitutions(String)</h4>
+  <div class="markdown level1 summary"><p>This procedure looks up the localized string without substitution
+strings.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string LocalizedTextWithoutSubstitutions(string key)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The localization key</p>
 </td>
       </tr>
     </tbody>

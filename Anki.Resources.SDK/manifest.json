@@ -18,7 +18,7 @@
       "output": {
         ".html": {
           "relative_path": "api/gripes.html",
-          "hash": "RFoeaBpwZW6sHoUSdKrqXA=="
+          "hash": "VFzNhYKKcR97WAJo6xkTvQ=="
         }
       },
       "is_incremental": false,
@@ -33,7 +33,7 @@
       "output": {
         ".html": {
           "relative_path": "api/index.html",
-          "hash": "SVhzk/HJchSGomxBVWWVrw=="
+          "hash": "cVAcLZQSDmMjXavM1H4IrQ=="
         }
       },
       "is_incremental": false,
@@ -45,7 +45,7 @@
       "output": {
         ".html": {
           "relative_path": "api/packages.html",
-          "hash": "pZ2HozIOEcp2KRVtDMLMHw=="
+          "hash": "ZKn2Np0UlfHyKwIhMAof3g=="
         }
       },
       "is_incremental": false,
@@ -60,7 +60,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "ENfXeCWq325seIqr0ChdYw=="
+          "hash": "yWr0ZY19fiZErmFAIjUKWw=="
         }
       },
       "is_incremental": false,
@@ -72,7 +72,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.AudioKinetic.AudioAssets.html",
-          "hash": "44hsuBRATb/9N5lk3bSb0Q=="
+          "hash": "IUppml2M2ra0phvD1Nj7og=="
         }
       },
       "is_incremental": false,
@@ -84,7 +84,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.AudioKinetic.BNKReader.html",
-          "hash": "yBDLYoXNoj/y/GqZEKfYfQ=="
+          "hash": "TNmY+v+jHz5sAYYMeMSnkg=="
         }
       },
       "is_incremental": false,
@@ -96,7 +96,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.AudioKinetic.EventInfo.html",
-          "hash": "XMGl5jO6gnON91IVabxsCw=="
+          "hash": "kbv9cmEVUeSp/NrbPzRHWA=="
         }
       },
       "is_incremental": false,
@@ -108,7 +108,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.AudioKinetic.FileInfo.html",
-          "hash": "XU6vCVjmMgq/58oZCES/EQ=="
+          "hash": "uXoal7/Ye0vWBveVb5VT2A=="
         }
       },
       "is_incremental": false,
@@ -120,7 +120,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.AudioKinetic.IMAWaveProvider.html",
-          "hash": "TgyOOhJkiFz0q12BcMzMjA=="
+          "hash": "LPfB07i0MEf3MQbk3i0d1g=="
         }
       },
       "is_incremental": false,
@@ -132,7 +132,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.AudioKinetic.WEMReader.html",
-          "hash": "xWRezx5ly+cFtwErgk3kIQ=="
+          "hash": "4JbwwH0zLoBg5pT7VF44Lg=="
         }
       },
       "is_incremental": false,
@@ -144,7 +144,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.AudioKinetic.XML.File.html",
-          "hash": "FqEbQ1QbJboMiIC0AekKXw=="
+          "hash": "H6edgwz7wZy92T1ZWOV/Ew=="
         }
       },
       "is_incremental": false,
@@ -156,7 +156,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.AudioKinetic.XML.PluginInfo.html",
-          "hash": "J/43u+o3gslrUY9YuxV7kg=="
+          "hash": "9TYU4HR6WOP0bfiq2laiug=="
         }
       },
       "is_incremental": false,
@@ -168,7 +168,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.AudioKinetic.XML.PluginInfoPluginsPlugin.html",
-          "hash": "AE7u+fURMQ3jKhOl/XI65Q=="
+          "hash": "tgq3RJtTVwXAHG//wAEGEw=="
         }
       },
       "is_incremental": false,
@@ -180,7 +180,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.AudioKinetic.XML.SoundBanksInfo.html",
-          "hash": "GbxQK3ewnI1J25Gcv6G95Q=="
+          "hash": "ULBmlccjtby2ByGOKvGgHg=="
         }
       },
       "is_incremental": false,
@@ -192,7 +192,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.AudioKinetic.XML.SoundBanksInfoRootPaths.html",
-          "hash": "1KNfk3WM3hnRfDmWjo61cQ=="
+          "hash": "FttdAc+XsaGK96E9STpCYA=="
         }
       },
       "is_incremental": false,
@@ -204,7 +204,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.AudioKinetic.XML.SoundBanksInfoSoundBanksSoundBank.html",
-          "hash": "eVwiTFfbxcqDpI7sISne0w=="
+          "hash": "1c7Qwo5lg1kTghJhixipnA=="
         }
       },
       "is_incremental": false,
@@ -216,7 +216,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.AudioKinetic.XML.SoundBanksInfoSoundBanksSoundBankIncludedEventsEvent.html",
-          "hash": "VbCgFDSLmUaI0DgFxqW2Kw=="
+          "hash": "vitXBIgEkhOpKka2FL7GVQ=="
         }
       },
       "is_incremental": false,
@@ -228,7 +228,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.AudioKinetic.XML.html",
-          "hash": "IRH3SIO2S+TownwATp4PYQ=="
+          "hash": "z63HbY+zRTp1XIooSfLRjg=="
         }
       },
       "is_incremental": false,
@@ -240,7 +240,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.AudioKinetic.html",
-          "hash": "Te4zl7USc3ZYJjkq2aFeeQ=="
+          "hash": "w7gb8fg+iQVUaslhW58LXQ=="
         }
       },
       "is_incremental": false,
@@ -252,7 +252,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.CozmoAnim.AnimClip.html",
-          "hash": "JCYejIGZcfkVt7L+WzGSCA=="
+          "hash": "Rla3000lTJ9/54G3gkABrg=="
         }
       },
       "is_incremental": false,
@@ -264,7 +264,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.CozmoAnim.AnimClips.html",
-          "hash": "yITmNzmup+fMryrbO8nOuQ=="
+          "hash": "EDuHyWptkUwx2Zw30KY3MA=="
         }
       },
       "is_incremental": false,
@@ -276,7 +276,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.CozmoAnim.BackpackLights.html",
-          "hash": "CjAT1rPvLiRTzFQhJIMrTA=="
+          "hash": "Ut3HLpEcwuwdusnVwdUqaQ=="
         }
       },
       "is_incremental": false,
@@ -288,7 +288,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.CozmoAnim.BodyMotion.html",
-          "hash": "qPI94Alk083xE2V67+xn1Q=="
+          "hash": "z8Keraq/eL4oNpJ1C/ZegA=="
         }
       },
       "is_incremental": false,
@@ -300,7 +300,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.CozmoAnim.Event.html",
-          "hash": "bGVvjtioS9ntoNYLeibxoQ=="
+          "hash": "fO833YdqdIcGSekIlGc3sg=="
         }
       },
       "is_incremental": false,
@@ -312,7 +312,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.CozmoAnim.FaceAnimation.html",
-          "hash": "6Ayu2MT3XK9wfjGf3movvg=="
+          "hash": "6SmeQinhviLtjIKvsYsZrQ=="
         }
       },
       "is_incremental": false,
@@ -324,7 +324,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.CozmoAnim.HeadAngle.html",
-          "hash": "HzcZ2lODQC9nH540QFOY8g=="
+          "hash": "aqfgO6/c0YtS4dRnZarAKw=="
         }
       },
       "is_incremental": false,
@@ -336,7 +336,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.CozmoAnim.Keyframes.html",
-          "hash": "XmObGFFDYg7/6ruKsx6zlg=="
+          "hash": "/tTVC2Ua7I5Ct2Vz9y03QQ=="
         }
       },
       "is_incremental": false,
@@ -348,7 +348,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.CozmoAnim.LiftHeight.html",
-          "hash": "vFPXALC2aw6E04EZCXtK7w=="
+          "hash": "Ff/Medb9ggpPxYNPIWuY+Q=="
         }
       },
       "is_incremental": false,
@@ -360,7 +360,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.CozmoAnim.ProceduralFace.html",
-          "hash": "a44WEktD1mJYpflhbr0Sxg=="
+          "hash": "FFNO3hbhKyo2sThSlqwfUg=="
         }
       },
       "is_incremental": false,
@@ -372,7 +372,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.CozmoAnim.RecordHeading.html",
-          "hash": "iHlMbHhA1hNPyMJU2CPdZA=="
+          "hash": "aP146wWnU7Kw1Z09oVV3rg=="
         }
       },
       "is_incremental": false,
@@ -384,7 +384,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.CozmoAnim.RobotAudio.html",
-          "hash": "8gXuEYRsQV2sXF4uSsIXew=="
+          "hash": "WxU3Hfz6ktnpWrDoL00W/g=="
         }
       },
       "is_incremental": false,
@@ -396,7 +396,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.CozmoAnim.TurnToRecordedHeading.html",
-          "hash": "ScqznBa1W0V2648kz3JSNg=="
+          "hash": "L6CtoeuJ8sB4lwTeqGnqpg=="
         }
       },
       "is_incremental": false,
@@ -408,7 +408,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.CozmoAnim.html",
-          "hash": "P9wTKZCn5ttlKNpVuaCQrQ=="
+          "hash": "gMEP7KZhD+Iu3AvNw+ONCg=="
         }
       },
       "is_incremental": false,
@@ -420,7 +420,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.Resources.SDK.AnimationGroupItem.html",
-          "hash": "g5tMZsvHJEiIN3bXcKIXQA=="
+          "hash": "KzAqR0o+Od9E9P37g/SmLA=="
         }
       },
       "is_incremental": false,
@@ -432,7 +432,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.Resources.SDK.Assets.html",
-          "hash": "xIjlT+GTMGsxouIIHl4GGA=="
+          "hash": "rDrDPiEKHM5WLxykIRTqlw=="
         }
       },
       "is_incremental": false,
@@ -444,7 +444,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.Resources.SDK.AssetsType.html",
-          "hash": "VGnMbs0cvOpAeUa+xUEaxA=="
+          "hash": "K2iJMcPLSFG+VT+4NoOcuw=="
         }
       },
       "is_incremental": false,
@@ -456,7 +456,31 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.Resources.SDK.BehaviorCoordinator.html",
-          "hash": "FZavR5WsWsnm5DmiGFfvFg=="
+          "hash": "aNf6JQ8wNHYoDaV0sNB/mg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.Resources.SDK.BehaviorNode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.Resources.SDK.BehaviorNode.html",
+          "hash": "44Tsdd/hyU5Ln7DTqQQURg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.Resources.SDK.BehaviorTree.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.Resources.SDK.BehaviorTree.html",
+          "hash": "IKtx4Qwu6NxjDvcoJCJe4g=="
         }
       },
       "is_incremental": false,
@@ -468,7 +492,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.Resources.SDK.BlackJack.html",
-          "hash": "n7tWL0VhphZC0s7w16AgUQ=="
+          "hash": "Sadb4C2NC8S8EILL44BqnQ=="
         }
       },
       "is_incremental": false,
@@ -480,7 +504,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.Resources.SDK.Classification.html",
-          "hash": "jAplV+tzgZuKhHszv6rjyQ=="
+          "hash": "8sspuPmLNDy5/l4cGs9sUg=="
         }
       },
       "is_incremental": false,
@@ -492,7 +516,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.Resources.SDK.ClassifierInfo.html",
-          "hash": "I46b3wOTnl8buRhISPBiqw=="
+          "hash": "4gbziwYltkkaS39gqgGhlQ=="
         }
       },
       "is_incremental": false,
@@ -504,7 +528,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.Resources.SDK.Classifier_TFLite.html",
-          "hash": "BsD/Cy+vfVeef8HPQ8jnzA=="
+          "hash": "L93z069e43fmezmv7F4/yg=="
         }
       },
       "is_incremental": false,
@@ -516,7 +540,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.Resources.SDK.Clock.html",
-          "hash": "sNJnWcEK/IRk74tMco3Wrw=="
+          "hash": "9x6M5FfxHGBMqsjsqaSFxQ=="
         }
       },
       "is_incremental": false,
@@ -528,7 +552,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.Resources.SDK.CompositeImage.html",
-          "hash": "uUWKqzOy20tsAASKb4HISg=="
+          "hash": "nnamTMtzbQKUUTF9o9FV9Q=="
         }
       },
       "is_incremental": false,
@@ -540,7 +564,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.Resources.SDK.ConditionSchema.html",
-          "hash": "dcWllF8xs8BrYurL2VqqLQ=="
+          "hash": "7jBlqB7IG/MSj4pjhPGOEQ=="
         }
       },
       "is_incremental": false,
@@ -552,7 +576,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.Resources.SDK.DecayGraph.html",
-          "hash": "8SgnYxyliG87qf4MUYDdyA=="
+          "hash": "LRkI2rLUMMiGdphzzR19bw=="
         }
       },
       "is_incremental": false,
@@ -564,7 +588,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.Resources.SDK.EmotionAffector.html",
-          "hash": "bhq8tu6lZdIH5eBfMnsKWA=="
+          "hash": "6d+pzfv0oLsFw4MTAthOJA=="
         }
       },
       "is_incremental": false,
@@ -576,7 +600,19 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.Resources.SDK.EmotionEvent.html",
-          "hash": "QWwH57xjS9WNqXoiKhRZ5A=="
+          "hash": "2yV7gLetJ9YMVrptQFVBkw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Anki.Resources.SDK.HSColor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Anki.Resources.SDK.HSColor.html",
+          "hash": "Q4DFgHDiqWFkVbTQWvr9tQ=="
         }
       },
       "is_incremental": false,
@@ -588,7 +624,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.Resources.SDK.IProcessImage.html",
-          "hash": "XOi36d9GTa4HCLH41U3gTA=="
+          "hash": "fqbOa+bCmYPxNMPh+3jHog=="
         }
       },
       "is_incremental": false,
@@ -600,7 +636,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.Resources.SDK.ImageContainer.html",
-          "hash": "mcQ3chDmdH4a6qFcUTW1TQ=="
+          "hash": "sHdvAJ1GyNjz5tbgxNreDQ=="
         }
       },
       "is_incremental": false,
@@ -612,7 +648,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.Resources.SDK.ImageLayout.html",
-          "hash": "Eo3AloYQNbHOANHOERye7w=="
+          "hash": "9NtHRass190c8IacbV3yWA=="
         }
       },
       "is_incremental": false,
@@ -624,7 +660,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.Resources.SDK.ImageMap.html",
-          "hash": "gJae4azC18lWq0Je2rJbfw=="
+          "hash": "ctKhd0Tmejs7ympbymKcQQ=="
         }
       },
       "is_incremental": false,
@@ -636,7 +672,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.Resources.SDK.LightFrame.html",
-          "hash": "mMZXZgLlyo7e2/hQ2RtJlA=="
+          "hash": "GULJSJUKI5RG9eDPIiyhSg=="
         }
       },
       "is_incremental": false,
@@ -648,7 +684,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.Resources.SDK.LightsPattern.html",
-          "hash": "zrzJ1QFokJys4MJSn6p5HA=="
+          "hash": "AsjhcbLqIk6kxAqzjqv6og=="
         }
       },
       "is_incremental": false,
@@ -660,7 +696,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.Resources.SDK.MinMax.html",
-          "hash": "mlduidTJOWa3Xs4eiZW7ng=="
+          "hash": "11PHlnzL6ZJuYvIgPA0Jzg=="
         }
       },
       "is_incremental": false,
@@ -672,7 +708,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.Resources.SDK.SimpleVoiceResponse.html",
-          "hash": "0ZIv+XdGyNTFoCgAH8BaWA=="
+          "hash": "FO0X+Tr7JOsnZ8Im6jABKw=="
         }
       },
       "is_incremental": false,
@@ -684,7 +720,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.Resources.SDK.SpriteBox.html",
-          "hash": "5aOtAZ2udtOCrCQr3KjWEw=="
+          "hash": "vhxzzMcyuUs0Ak1agSXqzg=="
         }
       },
       "is_incremental": false,
@@ -696,7 +732,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.Resources.SDK.SpriteMapBox.html",
-          "hash": "1nmfDkUin6NSecl2tuDO0w=="
+          "hash": "b5j18XxbYcNU6Zkic+6RQw=="
         }
       },
       "is_incremental": false,
@@ -708,7 +744,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.Resources.SDK.SpriteSequence.html",
-          "hash": "DgxiYa7PHDDE6wmqDOSiOQ=="
+          "hash": "hkXa619fPr5d2ZjGMQ2ULA=="
         }
       },
       "is_incremental": false,
@@ -720,7 +756,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.Resources.SDK.TextSubstitution.html",
-          "hash": "j3JDC3roptGyVip00064eA=="
+          "hash": "f1D9NdzemfonxwaRyMjzvw=="
         }
       },
       "is_incremental": false,
@@ -732,7 +768,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.Resources.SDK.UserIntentMap.html",
-          "hash": "uG8LCWZCCDd3AnxWKLxOWg=="
+          "hash": "OQWaeDDhxq9uIDOPix4QWA=="
         }
       },
       "is_incremental": false,
@@ -744,7 +780,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.Resources.SDK.VisionModeSetting.html",
-          "hash": "MX73rjrDU0BkBqhqicKx8g=="
+          "hash": "L7iY4l85abAyyKtG56+4wQ=="
         }
       },
       "is_incremental": false,
@@ -756,7 +792,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.Resources.SDK.Weather.html",
-          "hash": "IqWR0XNhv8RK1wPRWEmAjA=="
+          "hash": "2tH0jaCIehidkDCklWBywg=="
         }
       },
       "is_incremental": false,
@@ -768,7 +804,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.Resources.SDK.XY.html",
-          "hash": "Gc7/1GSdDMQekbDWeDMi9w=="
+          "hash": "XXxtNDgrhhBs1ibpoNbq/g=="
         }
       },
       "is_incremental": false,
@@ -780,7 +816,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.Resources.SDK.html",
-          "hash": "+knaNurarxfqjNJP/9GRkQ=="
+          "hash": "IMXMvm/WB4YA2g38jMkA3Q=="
         }
       },
       "is_incremental": false,
@@ -792,7 +828,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.VectorAnim.AnimClip.html",
-          "hash": "f4ovGTCgTffsWv7LacOKJA=="
+          "hash": "gmlJW/w7vgYHj0j0W1sYdg=="
         }
       },
       "is_incremental": false,
@@ -804,7 +840,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.VectorAnim.AnimClips.html",
-          "hash": "nTkqzNTyv2Is7So7i5N7Tw=="
+          "hash": "5Z40PtuJHVqQDedseusIlg=="
         }
       },
       "is_incremental": false,
@@ -816,7 +852,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.VectorAnim.AudioEventGroup.html",
-          "hash": "+74fqLfSL4rND4CvB8skrg=="
+          "hash": "VsQzG9zC1DAfHOOZbggRrA=="
         }
       },
       "is_incremental": false,
@@ -828,7 +864,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.VectorAnim.AudioParameter.html",
-          "hash": "n8XMKa5xutz94gbezwoX9w=="
+          "hash": "WjStZR1u2C6QuIAiHH7/Sg=="
         }
       },
       "is_incremental": false,
@@ -840,7 +876,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.VectorAnim.AudioState.html",
-          "hash": "jMxcmNlW8VdQjR5nmQhdUA=="
+          "hash": "ovBtdS+Zu5UJLHr75er2Lw=="
         }
       },
       "is_incremental": false,
@@ -852,7 +888,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.VectorAnim.AudioSwitch.html",
-          "hash": "G9jpWSqZfDQ6EEa5amPeww=="
+          "hash": "A9nVZ9z4KFGIhHDVjaA9aQ=="
         }
       },
       "is_incremental": false,
@@ -864,7 +900,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.VectorAnim.BackpackLights.html",
-          "hash": "409vkTuJjRyu8fDuS34c1A=="
+          "hash": "exBnSF8BynudONkz88XEAw=="
         }
       },
       "is_incremental": false,
@@ -876,7 +912,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.VectorAnim.FaceAnimation.html",
-          "hash": "Yr2SF9QpLTBMG/0EIL4++w=="
+          "hash": "JugVRkILHfKK06C4N79eaQ=="
         }
       },
       "is_incremental": false,
@@ -888,7 +924,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.VectorAnim.Keyframes.html",
-          "hash": "4qA5X44O0haBWcRgFDVJVg=="
+          "hash": "OuspZ3kO3KSUxwHmzklMNQ=="
         }
       },
       "is_incremental": false,
@@ -900,7 +936,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.VectorAnim.ProceduralFace.html",
-          "hash": "VgmnrQeant/jb3Eak9bWxw=="
+          "hash": "CS56af1i4V/53+ljxjqgTA=="
         }
       },
       "is_incremental": false,
@@ -912,7 +948,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.VectorAnim.RobotAudio.html",
-          "hash": "yvjJCjLL6rzIWuLb8Wq1KA=="
+          "hash": "W6yuZToSBnT3/hypH/uC2Q=="
         }
       },
       "is_incremental": false,
@@ -924,7 +960,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.VectorAnim.SpriteBox.html",
-          "hash": "3BAEdAlZuBHJR0GyP9pRSg=="
+          "hash": "X4M2mmI+VX/2T6yWT8/TTg=="
         }
       },
       "is_incremental": false,
@@ -936,7 +972,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Anki.VectorAnim.html",
-          "hash": "HkBaHKa/4jyRmkPL0q+PzQ=="
+          "hash": "2iy2D5i/h+k2HJOJRVMVMQ=="
         }
       },
       "is_incremental": false,
@@ -948,7 +984,7 @@
       "output": {
         ".html": {
           "relative_path": "api/RCM.FolderWrapper.html",
-          "hash": "LnjuUyx9eWaVXMdJbKbXdA=="
+          "hash": "NMJDa85zPXxR2/L3YHGTUg=="
         }
       },
       "is_incremental": false,
@@ -960,7 +996,7 @@
       "output": {
         ".html": {
           "relative_path": "api/RCM.IFolderWrapper.html",
-          "hash": "VePod+NWvSX8Rq8HswZ49A=="
+          "hash": "qZQDszB3ATDtgIYvRf1pqQ=="
         }
       },
       "is_incremental": false,
@@ -972,7 +1008,7 @@
       "output": {
         ".html": {
           "relative_path": "api/RCM.Util.html",
-          "hash": "JnAVGamIlFlkGGmNLNd7EA=="
+          "hash": "6qxsg8ld+pyDc/W6Ez5RBA=="
         }
       },
       "is_incremental": false,
@@ -984,7 +1020,7 @@
       "output": {
         ".html": {
           "relative_path": "api/RCM.ZipWrapper.html",
-          "hash": "W+E1zROhoshV0v/Gkn+Uuw=="
+          "hash": "ZMftUZMDWWA93CQROuoqHA=="
         }
       },
       "is_incremental": false,
@@ -996,7 +1032,7 @@
       "output": {
         ".html": {
           "relative_path": "api/RCM.html",
-          "hash": "ZM77i3l+wxi3oSsxtX92OA=="
+          "hash": "WjFsqmdWAjldSQ+uonfnig=="
         }
       },
       "is_incremental": false,
@@ -1008,7 +1044,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "7yjie2mX4ZHH7HY7HY14eg=="
+          "hash": "JrpouIlkF3qgmdPxnSPNFw=="
         }
       },
       "is_incremental": false,
@@ -1048,8 +1084,8 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build",
-          "total_file_count": 78,
-          "skipped_file_count": 78
+          "total_file_count": 81,
+          "skipped_file_count": 79
         },
         "TocDocumentProcessor": {
           "can_incremental": false,

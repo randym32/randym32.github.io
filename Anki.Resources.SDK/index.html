@@ -8,7 +8,7 @@
     <title>Anki Vector/Cozmo Resources SDK  (.NET) | Resources SDK </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Anki Vector/Cozmo Resources SDK  (.NET) | Resources SDK ">
-    <meta name="generator" content="docfx 2.55.0.0">
+    <meta name="generator" content="docfx 2.56.0.0">
     
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="styles/docfx.vendor.css">
@@ -96,13 +96,27 @@ supported by them.</p>
 </ul>
 <p>To play audio you will need to add the following packages to your project:</p>
 <ul>
-<li><a href="https://www.nuget.org/packages/NAudio/">NAudio</a></li>
-<li><a href="https://www.nuget.org/packages/NVorbis/">NVorbis</a></li>
-<li><a href="https://www.nuget.org/packages/NAudio.Vorbis/">NAudio.Vorbis</a></li>
+<li><a href="https://www.nuget.org/packages/NAudio/">NAudio</a>, Used for sound playback of decoded audio</li>
+<li><a href="https://www.nuget.org/packages/NVorbis/">NVorbis</a>, Used to decode Vorbis audio</li>
+<li><a href="https://www.nuget.org/packages/NAudio.Vorbis/">NAudio.Vorbis</a>, Used to complete the bridging of Vorbis to the audio playback.</li>
 </ul>
 <p>To play with the sprites you will need to add the following packages to your project:</p>
 <ul>
 <li><a href="https://www.nuget.org/packages/System.Drawing.Common/">System.Drawing.Common</a></li>
+</ul>
+<p>To work with the vision detects &amp; classifiers you will need to add the following
+packages to your project:</p>
+<ul>
+<li><a href="https://www.nuget.org/packages/Emgu.CV">EMGU.CV</a>, This provides OpenCV
+resources to C#; it is is used by the vision classifiers.</li>
+<li><a href="https://www.nuget.org/packages/Emgu.CV.runtime.windows">EMGU.CV.runtime.windows</a>,
+This provides the Windows-specific openCV binaries; if you use another
+operating system, you'll want to use a package for that OS.</li>
+<li><a href="https://www.nuget.org/packages/Emgu.TF.Lite">EMGU.TF.Lite</a>, This provides
+TensorFlow Lite resources to C#.  This is used by the vision classifiers.</li>
+<li><a href="https://www.nuget.org/packages/Emgu.TF.Lite.runtime.windows">EMGU.TF.Lite.runtime.windows</a>,
+This provides the Windows-specific TensorFlow Lite binaries; if you use another
+operating system, you'll want to use a package for that OS.</li>
 </ul>
 <h3 id="download">Download</h3>
 <ul>

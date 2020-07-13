@@ -5694,19 +5694,6 @@ references:
   isSpec: "True"
   fullName: Anki.Resources.SDK.Assets.Assets
   nameWithType: Assets.Assets
-- uid: Anki.Resources.SDK.Assets.AnalyzeAnimationTriggerName(System.Text.StringBuilder,System.String)
-  name: AnalyzeAnimationTriggerName(StringBuilder, String)
-  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_AnalyzeAnimationTriggerName_System_Text_StringBuilder_System_String_
-  commentId: M:Anki.Resources.SDK.Assets.AnalyzeAnimationTriggerName(System.Text.StringBuilder,System.String)
-  fullName: Anki.Resources.SDK.Assets.AnalyzeAnimationTriggerName(System.Text.StringBuilder, System.String)
-  nameWithType: Assets.AnalyzeAnimationTriggerName(StringBuilder, String)
-- uid: Anki.Resources.SDK.Assets.AnalyzeAnimationTriggerName*
-  name: AnalyzeAnimationTriggerName
-  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_AnalyzeAnimationTriggerName_
-  commentId: Overload:Anki.Resources.SDK.Assets.AnalyzeAnimationTriggerName
-  isSpec: "True"
-  fullName: Anki.Resources.SDK.Assets.AnalyzeAnimationTriggerName
-  nameWithType: Assets.AnalyzeAnimationTriggerName
 - uid: Anki.Resources.SDK.Assets.AnimationDuration(System.String)
   name: AnimationDuration(String)
   href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_AnimationDuration_System_String_
@@ -5849,6 +5836,32 @@ references:
   isSpec: "True"
   fullName: Anki.Resources.SDK.Assets.BackpackLightsTriggerNames
   nameWithType: Assets.BackpackLightsTriggerNames
+- uid: Anki.Resources.SDK.Assets.BehaviorRootToNodeId
+  name: BehaviorRootToNodeId
+  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_BehaviorRootToNodeId
+  commentId: P:Anki.Resources.SDK.Assets.BehaviorRootToNodeId
+  fullName: Anki.Resources.SDK.Assets.BehaviorRootToNodeId
+  nameWithType: Assets.BehaviorRootToNodeId
+- uid: Anki.Resources.SDK.Assets.BehaviorRootToNodeId*
+  name: BehaviorRootToNodeId
+  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_BehaviorRootToNodeId_
+  commentId: Overload:Anki.Resources.SDK.Assets.BehaviorRootToNodeId
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.Assets.BehaviorRootToNodeId
+  nameWithType: Assets.BehaviorRootToNodeId
+- uid: Anki.Resources.SDK.Assets.BehaviorTree
+  name: BehaviorTree
+  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_BehaviorTree
+  commentId: P:Anki.Resources.SDK.Assets.BehaviorTree
+  fullName: Anki.Resources.SDK.Assets.BehaviorTree
+  nameWithType: Assets.BehaviorTree
+- uid: Anki.Resources.SDK.Assets.BehaviorTree*
+  name: BehaviorTree
+  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_BehaviorTree_
+  commentId: Overload:Anki.Resources.SDK.Assets.BehaviorTree
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.Assets.BehaviorTree
+  nameWithType: Assets.BehaviorTree
 - uid: Anki.Resources.SDK.Assets.BlackJack
   name: BlackJack
   href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_BlackJack
@@ -6012,6 +6025,19 @@ references:
   isSpec: "True"
   fullName: Anki.Resources.SDK.Assets.EmotionValueRanges
   nameWithType: Assets.EmotionValueRanges
+- uid: Anki.Resources.SDK.Assets.EyeColors
+  name: EyeColors
+  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_EyeColors
+  commentId: P:Anki.Resources.SDK.Assets.EyeColors
+  fullName: Anki.Resources.SDK.Assets.EyeColors
+  nameWithType: Assets.EyeColors
+- uid: Anki.Resources.SDK.Assets.EyeColors*
+  name: EyeColors
+  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_EyeColors_
+  commentId: Overload:Anki.Resources.SDK.Assets.EyeColors
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.Assets.EyeColors
+  nameWithType: Assets.EyeColors
 - uid: Anki.Resources.SDK.Assets.Features
   name: Features
   href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_Features
@@ -6103,6 +6129,32 @@ references:
   isSpec: "True"
   fullName: Anki.Resources.SDK.Assets.IndependentSpritePath
   nameWithType: Assets.IndependentSpritePath
+- uid: Anki.Resources.SDK.Assets.Locales
+  name: Locales
+  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_Locales
+  commentId: P:Anki.Resources.SDK.Assets.Locales
+  fullName: Anki.Resources.SDK.Assets.Locales
+  nameWithType: Assets.Locales
+- uid: Anki.Resources.SDK.Assets.Locales*
+  name: Locales
+  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_Locales_
+  commentId: Overload:Anki.Resources.SDK.Assets.Locales
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.Assets.Locales
+  nameWithType: Assets.Locales
+- uid: Anki.Resources.SDK.Assets.LocalizationFiles
+  name: LocalizationFiles
+  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_LocalizationFiles
+  commentId: P:Anki.Resources.SDK.Assets.LocalizationFiles
+  fullName: Anki.Resources.SDK.Assets.LocalizationFiles
+  nameWithType: Assets.LocalizationFiles
+- uid: Anki.Resources.SDK.Assets.LocalizationFiles*
+  name: LocalizationFiles
+  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_LocalizationFiles_
+  commentId: Overload:Anki.Resources.SDK.Assets.LocalizationFiles
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.Assets.LocalizationFiles
+  nameWithType: Assets.LocalizationFiles
 - uid: Anki.Resources.SDK.Assets.LocalizedTextSubstitution(System.String,System.String)
   name: LocalizedTextSubstitution(String, String)
   href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_LocalizedTextSubstitution_System_String_System_String_
@@ -6187,6 +6239,19 @@ references:
   commentId: F:Anki.Resources.SDK.Assets.VisionScheduleConfig
   fullName: Anki.Resources.SDK.Assets.VisionScheduleConfig
   nameWithType: Assets.VisionScheduleConfig
+- uid: Anki.Resources.SDK.Assets.VoiceNames
+  name: VoiceNames
+  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_VoiceNames
+  commentId: P:Anki.Resources.SDK.Assets.VoiceNames
+  fullName: Anki.Resources.SDK.Assets.VoiceNames
+  nameWithType: Assets.VoiceNames
+- uid: Anki.Resources.SDK.Assets.VoiceNames*
+  name: VoiceNames
+  href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_VoiceNames_
+  commentId: Overload:Anki.Resources.SDK.Assets.VoiceNames
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.Assets.VoiceNames
+  nameWithType: Assets.VoiceNames
 - uid: Anki.Resources.SDK.Assets.Weather
   name: Weather
   href: api/Anki.Resources.SDK.Assets.html#Anki_Resources_SDK_Assets_Weather
@@ -6236,6 +6301,86 @@ references:
   commentId: F:Anki.Resources.SDK.BehaviorCoordinator.IndependentSpritesUsed
   fullName: Anki.Resources.SDK.BehaviorCoordinator.IndependentSpritesUsed
   nameWithType: BehaviorCoordinator.IndependentSpritesUsed
+- uid: Anki.Resources.SDK.BehaviorNode
+  name: BehaviorNode
+  href: api/Anki.Resources.SDK.BehaviorNode.html
+  commentId: T:Anki.Resources.SDK.BehaviorNode
+  fullName: Anki.Resources.SDK.BehaviorNode
+  nameWithType: BehaviorNode
+- uid: Anki.Resources.SDK.BehaviorNode.behaviorClass
+  name: behaviorClass
+  href: api/Anki.Resources.SDK.BehaviorNode.html#Anki_Resources_SDK_BehaviorNode_behaviorClass
+  commentId: P:Anki.Resources.SDK.BehaviorNode.behaviorClass
+  fullName: Anki.Resources.SDK.BehaviorNode.behaviorClass
+  nameWithType: BehaviorNode.behaviorClass
+- uid: Anki.Resources.SDK.BehaviorNode.behaviorClass*
+  name: behaviorClass
+  href: api/Anki.Resources.SDK.BehaviorNode.html#Anki_Resources_SDK_BehaviorNode_behaviorClass_
+  commentId: Overload:Anki.Resources.SDK.BehaviorNode.behaviorClass
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.BehaviorNode.behaviorClass
+  nameWithType: BehaviorNode.behaviorClass
+- uid: Anki.Resources.SDK.BehaviorNode.behaviorID
+  name: behaviorID
+  href: api/Anki.Resources.SDK.BehaviorNode.html#Anki_Resources_SDK_BehaviorNode_behaviorID
+  commentId: P:Anki.Resources.SDK.BehaviorNode.behaviorID
+  fullName: Anki.Resources.SDK.BehaviorNode.behaviorID
+  nameWithType: BehaviorNode.behaviorID
+- uid: Anki.Resources.SDK.BehaviorNode.behaviorID*
+  name: behaviorID
+  href: api/Anki.Resources.SDK.BehaviorNode.html#Anki_Resources_SDK_BehaviorNode_behaviorID_
+  commentId: Overload:Anki.Resources.SDK.BehaviorNode.behaviorID
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.BehaviorNode.behaviorID
+  nameWithType: BehaviorNode.behaviorID
+- uid: Anki.Resources.SDK.BehaviorTree
+  name: BehaviorTree
+  href: api/Anki.Resources.SDK.BehaviorTree.html
+  commentId: T:Anki.Resources.SDK.BehaviorTree
+  fullName: Anki.Resources.SDK.BehaviorTree
+  nameWithType: BehaviorTree
+- uid: Anki.Resources.SDK.BehaviorTree.Ids
+  name: Ids
+  href: api/Anki.Resources.SDK.BehaviorTree.html#Anki_Resources_SDK_BehaviorTree_Ids
+  commentId: P:Anki.Resources.SDK.BehaviorTree.Ids
+  fullName: Anki.Resources.SDK.BehaviorTree.Ids
+  nameWithType: BehaviorTree.Ids
+- uid: Anki.Resources.SDK.BehaviorTree.Ids*
+  name: Ids
+  href: api/Anki.Resources.SDK.BehaviorTree.html#Anki_Resources_SDK_BehaviorTree_Ids_
+  commentId: Overload:Anki.Resources.SDK.BehaviorTree.Ids
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.BehaviorTree.Ids
+  nameWithType: BehaviorTree.Ids
+- uid: Anki.Resources.SDK.BehaviorTree.Item(System.String)
+  name: Item[String]
+  href: api/Anki.Resources.SDK.BehaviorTree.html#Anki_Resources_SDK_BehaviorTree_Item_System_String_
+  commentId: P:Anki.Resources.SDK.BehaviorTree.Item(System.String)
+  name.vb: Item(String)
+  fullName: Anki.Resources.SDK.BehaviorTree.Item[System.String]
+  fullName.vb: Anki.Resources.SDK.BehaviorTree.Item(System.String)
+  nameWithType: BehaviorTree.Item[String]
+  nameWithType.vb: BehaviorTree.Item(String)
+- uid: Anki.Resources.SDK.BehaviorTree.Item*
+  name: Item
+  href: api/Anki.Resources.SDK.BehaviorTree.html#Anki_Resources_SDK_BehaviorTree_Item_
+  commentId: Overload:Anki.Resources.SDK.BehaviorTree.Item
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.BehaviorTree.Item
+  nameWithType: BehaviorTree.Item
+- uid: Anki.Resources.SDK.BehaviorTree.Keys
+  name: Keys
+  href: api/Anki.Resources.SDK.BehaviorTree.html#Anki_Resources_SDK_BehaviorTree_Keys
+  commentId: P:Anki.Resources.SDK.BehaviorTree.Keys
+  fullName: Anki.Resources.SDK.BehaviorTree.Keys
+  nameWithType: BehaviorTree.Keys
+- uid: Anki.Resources.SDK.BehaviorTree.Keys*
+  name: Keys
+  href: api/Anki.Resources.SDK.BehaviorTree.html#Anki_Resources_SDK_BehaviorTree_Keys_
+  commentId: Overload:Anki.Resources.SDK.BehaviorTree.Keys
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.BehaviorTree.Keys
+  nameWithType: BehaviorTree.Keys
 - uid: Anki.Resources.SDK.BlackJack
   name: BlackJack
   href: api/Anki.Resources.SDK.BlackJack.html
@@ -6248,6 +6393,38 @@ references:
   commentId: T:Anki.Resources.SDK.Classification
   fullName: Anki.Resources.SDK.Classification
   nameWithType: Classification
+- uid: Anki.Resources.SDK.Classification.Equals(Anki.Resources.SDK.Classification)
+  name: Equals(Classification)
+  href: api/Anki.Resources.SDK.Classification.html#Anki_Resources_SDK_Classification_Equals_Anki_Resources_SDK_Classification_
+  commentId: M:Anki.Resources.SDK.Classification.Equals(Anki.Resources.SDK.Classification)
+  fullName: Anki.Resources.SDK.Classification.Equals(Anki.Resources.SDK.Classification)
+  nameWithType: Classification.Equals(Classification)
+- uid: Anki.Resources.SDK.Classification.Equals(System.Object)
+  name: Equals(Object)
+  href: api/Anki.Resources.SDK.Classification.html#Anki_Resources_SDK_Classification_Equals_System_Object_
+  commentId: M:Anki.Resources.SDK.Classification.Equals(System.Object)
+  fullName: Anki.Resources.SDK.Classification.Equals(System.Object)
+  nameWithType: Classification.Equals(Object)
+- uid: Anki.Resources.SDK.Classification.Equals*
+  name: Equals
+  href: api/Anki.Resources.SDK.Classification.html#Anki_Resources_SDK_Classification_Equals_
+  commentId: Overload:Anki.Resources.SDK.Classification.Equals
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.Classification.Equals
+  nameWithType: Classification.Equals
+- uid: Anki.Resources.SDK.Classification.GetHashCode
+  name: GetHashCode()
+  href: api/Anki.Resources.SDK.Classification.html#Anki_Resources_SDK_Classification_GetHashCode
+  commentId: M:Anki.Resources.SDK.Classification.GetHashCode
+  fullName: Anki.Resources.SDK.Classification.GetHashCode()
+  nameWithType: Classification.GetHashCode()
+- uid: Anki.Resources.SDK.Classification.GetHashCode*
+  name: GetHashCode
+  href: api/Anki.Resources.SDK.Classification.html#Anki_Resources_SDK_Classification_GetHashCode_
+  commentId: Overload:Anki.Resources.SDK.Classification.GetHashCode
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.Classification.GetHashCode
+  nameWithType: Classification.GetHashCode
 - uid: Anki.Resources.SDK.Classification.Label
   name: Label
   href: api/Anki.Resources.SDK.Classification.html#Anki_Resources_SDK_Classification_Label
@@ -6261,6 +6438,32 @@ references:
   isSpec: "True"
   fullName: Anki.Resources.SDK.Classification.Label
   nameWithType: Classification.Label
+- uid: Anki.Resources.SDK.Classification.op_Equality(Anki.Resources.SDK.Classification,Anki.Resources.SDK.Classification)
+  name: Equality(Classification, Classification)
+  href: api/Anki.Resources.SDK.Classification.html#Anki_Resources_SDK_Classification_op_Equality_Anki_Resources_SDK_Classification_Anki_Resources_SDK_Classification_
+  commentId: M:Anki.Resources.SDK.Classification.op_Equality(Anki.Resources.SDK.Classification,Anki.Resources.SDK.Classification)
+  fullName: Anki.Resources.SDK.Classification.Equality(Anki.Resources.SDK.Classification, Anki.Resources.SDK.Classification)
+  nameWithType: Classification.Equality(Classification, Classification)
+- uid: Anki.Resources.SDK.Classification.op_Equality*
+  name: Equality
+  href: api/Anki.Resources.SDK.Classification.html#Anki_Resources_SDK_Classification_op_Equality_
+  commentId: Overload:Anki.Resources.SDK.Classification.op_Equality
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.Classification.Equality
+  nameWithType: Classification.Equality
+- uid: Anki.Resources.SDK.Classification.op_Inequality(Anki.Resources.SDK.Classification,Anki.Resources.SDK.Classification)
+  name: Inequality(Classification, Classification)
+  href: api/Anki.Resources.SDK.Classification.html#Anki_Resources_SDK_Classification_op_Inequality_Anki_Resources_SDK_Classification_Anki_Resources_SDK_Classification_
+  commentId: M:Anki.Resources.SDK.Classification.op_Inequality(Anki.Resources.SDK.Classification,Anki.Resources.SDK.Classification)
+  fullName: Anki.Resources.SDK.Classification.Inequality(Anki.Resources.SDK.Classification, Anki.Resources.SDK.Classification)
+  nameWithType: Classification.Inequality(Classification, Classification)
+- uid: Anki.Resources.SDK.Classification.op_Inequality*
+  name: Inequality
+  href: api/Anki.Resources.SDK.Classification.html#Anki_Resources_SDK_Classification_op_Inequality_
+  commentId: Overload:Anki.Resources.SDK.Classification.op_Inequality
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.Classification.Inequality
+  nameWithType: Classification.Inequality
 - uid: Anki.Resources.SDK.Classification.Probability
   name: Probability
   href: api/Anki.Resources.SDK.Classification.html#Anki_Resources_SDK_Classification_Probability
@@ -6667,6 +6870,24 @@ references:
   isSpec: "True"
   fullName: Anki.Resources.SDK.EmotionEvent.repetitionPenalty
   nameWithType: EmotionEvent.repetitionPenalty
+- uid: Anki.Resources.SDK.HSColor
+  name: HSColor
+  href: api/Anki.Resources.SDK.HSColor.html
+  commentId: T:Anki.Resources.SDK.HSColor
+  fullName: Anki.Resources.SDK.HSColor
+  nameWithType: HSColor
+- uid: Anki.Resources.SDK.HSColor.Hue
+  name: Hue
+  href: api/Anki.Resources.SDK.HSColor.html#Anki_Resources_SDK_HSColor_Hue
+  commentId: F:Anki.Resources.SDK.HSColor.Hue
+  fullName: Anki.Resources.SDK.HSColor.Hue
+  nameWithType: HSColor.Hue
+- uid: Anki.Resources.SDK.HSColor.Saturation
+  name: Saturation
+  href: api/Anki.Resources.SDK.HSColor.html#Anki_Resources_SDK_HSColor_Saturation
+  commentId: F:Anki.Resources.SDK.HSColor.Saturation
+  fullName: Anki.Resources.SDK.HSColor.Saturation
+  nameWithType: HSColor.Saturation
 - uid: Anki.Resources.SDK.ImageContainer
   name: ImageContainer
   href: api/Anki.Resources.SDK.ImageContainer.html
@@ -7152,22 +7373,48 @@ references:
   commentId: T:Anki.Resources.SDK.TextSubstitution
   fullName: Anki.Resources.SDK.TextSubstitution
   nameWithType: TextSubstitution
-- uid: Anki.Resources.SDK.TextSubstitution.LocalizedString(System.String,System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
-  name: LocalizedString(String, IReadOnlyDictionary<String, String>)
-  href: api/Anki.Resources.SDK.TextSubstitution.html#Anki_Resources_SDK_TextSubstitution_LocalizedString_System_String_System_Collections_Generic_IReadOnlyDictionary_System_String_System_String__
-  commentId: M:Anki.Resources.SDK.TextSubstitution.LocalizedString(System.String,System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
-  name.vb: LocalizedString(String, IReadOnlyDictionary(Of String, String))
-  fullName: Anki.Resources.SDK.TextSubstitution.LocalizedString(System.String, System.Collections.Generic.IReadOnlyDictionary<System.String, System.String>)
-  fullName.vb: Anki.Resources.SDK.TextSubstitution.LocalizedString(System.String, System.Collections.Generic.IReadOnlyDictionary(Of System.String, System.String))
-  nameWithType: TextSubstitution.LocalizedString(String, IReadOnlyDictionary<String, String>)
-  nameWithType.vb: TextSubstitution.LocalizedString(String, IReadOnlyDictionary(Of String, String))
-- uid: Anki.Resources.SDK.TextSubstitution.LocalizedString*
-  name: LocalizedString
-  href: api/Anki.Resources.SDK.TextSubstitution.html#Anki_Resources_SDK_TextSubstitution_LocalizedString_
-  commentId: Overload:Anki.Resources.SDK.TextSubstitution.LocalizedString
+- uid: Anki.Resources.SDK.TextSubstitution.Keys
+  name: Keys
+  href: api/Anki.Resources.SDK.TextSubstitution.html#Anki_Resources_SDK_TextSubstitution_Keys
+  commentId: P:Anki.Resources.SDK.TextSubstitution.Keys
+  fullName: Anki.Resources.SDK.TextSubstitution.Keys
+  nameWithType: TextSubstitution.Keys
+- uid: Anki.Resources.SDK.TextSubstitution.Keys*
+  name: Keys
+  href: api/Anki.Resources.SDK.TextSubstitution.html#Anki_Resources_SDK_TextSubstitution_Keys_
+  commentId: Overload:Anki.Resources.SDK.TextSubstitution.Keys
   isSpec: "True"
-  fullName: Anki.Resources.SDK.TextSubstitution.LocalizedString
-  nameWithType: TextSubstitution.LocalizedString
+  fullName: Anki.Resources.SDK.TextSubstitution.Keys
+  nameWithType: TextSubstitution.Keys
+- uid: Anki.Resources.SDK.TextSubstitution.LocalizedText(System.String,System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
+  name: LocalizedText(String, IReadOnlyDictionary<String, String>)
+  href: api/Anki.Resources.SDK.TextSubstitution.html#Anki_Resources_SDK_TextSubstitution_LocalizedText_System_String_System_Collections_Generic_IReadOnlyDictionary_System_String_System_String__
+  commentId: M:Anki.Resources.SDK.TextSubstitution.LocalizedText(System.String,System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})
+  name.vb: LocalizedText(String, IReadOnlyDictionary(Of String, String))
+  fullName: Anki.Resources.SDK.TextSubstitution.LocalizedText(System.String, System.Collections.Generic.IReadOnlyDictionary<System.String, System.String>)
+  fullName.vb: Anki.Resources.SDK.TextSubstitution.LocalizedText(System.String, System.Collections.Generic.IReadOnlyDictionary(Of System.String, System.String))
+  nameWithType: TextSubstitution.LocalizedText(String, IReadOnlyDictionary<String, String>)
+  nameWithType.vb: TextSubstitution.LocalizedText(String, IReadOnlyDictionary(Of String, String))
+- uid: Anki.Resources.SDK.TextSubstitution.LocalizedText*
+  name: LocalizedText
+  href: api/Anki.Resources.SDK.TextSubstitution.html#Anki_Resources_SDK_TextSubstitution_LocalizedText_
+  commentId: Overload:Anki.Resources.SDK.TextSubstitution.LocalizedText
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.TextSubstitution.LocalizedText
+  nameWithType: TextSubstitution.LocalizedText
+- uid: Anki.Resources.SDK.TextSubstitution.LocalizedTextWithoutSubstitutions(System.String)
+  name: LocalizedTextWithoutSubstitutions(String)
+  href: api/Anki.Resources.SDK.TextSubstitution.html#Anki_Resources_SDK_TextSubstitution_LocalizedTextWithoutSubstitutions_System_String_
+  commentId: M:Anki.Resources.SDK.TextSubstitution.LocalizedTextWithoutSubstitutions(System.String)
+  fullName: Anki.Resources.SDK.TextSubstitution.LocalizedTextWithoutSubstitutions(System.String)
+  nameWithType: TextSubstitution.LocalizedTextWithoutSubstitutions(String)
+- uid: Anki.Resources.SDK.TextSubstitution.LocalizedTextWithoutSubstitutions*
+  name: LocalizedTextWithoutSubstitutions
+  href: api/Anki.Resources.SDK.TextSubstitution.html#Anki_Resources_SDK_TextSubstitution_LocalizedTextWithoutSubstitutions_
+  commentId: Overload:Anki.Resources.SDK.TextSubstitution.LocalizedTextWithoutSubstitutions
+  isSpec: "True"
+  fullName: Anki.Resources.SDK.TextSubstitution.LocalizedTextWithoutSubstitutions
+  nameWithType: TextSubstitution.LocalizedTextWithoutSubstitutions
 - uid: Anki.Resources.SDK.UserIntentMap
   name: UserIntentMap
   href: api/Anki.Resources.SDK.UserIntentMap.html
